@@ -46,9 +46,9 @@ You should be able to access the application in [http://localhost:3000](http://l
 
 ## More information
 You can get more information about the respository in the other README files:
-- Documentation: https://github.com/arquisoft/dede_en_01a/tree/master/docs
-- Webapp: https://github.com/arquisoft/dede_en_01a/tree/master/webapp
-- Restapi: https://github.com/arquisoft/dede_en_01a/tree/master/restapi
+- Documentation: https://github.com/arquisoft/dede_en1a/tree/master/docs
+- Webapp: https://github.com/arquisoft/dede_en1a/tree/master/webapp
+- Restapi: https://github.com/arquisoft/dede_en1a/tree/master/restapi
 
 ## Contributors
 - Rosa García López
