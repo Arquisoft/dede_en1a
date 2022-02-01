@@ -52,3 +52,4 @@ You can get more information about the respository in the other README files:
 
 ## Contributors
 - Rosa García López
+- Juan Torrente
