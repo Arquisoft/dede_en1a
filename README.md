@@ -54,3 +54,4 @@ You can get more information about the respository in the other README files:
 - Rosa García López
 - Juan Torrente
 - Joaquín Salustiano Britos Morales
+- Luis Vijande González
