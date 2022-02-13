@@ -56,3 +56,4 @@ You can get more information about the respository in the other README files:
 - Joaquín Salustiano Britos Morales
 - Luis Vijande González
 - Elías Llera García-Riaño
+- Landon Brown
