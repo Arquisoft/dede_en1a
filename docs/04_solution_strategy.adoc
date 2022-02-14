@@ -22,3 +22,17 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+=== Technology decisions
+*React*
+
+*MongoDB*
+
+=== Top-level decomposition
+MVC? REDUX?
+
+=== How to achieve quality goals
+In order to accomplish our privacy goals, we will try to reduce to the minimum the amount of information stored in our database. To accomplish Usability, we will try to follow the GUI standards and achieve minimum performance requirements in relation with response-time. In relation with code quality, we will keep an updated documentation and try to use design and architectural patterns when possible.
+
+=== Organizational decisions constraints
+At least one in-person team meeting will be done every week. More meetings will be organized via a discord server. Smaller details will be discussed via WhatsApp and the GitHub issues. We will keep track of the pending and done tasks with the kanban tool available in GitHub.
