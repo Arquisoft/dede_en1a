@@ -41,7 +41,7 @@ In any case the tree should include links to the scenarios of the following sect
 
 === Quality Scenarios
 
-Here we have a (temporal) table with our quality goals, the scenarios and the priorities:
+Here we have an initial table with our quality goals, scenarios, priorities and difficulty:
 
 * Quality goal: quality measurable subject which needs to reach a target level.
 * Scenario: description of the system behaviour and helps the measure of quality.
