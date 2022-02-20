@@ -17,13 +17,13 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
-
+////
 === Technical constraints
 
 [options="header",cols="1,2"]
 |===
 |Constraint|Description
-| Github | Version control system. Mandatory for the project.
+| Git | Version control system. Mandatory for the project.
 | Typescript | Programming language built in Javascript. Mandatory for the project.
 | Solid | Specification that allows the users to store their personal data and give access to some of it to external applications.
 | Data storage | Following the SOLID specification, the application must me structured in a way that does not store any personal information.
@@ -38,5 +38,12 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | Budget | Being students, we don't have budget for paid services or tools.
 | Development team | The size and members of the team have been decided by the course teachers.
 |===
+////
 
+[options="header",cols="1,2"]
+|===
+|Constraint|Description
+| Technical | The project must be implemented using React and Typescript, using Git as a version control system. In addition, data access must be performed through a SOLID platform whenever possible.
+| Organizational | The team must carry out meetings in at least a weekly basis, as instructed by the lecturers.
+| Policy | As has been agreed upon by the whole team, our Git policy will roughly match the git-flow strategy.
 |===
