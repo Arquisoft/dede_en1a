@@ -1,6 +1,45 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
+We have identified the risk or technical debts we might encounter during the project. They are ordered by priority from higher risk to lower.
+
+.Risks Table
+|=========================================================
+| Risk | Explanation | Solution
+
+| Lack of knowledge of SOLID
+| It's a new technology, and we have no idea how to work with it. The documentation is lacklester and there are not many examples. Some of the libraries are in develepment, so they are unstable and buggy.
+| We must do our own research, ask other students and other developers. We need to have a good understanding of the technology first.
+
+| Lack of knowledge of React
+| Although we have some knowledge of JavaScript, we are new to React and Node.
+| React has very good documentation, so we can check examples. We have to understand how Node works. This part should be easier to deal with than the previous one.
+
+| Lack of knowledge of Typescript
+| We are not experts on Javascript and we need to adapt to this extension.
+| Typescript has examples and a good documentation to work on. We have to get accustomed to the language with practice.
+
+| Time
+| We are limited by the deadlines of the course.
+| All we can do is optimize our working time.
+
+| Working on teams
+| Working with other people is not always easy, since each one does things their way.
+| We have to do regular meetings and try to comment our code, so everyone can understand it and work with it.
+
+| Decentralized application
+| Working with pods makes development a lot harder, because we have to optimize the network usage so the application can run smoothly.
+| We have to be concerned about the load tests and try to optimize the algorithms so they do the least network petitions possible.
+|=========================================================
+
+
+.Technical Debts Table
+|=========================================================
+| Technical Debt | Explanation
+
+| Empty for now
+| <<Empty>>
+|=========================================================
 
 [role="arc42help"]
 ****
