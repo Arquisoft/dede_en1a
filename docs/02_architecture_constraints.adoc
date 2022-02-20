@@ -42,8 +42,8 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 
 [options="header",cols="1,2"]
 |===
-|Constraint|Description
+| Constraint|Description
 | Technical | The project must be implemented using React and Typescript, using Git as a version control system. In addition, data access must be performed through a SOLID platform whenever possible.
-| Organizational | The team must carry out meetings in at least a weekly basis, as instructed by the lecturers.
-| Policy | As has been agreed upon by the whole team, our Git policy will roughly match the git-flow strategy.
+| Organizational | The team must carry out meetings in at least a weekly basis, as instructed by the lecturers. Also, deadlines decided by the professors must be followed.
+| Budget | As this is a school project, we don't have any budget to spend, nor a need for it.
 |===
