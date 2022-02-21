@@ -17,3 +17,33 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
+////
+=== Technical constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Description
+| Git | Version control system. Mandatory for the project.
+| Typescript | Programming language built in Javascript. Mandatory for the project.
+| Solid | Specification that allows the users to store their personal data and give access to some of it to external applications.
+| Data storage | Following the SOLID specification, the application must me structured in a way that does not store any personal information.
+|===
+
+=== Business constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Description
+| Schedule | The deadlines are set by the course teachers.
+| Budget | Being students, we don't have budget for paid services or tools.
+| Development team | The size and members of the team have been decided by the course teachers.
+|===
+////
+
+[options="header",cols="1,2"]
+|===
+| Constraint|Description
+| Technical | The project must be implemented using React and Typescript, using Git as a version control system. In addition, data access must be performed through a SOLID platform whenever possible.
+| Organizational | The team must carry out meetings in at least a weekly basis, as instructed by the lecturers. Also, deadlines decided by the professors must be followed.
+| Budget | As this is a school project, we don't have any budget to spend, nor a need for it.
+|===
