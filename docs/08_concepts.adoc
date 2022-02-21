@@ -54,14 +54,11 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 
 image:UmlDiagram.png["Example UML Diagram"]
 
+=== Domain concepts
 
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+[options="header",cols="1,2"]
+|===
+|Domain concept|Description
+| User | A user represents the end user that will buy products in the application.
+| Vendor | A user role that sells products in the application.
+|===
