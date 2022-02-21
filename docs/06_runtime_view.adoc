@@ -35,4 +35,3 @@ Bob -> DeDe : Selects yes or no
 DeDe -> Pod : Retrieves Bob's address
 Bob <- DeDe : Calculates the total cost of the order.
 ----
-
