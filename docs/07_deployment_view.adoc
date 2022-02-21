@@ -1,6 +1,6 @@
 [[section-deployment-view]]
 
-
+////
 == Deployment View
 
 [role="arc42help"]
@@ -47,21 +47,45 @@ Describe (usually in a combination of diagrams, tables, and text):
 
 For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
 ****
+////
 
-_**<Overview Diagram>**_
+image:DeploymentView_Level1.png["Top-level Deployment View"]
 
 Motivation::
 
-_<explanation in text form>_
+The figure above shows the infrastructure and interlinking of each environment involved in DeDe.
 
 Quality and/or Performance Features::
 
-_<explanation in text form>_
+*TO DO
 
-Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
+Environments and their Software Components::
 
+User Device:: The device from which the user will access the DeDe application/server.
 
+DeDe Server:: The server in which DeDe will be deployed and where all the software and dependencies will be stored.
+
+[cols="1,4" options="header"]
+|===
+| **Software** | **Responsibility**
+| _WebApp_ | _Communicates database information to User and manages User Input_
+| _restAPI_ | _Translates User requests to backend_
+| _Logic_ | _Manages POD and Product databases_
+|===
+
+[cols="1,4" options="header"]
+|===
+| **Library** | **Responsibility**
+| _JDK_ | _Java Development Kit_
+| _React_ | _Java library used to build user interface_
+| _node.js_ | _Language of the restAPI_
+|===
+
+User POD:: The database that will store the user's personal information, which the DeDe server will have to be granted permission to access
+
+Product Database:: The database that will store the store's information regarding products, such as name, description, cost, availability, etc.
+
+////
 === Infrastructure Level 2
 
 [role="arc42help"]
@@ -84,3 +108,4 @@ _<diagram + explanation>_
 ==== _<Infrastructure Element n>_
 
 _<diagram + explanation>_
+////
