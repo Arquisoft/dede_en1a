@@ -4,7 +4,6 @@
 The application we have developed, DeDe, is an online retail system whose first priority is its clients privacy. In order to achieve this goal we use a new decentralized technology called SOLID where users store their data in POD's, hence they are in control of the information.
 
 
-[role="arc42help"]
 === Business Context
 
 When the user finishes selecting what products to buy and proceeds to create an order
