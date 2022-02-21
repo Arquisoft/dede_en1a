@@ -24,3 +24,28 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+Here we will document the technologies that affect the application and we will be explaining why below.
+
+=== Usage of MongoDB
+[discrete]
+===== Context
+Since we need a Database to store the products for the application, not the users, they will be in their POD, we have to use a 
+database, after thinking about it we decided we would use MongoDB since it has an easy connection with typescript.
+
+=== Usage of some maps API 
+[discrete]
+===== Context
+To calculate the distance between the central and the user direction we will
+need some API, probably just the google API.
+
+=== Usage of an admin role
+[discrete]
+===== Context
+To be able to add products to the application for the users to shop, it will be helpful
+to have some kind of admin to be able to add them inside the application.
+
+=== Usage of a library for notifications
+[discrete]
+===== Context
+The app must have a notification system for delivery,
