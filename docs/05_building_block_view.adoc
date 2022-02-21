@@ -1,8 +1,7 @@
 [[section-building-block-view]]
 
-
 == Building Block View
-
+////
 [role="arc42help"]
 ****
 .Content
@@ -12,8 +11,6 @@ datas structures, ...) as well as their dependencies (relationships, association
 
 This view is mandatory for every architecture documentation.
 In analogy to a house this is the _floor plan_.
-
-test_test_test
 
 .Motivation
 Maintain an overview of your source code by making its structure understandable through
@@ -56,19 +53,53 @@ Since there are so many ways to specify interfaces why do not provide a specific
  In the worst case you have to specify and describe syntax, semantics, protocols, error handling,
  restrictions, versions, qualities, necessary compatibilities and many things more.
 In the best case you will get away with examples or simple signatures.
+////
 
 ****
 
-_**<Overview Diagram>**_
+.Level 1
+
+image:BB_Level1.png["Hierarchy of building blocks"]
 
 Motivation::
 
-_<text explanation>_
+This figure shows the top-level decomposition of DeDe into components with distinct responsibilities.
 
 
-Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
+1) User Interface (UI)::
+The UI will provide the user with a graphical view of the application and allow them to interact with the WebApp
 
+2) WebApp::
+The WebApp will manage user input and in turn communicate with the restAPI depending on the request
+
+3) restAPI::
+The restAPI translates requests from the WebApp to the model layer
+
+4) Model Layer::
+The Model Layer will manage requests given by the restAPI and select/input information into the databases accordingly.
+
+5) POD::
+The user's Personal Online Data store, allows the app to be decentralized and only have access to the user's information when allowed.
+
+6) Product Databse::
+Stores information for products (i.e. name, cost, description, availability, etc.)
+
+
+****
+
+****
+
+.Level 2
+
+//image:BB_Level1.png["Hierarchy of building blocks"]
+
+//Motivation::
+
+*TO DO
+
+****
+
+////
 Important Interfaces::
 _<Description of important interfaces>_
 
@@ -206,3 +237,5 @@ _<white box template>_
 ==== White Box <_building block y.1_>
 
 _<white box template>_
+
+////
