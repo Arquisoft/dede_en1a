@@ -10,6 +10,17 @@ Describes the relevant requirements and the driving forces that software archite
 * relevant stakeholders and their expectations
 ****
 
+Dede is a project developed for the Software Architecture course of the University of Oviedo. This version will be developed by the team En1A:
+
+* Rosa García López
+* Juan Andrés Torrente Bermúdez
+* Joaquín Salustiano Britos Morales
+* Luis Vijande González
+* Elías Llera García-Riaño
+* Landon Brown
+
+Dede is a privacy-oriented, online-based marketplace where vendors publish their products and clients can register with the assurance of their private information not being stored in the application.
+
 === Requirements Overview
 
 [role="arc42help"]
@@ -30,6 +41,12 @@ If requirements documents exist this overview should refer to these documents.
 Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
+The platform will consist on a ReactJS webapp that will communicate with the server-side backend through a REST API. The client will call the API functionalities to offer the user all the functionalities in a decoupled and easy to work way.
+
+The application will store the information about the vendors and their products in a relational database, and the user data (bank and address) will not be stored locally but accessed through their personal SOLID pod.
+
+Through the application, vendors will be able to publish their products, and clients will access the catalog and buy them.
+
 === Quality Goals
 
 [role="arc42help"]
@@ -44,6 +61,14 @@ If you as an architect do not know how the quality of your work will be judged �
 .Form
 A table with quality goals and concrete scenarios, ordered by priorities
 ****
+
+[options="header",cols="1,2,2"]
+|===
+|Priority|Quality|Motivation
+| 1 | Privacy | The use of SOLID pods opens up many privacy and security options in benefit of the users.
+| 2 | Usability | As any application, the response time, learning curve and navigability of the application should follow the standards and expected minimums.
+| 3 | Code quality | Good architecture and design to show the team capabilities and make the application easily maintainable.
+|===
 
 === Stakeholders
 
@@ -70,6 +95,8 @@ Table with role names, person names, and their expectations with respect to the 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Students | _<Contact-1>_ | Developers of the application. They will try to apply good practises as well as try to learn new technologies and teamwork techniques.
+| Teachers | _<Contact-2>_ | Supervisors of the development. They will help the students and make sure the development follows the right path.
+| Users | _<Contact-3>_ | Final users of the application.
+| Empathy (company) | _<Contact-4>_ | Company that collaborates with the project.
 |===
