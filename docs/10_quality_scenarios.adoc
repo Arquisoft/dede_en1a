@@ -19,6 +19,9 @@ concrete and measurable.
 
 === Quality Tree
 
+[caption="Quality Tree"]
+image::QualityTree.png[]
+
 [role="arc42help"]
 ****
 .Content
@@ -37,6 +40,21 @@ In any case the tree should include links to the scenarios of the following sect
 ****
 
 === Quality Scenarios
+
+Here we have an initial table with our quality goals, scenarios, priorities and difficulty:
+
+* Quality goal: quality measurable subject which needs to reach a target level.
+* Scenario: description of the system behaviour and helps the measure of quality.
+* Priority: priority in the development of the application.
+* Difficulty: difficulty to archive the quality goal.
+
+[options="header",cols="1,2,2,2"]
+|===
+|Quality goal|Scenario|Priority|Difficulty
+| Privacy | Private data from the users has to be protected and secure. The application only takes essential data from the user, and in a decentralized approach. | High | High
+| Usability |  Users have to be able to navigate through the application in an intuitive way | Medium | Medium
+| Mantainability | The application should be written in a way that code can be reused and modified in a simple way, bugs can be easily found and fixed, and the program should be easy to test. | High | Medium
+|===
 
 [role="arc42help"]
 ****
