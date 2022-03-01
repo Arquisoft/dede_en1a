@@ -32,16 +32,13 @@
   "required": [
     "_id",
     "UserId",
-    "OrderedPro",
-    "price",
-    "image",
-    "weight"
+    "OrderedProducts"
   ],
   "properties": {
     "_id": {
       "bsonType": "objectId"
     },
-    "name": {
+    "UserId": {
       "bsonType": "string"
     },
     "description": {
