@@ -1,0 +1,61 @@
+{
+  "title": "product",
+  "required": [
+    "_id",
+    "name",
+    "description",
+    "price",
+    "image",
+    "weight"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "description": {
+      "bsonType": "string"
+    },
+    "price": {
+      "bsonType": "double"
+    },
+    "image": {
+      "bsonType": "string"
+    },
+    "weight": {
+      "bsonType": "double"
+    }
+  },
+  "title": "orders",
+  "required": [
+    "_id",
+    "UserId",
+    "OrderedPro",
+    "price",
+    "image",
+    "weight"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "description": {
+      "bsonType": "string"
+    },
+    "price": {
+      "bsonType": "double"
+    },
+    "image": {
+      "bsonType": "string"
+    },
+    "weight": {
+      "bsonType": "double"
+    }
+  }
+}
+
