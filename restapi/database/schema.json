@@ -41,17 +41,8 @@
     "UserId": {
       "bsonType": "string"
     },
-    "description": {
+    "Order": {
       "bsonType": "string"
-    },
-    "price": {
-      "bsonType": "double"
-    },
-    "image": {
-      "bsonType": "string"
-    },
-    "weight": {
-      "bsonType": "double"
     }
   }
 }
