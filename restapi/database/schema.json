@@ -28,21 +28,47 @@
       "bsonType": "double"
     }
   },
-  "title": "orders",
+  "title": "order",
   "required": [
     "_id",
-    "UserId",
-    "OrderedProducts"
+    "userId",
+    "orderedProducts"
   ],
   "properties": {
     "_id": {
       "bsonType": "objectId"
     },
-    "UserId": {
+    "userId": {
       "bsonType": "string"
     },
-    "Order": {
-      "bsonType": "string"
+    "orderedProducts": {
+      "bsonType": "array"
+    }
+  },
+  "title": "seller",
+  "required": [
+    "_id",
+    "products"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "products": {
+      "bsonType": "array"
+    }
+  },
+  "title": "orderedProduct",
+  "required": [
+    "_id",
+    "products"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "products": {
+      "bsonType": "array"
     }
   }
 }
