@@ -1,25 +1,21 @@
-import {Seller} from "../schemas/SellerSchema";
+const Seller = require("../schemas/Seller.ts")
 import {ObjectId} from "mongodb"
 
-
 // Basic CRUD functions of seller.
-
-export function findSellerById(id: ObjectId) {
-    return Seller.findById(id);
-}
-
-export function findAllSellers() {
-    return Seller.find({});
-}
-
-export function updateSeller(id: ObjectId, seller: Document){
-    return Seller.findByIdAndUpdate(id, seller);
-}
-
-export function createSeller(seller: Document) {
-    return Seller.create(seller);
-}
-
-export function deleteSeller(id: ObjectId){
-    return Seller.findByIdAndDelete(id);
+exports.sellerRest = {
+    all: function findAllSellers() {
+        return Seller.find({});
+    },
+    findById: function findSellerById(id: ObjectId) {
+        return Seller.findById(id);
+    },
+    update: function updateSeller(id: ObjectId, seller: Document){
+        return Seller.findByIdAndUpdate(id, seller);
+    },
+    create: function createSeller(seller: Document) {
+        return Seller.create(seller);
+    },
+    delete: function deleteSeller(id: ObjectId){
+        return Seller.findByIdAndDelete(id);
+    }
 }
