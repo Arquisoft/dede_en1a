@@ -9,6 +9,7 @@ export let findAllProducts = async (req: Request, res: Response) => {
 			return res.status(200).send(results);
 		})
 		.catch((error) => {
+			console.error(error.message);
 			return res.status(500).json({
 				message: error.message,
 				error
@@ -23,6 +24,7 @@ export let findProduct = async (req: Request, res: Response) => {
 			return res.status(200).send(result);
 		})
 		.catch((error) => {
+			console.error(error.message);
 			return res.status(500).json({
 				message: error.message,
 				error
@@ -38,6 +40,7 @@ export let addProduct = async (req: Request, res: Response) => {
 			return res.status(200).send(result);
 		})
 		.catch((error) => {
+			console.error(error.message);
 			return res.status(500).json({
 				message: error.message,
 				error
@@ -53,6 +56,7 @@ export let deleteProduct = async (req: Request, res: Response) => {
 			return res.status(200).send(result);
 		})
 		.catch((error) => {
+			console.error(error.message);
 			return res.status(500).json({
 				message: error.message,
 				error
@@ -68,6 +72,7 @@ export let updateProduct = async (req: Request, res: Response) => {
 			return res.status(200).send(result);
 		})
 		.catch((error) => {
+			console.error(error.message);
 			return res.status(500).json({
 				message: error.message,
 				error
