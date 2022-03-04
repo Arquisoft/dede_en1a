@@ -4,7 +4,7 @@ import bp from 'body-parser';
 import promBundle from 'express-prom-bundle';
 import mongoose from "mongoose";
 
-const sellerRouter = require("./handlers/SellerHandler")
+const sellerRouter = require("./controllers/SellerController")
 //initial commit backend
 const uri: string = "mongodb+srv://admin:admin@cluster0.2sj0r.mongodb.net/DeDe_Database?retryWrites=true&w=majority";
 
