@@ -19,7 +19,7 @@ const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(bp.json());
-app.use("/api", api)
+app.use("", api)
 
 // Connect to the database and start the server.
 mongoose.connect(uri).then(() => {

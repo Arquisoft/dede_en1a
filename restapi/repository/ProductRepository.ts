@@ -1,29 +1,26 @@
-import { privateDecrypt } from "crypto";
-import {ObjectId} from "mongoose";
-import { Product } from "../schemas/ProductSchema";
+import { ObjectId } from "mongoose";
+import IProduct from "../interfaces/ProductInterface";
+import Product from "../schemas/ProductSchema";
 
 
-export function findProductById(id: ObjectId) {
-	return Product.findById(id);
+
+export async function findAllProducts() {
+	return await Product.find({});
 }
 
-export function findAllProducts() {
-	return Product.find({});
+export async function findProductById(id: String) {
+	return await Product.findById(id);
 }
 
-export function updateProduct(id: ObjectId, product: Document) {
-	return Product.findByIdAndUpdate(id, product);
+export async function updateProduct(id: String, product: IProduct) {
+	return await Product.findByIdAndUpdate(id, product);
 }
 
-// TODO
-export function findByName(name: String) {
-	return Product.find({})
+
+export async function createProduct(product: IProduct) {
+	return await Product.create(product);
 }
 
-export function createProduct(product: Document) {
-	return Product.create(product);
-}
-
-export function deleteProduct(id: ObjectId) {
-	return Product.findByIdAndDelete(id);
+export async function deleteProduct(id: String) {
+	return await Product.findByIdAndDelete(id);
 }
