@@ -2,9 +2,9 @@ import express, { Application, RequestHandler } from "express";
 import cors from 'cors';
 import bp from 'body-parser';
 import promBundle from 'express-prom-bundle';
-import api from "./api";
 import mongoose from "mongoose";
 
+const sellerRouter = require("./handlers/SellerHandler")
 //initial commit backend
 const uri: string = "mongodb+srv://admin:admin@cluster0.2sj0r.mongodb.net/DeDe_Database?retryWrites=true&w=majority";
 
@@ -19,7 +19,7 @@ const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(bp.json());
-app.use("/api", api)
+app.use("/seller", sellerRouter)
 
 // Connect to the database and start the server.
 mongoose.connect(uri).then(() => {
