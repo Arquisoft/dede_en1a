@@ -9,7 +9,7 @@ Vamos a analizar los paquetes principales utilizados en esta parte (archivo pack
 - express-prom-bundle y prom-client: Middleware para capturar las peticiones y enviar estadísticas a prometheus. Es muy util para monitorizar nuestro servicio web.
 - @types packages. Tipos para programar utilizando Typescript.
      
-Este código es bastante sencillo, el archivo [server.ts](server.ts) lanza la API y en el archivo [api.ts](api.ts) donde ESTÁN las 2 peticiones. 
+Este código es bastante sencillo, el archivo [server.ts](server.ts) lanza la API y en el archivo [api.ts](handlers/SellerHandler.ts) donde ESTÁN las 2 peticiones. 
 
 Para lanzar la API podemos ejecutar `npm start`. Este comando lanzará el archivo `server.ts`. El paquete `ts-node-dev` recargará el servidor cada vez que guardemos algún cambio en nuestro código de Typescript. Es muy útil.
 
