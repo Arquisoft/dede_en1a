@@ -27,7 +27,8 @@ export let findSellerById = async(req: Request, res: Response) => {
 }
 
 export let addSeller = async(req: Request, res: Response) => {
-    await sellerRepository.createSeller(req.body)
+    console.log(req.body)
+    await sellerRepository.createOrUpdateSeller(req.body)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {
@@ -39,7 +40,7 @@ export let addSeller = async(req: Request, res: Response) => {
 }
 
 export let updateSeller = async(req: Request, res: Response) => {
-    await sellerRepository.updateSeller(req.params.id, req.body)
+    await sellerRepository.createOrUpdateSeller(req.body)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {
