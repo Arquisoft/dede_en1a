@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { ObjectId } from "mongoose";
 import IProduct from "../interfaces/ProductInterface";
 import Product from "../schemas/ProductSchema";
@@ -18,7 +19,9 @@ export async function updateProduct(id: String, product: IProduct) {
 
 
 export async function createProduct(product: IProduct) {
-	return await Product.create(product);
+	let prod = new Product(product);
+	console.log(prod)
+	return await prod.save();
 }
 
 export async function deleteProduct(id: String) {
