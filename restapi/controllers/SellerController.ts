@@ -3,7 +3,7 @@ import * as sellerRepository from "../repository/SellerRepository";
 
 
 export let findAllSellers = async (req: Request, res: Response) => {
-    const sellers = await sellerRepository.getAll()
+    await sellerRepository.getAll()
         .then((sellers) => {
             return res.status(200).send(sellers)
         }).catch((error) => {
@@ -15,7 +15,7 @@ export let findAllSellers = async (req: Request, res: Response) => {
 }
 
 export let findSellerById = async(req: Request, res: Response) => {
-    const seller = await sellerRepository.findById(req.params.id)
+    await sellerRepository.findById(req.params.id)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {
@@ -27,7 +27,7 @@ export let findSellerById = async(req: Request, res: Response) => {
 }
 
 export let addSeller = async(req: Request, res: Response) => {
-    let seller = await sellerRepository.createSeller(req.body)
+    await sellerRepository.createSeller(req.body)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {
@@ -39,7 +39,7 @@ export let addSeller = async(req: Request, res: Response) => {
 }
 
 export let updateSeller = async(req: Request, res: Response) => {
-    let seller = await sellerRepository.updateSeller(req.params.id, req.body)
+    await sellerRepository.updateSeller(req.params.id, req.body)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {
@@ -51,7 +51,7 @@ export let updateSeller = async(req: Request, res: Response) => {
 }
 
 export let deleteSeller = async(req: Request, res: Response) => {
-    let seller = await sellerRepository.deleteSeller(req.params.id)
+    await sellerRepository.deleteSeller(req.params.id)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {
