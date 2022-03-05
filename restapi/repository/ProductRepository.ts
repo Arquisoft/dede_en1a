@@ -17,10 +17,8 @@ export async function updateProduct(id: String, product: IProduct) {
 	return await Product.findByIdAndUpdate(id, product);
 }
 
-
 export async function createProduct(product: IProduct) {
-	let prod = new Product(product);
-	console.log(prod)
+	const prod = new Product(product);
 	return await prod.save();
 }
 

@@ -1,14 +1,16 @@
-import mongoose, {Schema} from "mongoose";
-const ObjectId = mongoose.Types.ObjectId;
+import IProduct from "../interfaces/ProductInterface";
+import {Schema} from "mongoose";
+import mongoose from "mongoose";
+import ISeller from "../interfaces/SellerInterface";
+import ProductSchema from "./ProductSchema";
 
-const sellerSchema = new Schema({
-    id: {type: ObjectId, required: true, unique: true},
-    name: String,
-    products: [] // Later on it will contain ProductModel elements.
+
+const sellerSchema = new mongoose.Schema<ISeller>({
+    name: {type: String, required: true},
+    products: {type: Array(), "default": []}
 })
 
-export let Seller = mongoose.model("Seller", sellerSchema)
-
+export default mongoose.model<ISeller>("Seller", sellerSchema)
 
 
 
