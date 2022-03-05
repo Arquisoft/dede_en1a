@@ -12,7 +12,7 @@ import orderRouter from "./routers/OrderRouter";
 const uri: string = "mongodb+srv://admin:admin@cluster0.2sj0r.mongodb.net/DeDe_Database?retryWrites=true&w=majority";
 
 const app: Application = express();
-const port: number = 8090;
+const port: number = 5000;
 const options: cors.CorsOptions = {
   origin: ['http://localhost:3000']
 };
