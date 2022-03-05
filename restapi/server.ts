@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 
 import sellerRouter from "./routers/SellerRouter";
 import productRouter from "./routers/ProductRouter";
+import orderRouter from "./routers/OrderRouter";
+
 //initial commit backend
 const uri: string = "mongodb+srv://admin:admin@cluster0.2sj0r.mongodb.net/DeDe_Database?retryWrites=true&w=majority";
 
@@ -27,6 +29,7 @@ app.use("/", (req : Request, res : Response) => {
 
 app.use("/seller", sellerRouter)
 app.use("/product", productRouter)
+app.use("/order", orderRouter)
 
 // Connect to the database and start the server.
 mongoose.connect(uri).then(() => {
