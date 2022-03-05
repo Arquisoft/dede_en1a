@@ -1,12 +1,17 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
 import IProduct from "../interfaces/ProductInterface";
 
-const productSchema = new mongoose.Schema<IProduct>({
-    // Temporal
-})
+const ObjectId  = mongoose.Types.ObjectId;
 
-export default mongoose.model<IProduct>("Product", productSchema)
+const productSchema = new Schema(
+	{
+		name: {type: String, required: true},
+		price: {type: Number, required: true},
+		description: {type: String, required: false},
+		image: {type: String, required: false},
+		// not sure if we need this
+		weight: {type: Number, required: false}
+	}
+)
 
-
-
-
+export default mongoose.model<IProduct>("Product", productSchema);
