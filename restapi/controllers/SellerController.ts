@@ -1,47 +1,64 @@
 import {Request, Response} from "express";
-import {ObjectId} from "mongodb";
-const Seller = require("../schemas/Seller")
-const sellerRepository = require("../repository/SellerRepository")
+import * as sellerRepository from "../repository/SellerRepository";
 
-exports.sellerRest = {
-    all: async (req: Request, res: Response) => {
-            const sellers = await sellerRepository.all;
-            res.status(200).send(sellers)
-    },
-    findById: async(req: Request, res: Response) => {
-        const seller = await sellerRepository.findById(req.body.id)
-        res.status(200).send(seller)
-    },
-    add: async(req: Request, res: Response) => {
-        let id = new ObjectId()
-        let name = req.body.name
-        let products = req.body.products
-        let seller = new Seller({
-            id: id,
-            name: name,
-            products: products
+
+export let findAllSellers = async (req: Request, res: Response) => {
+    await sellerRepository.getAll()
+        .then((sellers) => {
+            return res.status(200).send(sellers)
+        }).catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
         })
-        sellerRepository.create(seller)
-        res.status(200).send(seller)
-    },
-    update: async(req: Request, res: Response) => {
-        let id = req.body.id
-        let name = req.body.name
-        let products = req.body.products
-        let seller = new Seller({
-            id: id,
-            name: name,
-            products: products
-        })
-        sellerRepository.update(id, seller)
-        res.status(200).send(seller)
-    },
-    delete: async(req: Request, res: Response) => {
-        let id = req.body.id
-        sellerRepository.delete(id);
-        res.status(200).send(seller)
-    }
 }
 
+export let findSellerById = async(req: Request, res: Response) => {
+    await sellerRepository.findById(req.params.id)
+        .then((seller) => {
+            return res.status(200).send(seller)
+        }).catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
+        })
+}
 
+export let addSeller = async(req: Request, res: Response) => {
+    console.log(req.body)
+    await sellerRepository.createOrUpdateSeller(req.body)
+        .then((seller) => {
+            return res.status(200).send(seller)
+        }).catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
+        })
+}
 
+export let updateSeller = async(req: Request, res: Response) => {
+    await sellerRepository.createOrUpdateSeller(req.body)
+        .then((seller) => {
+            return res.status(200).send(seller)
+        }).catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
+        })
+}
+
+export let deleteSeller = async(req: Request, res: Response) => {
+    await sellerRepository.deleteSeller(req.params.id)
+        .then((seller) => {
+            return res.status(200).send(seller)
+        }).catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
+        })
+}
