@@ -21,9 +21,7 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(bp.json());
 
-app.use("/", (req : Request, res : Response) => {
-	res.send("Hello World!");
-})
+
 
 app.use("/seller", sellerRouter)
 app.use("/product", productRouter)
