@@ -15,7 +15,7 @@ export let findAllOrders = async (req: Request, res: Response) => {
         });
 }
 
-export let findOrder = async (req: Request, res: Response) => {
+export let findOrderById = async (req: Request, res: Response) => {
     await OrderRepository.findOrderById(req.params.id)
         .then((result) => {
             return res.status(200).send(result);
