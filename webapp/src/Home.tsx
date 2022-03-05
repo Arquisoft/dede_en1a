@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import Typography from "@mui/material/Typography";
 
-import { getUsers } from "./api/api";
-import { User } from "./shared/shareddtypes";
 import { CartItem, Product } from "./shared/shareddtypes";
 
 type HomeProps = {
@@ -13,15 +11,6 @@ type HomeProps = {
 };
 
 function Home(props: HomeProps): JSX.Element {
-    const [users, setUsers] = useState<User[]>([]);
-
-    const refreshUserList = async () => {
-        setUsers(await getUsers());
-    };
-
-    useEffect(() => {
-        refreshUserList();
-    }, []);
 
     return (
         <React.Fragment>

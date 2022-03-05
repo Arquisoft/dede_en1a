@@ -10,7 +10,7 @@ function Copyright() {
         <Typography variant="body2" color="text.secondary">
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Dede
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -36,7 +36,6 @@ export default function StickyFooter() {
                     {'Pin a footer to the bottom of the viewport.'}
                     {'The footer will move as the main element of the page grows.'}
                 </Typography>
-                <Typography variant="body1">Sticky footer placeholder.</Typography>
             </Container>
             <Box
                 component="footer"
