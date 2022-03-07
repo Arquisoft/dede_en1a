@@ -53,8 +53,10 @@ const App = () => {
         );
     };
 
-    if (isLoading) return <LinearProgress/>;
-    if (error) return <div>Something went wrong ...</div>
+    if (isLoading)
+        return <LinearProgress/>;
+    if (error)
+        return <div>Something went wrong ...</div>
 
     return (
         <Wrapper>
