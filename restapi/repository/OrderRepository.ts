@@ -1,8 +1,6 @@
 import IOrder from "../interfaces/OrderInterface";
 import Order from "../schemas/OrderSchema";
 
-
-
 export async function findAllOrders() {
     return await Order.find({});
 }

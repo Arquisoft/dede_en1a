@@ -1,6 +1,5 @@
 import mongoose, {Schema} from "mongoose";
 import IOrder from "../interfaces/OrderInterface";
-import IProduct from "../interfaces/ProductInterface";
 
 const ObjectId  = Schema.Types.ObjectId;
 const Map  = Schema.Types.Map;

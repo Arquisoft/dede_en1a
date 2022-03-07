@@ -1,7 +1,6 @@
-import express, {Request, Response, Router} from "express"
+import express, {Router} from "express"
 import * as orderController from "../controllers/OrderController"
 import * as bodyParser from "body-parser";
-
 
 const orderRouter: Router = express.Router()
 orderRouter.use(bodyParser.json())
