@@ -36,10 +36,11 @@ export async function addProductToSeller(id:String, product:IProduct) {
 
 export async function removeProductFromSeller(id:String, productId: String) {
 	let seller = await findById(id);
-	for (var product of seller!.products) {
-		if (product._id == productId){
-			await ProductRepository.deleteProduct(product._id)
-			console.log(product)
+	for (const [index, element] of seller!.products.entries()) {
+		if (element._id == productId){
+			await ProductRepository.deleteProduct(element._id)
+			seller!.products.splice(index, 1);
+			break;
 		}
 	}
 	return seller?.save();
