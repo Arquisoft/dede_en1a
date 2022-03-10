@@ -1,5 +1,6 @@
 import ISeller from "../interfaces/SellerInterface";
 import Seller from "../schemas/SellerSchema"
+import Product from "../schemas/ProductSchema"
 import mongoose from "mongoose";
 import IProduct from "../interfaces/ProductInterface";
 
@@ -26,9 +27,10 @@ export async function deleteSeller(id: any){
 
 export async function addProductToSeller(id:String, product:IProduct) {
 	let seller = await findById(id);
-	product.save();
-	seller?.products.push(product);
-	return seller;
+	let productDoc = new Product(product);
+	productDoc.save();
+	seller?.products.push(productDoc);
+	return seller?.save();
 	
 }
 
