@@ -1,8 +1,9 @@
 import ISeller from "../interfaces/SellerInterface";
+import IProduct from "../interfaces/ProductInterface";
 import Seller from "../schemas/SellerSchema"
 import Product from "../schemas/ProductSchema"
+import * as ProductRepository from "./ProductRepository";
 import mongoose from "mongoose";
-import IProduct from "../interfaces/ProductInterface";
 
 // Basic CRUD functions of seller.
 
@@ -19,7 +20,7 @@ export async function createOrUpdateSeller(seller: ISeller) {
 export async function deleteSeller(id: any){
 	let seller = await findById(id)
 	for (var product of seller!.products) {
-		product.delete();
+		await ProductRepository.deleteProduct(product._id);
 	}
 	seller?.delete();
 }
@@ -35,7 +36,12 @@ export async function addProductToSeller(id:String, product:IProduct) {
 
 export async function removeProductFromSeller(id:String, productId: String) {
 	let seller = await findById(id);
-	seller?.products.find(elem => elem.id === productId)?.delete();
+	for (var product of seller!.products) {
+		if (product._id == productId){
+			await ProductRepository.deleteProduct(product._id)
+			console.log(product)
+		}
+	}
 	return seller?.save();
 }
 
