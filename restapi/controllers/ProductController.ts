@@ -33,20 +33,19 @@ export let findProduct = async (req: Request, res: Response) => {
 }
 
 
-// - PUT - /product/add # inserts a new product into the table
-export let addProduct = async (req: Request, res: Response) => {
-	await ProductRepository.createProduct(req.body)
-		.then((result) => {
-			return res.status(200).send(result);
-		})
-		.catch((error) => {
-			console.error(error.message);
-			return res.status(500).json({
-				message: error.message,
-				error
-			});
-		});
-}
+// export let addProduct = async (req: Request, res: Response) => {
+// 	await ProductRepository.createProduct(req.body)
+// 		.then((result) => {
+// 			return res.status(200).send(result);
+// 		})
+// 		.catch((error) => {
+// 			console.error(error.message);
+// 			return res.status(500).json({
+// 				message: error.message,
+// 				error
+// 			});
+// 		});
+// }
 
 
 // - DELETE - /product/{1} # deletes a product with id of 1
