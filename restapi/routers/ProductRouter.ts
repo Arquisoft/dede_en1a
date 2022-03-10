@@ -6,25 +6,10 @@ const productRouter:Router = express.Router()
 
 productRouter.use(bodyParser.json());
 
-productRouter.get(
-	"/list", 
-	ProductController.findAllProducts
-);
-productRouter.get(
-	"/details/:id", 
-	ProductController.findProduct
-);
-productRouter.put(
-	"/add", 
-	ProductController.addProduct
-);
-productRouter.delete(
-	"/delete/:id", 
-	ProductController.deleteProduct
-);
-productRouter.post(
-	"/update/:id", 
-	ProductController.updateProduct
-);
+productRouter.get("/list", ProductController.findAllProducts);
+productRouter.get("/details/:id", ProductController.findProduct);
+productRouter.post("/add", ProductController.addProduct);
+productRouter.delete("/delete/:id", ProductController.deleteProduct);
+productRouter.post("/update/:id", ProductController.updateProduct);
 
 export default productRouter;   

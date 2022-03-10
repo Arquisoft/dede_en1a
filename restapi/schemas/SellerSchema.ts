@@ -7,7 +7,7 @@ import ProductSchema from "./ProductSchema";
 
 const sellerSchema = new mongoose.Schema<ISeller>({
     name: {type: String, required: true},
-    products: {type: Array(), "default": []}
+    products: {type: Array<IProduct>(), "default": []}
 })
 
 export default mongoose.model<ISeller>("Seller", sellerSchema)

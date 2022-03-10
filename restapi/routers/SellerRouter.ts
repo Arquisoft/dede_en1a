@@ -10,6 +10,7 @@ sellerRouter.get("/list", sellerController.findAllSellers)
 sellerRouter.get("/details/:id", sellerController.findSellerById)
 sellerRouter.post("/add", sellerController.addSeller)
 sellerRouter.post("/update/:id", sellerController.updateSeller)
-sellerRouter.post("/delete/:id", sellerController.deleteSeller)
+sellerRouter.delete("/delete/:id", sellerController.deleteSeller)
+sellerRouter.post("/addProduct/:id", sellerController.addProductToSeller)
 
 export default sellerRouter;
