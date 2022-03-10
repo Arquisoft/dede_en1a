@@ -31,6 +31,11 @@ export async function addProductToSeller(id:String, product:IProduct) {
 	productDoc.save();
 	seller?.products.push(productDoc);
 	return seller?.save();
-	
+}
+
+export async function removeProductFromSeller(id:String, productId: String) {
+	let seller = await findById(id);
+	seller?.products.find(elem => elem.id === productId)?.delete();
+	return seller?.save();
 }
 
