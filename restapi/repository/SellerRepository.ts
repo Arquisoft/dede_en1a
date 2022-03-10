@@ -26,6 +26,7 @@ export async function deleteSeller(id: any){
 
 export async function addProductToSeller(id:String, product:IProduct) {
 	let seller = await findById(id);
+	product.save();
 	seller?.products.push(product);
 	return seller;
 	
