@@ -8,7 +8,6 @@ productRouter.use(bodyParser.json());
 
 productRouter.get("/list", ProductController.findAllProducts);
 productRouter.get("/details/:id", ProductController.findProduct);
-productRouter.delete("/delete/:id", ProductController.deleteProduct);
 productRouter.post("/update/:id", ProductController.updateProduct);
 
 export default productRouter;   

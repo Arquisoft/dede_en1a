@@ -1,17 +1,11 @@
-import IProduct from "../interfaces/ProductInterface";
 import {Schema} from "mongoose";
 import mongoose from "mongoose";
 import ISeller from "../interfaces/SellerInterface";
 import ProductSchema from "./ProductSchema";
 
-
-const sellerSchema = new mongoose.Schema<ISeller>({
+const sellerSchema = new Schema({
     name: {type: String, required: true},
-    products: {type: Array<IProduct>(), "default": []}
+    products: [{type: Schema.Types.ObjectId, ref: "Product"}]
 })
 
 export default mongoose.model<ISeller>("Seller", sellerSchema)
-
-
-
-

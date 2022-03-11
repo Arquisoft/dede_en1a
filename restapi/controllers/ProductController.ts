@@ -47,21 +47,19 @@ export let findProduct = async (req: Request, res: Response) => {
 // 		});
 // }
 
-
-// - DELETE - /product/{1} # deletes a product with id of 1
-export let deleteProduct = async (req: Request, res: Response) => {
-	await ProductRepository.deleteProduct(req.params.id)
-		.then((result) => {
-			return res.status(200).send(result);
-		})
-		.catch((error) => {
-			console.error(error.message);
-			return res.status(500).json({
-				message: error.message,
-				error
-			});
-		});
-}
+// export let deleteProduct = async (req: Request, res: Response) => {
+// 	await ProductRepository.deleteProduct(req.params.id)
+// 		.then((result) => {
+// 			return res.status(200).send(result);
+// 		})
+// 		.catch((error) => {
+// 			console.error(error.message);
+// 			return res.status(500).json({
+// 				message: error.message,
+// 				error
+// 			});
+// 		});
+// }
 
 
 // - POST - /product/update/{1} # updates a book with id of 1

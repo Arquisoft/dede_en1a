@@ -20,25 +20,37 @@ export async function createOrUpdateSeller(seller: ISeller) {
 export async function deleteSeller(id: any){
 	let seller = await findById(id)
 	for (var product of seller!.products) {
-		await ProductRepository.deleteProduct(product._id);
+		await ProductRepository.deleteProduct(product);
 	}
 	seller?.delete();
 }
 
 
-export async function addProductToSeller(id:String, product:IProduct) {
-	let seller = await findById(id);
+export async function addProductToSeller(id:any, product:IProduct) {
+	// get seller
+	const seller = await findById(id);
+	if (!seller) {
+		throw new Error("seller does not exist")
+	}
+	// create product
 	let productDoc = new Product(product);
 	productDoc.save();
-	seller?.products.push(productDoc);
-	return seller?.save();
+	// add product id to seller
+	seller.products.push(productDoc.id);
+	// return updated seller
+	return seller.save();
 }
 
-export async function removeProductFromSeller(id:String, productId: String) {
-	let seller = await findById(id);
+export async function removeProductFromSeller(id:any, productId: any) {
+	// get seller
+	const seller = await findById(id);
+	if (!seller) {
+		throw new Error("seller does not exist")
+	}
+	// search for product and remove it
 	for (const [index, element] of seller!.products.entries()) {
-		if (element._id == productId){
-			await ProductRepository.deleteProduct(element._id)
+		if (element == productId){
+			await ProductRepository.deleteProduct(element)
 			seller!.products.splice(index, 1);
 			break;
 		}
