@@ -7,7 +7,7 @@ import Welcome from './components/Welcome';
 import UserList from './components/UserList';
 import  {getUsers} from './api/api';
 import {User} from './shared/shareddtypes';
-import ProductDetails from './components/ProductDetails';
+import DetailsView from './pages/DetailsView/DetailsView';
 import './App.css';
 
 function App(): JSX.Element {
@@ -22,6 +22,7 @@ function App(): JSX.Element {
     refreshUserList();
   },[]);
 
+
   return (
     <>
       <Container maxWidth="sm">
@@ -30,7 +31,7 @@ function App(): JSX.Element {
         <EmailForm OnUserListChange={refreshUserList}/>        
         <UserList users={users}/>
         <Link href="https://github.com/pglez82/asw2122_0">Source code</Link>
-        <ProductDetails />
+        <DetailsView/>
       </Container>
     </>
   );

@@ -1,0 +1,24 @@
+.center_image {
+    float: right;
+  }
+
+
+.product-name{
+    text-align: center;
+    
+}
+
+.product-desc{
+    text-align: center;
+}
+
+.product-price{
+    text-align: center;
+}
+
+.centered {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
