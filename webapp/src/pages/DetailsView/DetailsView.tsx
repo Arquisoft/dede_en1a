@@ -12,21 +12,19 @@ type Props = {
     handleAddToCart: (clickedItem: Product) => void;
 };
 
-function DetailsView(): JSX.Element {
-
-    return (
+const DetailsView: React.FC<Props> = ({item, handleAddToCart}) =>(
     <Grid container className="centered">
         <Grid item xs={3}/>
         <Grid item xs={3}>
-            <ProductImage />
+            <ProductImage item={item}/>
         </Grid>
         <Grid item xs={3}>
-            <ProductInfo />
+            <ProductInfo item={item}/>
+            <Button onClick={() => handleAddToCart(item)}>Add to cart</Button>
         </Grid>
         <Grid item xs={3}/>
     </Grid>
-    )
-}
+);
 
 
 export default DetailsView

@@ -1,8 +1,13 @@
 import React from 'react'
 import '../DetailsView.css'
+import {Product} from '../../../shared/shareddtypes';
 
-export default function ProductImage(): JSX.Element {
-  return (
-    <img src="https://i.pcmag.com/imagery/roundups/01l4AvaewFPRvEV3gAY8iO2-2..v1630352113.jpg" height="150" width ="300" className="center_image"/>
-  )
-}
+type Props = {
+  item: Product;
+};
+
+const ProductImage: React.FC<Props> = ({item}) => (
+  <img src={item.image} height="150" width ="300" className="center_image"/>
+);
+
+export default ProductImage;

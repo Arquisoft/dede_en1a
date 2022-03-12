@@ -1,12 +1,18 @@
 import React from 'react'
 import '../DetailsView.css'
+import {Product} from '../../../shared/shareddtypes';
 
-export default function ProductInfo(): JSX.Element {
-  return (
-    <div className="text">
-      <h1>Product tst</h1>
-      <h2>Description</h2>
-      <h3>Price</h3>
+type Props = {
+  item: Product;
+};
+
+const ProductInfo: React.FC<Props> = ({item}) => (
+    <div>
+      <h1 className="product-name">{item.name}</h1>
+      <p className="product-desc">{item.description}</p>
+      <h3 className="product-price">Price: ${item.price}</h3>
+      <h5>Amount in stock: {item.amount}</h5>
     </div>
-  )
-}
+  );
+
+export default ProductInfo;
