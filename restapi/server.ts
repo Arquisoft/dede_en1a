@@ -8,13 +8,16 @@ import sellerRouter from "./routers/SellerRouter";
 import productRouter from "./routers/ProductRouter";
 import orderRouter from "./routers/OrderRouter";
 
+import { getPriceFromAddress } from "./geocoder/geocoder";
+
+import 'dotenv/config'
+
 //initial commit backend
 const uri: string = "mongodb+srv://admin:admin@cluster0.2sj0r.mongodb.net/DeDe_Database?retryWrites=true&w=majority";
 
-const app: Application = express();
-const port: number = 5000;
+const app: Application = express(); 
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:3000']
+	origin: ['http://localhost:3000']
 };
 
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
@@ -29,13 +32,35 @@ app.use("/seller", sellerRouter)
 app.use("/product", productRouter)
 app.use("/order", orderRouter)
 
-// Connect to the database and start the server.
-mongoose.connect(uri).then(() => {
-    app.listen(port, ():void => {
-        console.log('Restapi listening on '+ port);
-    }).on("error",(error:Error)=>{
-        console.error('Error occured: ' + error.message);
-    });
+app.get("/geocode/:address", async (req: Request, res: Response) => {
+	getPriceFromAddress(req.params.address)
+		.then((response : any) => {
+			res.status(200).send(response);
+			console.log(response)
+		}).catch((error : any) => {
+			res.status(500).json({
+				message: error.message,
+				error
+			})
+		})
 })
 
-
+// Connect to the database and start the server.
+mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
+		dbName: process.env.DB_NAME,
+		user: process.env.DB_USERNAME,
+		pass: process.env.DB_PASSWORD,
+		retryWrites: true,
+		w: 'majority'
+	}).then(() => {
+		console.log("connected to database: " + process.env.DB_NAME);
+	}).catch(err => {
+		console.error('Erro occured: ' + err.message);
+	})
+	
+app.listen(process.env.PORT, ():void => {
+		console.log('Restapi listening on '+ process.env.PORT);
+	}).on("error", (error:Error) => {
+		console.error('Error occured: ' + error.message);
+	});
+			
