@@ -9,6 +9,7 @@ orderRouter.get("/list", orderController.findAllOrders)
 orderRouter.get("/details/:id", orderController.findOrderById)
 orderRouter.post("/add", orderController.addOrder)
 orderRouter.post("/update/:id", orderController.updateOrder)
-orderRouter.post("/delete/:id", orderController.deleteOrder)
+orderRouter.delete("/delete/:id", orderController.deleteOrder)
+orderRouter.post("/addProduct/:id", orderController.addProduct)
 
 export default orderRouter;
