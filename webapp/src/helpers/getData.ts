@@ -1,7 +1,7 @@
 const getProducts = async () => {
-    const response = await fetch('https://fakestoreapi.com/products');
-    const data = await response.json();
-    return data;
+    const apiEndPoint = process.env.REACT_APP_ARI_URI || "http://localhost:5000/api";
+    let response = await fetch(apiEndPoint + "/products/list");
+    return response.json();
 }
 
 export default getProducts;

@@ -11,7 +11,6 @@ const ProductInfo: React.FC<Props> = ({item}) => (
       <h1 className="product-name">{item.name}</h1>
       <p className="product-desc">{item.description}</p>
       <h3 className="product-price">Price: ${item.price}</h3>
-      <h5>Amount in stock: {item.amount}</h5>
     </div>
   );
 

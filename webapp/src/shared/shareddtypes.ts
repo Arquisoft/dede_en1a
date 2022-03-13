@@ -7,9 +7,10 @@ export type ProductFetch = {
 export type Product = {
     id: string;
     name: string;
-    image: string;
-    description: string;
     price: number;
+    description: string;
+    image: string;
+    weight: number;
 }
 
 export type CartItem = {
