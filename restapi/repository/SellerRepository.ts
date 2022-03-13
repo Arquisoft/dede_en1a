@@ -40,7 +40,7 @@ export async function addProductToSeller(id:any, product:IProduct) {
 	// return updated seller
 	return seller.save();
 }
-
+// TODO: this may not work rn
 export async function removeProductFromSeller(id:any, productId: any) {
 	// get seller
 	const seller = await findById(id);

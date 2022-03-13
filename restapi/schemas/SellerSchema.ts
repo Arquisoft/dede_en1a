@@ -5,6 +5,7 @@ import ProductSchema from "./ProductSchema";
 
 const sellerSchema = new Schema({
     name: {type: String, required: true},
+	// TODO: maybe move this to product and hevce seller id in product back referencing
     products: [{type: Schema.Types.ObjectId, ref: "Product"}]
 })
 
