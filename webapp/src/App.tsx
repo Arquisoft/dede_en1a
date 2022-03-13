@@ -23,8 +23,8 @@ function App(): JSX.Element {
     refreshUserList();
   },[]);
 
-  let v1: Product;
-  v1 = {id:"14", name:"Fake Product", image:"https://i.pcmag.com/imagery/roundups/01l4AvaewFPRvEV3gAY8iO2-2..v1630352113.jpg" , description:"Description of fake product", price:100, amount: 0};
+  let fakeProduct: Product;
+  fakeProduct = {id:"14", name:"Fake Product", image:"https://i.pcmag.com/imagery/roundups/01l4AvaewFPRvEV3gAY8iO2-2..v1630352113.jpg" , description:"Description of fake product", price:100, amount: 0};
 
   const handleAddToCart = (clickedItem: Product) => {
     console.log('test');
@@ -38,7 +38,7 @@ function App(): JSX.Element {
         <EmailForm OnUserListChange={refreshUserList}/>        
         <UserList users={users}/>
         <Link href="https://github.com/pglez82/asw2122_0">Source code</Link>
-        <DetailsView item={v1} handleAddToCart={handleAddToCart}/>
+        <DetailsView item={fakeProduct} handleAddToCart={handleAddToCart}/>
       </Container>
     </>
   );
