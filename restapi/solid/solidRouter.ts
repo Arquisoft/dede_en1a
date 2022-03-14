@@ -43,7 +43,6 @@ solidRouter.get("/login", async (req, res) => {
 })
 
 solidRouter.get("/redirect-from-solid-idp", async (req, res) => {
-
     const session = await getSessionFromStorage(req.session.id);
 
     if(session){
@@ -70,6 +69,16 @@ solidRouter.get("/fetch", async (req, res) =>{
         console.log("No session or webID")
     }
 })
+
+solidRouter.get("/logout", async (req, res, next) => {
+    const session = await getSessionFromStorage(req.session.id);
+    if(session) {
+        await session.logout();
+        res.send(`<p>Logged out.</p>`);
+    } else {
+        res.send("no session found")
+    }
+});
 
 /**
  * This function retrieves information from
