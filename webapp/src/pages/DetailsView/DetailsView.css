@@ -1,0 +1,27 @@
+.center_image {
+    float: right;
+}
+
+.product-name{
+    text-align: center;
+    font-size: "18px";
+}
+
+.product-desc{
+    text-align: center;
+    font-size: "14px";
+}
+
+.product-price{
+    text-align: center;
+    font-size: "18px";
+    font-weight: bold;
+    color: green;
+}
+
+.centered {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

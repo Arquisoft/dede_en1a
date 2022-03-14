@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import sellerRouter from "./routers/SellerRouter";
 import productRouter from "./routers/ProductRouter";
 import orderRouter from "./routers/OrderRouter";
+import solidRouter from "./solid/solidRouter";
 
 import { getPriceFromAddress } from "./geocoder/geocoder";
 
@@ -31,6 +32,7 @@ app.use(bp.json());
 app.use("/seller", sellerRouter)
 app.use("/product", productRouter)
 app.use("/order", orderRouter)
+app.use("/solid", solidRouter)
 
 app.get("/geocode/:address", async (req: Request, res: Response) => {
 	getPriceFromAddress(req.params.address)
