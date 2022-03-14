@@ -5,7 +5,7 @@ export type ProductFetch = {
 }
 
 export type Product = {
-    id: string;
+    _id: string;
     name: string;
     price: number;
     description: string;

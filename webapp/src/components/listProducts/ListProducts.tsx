@@ -27,7 +27,7 @@ const ListProducts = () => {
             {
                 products.map(product => (
                     <CartProduct
-                        key={product.id}
+                        key={product._id}
                         product={product}
                         handleAddToCart={handleAddToCart}/>
                 ))

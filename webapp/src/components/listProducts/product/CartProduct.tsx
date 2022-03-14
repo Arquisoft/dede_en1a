@@ -1,7 +1,11 @@
 import { Button, Card } from 'react-bootstrap';
 import {Product} from "../../../shared/shareddtypes";
 import './styles.css'
-import {useHistory} from "react-router-dom";
+import {Route, useHistory} from "react-router-dom";
+import {ButtonBase} from "@mui/material";
+import Home from "../../Home";
+import React from "react";
+import DetailsView from "../../../pages/DetailsView/DetailsView";
 
 type Props = {
     product: Product;
@@ -17,9 +21,6 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
                 <Card.Title className='card-title'>{product.name}</Card.Title>
                 Price: {product.price}€
                 <Button variant="primary" onClick={() => handleAddToCart(product)}>Add to cart</Button>
-                <Button variant="primary" onClick={() => history.push("/product/details/" + product.id)}>
-                    Details
-                </Button>
             </Card.Body>
         </Card>
     )
