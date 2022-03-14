@@ -29,7 +29,7 @@ const Item = ({ item }: Props) => {
                     <Button
                         variant='secondary'
                         onClick={() => dispatch({
-                            payload: item.id,
+                            payload: item._id,
                             type: 'REMOVE'
                         })}>
                         <IndeterminateCheckBox/>
@@ -53,7 +53,7 @@ const Item = ({ item }: Props) => {
                         variant='danger'
                         title='Remove product'
                         onClick={() => dispatch({
-                            payload: item.id,
+                            payload: item._id,
                             type: 'REMOVE-ALL'
                         })}>
                         <Delete/>

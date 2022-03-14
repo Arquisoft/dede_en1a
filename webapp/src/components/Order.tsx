@@ -17,19 +17,19 @@ const OrderSummary = () => {
                 {
                     cartItems.map(item => (
                         <li
-                            key={item.id}
+                            key={item._id}
                             className='list-group-item d-flex justify-content-between lh-sm'>
                             <div>
-                                <h6 className='my-0'>{ item.title }</h6>
+                                <h6 className='checkout-title'>{ item.title }</h6>
                                 <small className='text-muted'>Quantity: { item.amount }</small>
                             </div>
-                            <div className="text-muted">${item.price}</div>
+                            <div className="text-muted">{item.price}€</div>
                         </li>
                     ))
                 }
                 <li className='list-group-item d-flex justify-content-between'>
                     <span>TOTAL (EUR)</span>
-                    <strong>${ calculateTotal(cartItems).toFixed(2)}</strong>
+                    <strong>{ calculateTotal(cartItems).toFixed(2)}€</strong>
                 </li>
             </ul>
         </div>

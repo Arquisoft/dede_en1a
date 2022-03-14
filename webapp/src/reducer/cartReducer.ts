@@ -3,12 +3,11 @@ import {CartActionReducer, CartItem} from "../shared/shareddtypes";
 const cartReducer = (state: CartItem[], action: CartActionReducer) => {
 
     switch(action.type) {
-
         case 'ADD':
-            const existProduct = state.find(item => item.id === action.payload.id);
+            const existProduct = state.find(item => item._id == action.payload.id);
             if(existProduct){
                 return state.map(item => {
-                    if(item.id === action.payload.id){
+                    if(item._id == action.payload.id){
                         return {
                             ...item,
                             amount: item.amount + 1
@@ -22,14 +21,14 @@ const cartReducer = (state: CartItem[], action: CartActionReducer) => {
             }
         case 'REMOVE':
             return state.reduce((acum,item) => {
-                if(item.id === action.payload){
+                if(item._id == action.payload){
                     if(item.amount === 1) return acum;
                     else return [...acum,{...item, amount: item.amount - 1}]
                 }
                 return [...acum, item];
             },[] as CartItem[]);
         case 'REMOVE-ALL':
-            return state.filter(item => item.id !== action.payload);
+            return state.filter(item => item._id !== action.payload);
         case 'CLEAR':
             return [];
         default:
