@@ -1,8 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import IProduct from "../interfaces/ProductInterface";
 
-const ObjectId  = mongoose.Types.ObjectId;
-
 const productSchema = new Schema(
 	{
 		name: {type: String, required: true},

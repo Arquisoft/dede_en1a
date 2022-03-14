@@ -39,11 +39,11 @@ database, after thinking about it we decided we would use MongoDB since it has a
 To calculate the distance between the central and the user direction we will
 need some API, probably just the google API.
 
-=== Usage of a seller role
+=== Usage of a sellerSchema role
 [discrete]
 ===== Context
 To be able to add products to the application for the users to shop, it will be helpful
-to have some kind of seller to be able to add them inside the application.
+to have some kind of sellerSchema to be able to add them inside the application.
 
 
 //=== Usage of a library for notifications
