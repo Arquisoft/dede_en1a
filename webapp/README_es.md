@@ -21,8 +21,14 @@ Basicamente estos tests se aseguran que cada componente trabaja de manera aislad
 
 Algunos tests necesitan simular algunas partes de la aplicación. Por ejemplo el componente `EmailForm.tsx` utiliza la api para añadir un usuario. En los tests unitarios debemos simular estas llamadas para obtener resultados más robustos. Puedes revisar el archivo [EmailForm.test.tsx](src/components/EmailForm.test.tsx) para aprender como se hace esto.
 Por ejemplo:
+
 ```javascript
-jest.spyOn(api,'addUser').mockImplementation((user:User):Promise<boolean> => Promise.resolve(false))
+jest.spyOn(sellerRouter, 'addUser').mockImplementation((user:User)
+:
+Promise < boolean >
+=>
+Promise.resolve(false)
+)
 ```
 Simularemos la función addUser. En lugar de llamar a la API, simulamos que el servicio web ha fallado al tratar de añadir un usuario.
 
