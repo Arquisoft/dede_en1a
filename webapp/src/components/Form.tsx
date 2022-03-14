@@ -77,7 +77,8 @@ const Form = () => {
                         <label htmlFor="email" className='form-label'>Email</label>
                         <input type="email" className='form-control' name='email' id='email' placeholder='Email..' value={email} onChange={handleInputChange}/>
                     </div>
-                    // TO DO
+                    {//TO DO //
+					}
                     <div className="col-12">
                         <label htmlFor="address" className='form-label'>Address</label>
                         <input type="text" className='form-control' name='address' id='address' placeholder='Address..' value={getAddress("id") + ""}/>
