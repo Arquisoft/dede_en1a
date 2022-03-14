@@ -1,4 +1,4 @@
-import { Button, Card } from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import ButtonBase from "@mui/material/ButtonBase";
 import {Product} from "../../../shared/shareddtypes";
 import './styles.css'
@@ -12,11 +12,12 @@ type Props = {
 
 const CartProduct = ({product, handleAddToCart}: Props) => {
     let history = useHistory();
-
+    let imgPath = "./images/".concat(product.image).concat(".jpg");
     return (
-        <Card style={{ width: '15rem', margin: '5px' }}>
+        <Card style={{width: '15rem', margin: '5px'}}>
             <ButtonBase onClick={() => history.push("product/" + product._id)}>
-            <Card.Img variant="top"  src={product.image} className='card-img'/>
+                <Card.Img variant="top" src={imgPath}
+                          className='card-img'/>
             </ButtonBase>
             <Card.Body>
                 <Card.Title className='card-title'>{product.name}</Card.Title>
