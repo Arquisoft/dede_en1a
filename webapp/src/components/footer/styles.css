@@ -1,0 +1,21 @@
+.shopping-cart-footer {
+    border-top: 2px solid #e8e8e8;
+    padding: 10px;
+}
+
+.cart-summary {
+    margin-bottom: 20px;
+}
+
+.cart-summary-row {
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.cart-summary-row .label {
+    float: left;
+}
+
+.cart-summary-row .value {
+    float: right;
+}

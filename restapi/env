@@ -1,0 +1,7 @@
+PORT=5000
+
+DB_PASSWORD='admin'
+DB_USERNAME='admin'
+DB_NAME='DeDe_Database'
+
+PRICE_PER_KM=1
