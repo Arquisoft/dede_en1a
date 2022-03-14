@@ -4,7 +4,6 @@ import { CartContext } from "../context/CartContext";
 import postData from "../helpers/postData";
 import useForm from "../hooks/useForm";
 import {Customer, Order} from "../shared/shareddtypes";
-import getAddress from "../helpers/getAddress";
 
 const initialState = {
     name: '',
@@ -26,7 +25,7 @@ const Form = () => {
 
         setShowToast(true);
 
-        const orderDetails = cartItems.map(({id, image, ...item}) => item);
+        const orderDetails = cartItems.map(({_id, image, ...item}) => item);
 
         if(orderDetails.length > 0){
 
@@ -40,7 +39,7 @@ const Form = () => {
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){
-                notify('An error has occured... You can try again');
+                notify('An error has occured, try again');
             }else{
                 notify('Order placed correctly!');
 
@@ -53,7 +52,7 @@ const Form = () => {
 
             }
         }else {
-            notify('The order is empty');
+            notify('We cannot place an empty order');
         }
 
         setTimeout(() => setShowToast(false),5000);
@@ -67,21 +66,19 @@ const Form = () => {
                 <div className="row g-3">
                     <div className="col-sm-6">
                         <label htmlFor="name" className='form-label'>Name</label>
-                        <input type="text" className='form-control' name='name' id='name' placeholder='Name..' value={name} onChange={handleInputChange}/>
+                        <input type="text" className='form-control' name='name' id='name' placeholder='Name' value={name} onChange={handleInputChange}/>
                     </div>
                     <div className="col-sm-6">
-                        <label htmlFor="lastName" className='form-label'>Surnames</label>
-                        <input type="text" className='form-control' name='lastName' id='lastName' placeholder='Surname..' value={lastName} onChange={handleInputChange}/>
+                        <label htmlFor="lastName" className='form-label'>Surname</label>
+                        <input type="text" className='form-control' name='lastName' id='lastName' placeholder='Surname' value={lastName} onChange={handleInputChange}/>
                     </div>
                     <div className="col-12">
                         <label htmlFor="email" className='form-label'>Email</label>
-                        <input type="email" className='form-control' name='email' id='email' placeholder='Email..' value={email} onChange={handleInputChange}/>
+                        <input type="email" className='form-control' name='email' id='email' placeholder='Email' value={email} onChange={handleInputChange}/>
                     </div>
-                    {//TO DO //
-					}
                     <div className="col-12">
                         <label htmlFor="address" className='form-label'>Address</label>
-                        <input type="text" className='form-control' name='address' id='address' placeholder='Address..' value={getAddress("id") + ""}/>
+                        <input type="text" className='form-control' name='address' id='address' placeholder='Address' value={address} onChange={handleInputChange}/>
                     </div>
                 </div>
                 <br />

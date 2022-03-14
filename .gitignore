@@ -36,4 +36,4 @@ docs/build
 
 #idea
 .idea
-/restapi/env
+/restapi/.env

@@ -12,7 +12,6 @@ const ListProducts = () => {
 
     const { products, isLoading } = useFetch();
 
-
     const handleAddToCart = (product: Product) => {
         dispatch({
             payload: product,

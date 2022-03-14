@@ -4,7 +4,7 @@ import { CartContext } from '../../context/CartContext';
 import { calculateTotal } from '../../helpers/calculate';
 import './styles.css';
 
-const Footer = () => {
+const CartFooter = () => {
     const { cartItems } = useContext(CartContext);
     return (
         <div className='shopping-cart-footer'>
@@ -21,4 +21,4 @@ const Footer = () => {
     )
 }
 
-export default Footer;
+export default CartFooter;
