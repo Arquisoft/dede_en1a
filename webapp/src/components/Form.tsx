@@ -4,6 +4,7 @@ import { CartContext } from "../context/CartContext";
 import postData from "../helpers/postData";
 import useForm from "../hooks/useForm";
 import {Customer, Order} from "../shared/shareddtypes";
+import getAddress from "../helpers/getAddress";
 
 const initialState = {
     name: '',
@@ -79,7 +80,7 @@ const Form = () => {
                     // TO DO
                     <div className="col-12">
                         <label htmlFor="address" className='form-label'>Address</label>
-                        <input type="text" className='form-control' name='address' id='address' placeholder='Address..' value={address} onChange={handleInputChange}/>
+                        <input type="text" className='form-control' name='address' id='address' placeholder='Address..' value={getAddress("id") + ""}/>
                     </div>
                 </div>
                 <br />
