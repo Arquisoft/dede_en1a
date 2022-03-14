@@ -6,7 +6,7 @@ WORKDIR /app
 RUN npm install
 
 #Create an optimized version of the webapp
-RUN npm run build
+#RUN npm run build
 
 #Ver como podemos llamar npm run prod aquí
-CMD [ "npm", "run", "prod" ]
+CMD [ "npm", "start"]
