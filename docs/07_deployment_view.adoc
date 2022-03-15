@@ -20,19 +20,24 @@ DeDe Server:: The server in which DeDe will be deployed and where all the softwa
 [cols="1,4" options="header"]
 |===
 | **Software** | **Responsibility**
-| _WebApp_ | _Communicates database information to User and manages User Input_
-| _restAPI_ | _Translates User requests to backend_
-| _Logic_ | _Manages POD and Product databases_
+| _WebApp_ | _Communicates database information to User and manages User Input._
+| _RestAPI_ | _Endpoint for app requests to the backend._
+| _Backend_ | _Manages business logic._
 |===
 
 [cols="1,4" options="header"]
 |===
 | **Library** | **Responsibility**
-| _JDK_ | _Java Development Kit_
-| _React_ | _Java library used to build user interface_
-| _node.js_ | _Language of the restAPI_
+| _ReactJS_ | _JavaScript library used to build user interface._
+| _Node.JS_ | _Backend runtime environment where the TypeScript code runs._
+| _Express_ | _Node library for API building._
+| _Mongoose_ | _JS library for MongoDB connections and integration._
+| _Inrupt JS Client libraries_ | _JS library for SOLID support._
+| _Nominatim_ | _JS library for street address resolution._
+| _Bootstrap_ | _Front-end framework for web application building. Runs on React._
+
 |===
 
-User POD:: The database that will store the user's personal information, which the DeDe server will have to be granted permission to access
+User POD:: Where the user's personal information is stored, which the DeDe server will have to be granted permission to access.
 
 Product Database:: The database that will store the store's information regarding products, such as name, description, cost, availability, etc.

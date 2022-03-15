@@ -72,7 +72,7 @@ The UI will provide the user with a graphical view of the application and allow 
 2) WebApp::
 The WebApp will manage user input and in turn communicate with the restAPI depending on the request
 
-3) restAPI::
+3) RestAPI::
 The restAPI translates requests from the WebApp to the model layer
 
 4) Model Layer::
