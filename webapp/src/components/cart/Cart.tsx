@@ -9,7 +9,7 @@ import './cart-styles.css';
 const Cart = () => {
     const {cartItems} = useContext(CartContext);
 
-    if (!cartItems.length) return <p/>;
+    if (!cartItems.length) return <p><b>Cart is empty</b></p>;
 
     return (
         <div className='shopping-cart'>
