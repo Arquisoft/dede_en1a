@@ -12,7 +12,7 @@ type Props = {
 const Item = ({ item }: Props) => {
 
     const { dispatch } = useContext(CartContext);
-    let imgId = item.image == undefined ? 'undefined':item.image.toString();
+    let imgId = item.image === undefined ? 'undefined':item.image.toString();
 
     return (
         <>
