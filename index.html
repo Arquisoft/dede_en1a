@@ -481,8 +481,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-design-decisions">9. Design Decisions</a>
 <ul class="sectlevel2">
 <li><a href="#_usage_of_mongodb">9.1. Usage of MongoDB</a></li>
-<li><a href="#_usage_of_some_maps_api">9.2. Usage of some maps API</a></li>
-<li><a href="#_usage_of_a_seller_role">9.3. Usage of a seller role</a></li>
+<li><a href="#_nominatim">9.2. Nominatim</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -571,9 +570,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 <li>
 <p>Luis Vijande González</p>
-</li>
-<li>
-<p>Elías Llera García-Riaño</p>
 </li>
 <li>
 <p>Landon Brown</p>
@@ -822,7 +818,7 @@ the system will ask for their permission in order to use their address, which is
 <h3 id="_technical_context">3.2. Technical Context</h3>
 <div class="paragraph">
 <p>The user will execute the application and will interact with the user interface in order to choose what products to buy. When the selection is done and the client wants
-to make an order the API will manage the necessary interactions with the user&#8217;s POD and the product database in order to provide an estimated cost of delivery in order to compute the total cost of the order.</p>
+to make an order the backend will manage the necessary interactions with the user&#8217;s POD and the product database in order to provide an estimated cost of delivery in order to compute the total cost of the order.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -938,7 +934,7 @@ Refer to details in the following sections.</p>
 <dd>
 <p>The WebApp will manage user input and in turn communicate with the restAPI depending on the request</p>
 </dd>
-<dt class="hdlist1">3) restAPI</dt>
+<dt class="hdlist1">3) RestAPI</dt>
 <dd>
 <p>The restAPI translates requests from the WebApp to the model layer</p>
 </dd>
@@ -1055,15 +1051,15 @@ and the application asks permission in order to use his address, then, the total
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>WebApp</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>Communicates database information to User and manages User Input</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Communicates database information to User and manages User Input.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>restAPI</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>Translates User requests to backend</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>RestAPI</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Endpoint for app requests to the backend.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Logic</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>Manages POD and Product databases</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Backend</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Manages business logic.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1080,16 +1076,32 @@ and the application asks permission in order to use his address, then, the total
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JDK</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>Java Development Kit</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>ReactJS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JavaScript library used to build user interface.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>Java library used to build user interface</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node.JS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Backend runtime environment where the TypeScript code runs.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>node.js</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>Language of the restAPI</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Express</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node library for API building.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Mongoose</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for MongoDB connections and integration.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Inrupt JS Client libraries</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for SOLID support.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Nominatim</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for street address resolution.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Bootstrap</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Front-end framework for web application building. Runs on React.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1097,7 +1109,7 @@ and the application asks permission in order to use his address, then, the total
 <dl>
 <dt class="hdlist1">User POD</dt>
 <dd>
-<p>The database that will store the user&#8217;s personal information, which the DeDe server will have to be granted permission to access</p>
+<p>Where the user&#8217;s personal information is stored, which the DeDe server will have to be granted permission to access.</p>
 </dd>
 <dt class="hdlist1">Product Database</dt>
 <dd>
@@ -1235,6 +1247,10 @@ on this list.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Vendor</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A user role that sells products in the application.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents every product that will be sold through the application.</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -1294,19 +1310,10 @@ database, after thinking about it we decided we would use MongoDB since it has a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_usage_of_some_maps_api">9.2. Usage of some maps API</h3>
+<h3 id="_nominatim">9.2. Nominatim</h3>
 <h5 id="_context_2" class="discrete">Context</h5>
 <div class="paragraph">
-<p>To calculate the distance between the central and the user direction we will
-need some API, probably just the google API.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_usage_of_a_seller_role">9.3. Usage of a seller role</h3>
-<h5 id="_context_3" class="discrete">Context</h5>
-<div class="paragraph">
-<p>To be able to add products to the application for the users to shop, it will be helpful
-to have some kind of seller to be able to add them inside the application.</p>
+<p>To calculate the distance between the central and the user direction we will make use of the Nominatim library.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1536,8 +1543,17 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Empty for now</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Empty">[Empty]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manual client address input</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Although the API calls for SOLID integration and address resolution are implemented,
+currently the user address is manually input when submitting an order.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Orders are not correctly submitted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">There exists a misimplementation of the Order schema which will need to be addressed. Orders cannot be currently submitted.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chaotic dependency tree</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We tried our best to keep a clean npm dependency tree, but as the build process kept failing we were forced to just install everything everywhere. This will be addressed in the future.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1645,7 +1661,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-08 11:41:53 +0100
+Last updated 2022-03-14 23:10:19 +0100
 </div>
 </div>
 </body>
