@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Sidebar from "./components/Sidebar";
 import { CartProvider } from "./context/CartContext";
+import DetailsView from "./pages/DetailsView/DetailsView";
 
 const App = () => {
 
@@ -13,6 +14,11 @@ const App = () => {
                 <Navigation handleOpen={ setShow }/>
                 { show && <Sidebar handleClose={ setShow }/>}
             </CartProvider>
+            <Switch>
+                <Route path="/product/:_id">
+                    <DetailsView />
+                </Route>
+            </Switch>
         </Router>
     );
 }
