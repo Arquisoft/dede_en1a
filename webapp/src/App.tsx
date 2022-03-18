@@ -13,12 +13,12 @@ const App = () => {
             <CartProvider>
                 <Navigation handleOpen={ setShow }/>
                 { show && <Sidebar handleClose={ setShow }/>}
+                <Switch>
+                    <Route path="/product/:_id">
+                        <DetailsView />
+                    </Route>
+                </Switch>
             </CartProvider>
-            <Switch>
-                <Route path="/product/:_id">
-                    <DetailsView />
-                </Route>
-            </Switch>
         </Router>
     );
 }

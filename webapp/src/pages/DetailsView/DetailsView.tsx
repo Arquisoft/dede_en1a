@@ -2,16 +2,16 @@
 import getProduct from '../../helpers/getProduct';
 */
 
-import Button from '@mui/material/Button';
-import {Card} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 import ProductInfo from './sections/ProductInfo';
 import ProductImage from './sections/ProductImage';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './DetailsView.css'
 import { useParams } from 'react-router';
 import Axios from 'axios';
 import {Product} from '../../shared/shareddtypes';
+import { CartContext } from '../../context/CartContext';
 
 /*
 type Props = {
@@ -24,8 +24,20 @@ const DetailsView: React.FC = () => {
 
     const { _id }: {_id: string} = useParams();
 
+    const { dispatch } = useContext(CartContext);
+
+    const handleAddToCart = (product: Product) => {
+        console.log("item added to cart")
+        dispatch({
+            payload: product,
+            type: 'ADD'
+        });
+    }
+
+    /* trouble shooting
     console.log(_id)
     console.log("Details View successfully loaded")
+    */
     
     const [item, setItem] = useState<Product>()
 
@@ -37,7 +49,7 @@ const DetailsView: React.FC = () => {
                 console.log(response.data)
             }
         );
-    }, []);
+    });
 
     if (item) return(
         <Grid container className="centered">
@@ -49,12 +61,13 @@ const DetailsView: React.FC = () => {
                 <ProductInfo item={item}/>
             </Grid>
             <Grid item xs={3}/>
+            <Button className='button-add' variant="primary" onClick={() => handleAddToCart(item)}>Add to cart</Button>
         </Grid>
     )
 
     return(
         <>
-            Testing In Progress
+            ERROR: item not found
         </>
         /*
         */
