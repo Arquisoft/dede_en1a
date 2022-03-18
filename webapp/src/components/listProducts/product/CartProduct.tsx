@@ -22,6 +22,7 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
             <Card.Body>
                 <Card.Title className='card-title'>{product.name}</Card.Title>
                 Price: {product.price}€
+                <Button href={`product/${product._id}`}>Product Details</Button>
                 <Button className='button-add' variant="primary" onClick={() => handleAddToCart(product)}>Add to cart</Button>
             </Card.Body>
         </Card>
