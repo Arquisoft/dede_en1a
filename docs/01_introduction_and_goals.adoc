@@ -16,7 +16,6 @@ Dede is a project developed for the Software Architecture course of the Universi
 * Juan Andrés Torrente Bermúdez
 * Joaquín Salustiano Britos Morales
 * Luis Vijande González
-* Elías Llera García-Riaño
 * Landon Brown
 
 Dede is a privacy-oriented, online-based marketplace where vendors publish their products and clients can register with the assurance of their private information not being stored in the application.

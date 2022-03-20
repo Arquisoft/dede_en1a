@@ -1,4 +1,5 @@
-import {Product} from '../shared/shareddtypes';
+export {}
+//import {Product} from '../shared/shareddtypes';
 
 /*
 export async function getProducts():Promise<Product[]>{
@@ -9,7 +10,7 @@ export async function getProducts():Promise<Product[]>{
 
 /*
 export async function getProducts(): Promise<Product[]> {
-    const apiEndPoint = process.env.REACT_APP_ARI_URI || "http://localhost:5000";
+    const apiEndPoint = process...env.REACT_APP_ARI_URI || "http://localhost:5000";
     let response = await fetch(apiEndPoint + "/product/list");
     return response.json();
 }*/

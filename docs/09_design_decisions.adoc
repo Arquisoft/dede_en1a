@@ -33,17 +33,11 @@ Here we will document the technologies that affect the application and we will b
 Since we need a Database to store the products for the application, not the users, they will be in their POD, we have to use a 
 database, after thinking about it we decided we would use MongoDB since it has an easy connection with typescript.
 
-=== Usage of some maps API 
+=== Nominatim
 [discrete]
 ===== Context
-To calculate the distance between the central and the user direction we will
-need some API, probably just the google API.
+To calculate the distance between the central and the user direction we will make use of the Nominatim library.
 
-=== Usage of a seller role
-[discrete]
-===== Context
-To be able to add products to the application for the users to shop, it will be helpful
-to have some kind of seller to be able to add them inside the application.
 
 
 //=== Usage of a library for notifications

@@ -6,8 +6,14 @@ type Props = {
   item: Product;
 };
 
-const ProductImage: React.FC<Props> = ({item}) => (
-  <img src={item.image} height="150" width ="300" className="center_image"/>
-);
+
+const ProductImage: React.FC<Props> = ({item}) => {
+
+  let imgPath = "../../../../images/".concat(item.image).concat(".jpg");
+
+  return(
+    <img src={imgPath} height={250} width={300} alt={item.name} className="center_image"/>
+  )
+}
 
 export default ProductImage;

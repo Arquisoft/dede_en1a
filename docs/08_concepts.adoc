@@ -61,4 +61,5 @@ image:UmlDiagram.png["Example UML Diagram"]
 |Domain concept|Description
 | User | A user represents the end user that will buy products in the application.
 | Vendor | A user role that sells products in the application.
+| Product | Represents every product that will be sold through the application.
 |===

@@ -2,25 +2,25 @@ import React from 'react'
 import {useContext} from 'react';
 import {CartContext} from '../../context/CartContext';
 import Item from './item/Item';
-import Footer from "../footer/Footer";
+import CartFooter from "../footer/CartFooter";
 import './cart-styles.css';
 
 
 const Cart = () => {
     const {cartItems} = useContext(CartContext);
 
-    if (!cartItems.length) return <h5>Cart is empty</h5>;
+    if (!cartItems.length) return <p><b>Cart is empty</b></p>;
 
     return (
         <div className='shopping-cart'>
             {
                 cartItems.map(item => (
                     <Item
-                        key={item.id}
+                        key={item._id}
                         item={item}/>
                 ))
             }
-            <Footer/>
+            <CartFooter/>
         </div>
     )
 }
