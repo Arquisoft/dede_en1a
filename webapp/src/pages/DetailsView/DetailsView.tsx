@@ -49,7 +49,8 @@ const DetailsView: React.FC = () => {
                 console.log(response.data)
             }
         );
-    });
+    },
+        [_id]);
 
     if (item) return(
         <Grid container className="centered">
