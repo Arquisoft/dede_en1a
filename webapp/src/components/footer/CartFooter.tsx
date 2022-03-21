@@ -15,7 +15,11 @@ const CartFooter = () => {
                 </div>
             </div>
             <div className="d-grid gap-2">
-                <Button className='btn btn-primary' onClick={() => {window.location.href="http://localhost:5000/solid/fetch/" + localStorage.getItem("webID")}}>Proceed with checkout</Button>
+                {(localStorage.getItem("loggedIn") == null) ?
+                <label>Por favor inicia sesion en tu pod.</label> :
+                    <Button className='btn btn-primary' onClick={() => {window.location.href="http://localhost:5000/solid/fetch/" + localStorage.getItem("webID")}}>Proceed with checkout</Button>
+                }
+
             </div>
         </div>
     )
