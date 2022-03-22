@@ -1,11 +1,27 @@
-import React from 'react'
+import { LocalShipping } from '@mui/icons-material';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { calculateTotal, getTotalItems } from '../helpers/calculate';
 
 const OrderSummary = () => {
 
+    const [shipping, setDistance] = useState({
+        distance: 0,
+        price: 0,
+    })
+
     const { cartItems } = useContext(CartContext);
+    useEffect(() => {
+        axios.get("http://localhost:5000/geocode/" + localStorage.getItem("address")).then(
+            response => {
+                const shipping = response.data
+                setDistance(shipping) 
+                console.log(response.data)
+            }
+        );
+    }, []);
 
     return (
         <div className='col-md-5 col-lg-4 order-md-last'>
@@ -30,6 +46,7 @@ const OrderSummary = () => {
                 <li className='list-group-item d-flex justify-content-between'>
                     <span>TOTAL (EUR)</span>
                     <strong>{ calculateTotal(cartItems).toFixed(2)}€</strong>
+                    <strong>{ shipping.price }€</strong>
                 </li>
             </ul>
         </div>
