@@ -1,3 +1,5 @@
+import {readdirSync} from "fs";
+
 const Nominatim = require('nominatim-geocoder')
 
 const geocoder = new Nominatim();
@@ -11,6 +13,7 @@ export function getPriceFromAddress(address: String, warehouse:Number=0) {
 		let lat : number = response[0]["lat"];
 		let lon : number = response[0]["lon"];
 		let distance : number = distanceInKmBetweenEarthCoordinates(lat, lon, 43.354838799999996, -5.851292403149609);
+		console.log(response)
 		return {
 			"distance" : distance,
 			"price" : distance * parseInt(process.env.PRICE_PER_KM || "")

@@ -1,15 +1,14 @@
-import { LocalShipping } from '@mui/icons-material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
-import { calculateTotal, getTotalItems } from '../helpers/calculate';
+import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../helpers/calculate';
 
 const OrderSummary = () => {
 
     const [shipping, setDistance] = useState({
-        distance: 0,
-        price: 0,
+        distance: 0.0,
+        price: 0.0,
     })
 
     const { cartItems } = useContext(CartContext);
@@ -44,9 +43,16 @@ const OrderSummary = () => {
                     ))
                 }
                 <li className='list-group-item d-flex justify-content-between'>
-                    <span>TOTAL (EUR)</span>
+                    <span>TOTAL PRODUCTS (EUR)</span>
                     <strong>{ calculateTotal(cartItems).toFixed(2)}€</strong>
-                    <strong>{ shipping.price }€</strong>
+                </li>
+                <li className='list-group-item d-flex justify-content-between'>
+                    <span>SHIPPING (EUR)</span>
+                    <strong>{shipping.price.toFixed(2) }€</strong>
+                </li>
+                <li className='list-group-item d-flex justify-content-between'>
+                    <span>TOTAL (EUR)</span>
+                    <strong>{ calculateTotalPlusShiping(cartItems, shipping.price).toFixed(2)}€</strong>
                 </li>
             </ul>
         </div>
