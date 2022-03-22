@@ -13,3 +13,9 @@
 .button-add {
     margin-left: 0.5em !important;
 }
+
+.card-product-body {
+    display: flex;
+    align-items: stretch;    
+    flex-direction: column;
+}

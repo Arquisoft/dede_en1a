@@ -50,7 +50,7 @@ const DetailsView: React.FC = () => {
             }
         );
     },
-        [_id]);
+    [_id]);
 
     if (item) return(
         <Grid container className="centered">
@@ -68,7 +68,7 @@ const DetailsView: React.FC = () => {
 
     return(
         <>
-            ERROR: item not found
+            {/* ERROR: item not found */}
         </>
         /*
         */
