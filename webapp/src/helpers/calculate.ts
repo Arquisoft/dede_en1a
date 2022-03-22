@@ -1,3 +1,4 @@
+import { number } from "yargs";
 import {CartItem} from "../shared/shareddtypes";
 
 export const calculateTotal = (cartItems: CartItem[]): number => {
