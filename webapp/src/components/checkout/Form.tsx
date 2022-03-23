@@ -1,9 +1,9 @@
 import { FormEvent, useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { CartContext } from "../context/CartContext";
-import postData from "../helpers/postData";
-import useForm from "../hooks/useForm";
-import {Customer, Order} from "../shared/shareddtypes";
+import { CartContext } from "../../context/CartContext";
+import postData from "../../helpers/postData";
+import useForm from "../../hooks/useForm";
+import {Customer, Order} from "../../shared/shareddtypes";
 
 const initialState = {
     name: '',
