@@ -4,8 +4,8 @@ import Checkout from '../pages/Checkout';
 import NavBar from "./NavBar";
 import Home from "./Home";
 import LoadingSession from "./LoadingSessionComponent"
-import CheckoutData from "./CheckoutDataComponent"
-import LogoutSession from "./LogoutSessionComponent";
+import CheckoutData from "./checkout/CheckoutDataComponent"
+import LogoutSession from './logout/LogoutSessionComponent';
 
 type Props = {
     handleOpen: (state: boolean) => void;
