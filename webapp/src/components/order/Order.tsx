@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
-import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../helpers/calculate';
+import { CartContext } from '../../context/CartContext';
+import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../../helpers/calculate';
 
 const OrderSummary = () => {
 

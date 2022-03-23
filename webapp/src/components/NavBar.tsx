@@ -7,8 +7,8 @@ import {Link} from 'react-router-dom';
 import {CartContext} from '../context/CartContext';
 import {getTotalItems} from '../helpers/calculate';
 import {IconButton} from "@mui/material";
-import LoginButton from "./LoginButtonComponent";
-import LogoutButton from "./LogoutButtonComponent";
+import LoginButton from "./login/LoginButtonComponent";
+import LogoutButton from "./logout/LogoutButtonComponent";
 
 
 type Props = {
