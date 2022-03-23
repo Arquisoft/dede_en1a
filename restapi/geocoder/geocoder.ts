@@ -1,12 +1,20 @@
 import {readdirSync} from "fs";
+import { format } from "path";
+import { stringify } from "querystring";
 
 const Nominatim = require('nominatim-geocoder')
 
 const geocoder = new Nominatim();
 
+// interface Location {
+// 	address: string,
+// 	city: string,
+// 	region: string
+// 	country: string,
+// }
 
 // TODO: unhardcode warehouse
-export function getPriceFromAddress(address: String, warehouse:Number=0) {
+export function getPriceFromAddress(address: string) {
 	return geocoder.search({q: address})
 	.then((response : any) => {
 		
