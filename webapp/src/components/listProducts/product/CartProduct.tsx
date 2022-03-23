@@ -1,19 +1,30 @@
 import {Product} from "../../../shared/shareddtypes";
 import './styles.css';
 import {useHistory} from "react-router-dom";
-import { CardContent, CardMedia, Typography, Card, Button, CardActions, CardActionArea} from "@mui/material";
+import { CardContent, CardMedia, Typography, Card, Button, CardActions, CardActionArea, styled} from "@mui/material";
 
 type Props = {
     product: Product;
     handleAddToCart: (product: Product) => void;
 }
 
+const StyledButton = styled(Button)({
+	justifySelf: "center",
+	width: "100%"
+})
+
+const StyledCard = styled(Card)({
+	'&:hover': {
+		border: "solid 3px #000"
+	}
+})
+
 
 const CartProduct = ({product, handleAddToCart}: Props) => {
     let history = useHistory();
     let imgPath = "./images/".concat(product.image).concat(".jpg");
     return (
-        <Card sx={{width: '15rem', margin: '5px'}}>
+        <StyledCard sx={{width: '15rem', margin: '5px'}}>
 			<CardActionArea onClick={() => history.push("product/" + product._id)}>
 				<div style={{height:'15rem'}}>
 					<CardMedia component="img" alt="image of product" width="15rem" image={imgPath}/>
@@ -27,15 +38,15 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
 					</Typography>
 				</CardContent>
 			</CardActionArea>
-			<div style={{display: "grid", gap:"5px"}}>
-				<Button variant="contained" onClick={() => history.push("product/" + product._id)} sx={{width:"90%", justifySelf:"center"}}>
+			<div style={{display: "grid", gap:"5px", margin:"1rem"}}>
+				<StyledButton variant="contained" onClick={() => history.push("product/" + product._id)}>
 					Product Details
-				</Button>
-				<Button variant="contained"  onClick={() => handleAddToCart(product)} sx={{width:"90%", justifySelf:"center", marginBottom:"15px"}}>
+				</StyledButton>
+				<StyledButton variant="contained"  onClick={() => handleAddToCart(product)}>
 					Add to cart
-				</Button>
+				</StyledButton>
 			</div>
-        </Card>
+        </StyledCard>
     )
 }
 
