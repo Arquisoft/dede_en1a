@@ -80,8 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ docker-push-restapi,docker-push-webapp ]
     steps:
-      - name: Login to GitHub Container Registry #trying this to fix permissions issues when pulling
-        uses: docker/login-action@v1
+      - uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
