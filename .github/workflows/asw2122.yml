@@ -46,6 +46,8 @@ jobs:
   docker-push-webapp:
     name: Push webapp Docker Image to GitHub Packages
     runs-on: ubuntu-latest
+    env:
+      API_URI: http://${{ secrets.DEPLOY_HOST }}:5000/api
     needs: [e2e-tests]
     steps:
     - uses: actions/checkout@v2
