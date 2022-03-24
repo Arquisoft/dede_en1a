@@ -1,9 +1,9 @@
 import { FormEvent, useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { CartContext } from "../context/CartContext";
-import postData from "../helpers/postData";
-import useForm from "../hooks/useForm";
-import {Customer, Order} from "../shared/shareddtypes";
+import { CartContext } from "../../context/CartContext";
+import postData from "../../helpers/postData";
+import useForm from "../../hooks/useForm";
+import {Customer, Order} from "../../shared/shareddtypes";
 
 const initialState = {
     name: '',
@@ -17,7 +17,7 @@ const notify = (msj: string) => toast(msj);
 const Form = () => {
 
     const {cartItems, dispatch } = useContext(CartContext);
-    const {name, email, lastName, address, handleInputChange, resetValues } = useForm<Customer>(initialState);
+    const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
 
     const handleSubmit = async (e: FormEvent) => {
@@ -65,20 +65,10 @@ const Form = () => {
             <form autoComplete='off' onSubmit={ handleSubmit }>
                 <div className="row g-3">
                     <div className="col-sm-6">
-                        <label htmlFor="name" className='form-label'>Name</label>
-                        <input type="text" className='form-control' name='name' id='name' placeholder='Name' value={name} onChange={handleInputChange}/>
-                    </div>
-                    <div className="col-sm-6">
-                        <label htmlFor="lastName" className='form-label'>Surname</label>
-                        <input type="text" className='form-control' name='lastName' id='lastName' placeholder='Surname' value={lastName} onChange={handleInputChange}/>
+                        <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
                     </div>
                     <div className="col-12">
-                        <label htmlFor="email" className='form-label'>Email</label>
-                        <input type="email" className='form-control' name='email' id='email' placeholder='Email' value={email} onChange={handleInputChange}/>
-                    </div>
-                    <div className="col-12">
-                        <label htmlFor="address" className='form-label'>Address</label>
-                        <input type="text" className='form-control' name='address' id='address' placeholder='Address' value={address} onChange={handleInputChange}/>
+                        <label htmlFor="address" className='form-label'>Address: {localStorage.getItem("address")}</label>
                     </div>
                 </div>
                 <br />

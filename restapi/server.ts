@@ -13,8 +13,6 @@ import { getPriceFromAddress } from "./geocoder/geocoder";
 
 import 'dotenv/config'
 
-//initial commit backend
-const uri: string = "mongodb+srv://admin:admin@cluster0.2sj0r.mongodb.net/DeDe_Database?retryWrites=true&w=majority";
 
 const app: Application = express(); 
 const options: cors.CorsOptions = {
@@ -58,7 +56,7 @@ mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
 	}).then(() => {
 		console.log("connected to database: " + process.env.DB_NAME);
 	}).catch(err => {
-		console.error('Erro occured: ' + err.message);
+		console.error('Error occured: ' + err.message);
 	})
 	
 app.listen(process.env.PORT, ():void => {

@@ -11,7 +11,8 @@ const port: number = 5000
 const redirectUrl: string = "http://localhost:5000/solid/redirect-from-solid-idp" // Esto se cambiara por otra pagina como por ejemplo /home.
 const oidcIssuer: string = "https://solidcommunity.net/" // Name of the pod provider.
 const clientName: string = "DeDe" // Name of the app.
-const temporalRedirect: string = "https://google.es"
+const errorRedirect: string = "http://localhost:3000"
+
 
 solidRouter.use(
     cookieSession({
@@ -43,47 +44,55 @@ solidRouter.get("/login", async (req, res) => {
 })
 
 solidRouter.get("/redirect-from-solid-idp", async (req, res) => {
-
     const session = await getSessionFromStorage(req.session.id);
-
-    if(session){
+     if(session){
         await session.handleIncomingRedirect(`http://localhost:${port}/solid${req.url}`);
-        if(session.info.isLoggedIn)
-            return res.send(`<p>Logged in with the WebID ${session.info.webId}.</p>`)
+         if(session.info.isLoggedIn)
+            return res.redirect("http://localhost:3000/solid/login/" + Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
     } else {
-        res.redirect(temporalRedirect)
+        res.redirect(errorRedirect)
     }
-
 });
 
 
-solidRouter.get("/fetch", async (req, res) =>{
-    let session = await getSessionFromStorage(req.session.id)
+solidRouter.get("/fetch/:id", async (req, res) =>{
+    await retrieveInfo(req.params.id)
+        .then((data) => {
+            res.redirect("http://localhost:3000/solid/checkout/" + data[0] + "/" + data[1])
+        })
+})
 
-    if(session && session.info.webId) {
-        await retrieveInfo(session.info.webId)
-            .then((address: string) => {
-                console.log(address)
-                res.send(address)
+solidRouter.get("/logout/:sessionID", async (req, res) => {
+    let session = await getSessionFromStorage(req.params.sessionID)
+
+    if(session){
+        session.logout()
+            .finally(() => {
+                res.redirect("http://localhost:3000/solid/logout")
             })
-    } else {
-        console.log("No session or webID")
+
     }
 })
 
 /**
  * This function retrieves information from
  * the given pod.
- * @param webID
+ * @param encryptedWebId
  */
-export async function retrieveInfo(webID: string): Promise<string> {
+export async function retrieveInfo(encryptedWebId: string): Promise<string[]> {
+
+    let data: string[] = []
+    let webID = Buffer.from(encryptedWebId, 'base64').toString('binary')
     let profileDocumentURI = webID.split("#")[0] // Retrieve the user card
     let myDataSet = await getSolidDataset(profileDocumentURI) // Get the data
     let profile = getThing(myDataSet, webID) // Get the thing
     let urlAddress = getUrl(profile as Thing, VCARD.hasAddress) as string // From the thing retrieve the id card
     let addressProfile = await getThing(myDataSet, urlAddress) // Get the thing
-    let address = getStringNoLocale(addressProfile as Thing, VCARD.street_address) as string // Retrieve the value corresponding to the address
-    return address
+    data[0] = getStringNoLocale(profile as Thing, VCARD.fn) as string
+    console.log(data[0])
+    data[1] = getStringNoLocale(addressProfile as Thing, VCARD.street_address) as string // Retrieve the value corresponding to the address
+
+    return data
 }
 
 export default solidRouter

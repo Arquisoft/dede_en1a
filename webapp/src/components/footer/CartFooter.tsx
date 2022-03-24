@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { calculateTotal } from '../../helpers/calculate';
 import './styles.css';
+import {Button} from "@mui/material";
 
 const CartFooter = () => {
     const { cartItems } = useContext(CartContext);
@@ -15,7 +15,11 @@ const CartFooter = () => {
                 </div>
             </div>
             <div className="d-grid gap-2">
-                <Link className='btn btn-primary' to='/checkout'>Proceed with checkout</Link>
+                {(localStorage.getItem("loggedIn") == null) ?
+                <label>Please log in your pod</label> :
+                    <Button className='btn btn-primary' onClick={() => {window.location.href="http://localhost:5000/solid/fetch/" + localStorage.getItem("webID")}}>Proceed with checkout</Button>
+                }
+
             </div>
         </div>
     )

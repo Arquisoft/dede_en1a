@@ -1,11 +1,26 @@
-import React from 'react'
+import axios from 'axios';
+import { useEffect, useState } from 'react'
 import { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
-import { calculateTotal, getTotalItems } from '../helpers/calculate';
+import { CartContext } from '../../context/CartContext';
+import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../../helpers/calculate';
 
 const OrderSummary = () => {
 
+    const [shipping, setDistance] = useState({
+        distance: 0.0,
+        price: 0.0,
+    })
+
     const { cartItems } = useContext(CartContext);
+    useEffect(() => {
+        axios.get("http://localhost:5000/geocode/" + localStorage.getItem("address")).then(
+            response => {
+                const shipping = response.data
+                setDistance(shipping) 
+                console.log(response.data)
+            }
+        );
+    }, []);
 
     return (
         <div className='col-md-5 col-lg-4 order-md-last'>
@@ -28,8 +43,16 @@ const OrderSummary = () => {
                     ))
                 }
                 <li className='list-group-item d-flex justify-content-between'>
-                    <span>TOTAL (EUR)</span>
+                    <span>TOTAL PRODUCTS (EUR)</span>
                     <strong>{ calculateTotal(cartItems).toFixed(2)}€</strong>
+                </li>
+                <li className='list-group-item d-flex justify-content-between'>
+                    <span>SHIPPING (EUR)</span>
+                    <strong>{shipping.price.toFixed(2) }€</strong>
+                </li>
+                <li className='list-group-item d-flex justify-content-between'>
+                    <span>TOTAL (EUR)</span>
+                    <strong>{ calculateTotalPlusShiping(cartItems, shipping.price).toFixed(2)}€</strong>
                 </li>
             </ul>
         </div>

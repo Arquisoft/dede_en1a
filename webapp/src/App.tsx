@@ -5,21 +5,22 @@ import Sidebar from "./components/Sidebar";
 import { CartProvider } from "./context/CartContext";
 import DetailsView from "./pages/DetailsView/DetailsView";
 
+
 const App = () => {
 
     const [show, setShow] = useState(false);
     return (
-        <Router>
-            <CartProvider>
-                <Navigation handleOpen={ setShow }/>
-                { show && <Sidebar handleClose={ setShow }/>}
-                <Switch>
-                    <Route path="/product/:_id">
-                        <DetailsView />
-                    </Route>
-                </Switch>
-            </CartProvider>
-        </Router>
+            <Router>
+                <CartProvider>
+                        <Navigation handleOpen={ setShow }/>
+                        { show && <Sidebar handleClose={ setShow }/>}
+                        <Switch>
+                            <Route path="/product/:_id">
+                                <DetailsView />
+                            </Route>
+                        </Switch>
+                </CartProvider>
+            </Router>
     );
 }
 
