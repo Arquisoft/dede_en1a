@@ -47,7 +47,7 @@ jobs:
     name: Push webapp Docker Image to GitHub Packages
     runs-on: ubuntu-latest
     env:
-      API_URI: http://${{ secrets.DEPLOY_HOST }}:5000/api
+      API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
       SKIP_PREFLIGHT_CHECK: true
     #needs: [e2e-tests]
     needs: [unit-test-webapp, unit-test-restapi]
@@ -68,7 +68,7 @@ jobs:
       DB_NAME: ${{ secrets.DB_NAME }}
       DB_USERNAME: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      PORT: 5000
+      PORT: ${{ secrets.PORT }}
     #needs: [e2e-tests]
     needs: [unit-test-webapp, unit-test-restapi]
     steps:
