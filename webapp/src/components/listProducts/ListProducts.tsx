@@ -22,7 +22,7 @@ const ListProducts = () => {
     if(isLoading) return <LinearProgress/>;
 
     return (
-        <>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto'}}>
             {
                 products.map(product => (
                     <CartProduct
@@ -31,7 +31,7 @@ const ListProducts = () => {
                         handleAddToCart={handleAddToCart}/>
                 ))
             }
-        </>
+        </div>
     )
 }
 

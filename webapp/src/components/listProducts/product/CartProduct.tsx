@@ -25,7 +25,7 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
     let history = useHistory();
     let imgPath = "./images/".concat(product.image).concat(".jpg");
     return (
-		<div>
+		<div style={{padding: '25px'}}>
 			<StyledCard sx={{width: '15rem', margin: '5px'}}>
 				<CardActionArea onClick={() => history.push("product/" + product._id)}>
 					<div style={{height:'15rem'}}>

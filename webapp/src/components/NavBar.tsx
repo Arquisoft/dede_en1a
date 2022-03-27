@@ -26,7 +26,7 @@ const NavBar = ({handleOpen}: Props) => {
     //We have logged in
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
-                <Container>
+                <Container /*style={{display: 'flex'}}*/>
                     <Link className='navbar-brand' to='/'>DEDE</Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
