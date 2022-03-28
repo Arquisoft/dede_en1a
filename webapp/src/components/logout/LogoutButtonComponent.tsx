@@ -8,7 +8,7 @@ type Props = {
 
 
 const LogoutButton = (props: Props) => {
-    const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+    const apiEndPoint = "http://localhost:5000";
     const {setIsLoggedIn} = props
     return(
         <Button onClick={() => {
