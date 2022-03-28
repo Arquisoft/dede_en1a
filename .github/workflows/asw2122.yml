@@ -65,10 +65,10 @@ jobs:
     name: Push restapi Docker Image to GitHub Packages
     runs-on: ubuntu-latest
     env:
-      DB_NAME: ${{ secrets.DB_NAME }}
-      DB_USERNAME: ${{ secrets.DB_USER }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      PORT: ${{ secrets.PORT }}
+      RESTAPI_DB_NAME: ${{ secrets.DB_NAME }}
+      RESTAPI_DB_USERNAME: ${{ secrets.DB_USER }}
+      RESTAPI_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      RESTAPI_PORT: ${{ secrets.PORT }}
     #needs: [e2e-tests]
     needs: [unit-test-webapp, unit-test-restapi]
     steps:
