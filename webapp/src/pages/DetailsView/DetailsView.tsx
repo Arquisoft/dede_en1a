@@ -54,14 +54,14 @@ const DetailsView: React.FC = () => {
 
     if (item) return(
         <Grid container className="centered">
-            <Grid item xs={3}/>
-            <Grid item xs={3}>
+            <Grid item xs={0} md={2} lg={3}/>
+            <Grid item xs={12} md={4} lg={3}>
                 <ProductImage item={item}/>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} md={4} lg={3}>
                 <ProductInfo item={item}/>
             </Grid>
-            <Grid item xs={3}/>
+            <Grid item xs={0} md={2} lg={3}/>
             <Button className='button-add' variant="primary" onClick={() => handleAddToCart(item)}>Add to cart</Button>
         </Grid>
     )

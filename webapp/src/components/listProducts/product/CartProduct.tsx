@@ -1,6 +1,7 @@
 import {Product} from "../../../shared/shareddtypes";
 import './styles.css';
 import {useHistory} from "react-router-dom";
+import Grid from '@mui/material/Grid';
 import { CardContent, CardMedia, Typography, Card, Button, CardActionArea, styled} from "@mui/material";
 
 type Props = {
@@ -25,31 +26,33 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
     let history = useHistory();
     let imgPath = "./images/".concat(product.image).concat(".jpg");
     return (
-		<div>
-			<StyledCard sx={{width: '15rem', margin: '5px'}}>
-				<CardActionArea onClick={() => history.push("product/" + product._id)}>
-					<div style={{height:'15rem'}}>
-						<CardMedia component="img" alt="image of product" width="15rem" image={imgPath}/>
-					</div>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="div">
-							{product.name}
-						</Typography>
-						<Typography variant="subtitle1" color="text.secondary">
-							Price: {product.price}€
-						</Typography>
-					</CardContent>
-				</CardActionArea>
-			</StyledCard>
-			<div style={{display: "grid", gap:"5px", margin:"1rem"}}>
+		<Grid container spacing={1} style={{justifyContent:"center"}}>
+			<Grid item xs={12}>
+				<StyledCard>
+					<CardActionArea onClick={() => history.push("product/" + product._id)}>
+						<CardMedia component="img" alt="image of product" style={{height:"250px"}} /*width="15rem"*/ image={imgPath}/>
+						<CardContent>
+							<Typography gutterBottom variant="h5" component="div">
+								{product.name}
+							</Typography>
+							<Typography variant="subtitle1" color="text.secondary">
+								Price: {product.price}€
+							</Typography>
+						</CardContent>
+					</CardActionArea>
+				</StyledCard>
+			</Grid>
+			<Grid item xs={10}>
 				<StyledButton variant="contained" onClick={() => history.push("product/" + product._id)}>
 					Product Details
 				</StyledButton>
+			</Grid>
+			<Grid item xs={10}>
 				<StyledButton variant="contained"  onClick={() => handleAddToCart(product)}>
-					Add to cart
+					Add to Cart
 				</StyledButton>
-			</div>
-		</div>
+			</Grid>
+		</Grid>
     )
 }
 
