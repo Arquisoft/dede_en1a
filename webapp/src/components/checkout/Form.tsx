@@ -1,11 +1,9 @@
-import {ChangeEvent, FormEvent, useContext, useEffect, useState} from "react";
+import { FormEvent, useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { CartContext } from "../context/CartContext";
-import postData from "../helpers/postData";
-import useForm from "../hooks/useForm";
-import {Customer, Order} from "../shared/shareddtypes";
-import axios from "axios";
-import IContactData from "../../../restapi/interfaces/ContactDataInterface"
+import { CartContext } from "../../context/CartContext";
+import postData from "../../helpers/postData";
+import useForm from "../../hooks/useForm";
+import {Customer, Order} from "../../shared/shareddtypes";
 
 const initialState = {
     name: '',
@@ -21,32 +19,6 @@ const Form = () => {
     const {cartItems, dispatch } = useContext(CartContext);
     const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
-    const [contactData, setContactData] = useState<IContactData[]>();
-    const [validValue, setValidValue] = useState(false);
-
-
-    useEffect(() => {
-        axios.get("http://localhost:5000/solid/fetch/" + localStorage.getItem("webID")).then(
-            response => {
-                localStorage.setItem("fn", response.data[0].fn)
-                setContactData(response.data)
-            }
-        )
-    }, [])
-
-    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        let selected = e.target.value
-        if(selected.length === 0) {
-            setValidValue(false)
-            localStorage.removeItem("address")
-        } else {
-            setValidValue(true)
-            localStorage.setItem("address", selected.split("/").join(""))
-        }
-
-
-    }
-
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -93,20 +65,14 @@ const Form = () => {
             <form autoComplete='off' onSubmit={ handleSubmit }>
                 <div className="row g-3">
                     <div className="col-sm-6">
-                        <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("fn")}</label>
+                        <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
                     </div>
-                    <div>
-                        <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
-                            <option value="">-- Select an address --</option>
-                            {contactData?.map((contact, index) => (
-                                <option key={index}>
-                                    {contact.country} / {contact.region} / {contact.locality} / {contact.street_address} / {contact.postal_code}
-                                </option>))}
-                        </select>
+                    <div className="col-12">
+                        <label htmlFor="address" className='form-label'>Address: {localStorage.getItem("address")}</label>
                     </div>
                 </div>
                 <br />
-                <button className='w-100 btn btn-primary' disabled={!validValue} type='submit'>Place order</button>
+                <button className='w-100 btn btn-primary' type='submit'>Place order</button>
                 {
                     showToast && <Toaster
                         toastOptions={{
