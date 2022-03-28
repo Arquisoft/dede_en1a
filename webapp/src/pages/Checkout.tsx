@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container,  Row } from 'react-bootstrap';
 import Form from "../components/checkout/Form";
-import OrderSummary from "../components/Order";
+import OrderSummary from "../components/order/Order";
 
 const Checkout = () => {
     return (
