@@ -20,9 +20,6 @@ const Navigation = ({ handleOpen }: Props) => {
                 <Route exact path='/checkout' component={Checkout} />
                 <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession} />
                 <Route exact path='/solid/logout' component={LogoutSession}/>
-                <Route exact path='/solid/checkout/:name/:address' component={CheckoutData} />
-
-
             </Switch>
         </>
     )

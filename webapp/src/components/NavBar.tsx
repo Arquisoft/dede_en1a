@@ -32,7 +32,6 @@ const NavBar = ({handleOpen}: Props) => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Link className='nav-link' to="/">Home</Link>
-                            {(localStorage.getItem("loggedIn") == null) ? <LoginButton setIsLoggedIn={toggleLoggedIn}/> : <LogoutButton setIsLoggedIn={toggleLoggedIn}/>}
                         </Nav>
                     </Navbar.Collapse>
                     <IconButton
@@ -45,6 +44,7 @@ const NavBar = ({handleOpen}: Props) => {
                             <ShoppingCartIcon />
                         </Badge>
                     </IconButton>
+                    {(localStorage.getItem("loggedIn") == null) ? <LoginButton setIsLoggedIn={toggleLoggedIn}/> : <LogoutButton setIsLoggedIn={toggleLoggedIn}/>}
                 </Container>
         </Navbar>
     )

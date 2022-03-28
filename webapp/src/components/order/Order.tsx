@@ -16,7 +16,7 @@ const OrderSummary = () => {
         axios.get("http://localhost:5000/geocode/" + localStorage.getItem("address")).then(
             response => {
                 const shipping = response.data
-                setDistance(shipping) 
+                setDistance(shipping)
                 console.log(response.data)
             }
         );
@@ -35,7 +35,7 @@ const OrderSummary = () => {
                             key={item._id}
                             className='list-group-item d-flex justify-content-between lh-sm'>
                             <div>
-                                <h6 className='checkout-title'>{ item.title }</h6>
+                                <h5 className='checkout-title'>{ item.name }</h5>
                                 <small className='text-muted'>Quantity: { item.amount }</small>
                             </div>
                             <div className="text-muted">{item.price}€</div>
