@@ -15,7 +15,7 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
     let imgPath = "./images/".concat(product.image).concat(".jpg");
     return (
         <Card className="card-product" style={{width: '15rem', margin: '5px'}}>
-            <ButtonBase onClick={() => history.push("product/" + product._id)}>
+            <ButtonBase onClick={() => history.push(`product/${product._id}`)}>
                 <Card.Img variant="top" src={imgPath}
                           className='card-img'/>
             </ButtonBase>

@@ -38,11 +38,11 @@ const Item = ({ item }: Props) => {
                 </div>
                 <div className="item-detail">
                     <div className="item-detail-image">
-                        <img src={"./images/".concat(imgId).concat(".jpg")} alt={item.title} />
+                        <img src={"./images/".concat(imgId).concat(".jpg")} alt={item.name} />
                     </div>
                     <div className="item-detail-info">
                         <div className="item-detail-info-name">
-                            {item.title}
+                            {item.name}
                         </div>
                         <div className="item-detail-info-prices">
                             <span>${item.price}</span>
