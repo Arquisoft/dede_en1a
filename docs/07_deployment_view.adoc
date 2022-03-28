@@ -21,14 +21,14 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 |===
 | **Virtual Environment** | **Responsibility**
 | _AWS_ | _Amazon Web Service, cloud platform which hosts DeDe app on a server._
-| _Ubuntu Machine_ | _Linux virtual machine where JS code runs_
-| _Docker_ | _Packages application into containers which combine the source code with the operating system (OS) libraries and dependencies that allow the application to run in any environment_
+| _Ubuntu Machine_ | _Linux virtual machine where JS code runs._
+| _Docker_ | _Packages application into containers which combine the source code with the operating system (OS) libraries and dependencies, that allow the application to run in any environment._
 |===
 
 [cols="1,4" options="header"]
 |===
 | **Software** | **Responsibility**
-| _WebApp_ | _Communicates database information to User and manages User Input._
+| _WebApp_ | _Communicates database information to User and manages User Input. Displays the different functionalities to the user._
 | _RestAPI_ | _Endpoint for app requests to the backend. Includes backend where business logic is managed._
 |===
 
@@ -37,7 +37,7 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 | **Interlinking Concepts** | **Responsibility**
 | _DeDe Application_ | _Combination of WebApp (front end web application) and RestAPI (backend + business logic)._
 | _User POD_ | _Where the user's personal information is stored, which the DeDe App must be granted permission to access._
-| _Product DB_ | _Database storing product information such as name, description, cost, availability, etc. Built using MongoDB._
+| _Application DB_ | _Database storing product information such as name, description, cost, availability, etc. Built using MongoDB._
 | _User Device_ | _Device from which the user will access the DeDe application._
 |===
 

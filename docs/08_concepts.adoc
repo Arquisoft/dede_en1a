@@ -8,7 +8,7 @@
 This section describes overall, principal regulations and solution ideas that are
 relevant in multiple parts (= cross-cutting) of your system.
 Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
+They can include many topics, such as
 
 * domain models
 * architecture patterns or design patterns

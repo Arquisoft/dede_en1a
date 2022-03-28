@@ -6,15 +6,15 @@ The application we have developed, DeDe, is an online retail system whose first 
 
 === Business Context
 
-When the user finishes selecting what products to buy and proceeds to create an order
-the system will ask for their permission in order to use their address, which is located in the POD, and be able to calculate the cost of the delivery.
+When the user finishes selecting what products to buy and proceeds to create an order,
+the system will require a login from SOLID in order to use their address, which is located in the POD, and be able to calculate the cost of the delivery.
 
 image::business_context_diagram.png[]
 
 === Technical Context
 
 The user will execute the application and will interact with the user interface in order to choose what products to buy. When the selection is done and the client wants
-to make an order the backend will manage the necessary interactions with the user's POD and the product database in order to provide an estimated cost of delivery in order to compute the total cost of the order.
+to make an order the backend will manage the necessary interactions with the user's POD and the product database in order to provide an estimated cost of delivery and compute the total cost of the order.
 
 
 image::technical_context_diagram.png[]

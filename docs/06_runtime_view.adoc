@@ -4,24 +4,25 @@
 * Alice discovers this application by recommendation of a friend and wants to buy a new perfume she has been wanting since past christmas.
 
 * In the following diagram you can see that Alice first browses through the list
-of products available in the application, when she chooses one it is added to her order.
+of products available in the application, when she chooses one it is added to her cart.
 
 [plantuml,"alice_order",png]
 ----
 actor Alice
 participant DeDe
 database Product_Database
+
 Alice -> DeDe : Selects a product
 DeDe -> Product_Database : Asks for information of the chosen product
 DeDe <- Product_Database : Return the information of the product
-Alice <- DeDe : Shows the product in the order list
+Alice <- DeDe : Shows the product in the cart
 ----
 === Bob wants to process an order to buy products.
 * Bob has been browsing DeDe and has added some cool products to his
 order but now he wants to process that order and buy the products.
 
 * In the following diagram you can see how Bob proceeds to buy the products
-and the application asks permission in order to use his address, then, the total cost of the order is calculated.
+and the application requires logging in with SOLID to use his address, then, the total cost of the order is calculated.
 
 [plantuml,"bob_buy",png]
 ----
@@ -29,9 +30,9 @@ actor Bob
 participant DeDe
 database Pod
 
+Bob -> DeDe : Log in with SOLID account
 Bob -> DeDe : Process order button
-Bob <- DeDe : Asks permission to use pod
-Bob -> DeDe : Selects yes or no
+Bob -> DeDe : Selects preferred address
 DeDe -> Pod : Retrieves Bob's address
-Bob <- DeDe : Calculates the total cost of the order.
+Bob <- DeDe : Calculates the total cost of the order
 ----

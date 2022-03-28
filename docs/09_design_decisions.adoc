@@ -37,10 +37,3 @@ database, after thinking about it we decided we would use MongoDB since it has a
 [discrete]
 ===== Context
 To calculate the distance between the central and the user direction we will make use of the Nominatim library.
-
-
-
-//=== Usage of a library for notifications
-//[discrete]
-//===== Context
-//The app must have a notification system for delivery.

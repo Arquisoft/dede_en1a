@@ -12,11 +12,11 @@ Describes the relevant requirements and the driving forces that software archite
 
 Dede is a project developed for the Software Architecture course of the University of Oviedo. This version will be developed by the team En1A:
 
-* Rosa García López
-* Juan Andrés Torrente Bermúdez
-* Joaquín Salustiano Britos Morales
-* Luis Vijande González
 * Landon Brown
+* Rosa García López
+* Joaquín Salustiano Britos Morales
+* Juan Andrés Torrente Bermúdez
+* Luis Vijande González
 
 Dede is a privacy-oriented, online-based marketplace where vendors publish their products and clients can register with the assurance of their private information not being stored in the application.
 
