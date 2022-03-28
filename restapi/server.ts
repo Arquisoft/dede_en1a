@@ -59,7 +59,7 @@ mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
 		console.error('Error occured: ' + err.message);
 	})
 	
-app.listen(process.env.PORT, ():void => {
+app.listen(process.env.RESTAPI_PORT, ():void => {
 		console.log('Restapi listening on '+ process.env.RESTAPI_PORT);
 	}).on("error", (error:Error) => {
 		console.error('Error occured: ' + error.message);
