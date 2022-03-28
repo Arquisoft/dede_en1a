@@ -30,7 +30,7 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
 			<Grid item xs={12}>
 				<StyledCard>
 					<CardActionArea onClick={() => history.push("product/" + product._id)}>
-						<CardMedia component="img" alt="image of product" style={{height:"250px"}} /*width="15rem"*/ image={imgPath}/>
+						<CardMedia component="img" alt="image of product" style={{height:"75%"}} /*width="15rem"*/ image={imgPath}/>
 						<CardContent>
 							<Typography gutterBottom variant="h5" component="div">
 								{product.name}
