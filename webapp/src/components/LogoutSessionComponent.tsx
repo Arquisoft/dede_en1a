@@ -10,8 +10,8 @@ const LogoutSession = () => {
         () => {
             localStorage.removeItem("webID")
             localStorage.removeItem("sessionID")
-            localStorage.removeItem("name")
             localStorage.removeItem("address")
+            localStorage.removeItem("fn")
             history.push("/")
         },
         [history]

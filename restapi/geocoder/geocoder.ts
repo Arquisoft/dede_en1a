@@ -7,7 +7,6 @@ const geocoder = new Nominatim();
 export function getPriceFromAddress(address: String, warehouse:Number=0) {
 	return geocoder.search({q: address})
 	.then((response : any) => {
-		
 		let lat : number = response[0]["lat"];
 		let lon : number = response[0]["lon"];
 		let distance : number = distanceInKmBetweenEarthCoordinates(lat, lon, 43.354838799999996, -5.851292403149609);

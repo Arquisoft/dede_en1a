@@ -16,8 +16,13 @@ const initialState = {
 
 const notify = (msj: string) => toast(msj);
 
-const Form = () => {
+type Props = {
+    setNewAddress: (address: string) => void
+}
 
+const Form = (props: Props) => {
+
+    const {setNewAddress} = props
     const {cartItems, dispatch } = useContext(CartContext);
     const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
@@ -32,19 +37,19 @@ const Form = () => {
                 setContactData(response.data)
             }
         )
-    }, [])
+    }, [address])
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         let selected = e.target.value
         if(selected.length === 0) {
             setValidValue(false)
+            setNewAddress("")
             localStorage.removeItem("address")
         } else {
             setValidValue(true)
+            setNewAddress(selected)
             localStorage.setItem("address", selected.split("/").join(""))
         }
-
-
     }
 
 
@@ -99,7 +104,7 @@ const Form = () => {
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
                             <option value="">-- Select an address --</option>
                             {contactData?.map((contact, index) => (
-                                <option key={index}>
+                                <option key={index} value={` ${contact.country} ${contact.region} ${contact.locality}`}>
                                     {contact.country} / {contact.region} / {contact.locality} / {contact.street_address} / {contact.postal_code}
                                 </option>))}
                         </select>
