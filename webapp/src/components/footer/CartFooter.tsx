@@ -15,7 +15,7 @@ const CartFooter = () => {
             <div className="cart-summary">
                 <div className="cart-summary-row">
                     <div className='label'>Total</div>
-                    <div className='value'>$ { calculateTotal(cartItems).toFixed(2) }</div>
+                    <div className='value'>{ calculateTotal(cartItems).toFixed(2) } €</div>
                 </div>
             </div>
             <div className="d-grid gap-2">

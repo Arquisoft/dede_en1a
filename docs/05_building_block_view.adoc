@@ -59,31 +59,20 @@ In the best case you will get away with examples or simple signatures.
 
 .Level 1
 
-image:BB_Level1.png["Hierarchy of building blocks"]
+image:buildingBlock_level1.png["Building Block View Level 1"]
 
 Motivation::
 
-This figure shows the top-level decomposition of DeDe into components with distinct responsibilities.
+This figure shows the highest-level view of the DeDe application with its dependent databases.
 
+1) DeDe::
+Web Application that allows users to order products from an online store to their home in a decentralized manner. Connects to the user's Personal Online Datastore (POD) and the product database (hosted via MongoDB).
 
-1) User Interface (UI)::
-The UI will provide the user with a graphical view of the application and allow them to interact with the WebApp
+2) POD::
+The user's Personal Online Data store, allows the app to be decentralized and only have access to the user's information when permitted by the user. Stores data such as the user's personal address, payment information, etc.
 
-2) WebApp::
-The WebApp will manage user input and in turn communicate with the restAPI depending on the request
-
-3) RestAPI::
-The restAPI translates requests from the WebApp to the model layer
-
-4) Model Layer::
-The Model Layer will manage requests given by the restAPI and select/input information into the databases accordingly.
-
-5) POD::
-The user's Personal Online Data store, allows the app to be decentralized and only have access to the user's information when allowed.
-
-6) Product Databse::
-Stores information for products (i.e. name, cost, description, availability, etc.)
-
+3) Product Databse::
+Stores information of products (i.e. name, cost, description, availability, etc.). Built with MongoDB.
 
 ****
 
@@ -91,11 +80,90 @@ Stores information for products (i.e. name, cost, description, availability, etc
 
 .Level 2
 
+image:buildingBlock_level2.png["Building Block View Level 2"]
+
+Motivation::
+
+This figure shows the decomposition of the DeDe application into its frontend (WebApp) and backend (RestAPI), as well as the most important external libraries/frameworks that support each.
+
+1) WebApp::
+The WebApp is a web application which provides the user with an interface that allows them to view products, add them to a virtual shopping cart, login to their POD account, and checkout. Aside from displaying database information in a user friendly way, it also manages user requests and communicates with the backend to fulfill them.
+
+2) RestAPI::
+The restAPI defines DeDe's API in accordance with REST architecture, which allows DeDe to communicate with the product database and the user's POD. It also provides service to the WebApp so that the WebApp may grab information from the databases when necessary. Contains the models and business logic used to calculate delivery costs.
+
+[cols="1,4" options="header"]
+|===
+| **Software** | **Responsibility**
+| _Node.JS_ | _Backend runtime environment where the TypeScript code runs._
+| _React.JS_ | _JavaScript library used to build user interface._
+| _Material UI_ | _Framework for building CSS components._
+| _Express.JS_ | _Node library for API building._
+| _Inrupt_ | _JS library for SOLID (POD) support._
+| _Mongoose_ | _JS library for MongoDB connections and integration._
+|===
+
+****
+
+****
+
+.Level 3
+
 //image:BB_Level1.png["Hierarchy of building blocks"]
 
-//Motivation::
+Motivation::
 
-*TO DO
+This figure shows the internal decomposition of DeDe's view (frontend), model (backend), and controllers. Each section details the components which are most essential to their functionality.
+
+1) View (Frontend/WebApp)::
+[cols="1,4" options="header"]
+|===
+| **Component** | **Responsibility**
+| _App_ | _Root HTML component, encases all other visible components._
+| _Cart_ | _Context which enables 'store' functionality across app._
+| _Product Listing_ | _Context which enables 'store' functionality across app._
+| _Checkout_ | _Endpoint for app requests to the backend._
+| _Form_ | _Context which enables 'store' functionality across app._
+|===
+
+[cols="1,4" options="header"]
+|===
+| **Library** | **Responsibility**
+| _Router_ | _React library which allows for paging and switching between views._
+| _Axios_ | _React library which allows for API calls._
+|===
+
+[cols="1,4" options="header"]
+|===
+| **View** | **Responsibility**
+| _Home_ | _Where products are listed in card format._
+| _Product Details_ | _More detailed view of products. Includes product description_
+| _Login_ | _Where user can login and access their POD._
+| _Checkout_ | _Where user can pay for products._
+|===
+
+2) Model (Backend/RestAPI)::
+[cols="1,4" options="header"]
+|===
+| **Software** | **Responsibility**
+| _Cart_ | _Backend runtime environment where the TypeScript code runs._
+| _Navbar_ | _JavaScript library used to build user interface._
+| _Checkout_ | _Endpoint for app requests to the backend._
+| _Product Details_ | _Node library for API building._
+| _Helpers_ | _JS library for SOLID (POD) support._
+| _Hooks_ | _JS library for MongoDB connections and integration._
+|===
+
+3) Controllers (Backend)::
+The controllers interlink the frontend and the backend
+
+[cols="1,4" options="header"]
+|===
+| **Component** | **Responsibility**
+| _Helpers_ | _JS library for SOLID (POD) support._
+| _Hooks_ | _JS library for MongoDB connections and integration._
+|===
+
 
 ****
 

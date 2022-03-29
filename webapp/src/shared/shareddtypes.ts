@@ -38,6 +38,15 @@ export type Customer = {
     address: string;
 }
 
+export type ContactData = {
+    fn: string
+    country: string
+    locality: string
+    region : string
+    street_address: string
+    postal_code: string
+}
+
 export type Order = {
     customer: Customer,
     order_details: CartItem[]

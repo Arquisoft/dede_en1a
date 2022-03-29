@@ -2,25 +2,38 @@ import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../../helpers/calculate';
+import { getTotalItems, calculateTotal, calculateTotalPlusShiping } from '../../helpers/calculate';;
 
-const OrderSummary = () => {
+type Props = {
+    address: string
+}
 
+const OrderSummary = (props: Props) => {
+    const {address} = props
     const [shipping, setDistance] = useState({
         distance: 0.0,
         price: 0.0,
     })
 
     const { cartItems } = useContext(CartContext);
+
     useEffect(() => {
-        axios.get("http://localhost:5000/geocode/" + localStorage.getItem("address")).then(
-            response => {
-                const shipping = response.data
-                setDistance(shipping)
-                console.log(response.data)
-            }
-        );
-    }, []);
+        if(address.length !== 0) {
+            console.log(address)
+            axios.get("http://localhost:5000/geocode/" + address).then(
+                response => {
+                    const shipping = response.data
+                    setDistance(shipping)
+                    console.log(response.data)
+                }
+            );
+        } else {
+            setDistance({
+                distance: 0.0,
+                price: 0.0
+            })
+        }
+    }, [address]);
 
     return (
         <div className='col-md-5 col-lg-4 order-md-last'>

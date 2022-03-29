@@ -12,7 +12,7 @@ const ProductImage: React.FC<Props> = ({item}) => {
   let imgPath = "../../../../images/".concat(item.image).concat(".jpg");
 
   return(
-    <img src={imgPath} height={250} width={300} alt={item.name} className="center_image"/>
+    <img src={imgPath} height={250} width={300} alt={item.name} style={{justifyContent:"center", margin:"auto", alignItems:"center", display:"block"}}/>
   )
 }
 

@@ -1,7 +1,3 @@
-/*
-import getProduct from '../../helpers/getProduct';
-*/
-
 import {Button} from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 import ProductInfo from './sections/ProductInfo';
@@ -33,16 +29,11 @@ const DetailsView: React.FC = () => {
             type: 'ADD'
         });
     }
-
-    /* trouble shooting
-    console.log(_id)
-    console.log("Details View successfully loaded")
-    */
     
     const [item, setItem] = useState<Product>()
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
     useEffect(() => {
-        Axios.get(apiEndPoint + '/product/details/${_id}').then(
+        Axios.get(apiEndPoint + '/product/details/' + _id).then(
             response => {
                 const product = response.data
                 setItem(product) 
@@ -54,14 +45,14 @@ const DetailsView: React.FC = () => {
 
     if (item) return(
         <Grid container className="centered">
-            <Grid item xs={3}/>
-            <Grid item xs={3}>
+            <Grid item xs={0} md={2} lg={3}/>
+            <Grid item xs={12} md={4} lg={3}>
                 <ProductImage item={item}/>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} md={4} lg={3}>
                 <ProductInfo item={item}/>
             </Grid>
-            <Grid item xs={3}/>
+            <Grid item xs={0} md={2} lg={3}/>
             <Button className='button-add' variant="primary" onClick={() => handleAddToCart(item)}>Add to cart</Button>
         </Grid>
     )

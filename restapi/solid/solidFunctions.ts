@@ -56,9 +56,11 @@ export let solidLogout =  async (req: Request, res: Response) => {
     let session = await getSessionFromStorage(req.params.sessionID)
     if(session) {
         session.logout()
-            .finally(() => {
+            .then(() => {
                 res.redirect("http://localhost:3000/solid/logout")
             })
+    } else {
+        console.log("cagaste fuego")
     }
 }
 
