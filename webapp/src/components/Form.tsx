@@ -104,7 +104,7 @@ const Form = (props: Props) => {
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
                             <option value="">-- Select an address --</option>
                             {contactData?.map((contact, index) => (
-                                <option key={index} value={` ${contact.country} ${contact.region} ${contact.locality}`}>
+                                <option key={index} value={`${contact.country} ${contact.region} ${contact.locality}`}>
                                     {contact.country} / {contact.region} / {contact.locality} / {contact.street_address} / {contact.postal_code}
                                 </option>))}
                         </select>
