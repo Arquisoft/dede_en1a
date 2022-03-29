@@ -48,7 +48,7 @@ const OrderSummary = (props: Props) => {
                             key={item._id}
                             className='list-group-item d-flex justify-content-between lh-sm'>
                             <div>
-                                <h5 className='checkout-title'>{ item.title }</h5>
+                                <h5 className='checkout-title'>{ item.name }</h5>
                                 <small className='text-muted'>Quantity: { item.amount }</small>
                             </div>
                             <div className="text-muted">{item.price}€</div>

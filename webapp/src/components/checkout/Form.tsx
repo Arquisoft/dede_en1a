@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
 import useForm from "../../hooks/useForm";
-import {Customer, Order} from "../../shared/shareddtypes";
+import {ContactData, Customer, Order} from "../../shared/shareddtypes";
 import axios from "axios";
 
 const initialState = {
@@ -25,8 +25,7 @@ const Form = (props: Props) => {
     const {cartItems, dispatch } = useContext(CartContext);
     const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
-    // TODO: fix this
-    const [contactData, setContactData] = useState<IContactData[]>();
+    const [contactData, setContactData] = useState<ContactData[]>();
     const [validValue, setValidValue] = useState(false);
 
 
