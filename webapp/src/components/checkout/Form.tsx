@@ -25,6 +25,7 @@ const Form = (props: Props) => {
     const {cartItems, dispatch } = useContext(CartContext);
     const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
+    // TODO: fix this
     const [contactData, setContactData] = useState<IContactData[]>();
     const [validValue, setValidValue] = useState(false);
 
