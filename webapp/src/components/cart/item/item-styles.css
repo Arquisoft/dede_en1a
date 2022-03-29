@@ -21,7 +21,7 @@
 
 /* ITEM CART */
 .item-detail {
-    display: flex;
+    display: inline-flex;
 }
 
 .item-detail-image {
@@ -30,20 +30,19 @@
 }
 
 .item-detail-image img {
-    max-height: 70px;
-    max-width: 45px;
+    height: 100%;
+    width: auto;
+    max-height: 100px;
+    max-width: 60px;
 }
 
 .item-detail-info{
-    font-size: 13px;
+    font-size: medium;
     margin-bottom: 10px;
 }
 
 .item-detail-info-name {
     width: 180px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     margin-bottom: 10px;
 }
 
@@ -54,7 +53,9 @@
 
 /* BOTON REMOVE ALL ITEM CART*/
 .item-action-remove {
-    margin-right: -10px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left: -16%;
     margin-top: 15px;
 }
 

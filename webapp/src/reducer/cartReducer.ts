@@ -16,8 +16,8 @@ const cartReducer = (state: CartItem[], action: CartActionReducer) => {
                     return item;
                 })
             } else {
-                const {_id, title, image, price} = action.payload;
-                return [...state, {_id, title, image, price, amount: 1}];
+                const {_id, name, image, price} = action.payload;
+                return [...state, {_id, name, image, price, amount: 1}];
             }
         case 'REMOVE':
             return state.reduce((acum, item) => {

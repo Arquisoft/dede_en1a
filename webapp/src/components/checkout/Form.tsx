@@ -1,11 +1,10 @@
-import {ChangeEvent, FormEvent, useContext, useEffect, useState} from "react";
+import { FormEvent, useContext, useState, useEffect, ChangeEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { CartContext } from "../context/CartContext";
-import postData from "../helpers/postData";
-import useForm from "../hooks/useForm";
-import {Customer, Order} from "../shared/shareddtypes";
+import { CartContext } from "../../context/CartContext";
+import postData from "../../helpers/postData";
+import useForm from "../../hooks/useForm";
+import {Customer, Order} from "../../shared/shareddtypes";
 import axios from "axios";
-import IContactData from "../../../restapi/interfaces/ContactDataInterface"
 
 const initialState = {
     name: '',
@@ -98,7 +97,7 @@ const Form = (props: Props) => {
             <form autoComplete='off' onSubmit={ handleSubmit }>
                 <div className="row g-3">
                     <div className="col-sm-6">
-                        <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("fn")}</label>
+                        <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
                     </div>
                     <div>
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
@@ -111,7 +110,7 @@ const Form = (props: Props) => {
                     </div>
                 </div>
                 <br />
-                <button className='w-100 btn btn-primary' disabled={!validValue} type='submit'>Place order</button>
+                <button className='w-100 btn btn-primary' type='submit'>Place order</button>
                 {
                     showToast && <Toaster
                         toastOptions={{
