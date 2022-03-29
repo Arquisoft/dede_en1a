@@ -29,6 +29,21 @@ export let findOrderById = async (req: Request, res: Response) => {
         });
 }
 
+
+export let findOrderByWebId = async (req: Request, res: Response) => {
+    await OrderRepository.findOrderById(req.params.id)
+        .then((result) => {
+            return res.status(200).send(result);
+        })
+        .catch((error) => {
+            console.error(error.message);
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+}
+
 export let addOrder = async (req: Request, res: Response) => {
     await OrderRepository.createOrder(req.body)
         .then((result) => {
