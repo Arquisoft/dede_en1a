@@ -39,6 +39,9 @@ export type Customer = {
 }
 
 export type Order = {
+    // _id: string,
+    // date: string,
+    // total: number,
     customer: Customer,
-    order_details: CartItem[]
+    items: CartItem[]
 }

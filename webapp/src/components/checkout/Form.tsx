@@ -33,7 +33,7 @@ const Form = () => {
                 customer: {
                     name, email, lastName, address
                 },
-                order_details: orderDetails
+                items: orderDetails
             }
 
             const fetchApi = await postData(order);
