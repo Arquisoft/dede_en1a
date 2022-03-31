@@ -69,7 +69,7 @@ const Form = () => {
                     </div>
                     <div className="col-12">
                         <label htmlFor="address" className='form-label'>Address: {localStorage.getItem("address")}</label>
-                    </div>
+ñ                    </div>
                 </div>
                 <br />
                 <button className='w-100 btn btn-primary' type='submit'>Place order</button>
