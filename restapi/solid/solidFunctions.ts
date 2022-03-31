@@ -12,7 +12,7 @@ import {getSessionFromStorage, Session} from "@inrupt/solid-client-authn-node";
 import IContactData from "../interfaces/ContactDataInterface";
 
 // Parametros para el logeo
-const redirectUrl: string = "http://localhost:5000/solid/redirect-from-solid-idp" // Esto se cambiara por otra pagina como por ejemplo /home.
+const redirectUrl: string = process.env.REACT_API_URI + "/solid/redirect-from-solid-idp" // Esto se cambiara por otra pagina como por ejemplo /home.
 const oidcIssuer: string = "https://solidcommunity.net/" // Name of the pod provider.
 const clientName: string = "DeDe" // Name of the app.
 const errorRedirect: string = "http://localhost:3000"
@@ -37,9 +37,9 @@ export let solidLogin = async (req: Request, res: Response) => {
 export let redirectFromSolidIdp =  async (req: Request, res: Response) => {
     const session = await getSessionFromStorage(req.session.id);
     if(session){
-        await session.handleIncomingRedirect(`http://localhost:${process.env.PORT}/solid${req.url}`);
+        await session.handleIncomingRedirect(process.env.REACT_API_URI + "/solid${req.url}");
         if(session.info.isLoggedIn)
-            return res.redirect("http://localhost:3000/solid/login/" + Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
+            return res.redirect("http://localhost:3000/solid/login/"+ Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
     } else {
         res.redirect(errorRedirect)
     }
