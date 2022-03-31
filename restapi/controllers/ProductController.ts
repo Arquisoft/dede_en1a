@@ -48,7 +48,7 @@ export let findProduct = async (req: Request, res: Response) => {
 // }
 
 // export let deleteProduct = async (req: Request, res: Response) => {
-// 	await ProductRepository.deleteProduct(req.params.id)
+// 	await ProductRepository.getProduct(req.params.id)
 // 		.then((result) => {
 // 			return res.status(200).send(result);
 // 		})
