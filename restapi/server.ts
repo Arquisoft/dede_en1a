@@ -34,7 +34,7 @@ app.use("/order", orderRouter)
 app.use("/solid", solidRouter)
 
 app.get("/geocode/:address", async (req: Request, res: Response) => {
-	getPriceFromAddress(req.params.address)
+	getPriceFromAddress(req.body)
 		.then((response : any) => {
 			res.status(200).send(response);
 			console.log(response)
