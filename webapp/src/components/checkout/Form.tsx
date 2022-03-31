@@ -1,9 +1,10 @@
-import { FormEvent, useContext, useState } from "react";
+import axios from "axios";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
 import useForm from "../../hooks/useForm";
-import {Customer, Order} from "../../shared/shareddtypes";
+import {ContactData, Customer, Order} from "../../shared/shareddtypes";
 
 const initialState = {
     name: '',
@@ -14,11 +15,42 @@ const initialState = {
 
 const notify = (msj: string) => toast(msj);
 
-const Form = () => {
+type Props = {
+    setNewAddress: (address: string) => void
+}
 
+const Form = (props: Props) => {
+
+    const {setNewAddress} = props
     const {cartItems, dispatch } = useContext(CartContext);
     const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
+    const [contactData, setContactData] = useState<ContactData[]>();
+    const [validValue, setValidValue] = useState(false);
+
+
+    useEffect(() => {
+        axios.get(process.env.REACT_API_URI+"/solid/fetch/" + localStorage.getItem("webID")).then(
+            response => {
+                localStorage.setItem("fn", response.data[0].fn)
+                setContactData(response.data)
+            }
+        )
+    }, [address])
+
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        let selected = e.target.value
+        if(selected.length === 0) {
+            setValidValue(false)
+            setNewAddress("")
+            localStorage.removeItem("address")
+        } else {
+            setValidValue(true)
+            setNewAddress(selected)
+            localStorage.setItem("address", selected.split("/").join(""))
+        }
+    }
+
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -67,9 +99,21 @@ const Form = () => {
                     <div className="col-sm-6">
                         <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
                     </div>
+<<<<<<< HEAD
+                    <div>
+                        <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
+                            <option value="">-- Select an address --</option>
+                            {contactData?.map((contact, index) => (
+                                <option key={index} value={`${contact.country} ${contact.region} ${contact.locality}`}>
+                                    {contact.country} / {contact.region} / {contact.locality} / {contact.street_address} / {contact.postal_code}
+                                </option>))}
+                        </select>
+                    </div>
+=======
                     <div className="col-12">
                         <label htmlFor="address" className='form-label'>Address: {localStorage.getItem("address")}</label>
 ñ                    </div>
+>>>>>>> master
                 </div>
                 <br />
                 <button className='w-100 btn btn-primary' type='submit'>Place order</button>
