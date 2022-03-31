@@ -15,10 +15,19 @@ export type Product = {
 
 export type CartItem = {
     _id?: string;
-    title: string;
+    name: string;
     image?: string;
     price: number;
     amount: number;
+}
+
+export type ContactData = {
+    fn: string
+    country: string
+    locality: string
+    region : string
+    street_address: string
+    postal_code: string
 }
 
 export type CartActionReducer = {

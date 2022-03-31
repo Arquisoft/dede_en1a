@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
-import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../helpers/calculate';
-
 type Props = {
     address: string
 }
+import { CartContext } from '../../context/CartContext';
+import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../../helpers/calculate';
 
 const OrderSummary = (props: Props) => {
     const {address} = props
+
     const [shipping, setDistance] = useState({
         distance: 0.0,
         price: 0.0,
@@ -48,7 +48,7 @@ const OrderSummary = (props: Props) => {
                             key={item._id}
                             className='list-group-item d-flex justify-content-between lh-sm'>
                             <div>
-                                <h6 className='checkout-title'>{ item.title }</h6>
+                                <h5 className='checkout-title'>{ item.name }</h5>
                                 <small className='text-muted'>Quantity: { item.amount }</small>
                             </div>
                             <div className="text-muted">{item.price}€</div>

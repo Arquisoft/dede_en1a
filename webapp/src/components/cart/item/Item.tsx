@@ -17,7 +17,7 @@ const Item = ({ item }: Props) => {
     return (
         <>
             <div className='shopping-cart-item'>
-                <div className="item-action">
+                    <div className="item-action">
                     <Button
                         variant='secondary'
                         onClick={() => dispatch({
@@ -38,28 +38,29 @@ const Item = ({ item }: Props) => {
                 </div>
                 <div className="item-detail">
                     <div className="item-detail-image">
-                        <img src={"./images/".concat(imgId).concat(".jpg")} alt={item.title} />
+                        <img src={"./images/".concat(imgId).concat(".jpg")} alt={item.name} />
                     </div>
                     <div className="item-detail-info">
                         <div className="item-detail-info-name">
-                            {item.title}
+                            {item.name}
                         </div>
                         <div className="item-detail-info-prices">
-                            <span>${item.price}</span>
+                            <span>{item.price} €</span>
                         </div>
                     </div>
+                    <div className="item-action-remove">
+                        <Button
+                            variant='danger'
+                            title='Remove product'
+                            onClick={() => dispatch({
+                                payload: item._id,
+                                type: 'REMOVE-ALL'
+                            })}>
+                            <Delete/>
+                        </Button>
+                    </div>
                 </div>
-                <div className="item-action-remove">
-                    <Button
-                        variant='danger'
-                        title='Remove product'
-                        onClick={() => dispatch({
-                            payload: item._id,
-                            type: 'REMOVE-ALL'
-                        })}>
-                        <Delete/>
-                    </Button>
-                </div>
+
             </div>
         </>
     )

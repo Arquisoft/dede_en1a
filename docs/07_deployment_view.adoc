@@ -1,43 +1,51 @@
 [[section-deployment-view]]
 == Deployment View
 
-image:DeploymentView_Level1.png["Top-level Deployment View"]
 
-Motivation::
+=== Level 1
+****
 
-The figure above shows the infrastructure and interlinking of each environment involved in DeDe.
+image:deploymentView_Level1.png["Top-level Deployment View"]
 
-Quality and/or Performance Features::
+.Motivation
 
-*TO DO
+The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles.
 
-Environments and their Software Components::
+.Quality and/or Performance Features
 
-User Device:: The device from which the user will access the DeDe application/server.
+Hosting the application on the AWS cloud platform allows for continuous integration, so the application is automatically updated as new developments are committed.
 
-DeDe Server:: The server in which DeDe will be deployed and where all the software and dependencies will be stored.
+Utilizing the user's POD following SOLID design principles allows the application to be decentralized.
+
+[cols="1,4" options="header"]
+|===
+| **Virtual Environment** | **Responsibility**
+| _AWS_ | _Amazon Web Service, cloud platform which hosts DeDe app on a server._
+| _Ubuntu Machine_ | _Linux virtual machine where JS code runs_
+| _Docker_ | _Packages application into containers which combine the source code with the operating system (OS) libraries and dependencies that allow the application to run in any environment_
+|===
 
 [cols="1,4" options="header"]
 |===
 | **Software** | **Responsibility**
 | _WebApp_ | _Communicates database information to User and manages User Input._
-| _RestAPI_ | _Endpoint for app requests to the backend._
-| _Backend_ | _Manages business logic._
+| _RestAPI_ | _Endpoint for app requests to the backend. Includes backend where business logic is managed._
 |===
 
 [cols="1,4" options="header"]
 |===
-| **Library** | **Responsibility**
-| _ReactJS_ | _JavaScript library used to build user interface._
-| _Node.JS_ | _Backend runtime environment where the TypeScript code runs._
-| _Express_ | _Node library for API building._
-| _Mongoose_ | _JS library for MongoDB connections and integration._
-| _Inrupt JS Client libraries_ | _JS library for SOLID support._
-| _Nominatim_ | _JS library for street address resolution._
-| _Bootstrap_ | _Front-end framework for web application building. Runs on React._
-
+| **Interlinking Concepts** | **Responsibility**
+| _DeDe Application_ | _Combination of WebApp (front end web application) and RestAPI (backend + business logic)._
+| _User POD_ | _Where the user's personal information is stored, which the DeDe App must be granted permission to access._
+| _Product DB_ | _Database storing product information such as name, description, cost, availability, etc. Built using MongoDB._
+| _User Device_ | _Device from which the user will access the DeDe application._
 |===
 
-User POD:: Where the user's personal information is stored, which the DeDe server will have to be granted permission to access.
+****
 
-Product Database:: The database that will store the store's information regarding products, such as name, description, cost, availability, etc.
+=== Level 2
+****
+.Motivation
+The figure above shows the infrastructure and interlinking of each environment involved in DeDe.
+
+****

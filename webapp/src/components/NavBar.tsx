@@ -7,8 +7,8 @@ import {Link} from 'react-router-dom';
 import {CartContext} from '../context/CartContext';
 import {getTotalItems} from '../helpers/calculate';
 import {IconButton} from "@mui/material";
-import LoginButton from "./LoginButtonComponent";
-import LogoutButton from "./LogoutButtonComponent";
+import LoginButton from "./login/LoginButtonComponent";
+import LogoutButton from "./logout/LogoutButtonComponent";
 
 
 type Props = {
@@ -26,13 +26,12 @@ const NavBar = ({handleOpen}: Props) => {
     //We have logged in
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
-                <Container>
+                <Container /*style={{display: 'flex'}}*/>
                     <Link className='navbar-brand' to='/'>DEDE</Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Link className='nav-link' to="/">Home</Link>
-                            {(localStorage.getItem("loggedIn") == null) ? <LoginButton setIsLoggedIn={toggleLoggedIn}/> : <LogoutButton setIsLoggedIn={toggleLoggedIn}/>}
                         </Nav>
                     </Navbar.Collapse>
                     <IconButton
@@ -45,6 +44,7 @@ const NavBar = ({handleOpen}: Props) => {
                             <ShoppingCartIcon />
                         </Badge>
                     </IconButton>
+                    {(localStorage.getItem("loggedIn") == null) ? <LoginButton setIsLoggedIn={toggleLoggedIn}/> : <LogoutButton setIsLoggedIn={toggleLoggedIn}/>}
                 </Container>
         </Navbar>
     )

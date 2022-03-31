@@ -1,22 +1,22 @@
 import React from 'react'
-import { Offcanvas } from 'react-bootstrap';
+import {Offcanvas} from 'react-bootstrap';
 import Cart from './cart/Cart';
 
 type Props = {
     handleClose: (state: boolean) => void
 }
 
-const Sidebar = ({ handleClose}: Props) => {
+const Sidebar = ({handleClose}: Props) => {
     return (
         <Offcanvas
             show={true}
             onHide={() => handleClose(false)}
-            placement='end' >
+            placement='end'>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Your cart</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-                <Cart />
+                <Cart/>
             </Offcanvas.Body>
         </Offcanvas>
     )

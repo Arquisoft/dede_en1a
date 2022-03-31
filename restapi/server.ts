@@ -22,7 +22,8 @@ const options: cors.CorsOptions = {
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 
 app.use(metricsMiddleware);
-app.use(cors(options));
+//app.use(cors(options));
+app.use(cors());
 app.use(bp.json());
 
 
@@ -47,19 +48,19 @@ app.get("/geocode/:address", async (req: Request, res: Response) => {
 
 // Connect to the database and start the server.
 mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
-		dbName: process.env.DB_NAME,
-		user: process.env.DB_USERNAME,
-		pass: process.env.DB_PASSWORD,
+		dbName: process.env.RESTAPI_DB_NAME,
+		user: process.env.RESTAPI_DB_USERNAME,
+		pass: process.env.RESTAPI_DB_PASSWORD,
 		retryWrites: true,
 		w: 'majority'
 	}).then(() => {
-		console.log("connected to database: " + process.env.DB_NAME);
+		console.log("connected to database: " + process.env.RESTAPI_DB_NAME);
 	}).catch(err => {
 		console.error('Error occured: ' + err.message);
 	})
 	
-app.listen(process.env.PORT, ():void => {
-		console.log('Restapi listening on '+ process.env.PORT);
+app.listen(process.env.RESTAPI_PORT, ():void => {
+		console.log('Restapi listening on '+ process.env.RESTAPI_PORT);
 	}).on("error", (error:Error) => {
 		console.error('Error occured: ' + error.message);
 	});

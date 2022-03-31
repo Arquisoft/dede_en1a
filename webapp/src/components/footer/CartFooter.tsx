@@ -15,13 +15,15 @@ const CartFooter = () => {
             <div className="cart-summary">
                 <div className="cart-summary-row">
                     <div className='label'>Total</div>
-                    <div className='value'>$ { calculateTotal(cartItems).toFixed(2) }</div>
+                    <div className='value'>{ calculateTotal(cartItems).toFixed(2) } €</div>
                 </div>
             </div>
             <div className="d-grid gap-2">
                 {(localStorage.getItem("loggedIn") == null) ?
                 <label>Please log in your pod</label> :
-                    <Button className='btn btn-primary' onClick={navigateTo}>Proceed with checkout</Button>
+                    <Button
+                        color='primary'
+                        variant="contained" className='btn-checkout' onClick={navigateTo}>Proceed with checkout</Button>
                 }
 
             </div>

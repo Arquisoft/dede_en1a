@@ -1,16 +1,18 @@
 import React from 'react'
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
+import {useContext} from 'react';
+import {CartContext} from '../../context/CartContext';
 import useFetch from '../../hooks/useFetch';
-import { Product } from "../../shared/shareddtypes";
+import {Product} from "../../shared/shareddtypes";
 import CartProduct from './product/CartProduct';
 import LinearProgress from "@mui/material/LinearProgress";
+import Grid from '@mui/material/Grid';
+
 
 const ListProducts = () => {
 
-    const { dispatch } = useContext(CartContext);
+    const {dispatch} = useContext(CartContext);
 
-    const { products, isLoading } = useFetch();
+    const {products, isLoading} = useFetch();
 
     const handleAddToCart = (product: Product) => {
         dispatch({
@@ -19,19 +21,25 @@ const ListProducts = () => {
         });
     }
 
-    if(isLoading) return <LinearProgress/>;
+    const renderCards = products.map(product => {
+        return (
+            <Grid item container xs={12} sm={6} md={4} lg={3}>
+                <CartProduct
+                    key={product._id}
+                    product={product}
+                    handleAddToCart={handleAddToCart}/>
+            </Grid>
+        )
+    })
+
+    if (isLoading) return <LinearProgress/>;
 
     return (
-        <>
-            {
-                products.map(product => (
-                    <CartProduct
-                        key={product._id}
-                        product={product}
-                        handleAddToCart={handleAddToCart}/>
-                ))
-            }
-        </>
+        <div>
+            <Grid container justifyContent="center" spacing={4}>
+                {renderCards}
+            </Grid>
+        </div>
     )
 }
 
