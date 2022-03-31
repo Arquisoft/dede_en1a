@@ -65,3 +65,4 @@ app.listen(process.env.RESTAPI_PORT, ():void => {
 		console.error('Error occured: ' + error.message);
 	});
 			
+//

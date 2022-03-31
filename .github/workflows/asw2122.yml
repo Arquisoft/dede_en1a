@@ -46,15 +46,15 @@ jobs:
   docker-push-webapp:
     name: Push webapp Docker Image to GitHub Packages
     runs-on: ubuntu-latest
-    env:
-      API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
-      SKIP_PREFLIGHT_CHECK: true
     #needs: [e2e-tests]
     needs: [ unit-test-webapp, unit-test-restapi ]
     steps:
       - uses: actions/checkout@v2
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
+        env:
+          API_URI: http:// ${{ secrets.DEPLOY_HOST }} :5000
+          SKIP_PREFLIGHT_CHECK: true
         with:
           name: arquisoft/dede_en_01a/webapp
           username: ${{ github.actor }}
