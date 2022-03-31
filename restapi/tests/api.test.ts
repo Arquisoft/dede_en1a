@@ -29,22 +29,23 @@ afterAll(async () => {
     server.close() //close the server
 })
 
-describe('user ', () => {
-    /**
-     * Test that we can list users without any error.
-     */
+describe('product ', () => {
+
     it('can be listed',async () => {
-        const response:Response = await request(app).get("/api/users/list");
-        //expect(response.statusCode).toBe(200);
+        const response:Response = await request(app).get("/products/list");
+        expect(response.statusCode).toBe(200);
     });
 
-    /**
-     * Tests that a user can be created through the productService without throwing any errors.
-     */
     it('can be created correctly', async () => {
-        let username:string = 'Pablo'
-        let email:string = 'gonzalezgpablo@uniovi.es'
-        const response:Response = await request(app).post('/api/users/add').send({name: username,email: email}).set('Accept', 'application/json')
-        //expect(response.statusCode).toBe(200);
+        let name:string = 'TestHammer';
+        let price:number = 20;
+        let description:string = 'This is a hammer. There are many like it, but this one is mine.'
+        let image:string = 'thisshouldbeanimageid';
+        let weight:number = 8;
+        const response:Response = await request(app)
+            .post('/seller/addProduct/s3ll3r1d')
+            .send({name: name, price: price, description: description, image: image, weight: weight})
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
     });
 });
