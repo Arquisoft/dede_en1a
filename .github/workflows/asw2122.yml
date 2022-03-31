@@ -81,6 +81,7 @@ jobs:
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
+          buildargs: DB_NAME, DB_USERNAME, DB_PASSWORD, PORT
   deploy:
     name: Deploy over SSH
     runs-on: ubuntu-latest
