@@ -1,10 +1,10 @@
-import axios from "axios";
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useState, useEffect, ChangeEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
 import useForm from "../../hooks/useForm";
 import {ContactData, Customer, Order} from "../../shared/shareddtypes";
+import axios from "axios";
 
 const initialState = {
     name: '',
