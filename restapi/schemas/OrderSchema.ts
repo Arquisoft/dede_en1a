@@ -6,9 +6,14 @@ const Map  = Schema.Types.Map;
 
 const orderSchema = new Schema (
     {
-        userId: {type: ObjectId, required: true},
+        webId: {type: String, required: true},
+        address: String,
+        shipping: Number,
+        totalPrice: Number,
         products: {type: Map, of: Number}
+        
     }
 );
+
 
 export default mongoose.model<IOrder>("Order", orderSchema);

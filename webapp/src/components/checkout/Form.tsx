@@ -99,6 +99,7 @@ const Form = (props: Props) => {
                     <div className="col-sm-6">
                         <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
                     </div>
+<<<<<<< HEAD
                     <div>
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
                             <option value="">-- Select an address --</option>
@@ -108,6 +109,11 @@ const Form = (props: Props) => {
                                 </option>))}
                         </select>
                     </div>
+=======
+                    <div className="col-12">
+                        <label htmlFor="address" className='form-label'>Address: {localStorage.getItem("address")}</label>
+ñ                    </div>
+>>>>>>> master
                 </div>
                 <br />
                 <button className='w-100 btn btn-primary' type='submit'>Place order</button>
