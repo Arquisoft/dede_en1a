@@ -40,6 +40,7 @@ export let redirectFromSolidIdp =  async (req: Request, res: Response) => {
         await session.handleIncomingRedirect(process.env.REACT_API_URI + "/solid${req.url}");
         if(session.info.isLoggedIn)
             return res.redirect("http://localhost:3000/solid/login/"+ Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
+
     } else {
         res.redirect(errorRedirect)
     }
