@@ -26,7 +26,7 @@ app.use(metricsMiddleware);
 app.use(cors());
 app.use(bp.json());
 
-
+console.log(process.env.RESTAPI_DB_NAME)
 
 app.use("/seller", sellerRouter)
 app.use("/product", productRouter)
