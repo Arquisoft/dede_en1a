@@ -31,7 +31,7 @@ export let findOrderById = async (req: Request, res: Response) => {
 
 
 export let findOrderByWebId = async (req: Request, res: Response) => {
-    await OrderRepository.findOrderById(req.params.id)
+    await OrderRepository.findOrderByWebId(req.params.webId)
         .then((result) => {
             return res.status(200).send(result);
         })

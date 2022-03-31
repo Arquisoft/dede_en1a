@@ -20,9 +20,9 @@ export async function createOrUpdateSeller(seller: ISeller) {
 export async function deleteSeller(id: any){
 	let seller = await findById(id)
 	for (var product of seller!.products) {
-		await ProductRepository.deleteProduct(product);
+		await ProductRepository.getProduct(product);
 	}
-	seller?.delete();
+	seller?.get();
 }
 
 
@@ -50,7 +50,7 @@ export async function removeProductFromSeller(id:any, productId: any) {
 	// search for product and remove it
 	for (const [index, element] of seller!.products.entries()) {
 		if (element == productId){
-			await ProductRepository.deleteProduct(element)
+			await ProductRepository.getProduct(element)
 			seller!.products.splice(index, 1);
 			break;
 		}
