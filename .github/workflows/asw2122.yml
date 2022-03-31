@@ -53,7 +53,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
         env:
-          API_URI: http:// ${{ secrets.DEPLOY_HOST }} :5000
+          API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
           SKIP_PREFLIGHT_CHECK: true
         with:
           name: arquisoft/dede_en_01a/webapp
