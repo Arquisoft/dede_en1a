@@ -3,6 +3,7 @@ import './styles.css';
 import {useHistory} from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import { CardContent, CardMedia, Typography, Card, Button, CardActionArea, styled} from "@mui/material";
+import {PaginationContainer} from "../../pagination/PaginationContainer";
 
 type Props = {
     product: Product;
