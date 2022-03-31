@@ -30,7 +30,7 @@ const Form = (props: Props) => {
 
 
     useEffect(() => {
-        axios.get("http://localhost:5000/solid/fetch/" + localStorage.getItem("webID")).then(
+        axios.get(process.env.REACT_API_URI+"/solid/fetch/" + localStorage.getItem("webID")).then(
             response => {
                 localStorage.setItem("fn", response.data[0].fn)
                 setContactData(response.data)
@@ -103,7 +103,7 @@ const Form = (props: Props) => {
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
                             <option value="">-- Select an address --</option>
                             {contactData?.map((contact, index) => (
-                                <option key={index} value={` ${contact.country} ${contact.region} ${contact.locality}`}>
+                                <option key={index} value={`${contact.country} ${contact.region} ${contact.locality}`}>
                                     {contact.country} / {contact.region} / {contact.locality} / {contact.street_address} / {contact.postal_code}
                                 </option>))}
                         </select>
