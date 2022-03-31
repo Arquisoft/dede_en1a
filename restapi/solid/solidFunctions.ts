@@ -39,7 +39,7 @@ export let redirectFromSolidIdp =  async (req: Request, res: Response) => {
     if(session){
         await session.handleIncomingRedirect(`http://localhost:${process.env.PORT}/solid${req.url}`);
         if(session.info.isLoggedIn)
-            return res.redirect(`http://localhost:${process.env.FRONT_PORT}/solid/login/` + Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
+            return res.redirect("/solid/login/" + Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
     } else {
         res.redirect(errorRedirect)
     }
@@ -57,7 +57,7 @@ export let solidLogout =  async (req: Request, res: Response) => {
     if(session) {
         session.logout()
             .finally(() => {
-                res.redirect("http://localhost:3000/solid/logout")
+                res.redirect("/solid/logout")
             })
     }
 }
