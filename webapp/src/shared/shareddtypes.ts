@@ -21,6 +21,15 @@ export type CartItem = {
     amount: number;
 }
 
+export type ContactData = {
+    fn: string
+    country: string
+    locality: string
+    region : string
+    street_address: string
+    postal_code: string
+}
+
 export type CartActionReducer = {
     payload: any;
     type: 'ADD' | 'REMOVE' | 'REMOVE-ALL' | 'CLEAR';

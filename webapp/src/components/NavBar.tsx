@@ -23,7 +23,7 @@ const NavBar = ({handleOpen}: Props) => {
             localStorage.setItem("loggedIn", "true") :
             localStorage.removeItem("loggedIn")
     }
-    //We have logged in
+    //We have logged in, help
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
                 <Container /*style={{display: 'flex'}}*/>
