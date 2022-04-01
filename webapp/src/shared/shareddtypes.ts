@@ -4,6 +4,12 @@ export type ProductFetch = {
     isError: boolean;
 }
 
+export type OrdersFetch = {
+    orders: Order[],
+    isLoading: boolean;
+    isError: boolean;
+}
+
 export type Product = {
     _id: string;
     name: string;
@@ -48,9 +54,11 @@ export type Customer = {
 }
 
 export type Order = {
-    // _id: string,
-    // date: string,
-    // total: number,
+    _id: string,
+    date: string,
+    shipping: number,
+    address: string,
+    totalPrice: number,
     customer: Customer,
     items: CartItem[]
 }

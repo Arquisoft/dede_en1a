@@ -1,21 +1,40 @@
-import {useEffect, useState} from "react";
-import {Order} from "../shared/shareddtypes";
+import { useEffect, useState } from "react";
+import {Order, OrdersFetch} from "../shared/shareddtypes";
 import {getOrdersForUser} from "../api/api";
 
-const useOrdersByUser = () => {
-    const [orders, setOrders] = useState<Order[]>([]);
+const useOrders = () => {
 
-    let webId: string | null = localStorage.getItem("webID");
+    const [data, setData] = useState<OrdersFetch>({
+        orders: [],
+        isLoading: true,
+        isError: false
+    });
 
-    const getOrders = async () => {
-        setOrders(await getOrdersForUser(webId));
-    }
 
     useEffect(() => {
-        getOrders()
-    }, []);
 
-    return orders;
+        getOrdersForUser(localStorage.getItem("webID"))
+            .then(data => {
+
+                const customData = data.map((order: Order) => ({ ...order}));
+
+                setData({
+                    orders: customData,
+                    isLoading: false,
+                    isError: false
+                })
+            })
+            .catch(err => {
+                setData({
+                    orders: [],
+                    isLoading: false,
+                    isError: true
+                })
+            })
+
+    },[]);
+
+    return data;
 }
 
-export default useOrdersByUser;
+export default useOrders;
