@@ -26,7 +26,7 @@ const Form = (props: Props) => {
     const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
     const [contactData, setContactData] = useState<ContactData[]>();
-    const [validValue, setValidValue] = useState(false);
+    const [, setValidValue] = useState(false);
 
 
     useEffect(() => {

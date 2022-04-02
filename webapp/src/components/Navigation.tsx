@@ -1,4 +1,3 @@
-import React from 'react'
 import {Route, Switch} from 'react-router-dom';
 import Checkout from '../pages/Checkout';
 import NavBar from "./NavBar";
