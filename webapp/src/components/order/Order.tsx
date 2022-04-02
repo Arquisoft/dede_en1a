@@ -13,7 +13,7 @@ const OrderSummary = () => {
 
     const { cartItems } = useContext(CartContext);
     useEffect(() => {
-        axios.get("http://localhost:5000/geocode/" + localStorage.getItem("address")).then(
+        axios.get(process.env.REACT_API_URI + "/geocode/" + localStorage.getItem("address")).then(
             response => {
                 const shipping = response.data
                 setDistance(shipping)

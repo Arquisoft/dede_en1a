@@ -36,7 +36,7 @@ const DetailsView: React.FC = () => {
             }
         );
     },
-    [_id]);
+    [apiEndPoint, _id]);
 
     if (item) return(
         <Grid container className="centered" data-testid="details">

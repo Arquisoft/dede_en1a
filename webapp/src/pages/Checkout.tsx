@@ -1,9 +1,11 @@
-import React from 'react'
+import {useState} from 'react'
 import { Container,  Row } from 'react-bootstrap';
 import Form from "../components/checkout/Form";
 import OrderSummary from "../components/order/Order";
 
 const Checkout = () => {
+    const [, setAddress] = useState("")
+
     return (
         <Container data-testid="checkout">
             <div className='py-5 text-center'>
@@ -11,8 +13,8 @@ const Checkout = () => {
                 <p className='lead'>To proceed, please fill this form</p>
             </div>
             <Row>
-                <Form />
-                <OrderSummary />
+                <Form setNewAddress={setAddress}/>
+                <OrderSummary/>
             </Row>
         </Container>
     )
