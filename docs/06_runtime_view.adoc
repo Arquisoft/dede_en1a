@@ -10,16 +10,16 @@ of products available in the application, when she chooses one it is added to he
 ----
 actor Alice
 participant DeDe
-database Product_Database
+database MongoDB
 
 Alice -> DeDe : Selects a product
-DeDe -> Product_Database : Asks for information of the chosen product
-DeDe <- Product_Database : Return the information of the product
+DeDe -> MongoDB : Asks for information of the chosen product
+DeDe <- MongoDB : Return the information of the product
 Alice <- DeDe : Shows the product in the cart
 ----
 === Bob wants to process an order to buy products.
 * Bob has been browsing DeDe and has added some cool products to his
-order but now he wants to process that order and buy the products.
+order, but now he wants to process that order and buy the products.
 
 * In the following diagram you can see how Bob proceeds to buy the products
 and the application requires logging in with SOLID to use his address, then, the total cost of the order is calculated.
@@ -33,6 +33,25 @@ database Pod
 Bob -> DeDe : Log in with SOLID account
 Bob -> DeDe : Process order button
 Bob -> DeDe : Selects preferred address
-DeDe -> Pod : Retrieves Bob's address
+DeDe <- Pod : Retrieves Bob's address
 Bob <- DeDe : Calculates the total cost of the order
+----
+=== Bob wants to check his placed orders.
+* Bob has is a loyal client and has placed some orders,
+now he wants to check those to verify everything is correct.
+
+* In the following diagram you can see how Bob proceeds to check his orders
+and the application requires logging in with SOLID to retrieve the list of orders.
+
+[plantuml,"bob_buy",png]
+----
+actor Bob
+participant DeDe
+database MongoDB
+database Pod
+
+Bob -> DeDe : Log in with SOLID account
+Bob -> DeDe : Goes to his orders section
+DeDe <- MongoDB : Retrieves Bob's orders
+Bob <- DeDe : Shows his placed orders
 ----

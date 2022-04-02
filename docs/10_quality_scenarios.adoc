@@ -1,12 +1,11 @@
 [[section-quality-scenarios]]
 == Quality Requirements
 This section contains all quality requirements as quality tree with scenarios.
-The most important ones have already been described in https://https://dedeen2awebapp.herokuapp.com/docs/#_quality_goals[section 1.2].
 
 Since quality requirements will have a lot of influence on architectural decisions we should know for every
 stakeholder what is really important to them, concrete and measurable.
 
-We have already talked about quality goals in section 1.2, but in this section we will expand on that topic, using
+We have already talked about quality goals in https://https://dedeen2awebapp.herokuapp.com/docs/#_quality_goals[section 1.2], but in this section we will expand on that topic, using
 a quality tree (provides an overview of the attributes) and some quality scenarios (describe what happens when a stimulus arrives at the system).
 
 === Quality Tree
@@ -29,4 +28,5 @@ Here we have an initial table with our quality goals, scenarios, priorities and 
 | Privacy | Private data from the users has to be protected and secure. The application only takes essential data from the user, and in a decentralized approach. | High | High
 | Usability |  Users have to be able to navigate through the application in an intuitive way. | Medium | Medium
 | Maintainability | The application should be written in a way that code can be reused and modified in a simple way, bugs can be easily found and fixed, and the program should be easy to test. | Medium | High
+| Availability |  Users have to be able to use the application at any time any day. | High | High
 |===

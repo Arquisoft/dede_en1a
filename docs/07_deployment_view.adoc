@@ -1,17 +1,15 @@
 [[section-deployment-view]]
 == Deployment View
 
-
 === Level 1
-****
 
 image:deploymentView_Level1.png["Top-level Deployment View"]
 
-.Motivation
+Motivation::
 
 The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles.
 
-.Quality and/or Performance Features
+Quality and/or Performance Features::
 
 Hosting the application on the AWS cloud platform allows for continuous integration, so the application is automatically updated as new developments are committed.
 
@@ -40,12 +38,3 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 | _Application DB_ | _Database storing product information such as name, description, cost, availability, etc. Built using MongoDB._
 | _User Device_ | _Device from which the user will access the DeDe application._
 |===
-
-****
-
-=== Level 2
-****
-.Motivation
-The figure above shows the infrastructure and interlinking of each environment involved in DeDe.
-
-****
