@@ -7,12 +7,13 @@ const Map  = Schema.Types.Map;
 const orderSchema = new Schema (
     {
         webId: {type: String, required: true},
-        address: String,
-        shipping: Number,
-        totalPrice: Number,
-        products: {type: Map, of: Number}
-        
-    }
+        address: {type: String, required: true},
+        shippingPrice: {type: Number, required: true},
+        totalPrice: {type: Number, required: true},
+        products: {type: Map, of: Number, required: true} 
+    }, {
+		timestamps: true
+	}
 );
 
 
