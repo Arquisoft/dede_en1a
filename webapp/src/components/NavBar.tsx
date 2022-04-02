@@ -26,26 +26,32 @@ const NavBar = ({handleOpen}: Props) => {
     //We have logged in, help
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
-                <Container /*style={{display: 'flex'}}*/>
-                    <Link className='navbar-brand' to='/'>DEDE</Link>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Link className='nav-link' to="/">Home</Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                    <IconButton
-                        size="large"
-                        color="primary"
-                        onClick={ () => handleOpen(true)}
-                        sx={{ mr: 2 }}
-                    >
-                        <Badge badgeContent={getTotalItems(cartItems)} color="error">
-                            <ShoppingCartIcon />
-                        </Badge>
-                    </IconButton>
-                    {(localStorage.getItem("loggedIn") == null) ? <LoginButton setIsLoggedIn={toggleLoggedIn}/> : <LogoutButton setIsLoggedIn={toggleLoggedIn}/>}
-                </Container>
+            <Container /*style={{display: 'flex'}}*/>
+                <Link className='navbar-brand' to='/'>
+                    <img src='/images/logo.png' height='45px' width='auto' alt="logo"/>
+                </Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Link className='nav-link' to="/">Home</Link>
+                    </Nav>
+                    <Nav className="mr-auto">
+                        <Link className='nav-link' to="/orders/list">My orders</Link>
+                    </Nav>
+                </Navbar.Collapse>
+                <IconButton
+                    size="large"
+                    color="primary"
+                    onClick={() => handleOpen(true)}
+                    sx={{mr: 2}}
+                >
+                    <Badge badgeContent={getTotalItems(cartItems)} color="error">
+                        <ShoppingCartIcon/>
+                    </Badge>
+                </IconButton>
+                {(localStorage.getItem("loggedIn") == null) ? <LoginButton setIsLoggedIn={toggleLoggedIn}/> :
+                    <LogoutButton setIsLoggedIn={toggleLoggedIn}/>}
+            </Container>
         </Navbar>
     )
 }

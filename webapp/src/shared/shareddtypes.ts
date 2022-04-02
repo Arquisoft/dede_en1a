@@ -49,15 +49,13 @@ export type CartContextType = {
 export type Customer = {
     name: string;
     lastName: string;
-    email: string;
     address: string;
 }
 
 export type Order = {
     _id: string,
-    date: string,
+    date: Date,
     shipping: number,
-    address: string,
     totalPrice: number,
     customer: Customer,
     items: CartItem[]

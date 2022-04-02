@@ -107,7 +107,7 @@ const OrdersPage = () => {
                                 </Grid>
                                 <Grid item xs>
                                     <Typography variant="subtitle1" component="div">
-                                        Address: {order.address}
+                                        Address: {order.customer.address}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs>
@@ -138,7 +138,7 @@ const OrdersPage = () => {
                             ).map((row) => (
                                 <TableRow key={row._id}>
                                     <TableCell component="td" scope="row">
-                                        <img src={product.image} width="100" height="100" alt="Product image"/>
+                                        <img src={product.image} width="100" height="100"/>
                                         {product.name}
                                     </TableCell>
                                     <TableCell style={{width: 160}} align="right">
@@ -199,18 +199,18 @@ const OrdersPage = () => {
     };
 
     return (
-        <Paper
+        <><Typography variant="h2" align='center' fontFamily='Georgia'>Your order(s)</Typography>
+            <Paper
             sx={{
                 p: 2,
                 margin: 'auto',
                 maxWidth: 1000,
                 flexGrow: 1,
-                backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                backgroundColor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
             }}
         >
             {renderOrders}
-        </Paper>
+        </Paper></>
     );
 }
 

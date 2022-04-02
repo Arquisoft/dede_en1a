@@ -17,7 +17,7 @@ const Navigation = ({handleOpen}: Props) => {
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/checkout' component={Checkout}/>
-                {/*<Route exact path='/orders/list' component={OrdersPage}/>*/}
+                <Route exact path='/orders/list' component={OrdersPage}/>
                 <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
                 <Route exact path='/solid/logout' component={LogoutSession}/>
             </Switch>

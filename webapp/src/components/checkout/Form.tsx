@@ -23,7 +23,7 @@ const Form = (props: Props) => {
 
     const {setNewAddress} = props
     const {cartItems, dispatch } = useContext(CartContext);
-    const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
+    const {name, lastName, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
     const [contactData, setContactData] = useState<ContactData[]>();
     const [, setValidValue] = useState(false);
@@ -63,9 +63,13 @@ const Form = (props: Props) => {
 
             const order: Order = {
                 customer: {
-                    name, email, lastName, address
+                    name, lastName, address
                 },
-                items: orderDetails
+                items: orderDetails,
+                date: new Date(),
+                shipping: 1.2,
+                totalPrice: 20,
+                _id: 'sdfsds'
             }
 
             const fetchApi = await postData(order);
@@ -99,6 +103,9 @@ const Form = (props: Props) => {
                     <div className="col-sm-6">
                         <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
                     </div>
+                    <div className="col-sm-6">
+                        <label htmlFor="lastName" className='form-label'>Last Name: {localStorage.getItem("lastName")}</label>
+                    </div>
                     <div>
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
                             <option value="">-- Select an address --</option>
@@ -110,7 +117,7 @@ const Form = (props: Props) => {
                     </div>
                 </div>
                 <br />
-                <button className='w-100 btn btn-primary' type='submit'>Place order</button>
+                <button className='w-100 btn btn-primary' type='submit' onSubmit={handleSubmit}>Place order</button>
                 {
                     showToast && <Toaster
                         toastOptions={{
