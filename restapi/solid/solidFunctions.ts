@@ -10,6 +10,7 @@ import {
 import {VCARD} from "@inrupt/vocab-common-rdf";
 import {getSessionFromStorage, Session} from "@inrupt/solid-client-authn-node";
 import IContactData from "../interfaces/ContactDataInterface";
+import {Buffer} from "buffer"
 
 // Parametros para el logeo
 const redirectUrl: string = process.env.WEBAPP_URI + "/solid/redirect-from-solid-idp"
@@ -73,7 +74,8 @@ export let solidLogout =  async (req: Request, res: Response) => {
  */
 async function retrieveInfo(encryptedWebId: string): Promise<IContactData[]> {
     // Desencription of the webID
-    let webID = Buffer.from(encryptedWebId, 'base64').toString('binary')
+    let webID = decodeURIComponent(encryptedWebId)
+    console.log(webID)
     let profileDocumentURI = webID.split("#")[0] // Retrieve the user card
     let myDataSet = await getSolidDataset(profileDocumentURI) // Get the dataset
     let profile = getThing(myDataSet, webID) // Get the #me thing

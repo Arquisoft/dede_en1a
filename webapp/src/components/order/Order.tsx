@@ -29,7 +29,7 @@ const OrderSummary = (props: Props) => {
             }).then(response => {
                     setDistance(response.data)
         });
-        localStorage.setItem("shipping", shipping.price.toFixed(2));
+        localStorage.setItem("shipping", shipping.price?.toFixed(2)?? 0.0);
         localStorage.setItem("totalPrice", calculateTotalPlusShiping(cartItems, shipping.price).toFixed(2));
     }, [address])
 
@@ -59,7 +59,7 @@ const OrderSummary = (props: Props) => {
                 </li>
                 <li className='list-group-item d-flex justify-content-between'>
                     <span>SHIPPING (EUR)</span>
-                    <strong>{shipping.price.toFixed(2) }€</strong>
+                    <strong>{shipping.price?.toFixed(2)?? 0.0 }€</strong>
                 </li>
                 <li className='list-group-item d-flex justify-content-between'>
                     <span>TOTAL (EUR)</span>

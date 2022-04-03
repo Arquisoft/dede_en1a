@@ -7,6 +7,7 @@ import {ContactData, Customer, OrderAdd} from "../../shared/shareddtypes";
 import axios from "axios";
 import {useSession} from "@inrupt/solid-ui-react";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
+import {Buffer} from "buffer"
 
 const initialState = {
     name: '',
@@ -17,7 +18,7 @@ const initialState = {
 const notify = (msj: string) => toast(msj);
 
 function encrypt(webId: string): string {
-    return Buffer.from(webId).toString("base64")
+    return encodeURIComponent(webId)
 }
 
 type Props = {
@@ -41,6 +42,7 @@ const Form = (props: Props) => {
                 response => {
                         localStorage.setItem("fn", response.data[0].fn)
                         setContactData(response.data)
+                    console.log(contactData)
                 }
             )
         }
@@ -50,7 +52,6 @@ const Form = (props: Props) => {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let selected = e.target.value
         if(selected.length === 0) {
-
             setNewAddress([])
             localStorage.removeItem("address")
         } else {
