@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState, useEffect, ChangeEvent } from "react";
+import React, { FormEvent, useContext, useState, useEffect, ChangeEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
@@ -21,7 +21,7 @@ function encrypt(webId: string): string {
 }
 
 type Props = {
-    setNewAddress: (address: string) => void
+    setNewAddress: (address: string[]) => void
 }
 
 const Form = (props: Props) => {
@@ -30,31 +30,31 @@ const Form = (props: Props) => {
     const {cartItems, dispatch } = useContext(CartContext);
     const {name, surname, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
-    const [contactData, setContactData] = useState<ContactData[]>();
-    const [, setValidValue] = useState(false);
+    const [contactData, setContactData] = useState<ContactData[]>([]);
 
     const {session} = useSession()
 
     useEffect(() => {
+
         if(session.info.webId) {
             axios.get((process.env.RESTAPI_URI || "http://localhost:5000") + "/solid/fetch/" + encrypt(session.info.webId)).then(
                 response => {
-                    localStorage.setItem("fn", response.data[0].fn)
-                    setContactData(response.data)
+                        localStorage.setItem("fn", response.data[0].fn)
+                        setContactData(response.data)
                 }
             )
         }
-    }, [address, session.info.webId])
 
-    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    }, [session.info.webId])
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let selected = e.target.value
         if(selected.length === 0) {
-            setValidValue(false)
-            setNewAddress("")
+
+            setNewAddress([])
             localStorage.removeItem("address")
         } else {
-            setValidValue(true)
-            setNewAddress(selected)
+            setNewAddress(selected.split("/"))
             localStorage.setItem("address", selected.split("/").join(""))
         }
     }
@@ -121,7 +121,7 @@ const Form = (props: Props) => {
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>
                             <option value="">-- Select an address --</option>
                             {contactData?.map((contact, index) => (
-                                <option key={index} value={`${contact.country} ${contact.region} ${contact.locality}`}>
+                                <option key={index} value={contact.country + "/" + contact.region + "/" + contact.locality + "/" + contact.street_address}>
                                     {contact.country} / {contact.region} / {contact.locality} / {contact.street_address} / {contact.postal_code}
                                 </option>))}
                         </select>
