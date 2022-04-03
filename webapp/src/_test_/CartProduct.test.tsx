@@ -15,7 +15,7 @@ const testProduct = {
   weight: 1,
 }
 
-test("Product card matches snapshot", () => {
+test("Fake card matches snapshot", () => {
   const fakeProduct = render(<CartProduct product={testProduct} handleAddToCart={handleAddToCart}/>);
   expect(fakeProduct).toMatchSnapshot();
 })
