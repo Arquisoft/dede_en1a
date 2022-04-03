@@ -8,6 +8,8 @@ import sellerRouter from '../routers/SellerRouter';
 let app:Application;
 let server:http.Server;
 
+let sellerId: string;
+
 beforeAll(async () => {
     app = express();
     const port: number = 5000;
@@ -23,6 +25,12 @@ beforeAll(async () => {
     }).on("error",(error:Error)=>{
         console.error('Error occured: ' + error.message);
     });
+
+    const response:Response = await request(app)
+        .post("/seller/add")
+        .send({name: "testSeller"})
+        .set('Accept', 'application/json');
+    console.error(response.body);
 });
 
 afterAll(async () => {
@@ -32,7 +40,7 @@ afterAll(async () => {
 describe('product ', () => {
 
     it('can be listed',async () => {
-        const response:Response = await request(app).get("/products/list");
+        const response:Response = await request(app).get("/product/list");
         expect(response.statusCode).toBe(200);
     });
 
