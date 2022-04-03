@@ -9,7 +9,9 @@ import {getTotalItems} from '../helpers/calculate';
 import {IconButton} from "@mui/material";
 import LoginButtonSolid from "./login/LoginButtonComponent";
 import {LogoutButtonSolid} from "./logout/LogoutButtonComponent";
-import {useSession} from "@inrupt/solid-ui-react"
+import logo from "../images/logoName.png";
+import {useSession} from "@inrupt/solid-ui-react";
+import { NavLink } from 'react-router-dom';
 
 type Props = {
     handleOpen: (state: boolean) => void;
@@ -41,7 +43,7 @@ const NavBar = ({handleOpen}: Props) => {
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
                 <Container /*style={{display: 'flex'}}*/>
-                    <Link className='navbar-brand' to='/'>DEDE</Link>
+                    <Link to="/"><img src={logo} style={{height:"50px", width:"200px"}}/></Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -53,6 +55,7 @@ const NavBar = ({handleOpen}: Props) => {
                         color="primary"
                         onClick={ () => handleOpen(true)}
                         sx={{ mr: 2 }}
+                        id="shoppingCart"
                     >
                         <Badge badgeContent={getTotalItems(cartItems)} color="error">
                             <ShoppingCartIcon />
