@@ -4,7 +4,7 @@ import Form from "../components/checkout/Form";
 import OrderSummary from "../components/order/Order";
 
 const Checkout = () => {
-    const [, setAddress] = useState("")
+    const [address, setAddress] = useState<string[]>([])
 
     return (
         <Container>
@@ -14,7 +14,7 @@ const Checkout = () => {
             </div>
             <Row>
                 <Form setNewAddress={setAddress}/>
-                <OrderSummary/>
+                <OrderSummary address={address}/>
             </Row>
         </Container>
     )
