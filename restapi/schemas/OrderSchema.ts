@@ -8,6 +8,7 @@ const orderSchema = new Schema (
     {
         webId: {type: String, required: true},
         address: {type: String, required: true},
+		name: {type: String, required: false },
         shippingPrice: {type: Number, required: true},
         totalPrice: {type: Number, required: true},
         products: {type: Map, of: Number, required: true} 
