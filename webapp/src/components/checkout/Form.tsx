@@ -73,10 +73,10 @@ const Form = (props: Props) => {
                 customer: {
                     name, surname, address
                 },
-                webId: localStorage.getItem("webID"),
+                webId: localStorage.getItem("webID") + "",
                 items: orderDetails,
-                shipping: localStorage.getItem("shipping"),
-                totalPrice: localStorage.getItem("totalPrice"),
+                shipping: Number.parseFloat(localStorage.getItem("shipping") + ""),
+                totalPrice: Number.parseFloat(localStorage.getItem("totalPrice") + ""),
             }
 
             const fetchApi = await postData(order);
