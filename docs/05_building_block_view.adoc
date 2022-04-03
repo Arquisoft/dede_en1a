@@ -16,7 +16,7 @@ Web Application that allows users to order products from an online store to thei
 2) POD::
 The user's Personal Online Data store, allows the app to be decentralized and only have access to the user's information when permitted by the user. Stores data such as the user's personal address, payment information, etc.
 
-3) Product Databse::
+3) Product Database::
 Stores information of products (i.e. name, cost, description, availability, etc.). Built with MongoDB.
 
 === Level 2
