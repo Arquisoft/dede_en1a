@@ -107,17 +107,17 @@ const OrdersPage = () => {
                                 </Grid>
                                 <Grid item xs>
                                     <Typography variant="subtitle1" component="div">
-                                        Address: {order.customer.address}
+                                        Address: {order.address}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs>
                                     <Typography variant="subtitle1" component="div">
-                                        Shipping cost: {order.shipping} €
+                                        Shipping cost: {order.shipping}€
                                     </Typography>
                                 </Grid>
                                 <Grid item xs>
                                     <Typography variant="subtitle1" component="div">
-                                        Total: {order.totalPrice} €
+                                        Total: {order.totalPrice}€
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -138,7 +138,7 @@ const OrdersPage = () => {
                             ).map((row) => (
                                 <TableRow key={row._id}>
                                     <TableCell component="td" scope="row">
-                                        <img src={product.image} width="100" height="100"/>
+                                        <img src={product.image} width="100" height="100" alt="product"/>
                                         {product.name}
                                     </TableCell>
                                     <TableCell style={{width: 160}} align="right">

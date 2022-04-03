@@ -40,7 +40,7 @@ const NavBar = ({handleOpen}: Props) => {
     //We have logged in, help
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
-            <Container /*style={{display: 'flex'}}*/>
+            <Container>
                 <Link className='navbar-brand' to='/'>
                     <img src='/images/logo.png' height='45px' width='auto' alt="logo"/>
                 </Link>
@@ -50,7 +50,7 @@ const NavBar = ({handleOpen}: Props) => {
                         <Link className='nav-link' to="/">Home</Link>
                     </Nav>
                     <Nav className="mr-auto">
-                        <Link className='nav-link' to="/orders/list">My orders</Link>
+                        <Link className='nav-link' to="/orders/list" hidden={!isLoggedIn}>My orders</Link>
                     </Nav>
                 </Navbar.Collapse>
                 <IconButton

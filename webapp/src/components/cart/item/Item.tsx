@@ -45,7 +45,7 @@ const Item = ({ item }: Props) => {
                             {item.name}
                         </div>
                         <div className="item-detail-info-prices">
-                            <span>{item.price} €</span>
+                            <span>{item.price}€</span>
                         </div>
                     </div>
                     <div className="item-action-remove">

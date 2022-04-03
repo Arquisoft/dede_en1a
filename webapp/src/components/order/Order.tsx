@@ -20,6 +20,8 @@ const OrderSummary = () => {
                 console.log(response.data)
             }
         );
+        localStorage.setItem("shipping", shipping.price.toFixed(2));
+        localStorage.setItem("totalPrice", calculateTotalPlusShiping(cartItems, shipping.price).toFixed(2));
     }, []);
 
     return (

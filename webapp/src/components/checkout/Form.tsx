@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
 import useForm from "../../hooks/useForm";
-import {ContactData, Customer, Order} from "../../shared/shareddtypes";
+import {ContactData, Customer, OrderAdd} from "../../shared/shareddtypes";
 import axios from "axios";
 import {useSession} from "@inrupt/solid-ui-react";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
@@ -29,7 +29,7 @@ const Form = (props: Props) => {
 
     const {setNewAddress} = props
     const {cartItems, dispatch } = useContext(CartContext);
-    const {name, lastName, address, resetValues } = useForm<Customer>(initialState);
+    const {name, surname, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
     const [contactData, setContactData] = useState<ContactData[]>();
     const [, setValidValue] = useState(false);
@@ -70,21 +70,20 @@ const Form = (props: Props) => {
 
         if(orderDetails.length > 0){
 
-            const order: Order = {
+            const order: OrderAdd = {
                 customer: {
-                    name, lastName, address
+                    name, surname, address
                 },
+                webId: localStorage.getItem("webID"),
                 items: orderDetails,
-                date: new Date(),
-                shipping: 1.2,
-                totalPrice: 20,
-                _id: 'sdfsds'
+                shipping: localStorage.getItem("shipping"),
+                totalPrice: localStorage.getItem("totalPrice"),
             }
 
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){
-                notify('An error has occured, try again');
+                notify('An error has occurred, try again');
             }else{
                 notify('Order placed correctly!');
 
@@ -115,7 +114,10 @@ const Form = (props: Props) => {
                         </label>
                     </div>
                     <div className="col-sm-6">
-                        <label htmlFor="lastName" className='form-label'>Last Name: {localStorage.getItem("lastName")}</label>
+                        <label htmlFor="surname" className='form-label'>
+                            Surname:
+                            <input type="text" placeholder="Write your surname..."/>
+                        </label>
                     </div>
                     <div>
                         <select name="addressDropdown" id="addressDropdown" onChange={(e) => handleChange(e)}>

@@ -48,15 +48,24 @@ export type CartContextType = {
 
 export type Customer = {
     name: string;
-    lastName: string;
+    surname: string;
     address: string;
 }
 
 export type Order = {
     _id: string,
     date: Date,
-    shipping: number,
-    totalPrice: number,
+    shipping?: number,
+    totalPrice?: number,
+    address: string,
+    items: CartItem[]
+}
+
+export type OrderAdd = {
+    webId: string,
+    shipping?: number,
+    totalPrice?: number,
     customer: Customer,
     items: CartItem[]
 }
+
