@@ -5,14 +5,15 @@ const ObjectId  = Schema.Types.ObjectId;
 const Map  = Schema.Types.Map;
 
 const orderSchema = new Schema (
-    {
-        webId: {type: String, required: true},
-        address: String,
-        shipping: Number,
-        totalPrice: Number,
-        products: {type: Map, of: Number}
-        
-    }
+	{
+		webId: {type: String, required: true},
+		name: String,
+		address: {type: String, required: true},
+		shipping: {type: Number, required: true },
+		totalPrice: {type: Number, required: true },
+		products: {type: Map, of: Number, required: true}
+		
+	}
 );
 
 
