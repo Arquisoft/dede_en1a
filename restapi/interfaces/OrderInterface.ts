@@ -5,7 +5,7 @@ export default interface IOrder extends Document {
     webId: string
     addres: string
 	name: string
-    shipping: number
+    shippingPrice: number
     totalPrice: number
     products: Map<IProduct, Number>
 }

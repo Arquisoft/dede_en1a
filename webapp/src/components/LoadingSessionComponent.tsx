@@ -12,7 +12,6 @@ type URLParams = {
 const LoadingSession = () => {
     const {webID, sessionId} = useParams<URLParams>()
     const history = useHistory()
-    console.log(sessionId)
     useEffect(
         () => {
             localStorage.setItem("webID", webID)
