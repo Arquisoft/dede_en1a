@@ -5,6 +5,8 @@ import postData from "../../helpers/postData";
 import useForm from "../../hooks/useForm";
 import {ContactData, Customer, Order} from "../../shared/shareddtypes";
 import axios from "axios";
+import {useSession} from "@inrupt/solid-ui-react";
+import {SolidNameComponent} from "../solid/SolidNameComponent";
 
 const initialState = {
     name: '',
@@ -14,6 +16,10 @@ const initialState = {
 }
 
 const notify = (msj: string) => toast(msj);
+
+function encrypt(webId: string): string {
+    return Buffer.from(webId).toString("base64")
+}
 
 type Props = {
     setNewAddress: (address: string) => void
@@ -28,15 +34,18 @@ const Form = (props: Props) => {
     const [contactData, setContactData] = useState<ContactData[]>();
     const [, setValidValue] = useState(false);
 
+    const {session} = useSession()
 
     useEffect(() => {
-        axios.get(process.env.REACT_API_URI+"/solid/fetch/" + localStorage.getItem("webID")).then(
-            response => {
-                localStorage.setItem("fn", response.data[0].fn)
-                setContactData(response.data)
-            }
-        )
-    }, [address])
+        if(session.info.webId) {
+            axios.get((process.env.RESTAPI_URI || "http://localhost:5000") + "/solid/fetch/" + encrypt(session.info.webId)).then(
+                response => {
+                    localStorage.setItem("fn", response.data[0].fn)
+                    setContactData(response.data)
+                }
+            )
+        }
+    }, [address, session.info.webId])
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         let selected = e.target.value
@@ -101,7 +110,9 @@ const Form = (props: Props) => {
             <form autoComplete='off' onSubmit={ handleSubmit }>
                 <div className="row g-3">
                     <div className="col-sm-6">
-                        <label htmlFor="name" className='form-label'>Name: {localStorage.getItem("name")}</label>
+                        <label htmlFor="name" className='form-label'>
+                            Name: <SolidNameComponent/>
+                        </label>
                     </div>
                     <div className="col-sm-6">
                         <label htmlFor="lastName" className='form-label'>Last Name: {localStorage.getItem("lastName")}</label>

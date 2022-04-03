@@ -23,7 +23,7 @@ const ListProducts = () => {
 
     const renderCards = products.map(product => {
         return (
-            <Grid item container xs={12} sm={6} md={4} lg={3}>
+            <Grid key={product._id} item container xs={12} sm={6} md={4} lg={3}>
                 <CartProduct
                     key={product._id}
                     product={product}
