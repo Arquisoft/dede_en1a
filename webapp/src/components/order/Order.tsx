@@ -4,23 +4,32 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../../helpers/calculate';
 
-const OrderSummary = () => {
+type Props = {
+    address: string[]
+}
 
+const OrderSummary = (props: Props) => {
+
+    //const address = ["España", "Asturias", "Aviles", "Valdredo 9 2K"]
+    const {address} = props
     const [shipping, setDistance] = useState({
         distance: 0.0,
         price: 0.0,
     })
 
     const { cartItems } = useContext(CartContext);
+
     useEffect(() => {
-        axios.get("http://localhost:5000/geocode/" + localStorage.getItem("address")).then(
-            response => {
-                const shipping = response.data
-                setDistance(shipping)
-                console.log(response.data)
-            }
-        );
-    }, []);
+        axios.post((process.env.RESTAPI_URI || "http://localhost:5000") + "/geocode",
+            {
+                "street": address[3],
+                "city": address[2],
+                "region": address[1],
+                "country": address[0],
+            }).then(response => {
+                    setDistance(response.data)
+        })
+    }, [address])
 
     return (
         <div className='col-md-5 col-lg-4 order-md-last'>
@@ -48,7 +57,7 @@ const OrderSummary = () => {
                 </li>
                 <li className='list-group-item d-flex justify-content-between'>
                     <span>SHIPPING (EUR)</span>
-                    <strong>{shipping.price.toFixed(2) }€</strong>
+                    <strong>{shipping.price?.toFixed(2)?? 0.0}€</strong>
                 </li>
                 <li className='list-group-item d-flex justify-content-between'>
                     <span>TOTAL (EUR)</span>
