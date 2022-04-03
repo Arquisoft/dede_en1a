@@ -9,7 +9,7 @@ import {getTotalItems} from '../helpers/calculate';
 import {IconButton} from "@mui/material";
 import LoginButtonSolid from "./login/LoginButtonComponent";
 import {LogoutButtonSolid} from "./logout/LogoutButtonComponent";
-import {useSession} from "@inrupt/solid-ui-react"
+import {useSession} from "@inrupt/solid-ui-react";
 
 type Props = {
     handleOpen: (state: boolean) => void;
@@ -40,31 +40,29 @@ const NavBar = ({handleOpen}: Props) => {
     //We have logged in, help
     return (
         <Navbar bg="dark" variant='dark' expand="lg">
-            <Container>
-                <Link className='navbar-brand' to='/'>
-                    <img src='/images/logo.png' height='45px' width='auto' alt="logo"/>
-                </Link>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Link className='nav-link' to="/">Home</Link>
-                    </Nav>
-                    <Nav className="mr-auto">
-                        <Link className='nav-link' to="/orders/list" hidden={!isLoggedIn}>My orders</Link>
-                    </Nav>
-                </Navbar.Collapse>
-                <IconButton
-                    size="large"
-                    color="primary"
-                    onClick={() => handleOpen(true)}
-                    sx={{mr: 2}}
-                >
-                    <Badge badgeContent={getTotalItems(cartItems)} color="error">
-                        <ShoppingCartIcon />
-                    </Badge>
-                </IconButton>
-                {!isLoggedIn ? <LoginButtonSolid/> : <LogoutButtonSolid/>}
-            </Container>
+                <Container>
+                    <Link to="/">
+                        <img src="/images/logoName.png" style={{height:"50px", width:"200px"}}/>
+                    </Link>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
+                            <Link className='nav-link' to="/">Home</Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                    <IconButton
+                        size="large"
+                        color="primary"
+                        onClick={ () => handleOpen(true)}
+                        sx={{ mr: 2 }}
+                        id="shoppingCart"
+                    >
+                        <Badge badgeContent={getTotalItems(cartItems)} color="error">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
+                    {!isLoggedIn ? <LoginButtonSolid/> : <LogoutButtonSolid/>}
+                </Container>
         </Navbar>
     )
 }

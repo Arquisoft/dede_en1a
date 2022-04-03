@@ -7,7 +7,7 @@ const Checkout = () => {
     const [, setAddress] = useState("")
 
     return (
-        <Container>
+        <Container data-testid="checkout">
             <div className='py-5 text-center'>
                 <h2>Last step</h2>
                 <p className='lead'>To proceed, please fill this form</p>
