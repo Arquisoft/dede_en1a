@@ -10,8 +10,7 @@ import {SolidNameComponent} from "../solid/SolidNameComponent";
 
 const initialState = {
     name: '',
-    lastName: '',
-    email: '',
+    surname: '',
     address: ''
 }
 
