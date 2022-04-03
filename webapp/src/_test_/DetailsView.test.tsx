@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from "react-router-dom";
 import { render, screen, cleanup } from '@testing-library/react';
-import DetailsView from '../DetailsView/DetailsView';
+import DetailsView from '../pages/DetailsView/DetailsView';
 
 //jest.spyOn(DetailsView, 'handleAddToCart');
 

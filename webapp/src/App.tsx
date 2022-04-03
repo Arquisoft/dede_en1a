@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {BrowserRouter as Router, Route, Switch, MemoryRouter} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Sidebar from "./components/Sidebar";
 import {CartProvider} from "./context/CartContext";

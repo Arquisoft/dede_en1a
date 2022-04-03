@@ -26,7 +26,7 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
     let history = useHistory();
     let imgPath = "./images/".concat(product.image).concat(".jpg");
     return (
-		<Grid container spacing={1} style={{justifyContent:"center"}}>
+		<Grid container spacing={1} data-testid={product._id} style={{justifyContent:"center"}}>
 			<Grid item xs={12}>
 				<StyledCard>
 					<CardActionArea onClick={() => history.push("product/" + product._id)}>
@@ -43,12 +43,12 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
 				</StyledCard>
 			</Grid>
 			<Grid item xs={10}>
-				<StyledButton variant="contained" onClick={() => history.push("product/" + product._id)}>
+				<StyledButton variant="contained" id={product._id + '_details'} onClick={() => history.push("product/" + product._id)}>
 					Product Details
 				</StyledButton>
 			</Grid>
 			<Grid item xs={10}>
-				<StyledButton variant="contained"  onClick={() => handleAddToCart(product)}>
+				<StyledButton variant="contained" id={product._id + '_cart'} onClick={() => handleAddToCart(product)}>
 					Add to Cart
 				</StyledButton>
 			</Grid>

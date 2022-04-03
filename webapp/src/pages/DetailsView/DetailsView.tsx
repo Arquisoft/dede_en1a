@@ -1,4 +1,4 @@
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 import ProductInfo from './sections/ProductInfo';
 import ProductImage from './sections/ProductImage';
@@ -36,7 +36,7 @@ const DetailsView: React.FC = () => {
             }
         );
     },
-    [apiEndPoint, _id]);
+    [_id]);
 
     if (item) return(
         <Grid container className="centered" data-testid="details">

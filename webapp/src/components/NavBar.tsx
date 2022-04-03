@@ -39,6 +39,7 @@ const NavBar = ({handleOpen}: Props) => {
                         color="primary"
                         onClick={ () => handleOpen(true)}
                         sx={{ mr: 2 }}
+                        id="shoppingCart"
                     >
                         <Badge badgeContent={getTotalItems(cartItems)} color="error">
                             <ShoppingCartIcon />
