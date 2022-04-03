@@ -65,7 +65,8 @@ export type OrderAdd = {
     webId: string,
     shipping?: number,
     totalPrice?: number,
-    customer: Customer,
+    name: string,
+    address: string,
     items: CartItem[]
 }
 

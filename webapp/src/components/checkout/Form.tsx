@@ -70,9 +70,8 @@ const Form = (props: Props) => {
         if(orderDetails.length > 0){
 
             const order: OrderAdd = {
-                customer: {
-                    name, surname, address
-                },
+                address: localStorage.getItem("address") + "",
+                name: localStorage.getItem("name") + "",
                 webId: localStorage.getItem("webID") + "",
                 items: orderDetails,
                 shipping: Number.parseFloat(localStorage.getItem("shipping") + ""),
