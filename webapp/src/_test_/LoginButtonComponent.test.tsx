@@ -7,7 +7,7 @@ import LoginButton from '../components/login/LoginButtonComponent';
 const toggleLoggedIn = () => null;
 
 test("Login button works correctly", () => {
-    const testButton = render(<LoginButton setIsLoggedIn={toggleLoggedIn}/>);
+    const testButton = render(<LoginButton />);
     expect(testButton).toBeTruthy();
 })
 
