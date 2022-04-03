@@ -4,11 +4,14 @@ import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
 import sellerRouter from '../routers/SellerRouter';
+import productRouter from "../routers/ProductRouter";
+import orderRouter from "../routers/OrderRouter";
 
 let app:Application;
 let server:http.Server;
 
-let sellerId: string;
+let sellerId: string = "622e4a53fb178d9622251286";
+
 
 beforeAll(async () => {
     app = express();
@@ -16,21 +19,17 @@ beforeAll(async () => {
     const options: cors.CorsOptions = {
         origin: ['http://localhost:3000']
     };
-    app.use(cors(options));
+    app.use(cors());
     app.use(bp.json());
-    app.use("/api", sellerRouter)
+    app.use("/seller", sellerRouter)
+    app.use("/product", productRouter)
+    app.use("/order", orderRouter)
 
     server = app.listen(port, ():void => {
         console.log('Restapi server for testing listening on '+ port);
     }).on("error",(error:Error)=>{
-        console.error('Error occured: ' + error.message);
+        console.error('Error occurred: ' + error.message);
     });
-
-    const response:Response = await request(app)
-        .post("/seller/add")
-        .send({name: "testSeller"})
-        .set('Accept', 'application/json');
-    console.error(response.body);
 });
 
 afterAll(async () => {
@@ -51,7 +50,7 @@ describe('product ', () => {
         let image:string = 'thisshouldbeanimageid';
         let weight:number = 8;
         const response:Response = await request(app)
-            .post('/seller/addProduct/s3ll3r1d')
+            .post('/seller/addProduct/' + sellerId)
             .send({name: name, price: price, description: description, image: image, weight: weight})
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
