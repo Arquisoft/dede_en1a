@@ -8,7 +8,6 @@ const orderSchema = new Schema (
 		name: {type: String, required: false },
         shippingPrice: {type: Number, required: true},
         totalPrice: {type: Number, required: true},
-
         products: [{
             "product_id": Schema.Types.ObjectId, "number": Number
         }]
