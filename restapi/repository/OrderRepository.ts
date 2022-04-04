@@ -8,11 +8,11 @@ export async function findAllOrders() {
 }
 
 export async function findOrderById(id: string) {
-    return await Order.findById(id);
+    return Order.findById(id);
 }
 
 export async function findOrderByWebId(webid: string) {
-    return await Order.find({'weibid': webid})
+    return await Order.find({'webid': webid})
 }
 
 export async function updateOrder(id: string, product: IOrder) {

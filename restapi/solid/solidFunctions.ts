@@ -9,8 +9,9 @@ import {
 } from "@inrupt/solid-client";
 import {VCARD} from "@inrupt/vocab-common-rdf";
 import {getSessionFromStorage, Session} from "@inrupt/solid-client-authn-node";
-import IContactData from "../interfaces/ContactDataInterface";
+import IAddress from "../interfaces/AddressInterface";
 import {Buffer} from "buffer"
+import IContactData from "../interfaces/ContactDataInterface";
 
 // Parametros para el logeo
 const redirectUrl: string = process.env.WEBAPP_URI + "/solid/redirect-from-solid-idp"
@@ -72,7 +73,7 @@ export let solidLogout =  async (req: Request, res: Response) => {
  * the given pod.
  * @param encryptedWebId
  */
-async function retrieveInfo(encryptedWebId: string): Promise<IContactData[]> {
+async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
     // Desencription of the webID
     let webID = decodeURIComponent(encryptedWebId)
     console.log(webID)
@@ -86,32 +87,42 @@ async function retrieveInfo(encryptedWebId: string): Promise<IContactData[]> {
     return result
 }
 
-function processAddresses(urlAddresses: string[], dataset: SolidDataset, profile: (Thing & { url: UrlString }) | null): IContactData[] {
-    let result: IContactData[] = []
+function processAddresses(urlAddresses: string[], dataset: SolidDataset, profile: (Thing & { url: UrlString }) | null): IContactData {
+    // Here we store the adresses of the client
+    let addresses: IAddress[] = []
 
     urlAddresses.forEach(async function(url, index) {
+        // We get the user profile
         let addressProfile = await getThing(dataset, url)
+
         // We extract the info as needed.
-        let fn = getStringNoLocale(profile as Thing, VCARD.fn) as string
         let country = getStringNoLocale(addressProfile as Thing, VCARD.country_name) as string
         let locality = getStringNoLocale(addressProfile as Thing, VCARD.locality) as string
         let region = getStringNoLocale(addressProfile as Thing, VCARD.region) as string
         let street_address = getStringNoLocale(addressProfile as Thing, VCARD.street_address) as string
         let postal_code = getStringNoLocale(addressProfile as Thing, VCARD.postal_code) as string
 
-
-        let contactData: IContactData = {
-            fn: fn,
+        // We build the address
+        let address: IAddress = {
             country: country,
             locality: locality,
             region : region,
             street_address: street_address,
             postal_code: postal_code,
         }
-
-        result[index] = contactData
+        // We include it in the addresses list
+        addresses[index] = address
     });
 
-    return result
+    // We retrieve the name from the pod.
+    let fn = getStringNoLocale(profile as Thing, VCARD.fn) as string
+
+    // We build the contact data.
+    let contactData: IContactData = {
+        fn: fn,
+        addresses: addresses
+    }
+
+    return contactData
 }
 
