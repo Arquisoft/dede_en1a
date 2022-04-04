@@ -86,16 +86,20 @@ This figure shows the internal decomposition of DeDe's view (frontend), model (b
 | _NodeJS_ | _Backend runtime environment where the TypeScript code runs._
 | _MUI_ | _JavaScript library used to build user interface._
 | _Express_ | _Node library for API building._
-| _Solid-Client_ | _JS library for SOLID (POD) support._
+| _Inrupt-Solid-Client_ | _JS library for SOLID (POD) support._
 | _Mongoose_ | _JS library for MongoDB connections and integration._
 |===
 
-3) Controllers (Backend)::
-The controllers interlink the frontend and the backend
 
-[cols="1,4" options="header"]
-|===
-| **Component** | **Responsibility**
-| _Helpers_ | _JS library for SOLID (POD) support._
-| _Hooks_ | _JS library for MongoDB connections and integration._
-|===
+//commenting this out bc idk what was the purpose
+//3) Controllers (Backend)::
+//The controllers interlink the frontend and the backend
+//
+//[cols="1,4" options="header"]
+//|===
+//| **Component** | **Responsibility**
+//| _Helpers_ | _JS library for SOLID (POD) support._
+//| _Hooks_ | _JS library for MongoDB connections and integration._
+//|===
+
+
