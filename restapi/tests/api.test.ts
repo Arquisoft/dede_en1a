@@ -6,12 +6,14 @@ import cors from 'cors';
 import sellerRouter from '../routers/SellerRouter';
 import productRouter from "../routers/ProductRouter";
 import orderRouter from "../routers/OrderRouter";
+import mongoose from "mongoose";
 
 let app:Application;
 let server:http.Server;
 
 let sellerId: string = "622e4a53fb178d9622251286";
 
+jest.setTimeout(15000)
 
 beforeAll(async () => {
     app = express();
@@ -25,11 +27,24 @@ beforeAll(async () => {
     app.use("/product", productRouter)
     app.use("/order", orderRouter)
 
+    mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
+        dbName: "DeDe_Database",
+        user: "admin",
+        pass: "admin",
+        retryWrites: true,
+        w: 'majority'
+    }).then(() => {
+        console.log("connected to database: " + "DeDe_Database");
+    }).catch(err => {
+        console.error('Error occured: ' + err.message);
+    })
+
     server = app.listen(port, ():void => {
         console.log('Restapi server for testing listening on '+ port);
     }).on("error",(error:Error)=>{
         console.error('Error occurred: ' + error.message);
     });
+
 });
 
 afterAll(async () => {
@@ -55,4 +70,6 @@ describe('product ', () => {
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
+
+
 });
