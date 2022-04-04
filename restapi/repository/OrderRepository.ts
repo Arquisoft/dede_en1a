@@ -10,7 +10,7 @@ export async function findOrderById(id: string) {
 }
 
 export async function findOrderByWebId(webid: string) {
-    return await Order.find({'webid': webid})
+    return await Order.find({'webId': webid})
 }
 
 export async function updateOrder(id: string, product: IOrder) {
