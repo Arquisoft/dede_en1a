@@ -8,7 +8,7 @@ export default interface IOrder extends Document {
     shippingPrice: number
     totalPrice: number
     products: [{
-		product : ObjectId, 
+		product : String, 
 		amount : number
 	}]
 }
