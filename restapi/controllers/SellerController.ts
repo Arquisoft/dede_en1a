@@ -67,8 +67,8 @@ export let deleteSeller = async(req: Request, res: Response) => {
 
 export let addProductToSeller = async(req: Request, res: Response) => {
 	await sellerRepository.addProductToSeller(req.params.id, req.body)
-        .then((seller) => {
-            return res.status(200).send(seller)
+        .then((product) => {
+            return res.status(200).send(product)
         }).catch((error) => {
             return res.status(500).json({
                 message: error.message,

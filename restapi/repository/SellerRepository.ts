@@ -38,8 +38,9 @@ export async function addProductToSeller(id:any, product:IProduct) {
 	// add product id to seller
 	seller.products.push(productDoc.id);
 	// return updated seller
-	return seller.save();
+	return productDoc;
 }
+
 // TODO: this may not work rn
 export async function removeProductFromSeller(id:any, productId: any) {
 	// get seller
