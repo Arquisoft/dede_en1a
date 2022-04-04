@@ -38,3 +38,4 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 | _Application DB_ | _Database storing product information such as name, description, cost, availability, etc. Built using MongoDB._
 | _User Device_ | _Device from which the user will access the DeDe application._
 |===
+

@@ -1,4 +1,4 @@
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 import ProductInfo from './sections/ProductInfo';
 import ProductImage from './sections/ProductImage';
@@ -9,12 +9,6 @@ import Axios from 'axios';
 import {Product} from '../../shared/shareddtypes';
 import { CartContext } from '../../context/CartContext';
 
-/*
-type Props = {
-    item: Product;
-    handleAddToCart: (clickedItem: Product) => void;
-};
-*/
 
 const DetailsView: React.FC = () => {
 
@@ -31,8 +25,9 @@ const DetailsView: React.FC = () => {
     }
     
     const [item, setItem] = useState<Product>()
-    const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+
     useEffect(() => {
+        const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
         Axios.get(apiEndPoint + '/product/details/' + _id).then(
             response => {
                 const product = response.data
@@ -44,7 +39,7 @@ const DetailsView: React.FC = () => {
     [_id]);
 
     if (item) return(
-        <Grid container className="centered">
+        <Grid container className="centered" data-testid="details">
             <Grid item xs={0} md={2} lg={3}/>
             <Grid item xs={12} md={4} lg={3}>
                 <ProductImage item={item}/>

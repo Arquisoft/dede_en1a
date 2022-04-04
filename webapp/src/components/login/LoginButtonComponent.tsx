@@ -1,21 +1,18 @@
 import {Button} from "@mui/material";
 import React from "react";
+import {LoginButton} from "@inrupt/solid-ui-react"
 
-type Props = {
-    setIsLoggedIn: () => void
-}
+const LoginButtonSolid = () => {
+    const oidcIssuer = "https://solidcommunity.net/"
 
-const LoginButton = (props: Props) => {
-    const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
-    const {setIsLoggedIn} = props
     return (
-        <Button onClick={() => {
-            setIsLoggedIn()
-            window.location.href=apiEndPoint+"/solid/login"
-        }}>
-            Login
-        </Button>
+        <LoginButton
+            oidcIssuer={oidcIssuer}
+            redirectUrl={(process.env.REACT_URI || "http://localhost:3000") + "/"}
+        >
+            <Button color="primary">Log In</Button>
+        </LoginButton>
     )
 }
 
-export default LoginButton
+export default LoginButtonSolid

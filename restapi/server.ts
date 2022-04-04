@@ -8,8 +8,8 @@ import sellerRouter from "./routers/SellerRouter";
 import productRouter from "./routers/ProductRouter";
 import orderRouter from "./routers/OrderRouter";
 import solidRouter from "./solid/solidRouter";
+import geocoderRouter from "./routers/geocoderRouter";
 
-import { getPriceFromAddress } from "./geocoder/geocoder";
 
 import 'dotenv/config'
 
@@ -32,19 +32,8 @@ app.use("/seller", sellerRouter)
 app.use("/product", productRouter)
 app.use("/order", orderRouter)
 app.use("/solid", solidRouter)
+app.use("/geocode", geocoderRouter)
 
-app.get("/geocode/:address", async (req: Request, res: Response) => {
-	getPriceFromAddress(req.params.address)
-		.then((response : any) => {
-			res.status(200).send(response);
-			console.log(response)
-		}).catch((error : any) => {
-			res.status(500).json({
-				message: error.message,
-				error
-			})
-		})
-})
 
 // Connect to the database and start the server.
 mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
@@ -65,3 +54,4 @@ app.listen(process.env.RESTAPI_PORT, ():void => {
 		console.error('Error occured: ' + error.message);
 	});
 			
+//

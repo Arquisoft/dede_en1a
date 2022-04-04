@@ -1,8 +1,11 @@
 import { Document } from "mongoose";
-import IProduct from "./ProductInterface";
-import IUser from "./UserInterface";
+import IOrderItem from "./OrderItemInterface";
 
 export default interface IOrder extends Document {
-    user: IUser,
-    products: Map<IProduct, Number>
+    webId: string
+    address: string
+	name: string
+    shippingPrice: number
+    totalPrice: number
+    products: Array<IOrderItem>
 }

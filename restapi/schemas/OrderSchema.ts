@@ -1,14 +1,19 @@
 import mongoose, {Schema} from "mongoose";
 import IOrder from "../interfaces/OrderInterface";
 
-const ObjectId  = Schema.Types.ObjectId;
-const Map  = Schema.Types.Map;
-
 const orderSchema = new Schema (
     {
-        userId: {type: ObjectId, required: true},
-        products: {type: Map, of: Number}
-    }
+        webId: {type: String, required: true},
+        address: {type: String, required: true},
+		name: {type: String, required: false },
+        shippingPrice: {type: Number, required: true},
+        totalPrice: {type: Number, required: true},
+
+        items: [{type: Schema.Types.ObjectId, ref: "OrderItem"}]
+    }, {
+		timestamps: true
+	}
 );
+
 
 export default mongoose.model<IOrder>("Order", orderSchema);
