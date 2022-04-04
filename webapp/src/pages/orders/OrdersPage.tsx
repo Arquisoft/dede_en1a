@@ -38,6 +38,9 @@ function OrdersPage(): JSX.Element {
             orderList.push(
                 <div className={styles.orderwrapper}>
                     <div className={styles.ordersname}>
+                        ID: {order._id}
+                    </div>
+                    <div className={styles.ordersname}>
                         Date: {moment(dateOrder).format("YYYY-MM-DD HH:MM:SS")}
                     </div>
                     <div className={styles.ordersname}>Address: {order.address}</div>

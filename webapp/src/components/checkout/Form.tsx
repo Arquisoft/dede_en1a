@@ -1,18 +1,12 @@
-import React, { FormEvent, useContext, useState, useEffect, ChangeEvent } from "react";
+import React, { FormEvent, useContext, useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
-import useForm from "../../hooks/useForm";
-import {ContactData, Customer, OrderAdd} from "../../shared/shareddtypes";
+import {ContactData, OrderAdd} from "../../shared/shareddtypes";
 import axios from "axios";
 import {useSession} from "@inrupt/solid-ui-react";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
 
-const initialState = {
-    name: '',
-    surname: '',
-    address: ''
-}
 
 const notify = (msj: string) => toast(msj);
 
@@ -28,7 +22,6 @@ const Form = (props: Props) => {
 
     const {setNewAddress} = props
     const {cartItems, dispatch } = useContext(CartContext);
-    const {name, surname, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
     const [contactData, setContactData] = useState<ContactData[]>([]);
 
@@ -81,8 +74,6 @@ const Form = (props: Props) => {
                 notify('An error has occurred, try again');
             }else{
                 notify('Order placed correctly!');
-
-                resetValues();
 
                 dispatch({
                     payload: [],

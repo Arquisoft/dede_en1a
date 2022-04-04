@@ -46,12 +46,6 @@ export type CartContextType = {
     dispatch: React.Dispatch<CartActionReducer>
 }
 
-export type Customer = {
-    name: string;
-    surname: string;
-    address: string;
-}
-
 export type Order = {
     _id: string,
     createdAt: Date,
