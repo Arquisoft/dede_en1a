@@ -58,3 +58,18 @@ export async function removeProductFromSeller(id:any, productId: any) {
 	return seller?.save();
 }
 
+export async function clearSellerFromProducts(id:any) {
+	// get seller
+	const seller = await findById(id);
+	if (!seller) {
+		throw new Error("seller does not exist")
+	}
+	// search for product and remove it
+	for (const [index, element] of seller!.products.entries()) {
+		await ProductRepository.deleteProduct(element)
+		seller!.products.splice(index, 1);
+		break;
+	}
+	return seller?.save();
+}
+

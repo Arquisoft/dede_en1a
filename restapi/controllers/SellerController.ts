@@ -78,7 +78,19 @@ export let addProductToSeller = async(req: Request, res: Response) => {
 }
 
 export let removeProductFromSeller = async(req: Request, res: Response) => {
-	await sellerRepository.removeProductFromSeller(req.params.id, req.body.id)
+    await sellerRepository.removeProductFromSeller(req.params.id, req.body.id)
+        .then((seller) => {
+            return res.status(200).send(seller)
+        }).catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
+        })
+}
+
+export let removeAllProductsFromSeller = async(req: Request, res: Response) => {
+    await sellerRepository.clearSellerFromProducts(req.body.id)
         .then((seller) => {
             return res.status(200).send(seller)
         }).catch((error) => {

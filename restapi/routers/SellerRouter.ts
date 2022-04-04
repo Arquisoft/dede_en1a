@@ -13,5 +13,6 @@ sellerRouter.post("/update/:id", sellerController.updateSeller)
 sellerRouter.delete("/delete/:id", sellerController.deleteSeller)
 sellerRouter.post("/addProduct/:id", sellerController.addProductToSeller)
 sellerRouter.post("/deleteProduct/:id", sellerController.removeProductFromSeller)
+sellerRouter.post("/clearSeller", sellerController.removeAllProductsFromSeller)
 
 export default sellerRouter;
