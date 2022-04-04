@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-self: center;
+}
+
+.title {
+  margin-top: 0.8rem;
+  opacity: 100%;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.ordersname {
+  font-family: "Georgia", sans-serif;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.ordercarditemcontainer {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+.ordercardcontainer > * {
+  margin: 1rem;
+}
+
+.orderwrapper {
+  box-shadow: 0px 0px 3rem rgba(255, 255, 255, 0.192);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.order {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}

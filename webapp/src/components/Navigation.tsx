@@ -3,7 +3,7 @@ import Checkout from '../pages/Checkout';
 import NavBar from "./NavBar";
 import Home from "./Home";
 import LoadingSession from "./LoadingSessionComponent"
-import OrdersPage from "../pages/OrdersPage";
+import OrdersPage from "../pages/orders/OrdersPage";
 
 type Props = {
     handleOpen: (state: boolean) => void;
