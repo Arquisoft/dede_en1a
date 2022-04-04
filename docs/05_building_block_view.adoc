@@ -83,12 +83,11 @@ This figure shows the internal decomposition of DeDe's view (frontend), model (b
 [cols="1,4" options="header"]
 |===
 | **Software** | **Responsibility**
-| _Cart_ | _Backend runtime environment where the TypeScript code runs._
-| _Navbar_ | _JavaScript library used to build user interface._
-| _Checkout_ | _Endpoint for app requests to the backend._
-| _Product Details_ | _Node library for API building._
-| _Helpers_ | _JS library for SOLID (POD) support._
-| _Hooks_ | _JS library for MongoDB connections and integration._
+| _NodeJS_ | _Backend runtime environment where the TypeScript code runs._
+| _MUI_ | _JavaScript library used to build user interface._
+| _Express_ | _Node library for API building._
+| _Solid-Client_ | _JS library for SOLID (POD) support._
+| _Mongoose_ | _JS library for MongoDB connections and integration._
 |===
 
 3) Controllers (Backend)::
