@@ -3,7 +3,7 @@
 
 === Level 1
 
-image:deploymentView_Level1.png["Top-level Deployment View"]
+image:deploymentView_Level1_v2.png["Top-level Deployment View"]
 
 Motivation::
 
@@ -19,8 +19,8 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 |===
 | **Virtual Environment** | **Responsibility**
 | _AWS_ | _Amazon Web Service, cloud platform which hosts DeDe app on a server._
-| _Ubuntu Machine_ | _Linux virtual machine where JS code runs._
-| _Docker_ | _Packages application into containers which combine the source code with the operating system (OS) libraries and dependencies, that allow the application to run in any environment._
+| _Ubuntu Machine_ | _Linux virtual machine where docker containers run._
+| _Docker_ | _Process isolation platform which allows the different parts of the application to be packaged in deployable images which run containerized independently of the underlying operating system._
 |===
 
 [cols="1,4" options="header"]

@@ -37,9 +37,9 @@ We have identified the risk or technical debts we might encounter during the pro
 |=========================================================
 | Technical Debt | Explanation
 
-| Orders are not correctly submitted
-| There exists a misimplementation of the Order schema which will need to be addressed. Orders cannot be currently submitted.
 | Chaotic dependency tree
-| We tried our best to keep a clean npm dependency tree, but as the build process kept failing we were forced to just install everything everywhere. This will be addressed in the future.
+| Although we have mostly cleaned up our dependency tree vastly improving build times, we still need to give it another look.
+| Substandard deployment vendor
+| We have been made to know that apart from Amazon Web Services, other server providers offer free, more convenient student plans. We need to look into these.
 |=========================================================
 
