@@ -42,10 +42,3 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 |===
 
 ****
-
-=== Level 2
-****
-.Motivation
-The figure above shows the infrastructure and interlinking of each environment involved in DeDe.
-
-****

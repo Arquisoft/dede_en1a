@@ -105,6 +105,7 @@ The restAPI defines DeDe's API in accordance with REST architecture, which allow
 
 ****
 
+////
 ****
 
 .Level 3
@@ -166,6 +167,8 @@ The controllers interlink the frontend and the backend
 
 
 ****
+
+////
 
 ////
 Important Interfaces::

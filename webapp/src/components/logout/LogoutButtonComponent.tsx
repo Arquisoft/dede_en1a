@@ -1,23 +1,14 @@
 import {Button} from "@mui/material";
 import React from "react";
+import {LogoutButton} from "@inrupt/solid-ui-react";
+import {useHistory} from "react-router-dom"
 
-type Props = {
-    setIsLoggedIn: () => void
-}
+export const LogoutButtonSolid = () => {
+    const history = useHistory()
 
-
-
-const LogoutButton = (props: Props) => {
-    const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
-    const {setIsLoggedIn} = props
     return(
-        <Button onClick={() => {
-            setIsLoggedIn()
-            window.location.href=apiEndPoint+"/solid/logout/" + localStorage.getItem("sessionID")
-        }}>
-            Logout
-        </Button>
+        <LogoutButton onLogout={() => {history.push("/")}}>
+            <Button color="primary">Logout</Button>
+        </LogoutButton>
     )
 }
-
-export default LogoutButton
