@@ -60,10 +60,14 @@ now he wants to check those to verify everything is correct.
 actor Bob
 participant DeDe
 database MongoDB
-database Pod
+participant Solid
 
-Bob -> DeDe : Log in with SOLID account
-Bob -> DeDe : Goes to his orders section
-DeDe <- MongoDB : Retrieves Bob's orders
-Bob <- DeDe : Shows his placed orders
+Bob -> DeDe : Clicks login button
+DeDe -> Solid : Redirects to Solid login
+Solid -> DeDe : Returns WebId
+Bob -> DeDe : Clicks the list orders button
+DeDe -> MongoDB : Asks for Bob's orders based on his WebId
+MongoDB -> DeDe : Returns the orders belonging to Bob
+DeDe -> Bob : The orders are displayed
+
 ----
