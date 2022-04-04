@@ -50,13 +50,11 @@ afterAll(async () => {
 })
 
 describe('product ', () => {
-
-
-    let sellerId: string = "624b263ac4e14a0e7dce58b6";
+    let sellerId: string = "622e4a53fb178d9622251286";
     let newCreatedProductId:string;
 
     it('can be created correctly', async () => {
-        let name:string = 'TestHammer';
+        let name:string = 'TestHammer1';
         let price:number = 20;
         let description:string = 'This is a hammer. There are many like it, but this one is mine.'
         let image:string = 'thisShouldBeAnImage';
@@ -81,7 +79,6 @@ describe('product ', () => {
             .set("Accept", "application/json");
         expect(response.statusCode).toBe(200);
     })
-
 
 });
 
