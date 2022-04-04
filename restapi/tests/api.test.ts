@@ -81,3 +81,10 @@ describe('product ', () => {
 
 
 });
+
+describe("order ", () => {
+    it ("can be listed", async () => {
+        const response:Response = await request(app).get("/order/list");
+        expect(response.statusCode).toBe(200);
+    })
+})
