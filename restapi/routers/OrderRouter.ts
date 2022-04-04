@@ -11,6 +11,5 @@ orderRouter.get("/list/user/:webId", orderController.findOrderByWebId)
 orderRouter.post("/add", orderController.addOrder)
 orderRouter.post("/update/:id", orderController.updateOrder)
 orderRouter.get("/delete/:id", orderController.deleteOrder)
-orderRouter.post("/addProduct/:id", orderController.addProduct)
 
 export default orderRouter;

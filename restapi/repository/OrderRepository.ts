@@ -1,7 +1,5 @@
 import IOrder from "../interfaces/OrderInterface";
 import Order from "../schemas/OrderSchema";
-import IProduct from "../interfaces/ProductInterface";
-import Product from "../schemas/ProductSchema";
 
 export async function findAllOrders() {
     return await Order.find({});
@@ -26,11 +24,4 @@ export async function createOrder(product: IOrder) {
 
 export async function deleteOrder(id: string) {
     return await Order.findByIdAndDelete(id);
-}
-
-export async function addProduct(id: string, productId: string, amount: Number) {
-
-	let order = await findOrderById(id);
-	console.log(order);
-	return order;
 }
