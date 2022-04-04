@@ -55,19 +55,19 @@ describe('product ', () => {
     let sellerId: string = "624b263ac4e14a0e7dce58b6";
     let newCreatedProductId:string;
 
-    // it('can be created correctly', async () => {
-    //     let name:string = 'TestHammer';
-    //     let price:number = 20;
-    //     let description:string = 'This is a hammer. There are many like it, but this one is mine.'
-    //     let image:string = 'thisShouldBeAnImage';
-    //     let weight:number = 8;
-    //     const response:Response = await request(app)
-    //         .post('/seller/addProduct/' + sellerId)
-    //         .send({name: name, price: price, description: description, image: image, weight: weight})
-    //         .set('Accept', 'application/json');
-    //     expect(response.statusCode).toBe(200);
-    //     newCreatedProductId = response.body._id;
-    // });
+    it('can be created correctly', async () => {
+        let name:string = 'TestHammer';
+        let price:number = 20;
+        let description:string = 'This is a hammer. There are many like it, but this one is mine.'
+        let image:string = 'thisShouldBeAnImage';
+        let weight:number = 8;
+        const response:Response = await request(app)
+            .post('/seller/addProduct/' + sellerId)
+            .send({name: name, price: price, description: description, image: image, weight: weight})
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+        newCreatedProductId = response.body._id;
+    });
 
     it('can be listed',async () => {
         const response:Response = await request(app).get("/product/list");
