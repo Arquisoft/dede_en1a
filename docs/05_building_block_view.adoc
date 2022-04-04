@@ -45,7 +45,7 @@ The restAPI defines DeDe's API in accordance with REST architecture, which allow
 |===
 
 === Level 3
-image:BB_Level1.png["Hierarchy of building blocks"]
+//image:BB_Level1.png["Hierarchy of building blocks"]
 
 Motivation::
 
