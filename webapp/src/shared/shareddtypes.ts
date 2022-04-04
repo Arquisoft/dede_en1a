@@ -54,11 +54,13 @@ export type Customer = {
 
 export type Order = {
     _id: string,
-    timestamps: Date,
+    createdAt: Date,
     shipping?: number,
     totalPrice?: number,
     address: string,
-    items: CartItem[]
+    products: [{
+        "product_id": string, "number": Number
+    }]
 }
 
 export type OrderAdd = {

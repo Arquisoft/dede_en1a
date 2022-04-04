@@ -9,12 +9,17 @@ const postData = async (order: OrderAdd) => {
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(
             {
-                'webId': order.webId,
-                'shipping': order.shippingPrice,
+                webId: order.webId,
+                shippingPrice: order.shippingPrice,
                 totalPrice: order.totalPrice,
                 name: order.name,
                 address: order.address,
-                items: order.products
+                products: order.products.map(prod => {
+                    return {
+                        product: prod._id,
+                        amount: prod.amount
+                    }
+                })
             }
         )
     });

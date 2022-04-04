@@ -17,6 +17,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import useOrders from "../hooks/useOrders";
 import LinearProgress from "@mui/material/LinearProgress";
 import {Grid, TableHead, Typography} from "@mui/material";
+import {getProductById} from "../api/api";
 
 interface TablePaginationActionsProps {
     count: number;
@@ -92,7 +93,11 @@ const OrdersPage = () => {
     if (isLoading) return <LinearProgress/>;
 
     const renderOrders = orders.map(order => {
-        const prods = order.items;
+        let prods: any[] = [];
+
+        for (let i = 0; i < order.products.length; i++) {
+            prods[i] = (getProductById(order.products[i].product_id));
+        }
 
         prods.map(product => {
             return (
@@ -122,7 +127,8 @@ const OrdersPage = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid><TableContainer component={Paper}>
+                    </Grid>
+                    <TableContainer component={Paper}>
                     <Table sx={{minWidth: 500}} aria-label="custom pagination table">
                         <TableHead>
                             <TableRow>
@@ -136,7 +142,7 @@ const OrdersPage = () => {
                                     ? prods.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     : prods
                             ).map((row) => (
-                                <TableRow key={row._id}>
+                                <TableRow key={row.product_id}>
                                     <TableCell component="td" scope="row">
                                         <img src={product.image} width="100" height="100" alt="product"/>
                                         {product.name}

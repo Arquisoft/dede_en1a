@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {Order, OrdersFetch} from "../shared/shareddtypes";
 import {getOrdersForUser} from "../api/api";
+import {useSession} from "@inrupt/solid-ui-react";
 
 const useOrders = () => {
 
@@ -10,10 +11,11 @@ const useOrders = () => {
         isError: false
     });
 
+    const {session} = useSession();
 
     useEffect(() => {
 
-        getOrdersForUser(localStorage.getItem("webID"))
+        getOrdersForUser(session.info.webId+"")
             .then(data => {
 
                 const customData = data.map((order: Order) => ({ ...order}));
