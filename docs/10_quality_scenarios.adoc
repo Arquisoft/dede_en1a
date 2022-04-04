@@ -1,43 +1,17 @@
 [[section-quality-scenarios]]
 == Quality Requirements
+This section contains all quality requirements as quality tree with scenarios.
 
+Since quality requirements will have a lot of influence on architectural decisions we should know for every
+stakeholder what is really important to them, concrete and measurable.
 
-[role="arc42help"]
-****
-
-.Content
-This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)
-
-Here you can also capture quality requirements with lesser priority,
-which will not create high risks when they are not fully achieved.
-
-.Motivation
-Since quality requirements will have a lot of influence on architectural
-decisions you should know for every stakeholder what is really important to them,
-concrete and measurable.
-****
+We have already talked about quality goals in https://https://dedeen2awebapp.herokuapp.com/docs/#_quality_goals[section 1.2], but in this section we will expand on that topic, using
+a quality tree (provides an overview of the attributes) and some quality scenarios (describe what happens when a stimulus arrives at the system).
 
 === Quality Tree
 
 [caption="Quality Tree"]
 image::QualityTree.png[]
-
-[role="arc42help"]
-****
-.Content
-The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.
-
-.Motivation
-The tree structure with priorities provides an overview for a sometimes large number of quality requirements.
-
-.Form
-The quality tree is a high-level overview of the quality goals and requirements:
-
-* tree-like refinement of the term "quality". Use "quality" or "usefulness" as a root
-* a mind map with quality categories as main branches
-
-In any case the tree should include links to the scenarios of the following section.
-****
 
 === Quality Scenarios
 
@@ -52,30 +26,7 @@ Here we have an initial table with our quality goals, scenarios, priorities and 
 |===
 |Quality goal|Scenario|Priority|Difficulty
 | Privacy | Private data from the users has to be protected and secure. The application only takes essential data from the user, and in a decentralized approach. | High | High
-| Usability |  Users have to be able to navigate through the application in an intuitive way | Medium | Medium
-| Mantainability | The application should be written in a way that code can be reused and modified in a simple way, bugs can be easily found and fixed, and the program should be easy to test. | High | Medium
+| Usability |  Users have to be able to navigate through the application in an intuitive way. | Medium | Medium
+| Maintainability | The application should be written in a way that code can be reused and modified in a simple way, bugs can be easily found and fixed, and the program should be easy to test. | Medium | High
+| Availability |  Users have to be able to use the application at any time any day. | High | High
 |===
-
-[role="arc42help"]
-****
-.Contents
-Concretization of (sometimes vague or implicit) quality requirements using (quality) scenarios.
-
-These scenarios describe what should happen when a stimulus arrives at the system.
-
-For architects, two kinds of scenarios are important:
-
-* Usage scenarios (also called application scenarios or use case scenarios) describe the system’s runtime reaction to a certain stimulus. This also includes scenarios that describe the system’s efficiency or performance. Example: The system reacts to a user’s request within one second.
-* Change scenarios describe a modification of the system or of its immediate environment. Example: Additional functionality is implemented or requirements for a quality attribute change.
-
-.Motivation
-Scenarios make quality requirements concrete and allow to
-more easily measure or decide whether they are fulfilled.
-
-Especially when you want to assess your architecture using methods like
-ATAM you need to describe your quality goals (from section 1.2)
-more precisely down to a level of scenarios that can be discussed and evaluated.
-
-.Form
-Tabular or free form text.
-****

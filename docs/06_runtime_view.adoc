@@ -4,34 +4,70 @@
 * Alice discovers this application by recommendation of a friend and wants to buy a new perfume she has been wanting since past christmas.
 
 * In the following diagram you can see that Alice first browses through the list
-of products available in the application, when she chooses one it is added to her order.
+of products available in the application, when she chooses one it is added to her cart.
 
 [plantuml,"alice_order",png]
 ----
 actor Alice
 participant DeDe
-database Product_Database
+database MongoDB
+
 Alice -> DeDe : Selects a product
-DeDe -> Product_Database : Asks for information of the chosen product
-DeDe <- Product_Database : Return the information of the product
-Alice <- DeDe : Shows the product in the order list
+DeDe -> MongoDB : Asks for information of the chosen product
+DeDe <- MongoDB : Return the information of the product
+Alice <- DeDe : Adds the product to the cart
 ----
 === Bob wants to process an order to buy products.
 * Bob has been browsing DeDe and has added some cool products to his
-order but now he wants to process that order and buy the products.
+order, but now he wants to process that order and buy the products.
 
-* In the following diagram you can see how Bob proceeds to buy the products
-and the application asks permission in order to use his address, then, the total cost of the order is calculated.
+* In the following diagram you can see how Bob proceeds to make an order to buy the products. In order to proceed to checkout Bob needs to log in its Solid Pod to retrieve his addresses, then, the total cost of the order is calculated.
+
+[plantuml,"bob_checkout",png]
+----
+actor Bob
+participant DeDe
+participant Geocoder
+database Pod
+database MongoDb
+
+Bob -> DeDe : Browses the products and adds them to the cart
+Bob -> DeDe : Wants to checkout
+DeDe -> Bob : Asks Bob to Log in its Pod
+Bob -> DeDe : Clicks the log in button
+DeDe -> Pod : The request is redirected to the Solid Login site
+Pod -> DeDe : The sesion is created and a WebID is returned
+Bob -> DeDe : Clicks the Proceed to Checkout button
+DeDe -> Pod : Sends a request to the Pod for the addresses
+Pod -> DeDe : Returns Bob's addresses
+DeDe -> Bob : Displays an order summary without the shipping price (no addres is selected)
+Bob -> DeDe : Chooses an address
+DeDe -> Geocoder : With the chosen address sends a request to calculate the shipping cost
+Geocoder -> DeDe : Responds with the shipping cost
+DeDe -> Bob : The order summary is updated with the shipping cost
+Bob -> DeDe : Places the order
+DeDe -> MongoDb : Stores the order with the WebId of the user
+
+----
+=== Bob wants to check his placed orders.
+* Bob has is a loyal client and has placed some orders,
+now he wants to check those to verify everything is correct.
+
+* In the following diagram you can see how Bob proceeds to check his orders. In order to retrieve Bob's orders the application will request him to log in.
 
 [plantuml,"bob_buy",png]
 ----
 actor Bob
 participant DeDe
-database Pod
+database MongoDB
+participant Solid
 
-Bob -> DeDe : Process order button
-Bob <- DeDe : Asks permission to use pod
-Bob -> DeDe : Selects yes or no
-DeDe -> Pod : Retrieves Bob's address
-Bob <- DeDe : Calculates the total cost of the order.
+Bob -> DeDe : Clicks login button
+DeDe -> Solid : Redirects to Solid login
+Solid -> DeDe : Returns WebId
+Bob -> DeDe : Clicks the list orders button
+DeDe -> MongoDB : Asks for Bob's orders based on his WebId
+MongoDB -> DeDe : Returns the orders belonging to Bob
+DeDe -> Bob : The orders are displayed
+
 ----

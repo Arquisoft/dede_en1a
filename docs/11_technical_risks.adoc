@@ -37,25 +37,9 @@ We have identified the risk or technical debts we might encounter during the pro
 |=========================================================
 | Technical Debt | Explanation
 
-| Manual client address input
-| Although the API calls for SOLID integration and address resolution are implemented,
-currently the user address is manually input when submitting an order.
-| Orders are not correctly submitted
-| There exists a misimplementation of the Order schema which will need to be addressed. Orders cannot be currently submitted.
 | Chaotic dependency tree
-| We tried our best to keep a clean npm dependency tree, but as the build process kept failing we were forced to just install everything everywhere. This will be addressed in the future.
+| Although we have mostly cleaned up our dependency tree vastly improving build times, we still need to give it another look.
+| Substandard deployment vendor
+| We have been made to know that apart from Amazon Web Services, other server providers offer free, more convenient student plans. We need to look into these.
 |=========================================================
 
-[role="arc42help"]
-****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
-
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
-
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
-
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
-****
