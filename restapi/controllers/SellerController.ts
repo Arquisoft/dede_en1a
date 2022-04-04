@@ -56,7 +56,7 @@ export let updateSeller = async(req: Request, res: Response) => {
 export let deleteSeller = async(req: Request, res: Response) => {
     await sellerRepository.deleteSeller(req.params.id)
 	.then((seller) => {
-		return res.status(200).redirect("/seller/list")
+		return res.status(200).send(seller);
 	}).catch((error) => {
 		return res.status(500).json({
 			message: error.message,

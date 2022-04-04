@@ -109,9 +109,7 @@ describe("seller ", () => {
     })
 
     it("can be deleted", async() => {
-        console.log("/seller/delete/"+customSellerId)
-        const response:Response = await request(app)
-            .get("/seller/delete/"+customSellerId);
+        const response:Response = await request(app).get("/seller/delete/"+customSellerId);
         expect(response.statusCode).toBe(200);
     })
 })
