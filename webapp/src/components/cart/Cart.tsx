@@ -2,7 +2,7 @@ import React from 'react'
 import {useContext} from 'react';
 import {CartContext} from '../../context/CartContext';
 import Item from './item/Item';
-import CartFooter from "../footer/CartFooter";
+import CartFooter from "../cartFooter/CartFooter";
 import './cart-styles.css';
 
 

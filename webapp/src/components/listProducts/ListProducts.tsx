@@ -39,6 +39,7 @@ const ListProducts = () => {
             <Grid container justifyContent="center" spacing={4}>
                 {renderCards}
             </Grid>
+            {/*<PaginationContainer />*/}
         </div>
     )
 }

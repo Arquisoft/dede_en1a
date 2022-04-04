@@ -3,22 +3,21 @@ import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
 import useForm from "../../hooks/useForm";
-import {ContactData, Customer, Order} from "../../shared/shareddtypes";
+import {ContactData, Customer, OrderAdd} from "../../shared/shareddtypes";
 import axios from "axios";
 import {useSession} from "@inrupt/solid-ui-react";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
 
 const initialState = {
     name: '',
-    lastName: '',
-    email: '',
+    surname: '',
     address: ''
 }
 
 const notify = (msj: string) => toast(msj);
 
 function encrypt(webId: string): string {
-    return Buffer.from(webId).toString("base64")
+    return encodeURIComponent(webId)
 }
 
 type Props = {
@@ -29,29 +28,26 @@ const Form = (props: Props) => {
 
     const {setNewAddress} = props
     const {cartItems, dispatch } = useContext(CartContext);
-    const {name, email, lastName, address, resetValues } = useForm<Customer>(initialState);
+    const {name, surname, address, resetValues } = useForm<Customer>(initialState);
     const [showToast, setShowToast ] = useState(false);
     const [contactData, setContactData] = useState<ContactData[]>([]);
 
     const {session} = useSession()
 
     useEffect(() => {
-
         if(session.info.webId) {
             axios.get((process.env.RESTAPI_URI || "http://localhost:5000") + "/solid/fetch/" + encrypt(session.info.webId)).then(
                 response => {
-                        localStorage.setItem("fn", response.data[0].fn)
-                        setContactData(response.data)
+                        localStorage.setItem("fn", response.data.fn)
+                        setContactData(response.data.addresses)
                 }
             )
         }
-
     }, [session.info.webId])
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let selected = e.target.value
         if(selected.length === 0) {
-
             setNewAddress([])
             localStorage.removeItem("address")
         } else {
@@ -70,17 +66,19 @@ const Form = (props: Props) => {
 
         if(orderDetails.length > 0){
 
-            const order: Order = {
-                customer: {
-                    name, email, lastName, address
-                },
-                order_details: orderDetails
+            const order: OrderAdd = {
+                address: localStorage.getItem("address") + "",
+                name: localStorage.getItem("fn") + "",
+                webId: session.info.webId + "",
+                products: cartItems,
+                shippingPrice: Number.parseFloat(localStorage.getItem("shipping") + ""),
+                totalPrice: Number.parseFloat(localStorage.getItem("totalPrice") + ""),
             }
 
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){
-                notify('An error has occured, try again');
+                notify('An error has occurred, try again');
             }else{
                 notify('Order placed correctly!');
 
@@ -106,7 +104,7 @@ const Form = (props: Props) => {
             <form autoComplete='off' onSubmit={ handleSubmit }>
                 <div className="row g-3">
                     <div className="col-sm-6">
-                        <label htmlFor="name" className='form-label'>
+                        <label htmlFor="name" id="name" className='form-label'>
                             Name: <SolidNameComponent/>
                         </label>
                     </div>
@@ -121,7 +119,7 @@ const Form = (props: Props) => {
                     </div>
                 </div>
                 <br />
-                <button className='w-100 btn btn-primary' type='submit'>Place order</button>
+                <button className='w-100 btn btn-primary' type='submit' onSubmit={handleSubmit}>Place order</button>
                 {
                     showToast && <Toaster
                         toastOptions={{
