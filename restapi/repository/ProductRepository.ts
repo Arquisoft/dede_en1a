@@ -9,8 +9,8 @@ export async function findAllProducts() {
 	return await Product.find({});
 }
 
-export async function findProductById(id: any) {
-	return await Product.findById(id);
+export async function findProductById(_id: any) {
+	return Product.findById(_id);
 }
 
 export async function updateProduct(id: any, product: IProduct) {

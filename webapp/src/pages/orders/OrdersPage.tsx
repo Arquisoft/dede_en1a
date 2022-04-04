@@ -24,14 +24,17 @@ function OrdersPage(): JSX.Element {
     if (orders != null || orders != undefined) {
         console.log(orders)
         orders.forEach((order) => {
-            console.log(order)
+            console.log(order);
             let group: JSX.Element[] = [];
             order.products.forEach(async (product) => {
-                let prod = await getProductById(product.prod);
+                let prod = await getProductById(product.prod + "");
+                console.log(prod);
                 group.push(
+                    <>
                     <div className={styles.order}>
-                        <OrderItem orderItem={prod} amount={product.number}/>
+                        <OrderItem product={prod} amount={product.number}/>
                     </div>
+                    </>
                 );
             });
             let dateOrder = new Date(order.createdAt);
