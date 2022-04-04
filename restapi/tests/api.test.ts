@@ -54,11 +54,11 @@ describe('product ', () => {
     let newCreatedProductId:string;
 
     it('can be created correctly', async () => {
-        let name:string = 'TestHammer1';
-        let price:number = 20;
-        let description:string = 'This is a hammer. There are many like it, but this one is mine.'
+        let name:string = 'testProduct';
+        let price:number = 21;
+        let description:string = 'Product for testing purposes.'
         let image:string = 'thisShouldBeAnImage';
-        let weight:number = 8;
+        let weight:number = 7;
         const response:Response = await request(app)
             .post('/seller/addProduct/' + sellerId)
             .send({name: name, price: price, description: description, image: image, weight: weight})

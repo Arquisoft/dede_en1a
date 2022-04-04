@@ -37,6 +37,8 @@ export async function addProductToSeller(id:any, product:IProduct) {
 	productDoc.save();
 	// add product id to seller
 	seller.products.push(productDoc.id);
+
+	seller.save();
 	// return updated seller
 	return productDoc;
 }
