@@ -53,7 +53,7 @@ export type Order = {
     totalPrice?: number,
     address: string,
     products: [{
-        "product_id": string, "number": Number
+        "prod": string, "number": Number
     }]
 }
 

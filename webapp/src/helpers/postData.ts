@@ -16,7 +16,7 @@ const postData = async (order: OrderAdd) => {
                 address: order.address,
                 products: order.products.map(prod => {
                     return {
-                        product: prod._id,
+                        prod: prod._id,
                         amount: prod.amount
                     }
                 })

@@ -27,7 +27,7 @@ function OrdersPage(): JSX.Element {
             console.log(order)
             let group: JSX.Element[] = [];
             order.products.forEach(async (product) => {
-                let prod = await getProductById(product.product_id);
+                let prod = await getProductById(product.prod);
                 group.push(
                     <div className={styles.order}>
                         <OrderItem orderItem={prod} amount={product.number}/>

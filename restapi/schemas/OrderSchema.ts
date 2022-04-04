@@ -9,7 +9,7 @@ const orderSchema = new Schema (
         shippingPrice: {type: Number, required: true},
         totalPrice: {type: Number, required: true},
         products: [{
-            "product": Schema.Types.ObjectId, "amount": Number
+            "prod": Schema.Types.ObjectId, "amount": Number
         }]
     }, {
 		timestamps: true
