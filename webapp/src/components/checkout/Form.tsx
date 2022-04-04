@@ -36,17 +36,14 @@ const Form = (props: Props) => {
     const {session} = useSession()
 
     useEffect(() => {
-
         if(session.info.webId) {
             axios.get((process.env.RESTAPI_URI || "http://localhost:5000") + "/solid/fetch/" + encrypt(session.info.webId)).then(
                 response => {
-                        localStorage.setItem("fn", response.data[0].fn)
-                        setContactData(response.data)
-                    console.log(contactData)
+                        localStorage.setItem("fn", response.data.fn)
+                        setContactData(response.data.addresses)
                 }
             )
         }
-
     }, [session.info.webId])
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
