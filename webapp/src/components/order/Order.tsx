@@ -28,9 +28,9 @@ const OrderSummary = (props: Props) => {
                 "country": address[0],
             }).then(response => {
                     setDistance(response.data)
+            localStorage.setItem("shipping", shipping.price?.toFixed(2)?? 0.0);
+            localStorage.setItem("totalPrice", calculateTotalPlusShiping(cartItems, shipping.price).toFixed(2));
         });
-        localStorage.setItem("shipping", shipping.price?.toFixed(2)?? 0.0);
-        localStorage.setItem("totalPrice", calculateTotalPlusShiping(cartItems, shipping.price).toFixed(2));
     }, [address])
 
     return (
