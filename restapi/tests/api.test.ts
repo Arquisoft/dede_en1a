@@ -71,5 +71,13 @@ describe('product ', () => {
         expect(response.statusCode).toBe(200);
     });
 
+    it('can be deleted', async () => {
+        const response:Response = await request(app)
+            .post("/seller/clearSeller")
+            .send({id: sellerId})
+            .set("Accept", "application/json");
+        expect(response.statusCode).toBe(200);
+    })
+
 
 });
