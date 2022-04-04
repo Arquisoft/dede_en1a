@@ -88,3 +88,30 @@ describe("order ", () => {
         expect(response.statusCode).toBe(200);
     })
 })
+
+describe("seller ", () => {
+    let customSellerId:string;
+
+    it("can be created", async() => {
+        let seller = {name: "sellerOne", products: []};
+
+        const response:Response = await request(app)
+            .post("/seller/add")
+            .send(seller)
+            .set("Accept", "application/json");
+        expect(response.statusCode).toBe(200);
+        customSellerId = response.body._id;
+    })
+
+    it("can be listed", async() => {
+        const response:Response = await request(app).get("/seller/list");
+        expect(response.statusCode).toBe(200);
+    })
+
+    it("can be deleted", async() => {
+        console.log("/seller/delete/"+customSellerId)
+        const response:Response = await request(app)
+            .get("/seller/delete/"+customSellerId);
+        expect(response.statusCode).toBe(200);
+    })
+})
