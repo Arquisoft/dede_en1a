@@ -54,7 +54,7 @@ export type Customer = {
 
 export type Order = {
     _id: string,
-    date: Date,
+    timestamps: Date,
     shipping?: number,
     totalPrice?: number,
     address: string,
@@ -63,10 +63,10 @@ export type Order = {
 
 export type OrderAdd = {
     webId: string,
-    shipping?: number,
+    shippingPrice?: number,
     totalPrice?: number,
     name: string,
     address: string,
-    items: CartItem[]
+    products: CartItem[]
 }
 

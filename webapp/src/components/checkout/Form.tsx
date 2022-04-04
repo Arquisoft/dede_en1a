@@ -7,7 +7,6 @@ import {ContactData, Customer, OrderAdd} from "../../shared/shareddtypes";
 import axios from "axios";
 import {useSession} from "@inrupt/solid-ui-react";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
-import {Buffer} from "buffer"
 
 const initialState = {
     name: '',
@@ -72,10 +71,10 @@ const Form = (props: Props) => {
 
             const order: OrderAdd = {
                 address: localStorage.getItem("address") + "",
-                name: localStorage.getItem("name") + "",
-                webId: localStorage.getItem("webID") + "",
-                items: orderDetails,
-                shipping: Number.parseFloat(localStorage.getItem("shipping") + ""),
+                name: localStorage.getItem("fn") + "",
+                webId: session.info.webId + "",
+                products: cartItems,
+                shippingPrice: Number.parseFloat(localStorage.getItem("shipping") + ""),
                 totalPrice: Number.parseFloat(localStorage.getItem("totalPrice") + ""),
             }
 
@@ -108,14 +107,8 @@ const Form = (props: Props) => {
             <form autoComplete='off' onSubmit={ handleSubmit }>
                 <div className="row g-3">
                     <div className="col-sm-6">
-                        <label htmlFor="name" className='form-label'>
+                        <label htmlFor="name" id="name" className='form-label'>
                             Name: <SolidNameComponent/>
-                        </label>
-                    </div>
-                    <div className="col-sm-6">
-                        <label htmlFor="surname" className='form-label'>
-                            Surname:
-                            <input type="text" placeholder="Write your surname..."/>
                         </label>
                     </div>
                     <div>

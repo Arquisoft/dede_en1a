@@ -1,17 +1,24 @@
-import {OrderAdd} from "../shared/shareddtypes";
+import {OrderAdd, Product} from "../shared/shareddtypes";
 
 const postData = async (order: OrderAdd) => {
+    console.log(order);
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
 
-    const fetchApi = await fetch(apiEndPoint+'/order/add',{
+    let response = await fetch(apiEndPoint + '/order/add', {
         method: 'POST',
-        body: JSON.stringify(order),
-        headers:{
-            'Content-type': 'application/json'
-        }
-    })
-
-    return fetchApi;
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(
+            {
+                'webId': order.webId,
+                'shipping': order.shippingPrice,
+                totalPrice: order.totalPrice,
+                name: order.name,
+                address: order.address,
+                items: order.products
+            }
+        )
+    });
+    return response;
 }
 
 export default postData;
