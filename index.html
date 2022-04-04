@@ -464,14 +464,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_organizational_decisions_constraints">4.4. Organizational decisions constraints</a></li>
 </ul>
 </li>
-<li><a href="#section-building-block-view">5. Building Block View</a></li>
+<li><a href="#section-building-block-view">5. Building Block View</a>
+<ul class="sectlevel2">
+<li><a href="#_level_1">5.1. Level 1</a></li>
+<li><a href="#_level_2">5.2. Level 2</a></li>
+<li><a href="#_level_3">5.3. Level 3</a></li>
+</ul>
+</li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
 <li><a href="#_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product.</a></li>
 <li><a href="#_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products.</a></li>
+<li><a href="#_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders.</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a></li>
+<li><a href="#section-deployment-view">7. Deployment View</a>
+<ul class="sectlevel2">
+<li><a href="#_level_1_2">7.1. Level 1</a></li>
+</ul>
+</li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
 <ul class="sectlevel2">
 <li><a href="#_domain_model">8.1. Domain model</a></li>
@@ -534,45 +545,25 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect1">
 <h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Describes the relevant requirements and the driving forces that software architects and development team must consider. These include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>underlying business goals, essential features and functional requirements for the system</p>
-</li>
-<li>
-<p>quality goals for the architecture</p>
-</li>
-<li>
-<p>relevant stakeholders and their expectations</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Dede is a project developed for the Software Architecture course of the University of Oviedo. This version will be developed by the team En1A:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Rosa García López</p>
+<p>Landon Brown</p>
 </li>
 <li>
-<p>Juan Andrés Torrente Bermúdez</p>
+<p>Rosa García López</p>
 </li>
 <li>
 <p>Joaquín Salustiano Britos Morales</p>
 </li>
 <li>
-<p>Luis Vijande González</p>
+<p>Juan Andrés Torrente Bermúdez</p>
 </li>
 <li>
-<p>Landon Brown</p>
+<p>Luis Vijande González</p>
 </li>
 </ul>
 </div>
@@ -581,29 +572,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.</p>
-</div>
-<div class="paragraph">
-<p>Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.</p>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>The platform will consist on a ReactJS webapp that will communicate with the server-side backend through a REST API. The client will call the API functionalities to offer the user all the functionalities in a decoupled and easy to work way.</p>
 </div>
@@ -616,23 +584,6 @@ If requirements documents exist this overview should refer to these documents.</
 </div>
 <div class="sect2">
 <h3 id="_quality_goals">1.2. Quality Goals</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don&#8217;t confuse them with project goals. They are not necessarily identical.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>A table with quality goals and concrete scenarios, ordered by priorities</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -662,48 +613,16 @@ If you as an architect do not know how the quality of your work will be judged �
 <td class="tableblock halign-left valign-top"><p class="tableblock">Code quality</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Good architecture and design to show the team capabilities and make the application easily maintainable.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application must be accessible the 24 hours of the day.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>should know the architecture</p>
-</li>
-<li>
-<p>have to be convinced of the architecture</p>
-</li>
-<li>
-<p>have to work with the architecture or with code</p>
-</li>
-<li>
-<p>need the documentation of the architecture for their work</p>
-</li>
-<li>
-<p>have to come up with decisions about the system or its development</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Table with role names, person names, and their expectations with respect to the architecture and its documentation.</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -747,26 +666,6 @@ These stakeholders determine the extent and the level of detail of your work and
 <div class="sect1">
 <h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -805,24 +704,23 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="paragraph">
-<p>When the user finishes selecting what products to buy and proceeds to create an order
-the system will ask for their permission in order to use their address, which is located in the POD, and be able to calculate the cost of the delivery.</p>
+<p>When the user finishes selecting what products to buy and proceeds to create an order,
+the system will require a login from SOLID in order to use their address, which is located in the POD, and be able to calculate the cost of the delivery.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/business_context_diagram.png" alt="business context diagram">
+<img src="./images/images/business_context_diagram.png" alt="business context diagram">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
 <div class="paragraph">
-<p>The user will execute the application and will interact with the user interface in order to choose what products to buy. When the selection is done and the client wants
-to make an order the backend will manage the necessary interactions with the user&#8217;s POD and the product database in order to provide an estimated cost of delivery in order to compute the total cost of the order.</p>
+<p>The user will execute the application and will interact with the GUI in order to choose what products to buy. When the selection is done and the client wants to make an order the application will require them to Log in its Pod. Following this, the backend will manage the necessary interactions with the user&#8217;s POD and the product database in order to provide an estimated cost of delivery and compute the total cost of the order.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/technical_context_diagram.png" alt="technical context diagram">
+<img src="./images/images/technical_context_diagram.png" alt="technical context diagram">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -832,43 +730,6 @@ to make an order the backend will manage the necessary interactions with the use
 <div class="sect1">
 <h2 id="section-solution-strategy">4. Solution Strategy</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>A short summary and explanation of the fundamental decisions and solution strategies, that shape the system&#8217;s architecture. These include</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>technology decisions</p>
-</li>
-<li>
-<p>decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern</p>
-</li>
-<li>
-<p>decisions on how to achieve key quality goals</p>
-</li>
-<li>
-<p>relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Keep the explanation of these key decisions short.</p>
-</div>
-<div class="paragraph">
-<p>Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.</p>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_technology_decisions">4.1. Technology decisions</h3>
 <div class="paragraph">
@@ -889,11 +750,17 @@ Refer to details in the following sections.</p>
 <div class="paragraph">
 <p>These will be the technologies we will use for the application backend. Typescript will be the main programming language for business logic and data access, and the REST API will be written using NodeJS express, a framework commonly used for this purpose.</p>
 </div>
+<div class="paragraph">
+<p><strong>Docker on Ubuntu</strong></p>
+</div>
+<div class="paragraph">
+<p>We use Docker, inside an Ubuntu machine, to deploy the different parts of our application inside containers.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_top_level_decomposition">4.2. Top-level decomposition</h3>
 <div class="paragraph">
-<p>We decided to follow a MVC architectural pattern. This seems to us as the most straightforward way to develop the project, as this approach directly supports the use of different technologies on different layers.</p>
+<p>We decided to follow an MVC architectural pattern. This seems to us as the most straightforward way to develop the project, as this approach directly supports the use of different technologies on different layers.</p>
 </div>
 </div>
 <div class="sect2">
@@ -905,7 +772,7 @@ Refer to details in the following sections.</p>
 <div class="sect2">
 <h3 id="_organizational_decisions_constraints">4.4. Organizational decisions constraints</h3>
 <div class="paragraph">
-<p>At least one in-person team meeting will be done every week. More meetings will be organized via a discord server. Smaller details will be discussed via WhatsApp and the GitHub issues. We will keep track of the pending and done tasks with the kanban tool available in GitHub.</p>
+<p>At least one in-person team meeting will be done every week. More meetings will be organized via a discord server when needed. Smaller details will be discussed via WhatsApp and the GitHub issues. We will keep track of the pending and done tasks with the kanban tool available in GitHub.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -914,126 +781,50 @@ Refer to details in the following sections.</p>
 <div class="sect1">
 <h2 id="section-building-block-view">5. Building Block View</h2>
 <div class="sectionbody">
-<div class="sidebarblock">
-<div class="content">
+<div class="sect2">
+<h3 id="_level_1">5.1. Level 1</h3>
 <div class="paragraph">
-<div class="title">Level 1</div>
-<p><span class="image"><img src="./images/BB_Level1.png" alt="Hierarchy of building blocks"></span></p>
+<p><span class="image"><img src="./images/buildingBlock_level1.png" alt="Building Block View Level 1"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>This figure shows the top-level decomposition of DeDe into components with distinct responsibilities.</p>
+<p>This figure shows the highest-level view of the DeDe application with its dependent databases.</p>
 </dd>
-<dt class="hdlist1">1) User Interface (UI)</dt>
+<dt class="hdlist1">1) DeDe</dt>
 <dd>
-<p>The UI will provide the user with a graphical view of the application and allow them to interact with the WebApp</p>
+<p>Web Application that allows users to order products from an online store to their home in a decentralized manner. Connects to the user&#8217;s Personal Online Datastore (POD) and the product database (hosted via MongoDB).</p>
 </dd>
-<dt class="hdlist1">2) WebApp</dt>
+<dt class="hdlist1">2) POD</dt>
 <dd>
-<p>The WebApp will manage user input and in turn communicate with the restAPI depending on the request</p>
+<p>The user&#8217;s Personal Online Data store, allows the app to be decentralized and only have access to the user&#8217;s information when permitted by the user. Stores data such as the user&#8217;s personal address, payment information, etc.</p>
 </dd>
-<dt class="hdlist1">3) RestAPI</dt>
+<dt class="hdlist1">3) Product Database</dt>
 <dd>
-<p>The restAPI translates requests from the WebApp to the model layer</p>
-</dd>
-<dt class="hdlist1">4) Model Layer</dt>
-<dd>
-<p>The Model Layer will manage requests given by the restAPI and select/input information into the databases accordingly.</p>
-</dd>
-<dt class="hdlist1">5) POD</dt>
-<dd>
-<p>The user&#8217;s Personal Online Data store, allows the app to be decentralized and only have access to the user&#8217;s information when allowed.</p>
-</dd>
-<dt class="hdlist1">6) Product Databse</dt>
-<dd>
-<p>Stores information for products (i.e. name, cost, description, availability, etc.)</p>
+<p>Stores information of products (i.e. name, cost, description, availability, etc.). Built with MongoDB.</p>
 </dd>
 </dl>
 </div>
 </div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<div class="title">Level 2</div>
-<p>*TO DO</p>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-runtime-view">6. Runtime View</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product.</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Alice discovers this application by recommendation of a friend and wants to buy a new perfume she has been wanting since past christmas.</p>
-</li>
-<li>
-<p>In the following diagram you can see that Alice first browses through the list
-of products available in the application, when she chooses one it is added to her order.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/alice_order.png" alt="alice order" width="597" height="321">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products.</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Bob has been browsing DeDe and has added some cool products to his
-order but now he wants to process that order and buy the products.</p>
-</li>
-<li>
-<p>In the following diagram you can see how Bob proceeds to buy the products
-and the application asks permission in order to use his address, then, the total cost of the order is calculated.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/bob_buy.png" alt="bob buy" width="453" height="353">
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
-<div class="sectionbody">
+<h3 id="_level_2">5.2. Level 2</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/DeploymentView_Level1.png" alt="Top-level Deployment View"></span></p>
+<p><span class="image"><img src="./images/buildingBlock_level2.png" alt="Building Block View Level 2"></span></p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>The figure above shows the infrastructure and interlinking of each environment involved in DeDe.</p>
+<p>This figure shows the decomposition of the DeDe application into its frontend (WebApp) and backend (RestAPI), as well as the most important external libraries/frameworks that support each.</p>
 </dd>
-<dt class="hdlist1">Quality and/or Performance Features</dt>
+<dt class="hdlist1">1) WebApp</dt>
 <dd>
-<p>*TO DO</p>
+<p>The WebApp is a web application which provides the user with an interface that allows them to view products, add them to a virtual shopping cart, login to their POD account, and checkout. Aside from displaying database information in a user friendly way, it also manages user requests and communicates with the backend to fulfill them.</p>
 </dd>
-<dt class="hdlist1">Environments and their Software Components</dt>
-<dt class="hdlist1">User Device</dt>
+<dt class="hdlist1">2) RestAPI</dt>
 <dd>
-<p>The device from which the user will access the DeDe application/server.</p>
-</dd>
-<dt class="hdlist1">DeDe Server</dt>
-<dd>
-<p>The server in which DeDe will be deployed and where all the software and dependencies will be stored.</p>
+<p>The restAPI defines DeDe&#8217;s API in accordance with REST architecture, which allows DeDe to communicate with the product database and the user&#8217;s POD. It also provides service to the WebApp so that the WebApp may grab information from the databases when necessary. Contains the models and business logic used to calculate delivery costs.</p>
 </dd>
 </dl>
 </div>
@@ -1050,16 +841,74 @@ and the application asks permission in order to use his address, then, the total
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>WebApp</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Communicates database information to User and manages User Input.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node.JS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Backend runtime environment where the TypeScript code runs.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>RestAPI</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React.JS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JavaScript library used to build user interface.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Material UI</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Framework for building application components.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Express.JS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node library for API building.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Inrupt</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for SOLID (POD) support.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Mongoose</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for MongoDB connections and integration.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_level_3">5.3. Level 3</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p>This figure shows the internal decomposition of DeDe&#8217;s view (frontend), model (backend), and controllers. Each section details the components which are most essential to their functionality.</p>
+</dd>
+<dt class="hdlist1">1) View (Frontend/WebApp)</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Component</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>App</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Root HTML component, encases all other visible components.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Cart</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Context which enables 'store' functionality across app.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Product Listing</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Context which enables 'store' functionality across app.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Checkout</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Endpoint for app requests to the backend.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Backend</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Manages business logic.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Form</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Context which enables 'store' functionality across app.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1076,48 +925,254 @@ and the application asks permission in order to use his address, then, the total
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>ReactJS</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JavaScript library used to build user interface.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Router</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React library which allows for paging and switching between views.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node.JS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Axios</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React library which allows for API calls.</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>View</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Home</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where products are listed in card format.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Product Details</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>More detailed view of products. Includes product description.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Login</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where user can login and access their POD.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Checkout</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where user can place the order of the products.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">2) Model (Backend/RestAPI)</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Software</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>NodeJS</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Backend runtime environment where the TypeScript code runs.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>MUI</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JavaScript library used to build user interface.</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Express</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node library for API building.</em></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Inrupt-Solid-Client</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for SOLID (POD) support.</em></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Mongoose</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for MongoDB connections and integration.</em></p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Inrupt JS Client libraries</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for SOLID support.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Nominatim</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for street address resolution.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Bootstrap</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Front-end framework for web application building. Runs on React.</em></p></td>
-</tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-runtime-view">6. Runtime View</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product.</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Alice discovers this application by recommendation of a friend and wants to buy a new perfume she has been wanting since past christmas.</p>
+</li>
+<li>
+<p>In the following diagram you can see that Alice first browses through the list
+of products available in the application, when she chooses one it is added to her cart.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/alice_order.png" alt="alice order" width="533" height="321">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products.</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Bob has been browsing DeDe and has added some cool products to his
+order, but now he wants to process that order and buy the products.</p>
+</li>
+<li>
+<p>In the following diagram you can see how Bob proceeds to make an order to buy the products. In order to proceed to checkout Bob needs to log in its Solid Pod to retrieve his addresses, then, the total cost of the order is calculated.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/bob_checkout.png" alt="bob checkout" width="1117" height="702">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders.</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Bob has is a loyal client and has placed some orders,
+now he wants to check those to verify everything is correct.</p>
+</li>
+<li>
+<p>In the following diagram you can see how Bob proceeds to check his orders. In order to retrieve Bob&#8217;s orders the application will request him to log in.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/bob_buy.png" alt="bob buy" width="583" height="417">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-deployment-view">7. Deployment View</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_level_1_2">7.1. Level 1</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/deploymentView_Level1_v2.png" alt="Top-level Deployment View"></span></p>
+</div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">User POD</dt>
+<dt class="hdlist1">Motivation</dt>
 <dd>
-<p>Where the user&#8217;s personal information is stored, which the DeDe server will have to be granted permission to access.</p>
+<p>The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles.</p>
 </dd>
-<dt class="hdlist1">Product Database</dt>
+<dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
-<p>The database that will store the store&#8217;s information regarding products, such as name, description, cost, availability, etc.</p>
+<p>Hosting the application on the AWS cloud platform allows for continuous integration, so the application is automatically updated as new developments are committed.</p>
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p>Utilizing the user&#8217;s POD following SOLID design principles allows the application to be decentralized.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Virtual Environment</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>AWS</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Amazon Web Service, cloud platform which hosts DeDe app on a server.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Ubuntu Machine</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Linux virtual machine where docker containers run.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Docker</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Process isolation platform which allows the different parts of the application to be packaged in deployable images which run containerized independently of the underlying operating system.</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Software</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>WebApp</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Communicates database information to User and manages User Input. Displays the different functionalities to the user.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>RestAPI</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Endpoint for app requests to the backend. Includes backend where business logic is managed.</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Interlinking Concepts</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>DeDe Application</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Combination of WebApp (front end web application) and RestAPI (backend + business logic).</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>User POD</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where the user&#8217;s personal information is stored, which the DeDe App must be granted permission to access.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Application DB</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Database storing product information such as name, description, cost, availability, etc. Built using MongoDB.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>User Device</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Device from which the user will access the DeDe application.</em></p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1130,7 +1185,7 @@ and the application asks permission in order to use his address, then, the total
 <p>This section describes overall, principal regulations and solution ideas that are
 relevant in multiple parts (= cross-cutting) of your system.
 Such concepts are often related to multiple building blocks.
-They can include many different topics, such as</p>
+They can include many topics, such as</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1222,7 +1277,7 @@ on this list.</p>
 <div class="sect2">
 <h3 id="_domain_model">8.1. Domain model</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
+<p><span class="image"><img src="./images/uml_domain.png" alt="UML Diagram"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -1244,12 +1299,16 @@ on this list.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A user represents the end user that will buy products in the application.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Vendor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seller</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A user role that sells products in the application.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Product</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Represents every product that will be sold through the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contains necessary data for the delivery, and a collection of products and quantities.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1260,60 +1319,23 @@ on this list.</p>
 <div class="sect1">
 <h2 id="section-design-decisions">9. Design Decisions</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
-<p>Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.</p>
-</div>
-<div class="paragraph">
-<p>Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).</p>
-</div>
-<div class="paragraph">
-<p>Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Stakeholders of your system should be able to comprehend and retrace your decisions.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Various options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>List or table, ordered by importance and consequences or:</p>
-</li>
-<li>
-<p>more detailed in form of separate sections per decision</p>
-</li>
-<li>
-<p>ADR (architecture decision record) for every important decision</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Here we will document the technologies that affect the application and we will be explaining why below.</p>
+<p>Here we will document the technologies that affect the application, and we will be explaining why below.</p>
 </div>
 <div class="sect2">
 <h3 id="_usage_of_mongodb">9.1. Usage of MongoDB</h3>
 <h5 id="_context" class="discrete">Context</h5>
 <div class="paragraph">
 <p>Since we need a Database to store the products for the application, not the users, they will be in their POD, we have to use a
-database, after thinking about it we decided we would use MongoDB since it has an easy connection with typescript.</p>
+database, after thinking about it, we decided we would use MongoDB since it has an easy connection with typescript.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_nominatim">9.2. Nominatim</h3>
 <h5 id="_context_2" class="discrete">Context</h5>
 <div class="paragraph">
-<p>To calculate the distance between the central and the user direction we will make use of the Nominatim library.</p>
+<p>To calculate the distance between the central and the user direction we will make use of the Nominatim library. It offers us a
+simple and easy way of calculating the distances.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1322,58 +1344,22 @@ database, after thinking about it we decided we would use MongoDB since it has a
 <div class="sect1">
 <h2 id="section-quality-scenarios">10. Quality Requirements</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Content</div>
-<p>This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)</p>
+<p>This section contains all quality requirements as quality tree with scenarios.</p>
 </div>
 <div class="paragraph">
-<p>Here you can also capture quality requirements with lesser priority,
-which will not create high risks when they are not fully achieved.</p>
+<p>Since quality requirements will have a lot of influence on architectural decisions we should know for every
+stakeholder what is really important to them, concrete and measurable.</p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
-<p>Since quality requirements will have a lot of influence on architectural
-decisions you should know for every stakeholder what is really important to them,
-concrete and measurable.</p>
-</div>
-</div>
+<p>We have already talked about quality goals in <a href="https://https://dedeen2awebapp.herokuapp.com/docs/#_quality_goals">section 1.2</a>, but in this section we will expand on that topic, using
+a quality tree (provides an overview of the attributes) and some quality scenarios (describe what happens when a stimulus arrives at the system).</p>
 </div>
 <div class="sect2">
 <h3 id="_quality_tree">10.1. Quality Tree</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/QualityTree.png" alt="QualityTree">
-</div>
-</div>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>The tree structure with priorities provides an overview for a sometimes large number of quality requirements.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The quality tree is a high-level overview of the quality goals and requirements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>tree-like refinement of the term "quality". Use "quality" or "usefulness" as a root</p>
-</li>
-<li>
-<p>a mind map with quality categories as main branches</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In any case the tree should include links to the scenarios of the following section.</p>
-</div>
 </div>
 </div>
 </div>
@@ -1422,56 +1408,24 @@ concrete and measurable.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users have to be able to navigate through the application in an intuitive way</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users have to be able to navigate through the application in an intuitive way.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mantainability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintainability</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application should be written in a way that code can be reused and modified in a simple way, bugs can be easily found and fixed, and the program should be easy to test.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users have to be able to use the application at any time any day.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
 </tbody>
 </table>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Concretization of (sometimes vague or implicit) quality requirements using (quality) scenarios.</p>
-</div>
-<div class="paragraph">
-<p>These scenarios describe what should happen when a stimulus arrives at the system.</p>
-</div>
-<div class="paragraph">
-<p>For architects, two kinds of scenarios are important:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Usage scenarios (also called application scenarios or use case scenarios) describe the system’s runtime reaction to a certain stimulus. This also includes scenarios that describe the system’s efficiency or performance. Example: The system reacts to a user’s request within one second.</p>
-</li>
-<li>
-<p>Change scenarios describe a modification of the system or of its immediate environment. Example: Additional functionality is implemented or requirements for a quality attribute change.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Scenarios make quality requirements concrete and allow to
-more easily measure or decide whether they are fulfilled.</p>
-</div>
-<div class="paragraph">
-<p>Especially when you want to assess your architecture using methods like
-ATAM you need to describe your quality goals (from section 1.2)
-more precisely down to a level of scenarios that can be discussed and evaluated.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Tabular or free form text.</p>
-</div>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1543,77 +1497,21 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manual client address input</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Although the API calls for SOLID integration and address resolution are implemented,
-currently the user address is manually input when submitting an order.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Orders are not correctly submitted</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">There exists a misimplementation of the Order schema which will need to be addressed. Orders cannot be currently submitted.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Chaotic dependency tree</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We tried our best to keep a clean npm dependency tree, but as the build process kept failing we were forced to just install everything everywhere. This will be addressed in the future.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Although we have mostly cleaned up our dependency tree vastly improving build times, we still need to give it another look.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Substandard deployment vendor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have been made to know that apart from Amazon Web Services, other server providers offer free, more convenient student plans. We need to look into these.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>A list of identified technical risks or technical debts, ordered by priority</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.)</p>
-</div>
-<div class="paragraph">
-<p>This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.</p>
-</div>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="section-glossary">12. Glossary</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>The most important domain and technical terms that your stakeholders use when discussing the system.</p>
-</div>
-<div class="paragraph">
-<p>You can also see the glossary as source for translations if you work in multi-language teams.</p>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>You should clearly define your terms, so that all stakeholders</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>have an identical understanding of these terms</p>
-</li>
-<li>
-<p>do not use synonyms and homonyms</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>A table with columns &lt;Term&gt; and &lt;Definition&gt;.</p>
-</div>
-<div class="paragraph">
-<p>Potentially more columns in case you need translations.</p>
-</div>
-</div>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1627,12 +1525,28 @@ currently the user address is manually input when submitting an order.</p></td>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-1&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-1&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Secure personal web data servers from SOLID. The owner controls who and what can access their pods.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-2&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-2&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open-source, front end, JavaScript library for building user interfaces or UI components. It is used as a base in the development of single-page or mobile applications.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Secure personal web data servers from SOLID. The owner controls who and what can access their pods.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform built on Chrome’s JavaScript runtime for easily building fast and scalable network applications.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mongoose</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript library that helps with building the definition of schemas for the MongoDB database, providing a lot of functionality for that purpose.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is an open source project which automatizes the application deployment inside software containers.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1661,7 +1575,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-14 23:10:19 +0100
+Last updated 2022-03-28 21:11:37 +0200
 </div>
 </div>
 </body>
