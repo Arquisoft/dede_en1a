@@ -9,8 +9,12 @@ const orderSchema = new Schema (
         shippingPrice: {type: Number, required: true},
         totalPrice: {type: Number, required: true},
         products: [{
+<<<<<<< HEAD
             product: String, 
 			amount: Number
+=======
+            "prod": String, "amount": Number
+>>>>>>> 49420779c0d7343065c6160c93105001b1567ce5
         }]
     }, {
 		timestamps: true
