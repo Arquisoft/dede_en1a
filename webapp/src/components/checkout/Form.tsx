@@ -69,7 +69,7 @@ const Form = (props: Props) => {
                 webId: session.info.webId + "",
                 products: cartItems,
                 shippingPrice: parseFloat(shipping.price.toFixed(2)),
-                totalPrice: parseFloat(localStorage.getItem("totalPrice") + ""),
+                totalPrice: parseFloat(localStorage.getItem("totalPrice") + "") + parseFloat(shipping.price.toFixed(2)),
             }
 			console.log("order: " + order.shippingPrice)
             const fetchApi = await postData(order);
