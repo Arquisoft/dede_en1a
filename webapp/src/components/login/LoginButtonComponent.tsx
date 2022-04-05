@@ -10,7 +10,7 @@ const LoginButtonSolid = () => {
             oidcIssuer={oidcIssuer}
             redirectUrl={(process.env.REACT_URI || "http://localhost:3000") + "/"}
         >
-            <Button color="primary">Log In</Button>
+            <Button sx={{color: "white"}}>Log In</Button>
         </LoginButton>
     )
 }

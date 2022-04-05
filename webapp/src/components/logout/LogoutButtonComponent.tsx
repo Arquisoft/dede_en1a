@@ -8,7 +8,7 @@ export const LogoutButtonSolid = () => {
 
     return(
         <LogoutButton onLogout={() => {history.push("/")}}>
-            <Button color="primary">Logout</Button>
+            <Button sx={{color: "white"}}>Logout</Button>
         </LogoutButton>
     )
 }

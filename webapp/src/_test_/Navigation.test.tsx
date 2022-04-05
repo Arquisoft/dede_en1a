@@ -7,6 +7,6 @@ import Navigation from '../components/Navigation';
 const handleOpen = jest.fn(() => true)
 
 test("Navigation renders correctly", () => {
-    const fakeNavigation = render(<Router><Navigation handleOpen={handleOpen}/></Router>)
+    const fakeNavigation = render(<Router><Navigation isLoggedIn={false} handleOpen={handleOpen}/></Router>)
     expect(fakeNavigation).toBeTruthy();
 })
