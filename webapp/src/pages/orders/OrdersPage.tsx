@@ -71,26 +71,11 @@ function OrdersPage(): JSX.Element {
 
     if (orders != null || orders != undefined) {
         orders.forEach((order) => {
-<<<<<<< HEAD
 			let prods : Product[] = []
 
             order.products.forEach(async (product) => {
                 let prod = await getProductById(product.product);
                 prods.push(prod)
-=======
-            console.log(order);
-            let group: JSX.Element[] = [];
-            order.products.forEach(async (product) => {
-                let prod = await getProductById(product.prod + "");
-                console.log(prod);
-                group.push(
-                    <>
-                    <div className={styles.order}>
-                        <OrderItem product={prod} amount={product.number}/>
-                    </div>
-                    </>
-                );
->>>>>>> 49420779c0d7343065c6160c93105001b1567ce5
             });
 			
             orderList.push(getListItem(order, prods))

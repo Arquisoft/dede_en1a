@@ -53,11 +53,7 @@ export type Order = {
     totalPrice?: number,
     address: string,
     products: [{
-<<<<<<< HEAD
         "product": string, "amount": number
-=======
-        "prod": string, "number": Number
->>>>>>> 49420779c0d7343065c6160c93105001b1567ce5
     }]
 }
 
