@@ -4,15 +4,13 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import LoadingSession from "./LoadingSessionComponent"
 import OrdersPage from "../pages/orders/OrdersPage";
+import {NavBarProps} from "../shared/shareddtypes";
 
-type Props = {
-    handleOpen: (state: boolean) => void;
-}
-
-const Navigation = ({handleOpen}: Props) => {
+const Navigation = (props: NavBarProps) => {
+    const {isLoggedIn, handleOpen} = props
     return (
         <>
-            <NavBar handleOpen={handleOpen}/>
+            <NavBar isLoggedIn={isLoggedIn}handleOpen={handleOpen}/>
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/checkout' component={Checkout}/>
