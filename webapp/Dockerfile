@@ -9,9 +9,6 @@ RUN npm install
 ARG API_URI
 ENV REACT_APP_API_URI=$API_URI
 
-ARG REDIRECT_URI
-ENV SOLID_REDIRECT_URI=$REDIRECT_URI
-
 #Create an optimized version of the webapp
 #commented as we are not using it yet
 #RUN npm run build
