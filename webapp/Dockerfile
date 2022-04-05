@@ -10,7 +10,8 @@ ARG API_URI
 ENV REACT_APP_API_URI=$API_URI
 
 #Create an optimized version of the webapp
-RUN npm run build
+#commented as we are not using it yet
+#RUN npm run build
 
-#Ver como podemos llamar npm run prod aquí
+#npm run prod is not compiling
 CMD [ "npm", "start"]

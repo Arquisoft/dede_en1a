@@ -37,9 +37,12 @@ export async function addProductToSeller(id:any, product:IProduct) {
 	productDoc.save();
 	// add product id to seller
 	seller.products.push(productDoc.id);
+
+	seller.save();
 	// return updated seller
-	return seller.save();
+	return productDoc;
 }
+
 // TODO: this may not work rn
 export async function removeProductFromSeller(id:any, productId: any) {
 	// get seller
@@ -54,6 +57,21 @@ export async function removeProductFromSeller(id:any, productId: any) {
 			seller!.products.splice(index, 1);
 			break;
 		}
+	}
+	return seller?.save();
+}
+
+export async function clearSellerFromProducts(id:any) {
+	// get seller
+	const seller = await findById(id);
+	if (!seller) {
+		throw new Error("seller does not exist")
+	}
+	// search for product and remove it
+	for (const [index, element] of seller!.products.entries()) {
+		await ProductRepository.deleteProduct(element)
+		seller!.products.splice(index, 1);
+		break;
 	}
 	return seller?.save();
 }
