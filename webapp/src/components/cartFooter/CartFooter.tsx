@@ -15,17 +15,16 @@ const CartFooter = () => {
             <div className="cart-summary">
                 <div className="cart-summary-row">
                     <div className='label'>Total</div>
-                    <div className='value'>{ calculateTotal(cartItems).toFixed(2) } €</div>
+                    <div className='value'>{ calculateTotal(cartItems).toFixed(2) }€</div>
                 </div>
             </div>
             <div className="d-grid gap-2">
                 {!session.info.isLoggedIn ?
                 <label>Please log in your pod</label> :
-                    <Button component={Link} to="/checkout">
+                    <Button variant="contained" style={{color: 'white'}} component={Link} to="/checkout">
                         Proceed with checkout
                     </Button>
                 }
-
             </div>
         </div>
     )

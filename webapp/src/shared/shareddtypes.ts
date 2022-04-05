@@ -4,6 +4,12 @@ export type ProductFetch = {
     isError: boolean;
 }
 
+export type OrdersFetch = {
+    orders: Order[],
+    isLoading: boolean;
+    isError: boolean;
+}
+
 export type Product = {
     _id: string;
     name: string;
@@ -40,14 +46,23 @@ export type CartContextType = {
     dispatch: React.Dispatch<CartActionReducer>
 }
 
-export type Customer = {
-    name: string;
-    lastName: string;
-    email: string;
-    address: string;
+export type Order = {
+    _id: string,
+    createdAt: Date,
+    shippingPrice?: number,
+    totalPrice?: number,
+    address: string,
+    products: [{
+        "product": string, "amount": number
+    }]
 }
 
-export type Order = {
-    customer: Customer,
-    order_details: CartItem[]
+export type OrderAdd = {
+    webId: string,
+    shippingPrice?: number,
+    totalPrice?: number,
+    name: string,
+    address: string,
+    products: CartItem[]
 }
+

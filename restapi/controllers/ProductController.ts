@@ -19,7 +19,7 @@ export let findAllProducts = async (req: Request, res: Response) => {
 
 // - GET - /product/{1} # returns a product with id 1
 export let findProduct = async (req: Request, res: Response) => {
-	await ProductRepository.findProductById(req.params._id)
+	await ProductRepository.findProductById(req.params.id)
 		.then((result) => {
 			return res.status(200).send(result);
 		})
