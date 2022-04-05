@@ -8,7 +8,7 @@ const LoginButtonSolid = () => {
     return (
         <LoginButton
             oidcIssuer={oidcIssuer}
-            redirectUrl={(process.env.REACT_APP_API_URI || "http://localhost:3000") + "/"}
+            redirectUrl={(process.env.SOLID_REDIRECT_URI || "http://localhost:3000") + "/"}
         >
             <Button color="primary">Log In</Button>
         </LoginButton>
