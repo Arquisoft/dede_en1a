@@ -15,12 +15,16 @@ function encrypt(webId: string): string {
 }
 
 type Props = {
-    setNewAddress: (address: string[]) => void
+    setNewAddress: (address: string[]) => void,
+	shipping : {
+		price: number,
+		distance : number
+	}
 }
 
 const Form = (props: Props) => {
 
-    const {setNewAddress} = props
+    const {setNewAddress, shipping} = props
     const {cartItems, dispatch } = useContext(CartContext);
     const [showToast, setShowToast ] = useState(false);
     const [contactData, setContactData] = useState<ContactData[]>([]);
@@ -64,10 +68,10 @@ const Form = (props: Props) => {
                 name: localStorage.getItem("fn") + "",
                 webId: session.info.webId + "",
                 products: cartItems,
-                shippingPrice: Number.parseFloat(localStorage.getItem("shipping") + ""),
-                totalPrice: Number.parseFloat(localStorage.getItem("totalPrice") + ""),
+                shippingPrice: parseFloat(shipping.price.toFixed(2)),
+                totalPrice: parseFloat(localStorage.getItem("totalPrice") + ""),
             }
-
+			console.log("order: " + order.shippingPrice)
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){

@@ -3,7 +3,7 @@ import {Product} from "../../shared/shareddtypes";
 
 type OrderCardItem = {
     orderItem: Product;
-    amount: Number;
+    amount: number;
 };
 
 function OrderCardItem(ord : OrderCardItem): JSX.Element{

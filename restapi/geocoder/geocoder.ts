@@ -1,6 +1,3 @@
-import {readdirSync} from "fs"
-import { format } from "path"
-import { stringify } from "querystring"
 
 const Nominatim = require('nominatim-geocoder')
 

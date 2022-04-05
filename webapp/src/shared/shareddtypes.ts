@@ -49,11 +49,11 @@ export type CartContextType = {
 export type Order = {
     _id: string,
     createdAt: Date,
-    shipping?: number,
+    shippingPrice?: number,
     totalPrice?: number,
     address: string,
     products: [{
-        "product_id": string, "number": Number
+        "product": string, "amount": number
     }]
 }
 
