@@ -69,7 +69,7 @@ function OrdersPage(): JSX.Element {
 
     let orderList: JSX.Element[] = [];
 
-    if (orders != null || orders != undefined) {
+    if (orders != null || orders !== undefined) {
         orders.forEach((order) => {
 			let prods : Product[] = []
 
