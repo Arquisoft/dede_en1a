@@ -2,7 +2,7 @@ import {Button} from "@mui/material";
 import React from "react";
 import {LoginButton} from "@inrupt/solid-ui-react"
 
-const LoginButtonSolid = () => {
+export const LoginButtonSolid = () => {
     const oidcIssuer = "https://solidcommunity.net/"
 
     return (
@@ -14,5 +14,3 @@ const LoginButtonSolid = () => {
         </LoginButton>
     )
 }
-
-export default LoginButtonSolid

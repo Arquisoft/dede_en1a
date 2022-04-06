@@ -1,6 +1,6 @@
 import React from 'react'
 import {useContext} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {CartContext} from '../context/CartContext';
 import {getTotalItems} from '../helpers/calculate';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -16,11 +16,11 @@ import {
     Button,
     Menu, MenuItem
 } from "@mui/material";
-import LoginButtonSolid from "./login/LoginButtonComponent";
-import {LogoutButtonSolid} from "./logout/LogoutButtonComponent";
 import logo from "../images/logoName.png";
 import "./styles.css"
 import {CartItem, NavBarProps} from "../shared/shareddtypes";
+import {LogInSignUpComponent} from "./userAuthentication/LogInSignUpComponent"
+
 
 type NavBarItemProps = {
     isLoggedIn: boolean
@@ -39,7 +39,7 @@ function ShoppingCart(props: ShoppingCartProps) {
             size="large"
             color="primary"
             onClick={ () => handleOpen(true)}
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, color: "white"}}
             id="shoppingCart"
         >
             <Badge badgeContent={getTotalItems(cartItems)} color="error">
@@ -158,14 +158,12 @@ function NavBarButtons(props: NavBarItemProps) {
                 {pages[1]}
             </Button>
         </Box>
-
     )
 }
 
 const NavBar = (props: NavBarProps) => {
     const {isLoggedIn, handleOpen} = props
     const {cartItems} = useContext(CartContext);
-
 
 
     return (
@@ -191,7 +189,7 @@ const NavBar = (props: NavBarProps) => {
                 </Typography>
                 <NavBarButtons  isLoggedIn={isLoggedIn}/>
                 <ShoppingCart handleOpen={handleOpen} cartItems={cartItems}/>
-                {!isLoggedIn ? <LoginButtonSolid/> : <LogoutButtonSolid/>}
+                <LogInSignUpComponent isLoggedIn={isLoggedIn}/>
             </Toolbar>
         </Container>
     </AppBar>
