@@ -16,13 +16,14 @@ export let findProduct = async (req: Request, res: Response) => {
 
 
 export let addProduct = async (req: Request, res: Response) => {
-	await Product.create(req.body)
+	const product = new Product(req.body)
+	await product.save()
 		.then(result => res.status(200).send(result))
 		.catch(error => sendError(error, res))
 }
 
 export let deleteProduct = async (req: Request, res: Response) => {
-	await Product.create(req.body)
+	await Product.findByIdAndDelete(req.params.id)
 		.then(result => res.status(200).send(result))
 		.catch(error => sendError(error, res))
 }

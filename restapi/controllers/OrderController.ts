@@ -1,4 +1,5 @@
 import {Request, Response} from "express";
+import IOrder from "../interfaces/OrderInterface";
 import Order from "../schemas/OrderSchema"
 import { sendError } from "./helper/hellpers";
 
@@ -21,7 +22,8 @@ export let findOrderByWebId = async (req: Request, res: Response) => {
 }
 
 export let addOrder = async (req: Request, res: Response) => {
-	await Order.create(req.body)
+	const order = new Order(req.body)
+	await order.save()
 		.then(result => res.status(200).send(result))
 		.catch(error => sendError(error, res))
 }

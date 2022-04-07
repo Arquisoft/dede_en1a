@@ -17,7 +17,8 @@ export let findUserById = async(req: Request, res: Response) => {
 }
 
 export let addUser = async(req: Request, res: Response) => {
-    await User.create(req.body)
+	const user = new User(req.params.id)
+    await user.save()
 		.then(result => res.status(200).send(result))
 		.catch(error => sendError(error, res))
 }
