@@ -1,87 +1,39 @@
 import {Request, Response} from "express";
-import * as OrderRepository from "./../repository/OrderRepository";
+import Order from "../schemas/OrderSchema"
+import { sendError } from "./helper/hellpers";
 
 export let findAllOrders = async (req: Request, res: Response) => {
-    await OrderRepository.findAllOrders()
-        .then((results) => {
-            return res.status(200).send(results);
-        })
-        .catch((error) => {
-            console.error(error.message);
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+	await Order.find()
+		.then(result => res.status(200).send(result))
+		.catch(error => sendError(error, res))
 }
 
 export let findOrderById = async (req: Request, res: Response) => {
-    await OrderRepository.findOrderById(req.params.id)
-        .then((result) => {
-            return res.status(200).send(result);
-        })
-        .catch((error) => {
-            console.error(error.message);
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+	await Order.findById(req.params.id)
+		.then(result => res.status(200).send(result))
+		.catch(error => sendError(error, res))
 }
 
-
 export let findOrderByWebId = async (req: Request, res: Response) => {
-    await OrderRepository.findOrderByWebId(req.params.webId)
-        .then((result) => {
-            return res.status(200).send(result);
-        })
-        .catch((error) => {
-            console.error(error.message);
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+    await Order.find({webId: req.params.webId})
+		.then(result => res.status(200).send(result))
+		.catch(error => sendError(error, res))
 }
 
 export let addOrder = async (req: Request, res: Response) => {
-    await OrderRepository.createOrder(req.body)
-        .then((result) => {
-            return res.status(200).send(result);
-        })
-        .catch((error) => {
-            console.error(error.message);
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+	await Order.create(req.body)
+		.then(result => res.status(200).send(result))
+		.catch(error => sendError(error, res))
 }
 
 export let deleteOrder = async (req: Request, res: Response) => {
-    await OrderRepository.deleteOrder(req.params.id)
-        .then((result) => {
-            return res.status(200).send(result);
-        })
-        .catch((error) => {
-            console.error(error.message);
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+    await Order.findByIdAndDelete(req.params.id)
+		.then(result => res.status(200).send(result))
+		.catch(error => sendError(error, res))
 }
 
 export let updateOrder = async (req: Request, res: Response) => {
-    await OrderRepository.updateOrder(req.params.id, req.body)
-        .then((result) => {
-            return res.status(200).send(result);
-        })
-        .catch((error) => {
-            console.error(error.message);
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+    await Order.findByIdAndUpdate(req.params.id, req.body)
+		.then(result => res.status(200).send(result))
+		.catch(error => sendError(error, res))
 }

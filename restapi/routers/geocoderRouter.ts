@@ -1,11 +1,9 @@
 
 import { Router, Request, Response} from 'express';
-import * as bodyParser from 'body-parser';
 import { getPriceFromAddress } from '../geocoder/geocoder';
 
 const geocoderRouter:Router = Router()
 
-geocoderRouter.use(bodyParser.json());
 
 geocoderRouter.post("", async (req: Request, res: Response) => {
 	await getPriceFromAddress(req.body)
