@@ -3,7 +3,7 @@ import express, { Application } from 'express';
 import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
-import sellerRouter from '../routers/SellerRouter';
+import userRouter from '../routers/userRouter';
 import productRouter from "../routers/ProductRouter";
 import orderRouter from "../routers/OrderRouter";
 import mongoose from "mongoose";
@@ -21,7 +21,7 @@ beforeAll(async () => {
     };
     app.use(cors());
     app.use(bp.json());
-    app.use("/seller", sellerRouter)
+    app.use("/seller", userRouter)
     app.use("/product", productRouter)
     app.use("/order", orderRouter)
 
