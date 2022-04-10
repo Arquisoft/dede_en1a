@@ -1,16 +1,13 @@
 import {Button} from "@mui/material";
 import React from "react";
-import {LoginButton} from "@inrupt/solid-ui-react"
+import {useHistory} from "react-router-dom";
 
-export const LoginButtonSolid = () => {
-    const oidcIssuer = "https://solidcommunity.net/"
+export const LoginButtonProvider = () => {
+    const history = useHistory()
 
-    return (
-        <LoginButton
-            oidcIssuer={oidcIssuer}
-            redirectUrl={(process.env.REACT_URI || "http://localhost:3000") + "/"}
-        >
-            <Button sx={{color: "white"}}>Log In</Button>
-        </LoginButton>
-    )
+    const selectProvider = () => {
+        history.push(`/selectProvider?toLogIn=${1}`)
+    }
+
+    return (<Button sx={{color: "white"}} onClick={selectProvider}>Login</Button>)
 }
