@@ -43,7 +43,7 @@ const server = app.listen(process.env.RESTAPI_PORT, () => {
 
 // start the database
 mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
-		dbName: "test",
+		dbName: process.env.RESTAPI_DB_NAME,
 		user: process.env.RESTAPI_DB_USERNAME,
 		pass: process.env.RESTAPI_DB_PASSWORD,
 		retryWrites: true,
