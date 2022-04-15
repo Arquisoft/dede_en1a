@@ -21,7 +21,7 @@ const Navigation = (props: NavBarProps) => {
                     <Route exact path='/checkout' component={Checkout}/>
                     <Route exact path='/orders/list' component={OrdersPage}/>
                     <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
-                    <Route exact path='/signup/selectProvider' component={SelectProviderComponent}/>
+                    <Route exact path='/selectProvider' component={SelectProviderComponent}/>
                 </Switch>
             </Box>
         </Box>

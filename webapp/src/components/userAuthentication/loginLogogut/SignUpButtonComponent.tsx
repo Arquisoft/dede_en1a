@@ -3,11 +3,11 @@ import {useHistory} from "react-router-dom"
 
 
 
-export const SignUpButtonSolid = () => {
+export const SignUpButtonComponent = () => {
     const history = useHistory()
 
     const selectProvider = () => {
-        history.push("/signup/selectProvider")
+        history.push(`/selectProvider?toLogIn=${0}`)
     }
 
     return (<Button sx={{color: "white"}} onClick={selectProvider}>SignUp</Button>)
