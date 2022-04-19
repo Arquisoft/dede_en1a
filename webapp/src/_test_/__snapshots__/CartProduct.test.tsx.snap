@@ -25,7 +25,7 @@ Object {
                 alt="image of product"
                 class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
                 src="./images/b1cb26b99296eb1a8c3a912987c4a8fb5f99efe66e894d484449fe5fb55a9efb.jpg"
-                style="height: 75%;"
+                style="height: 200px; width: 250px; margin: auto;"
               />
               <div
                 class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
@@ -106,7 +106,7 @@ Object {
               alt="image of product"
               class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
               src="./images/b1cb26b99296eb1a8c3a912987c4a8fb5f99efe66e894d484449fe5fb55a9efb.jpg"
-              style="height: 75%;"
+              style="height: 200px; width: 250px; margin: auto;"
             />
             <div
               class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
