@@ -1,4 +1,5 @@
 import {Request, Response} from "express";
+import { Jwt } from "jsonwebtoken";
 import Product from "../schemas/ProductSchema"
 import { sendError } from "./helper/hellpers";
 
@@ -16,6 +17,10 @@ export let findProduct = async (req: Request, res: Response) => {
 
 
 export let addProduct = async (req: Request, res: Response) => {
+	let token = req.headers.authorization
+	if (token == null) {
+		res.status(403).send("you need to be loged in in order to add products")
+	}
 	const product = new Product(req.body)
 	await product.save()
 		.then(result => res.status(200).send(result))
