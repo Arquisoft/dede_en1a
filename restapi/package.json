@@ -5,6 +5,7 @@
     "start": "ts-node-dev ./server.ts",
     "test": "cd tests && jest --runInBand --detectOpenHandles"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
