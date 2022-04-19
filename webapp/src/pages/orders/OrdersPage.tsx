@@ -1,6 +1,6 @@
 import {getOrdersForUser} from "../../api/api";
 import {useEffect, useState} from "react";
-import {Order, Product} from "../../shared/shareddtypes";
+import {Order} from "../../shared/shareddtypes";
 import {useSession} from "@inrupt/solid-ui-react";
 import moment from "moment";
 import {Divider, Grid, List, ListItem, Typography} from '@mui/material';
@@ -85,7 +85,7 @@ function OrdersPage(): JSX.Element {
                         group.push(
                             <>
                                 <div key={prod._id} className="product-cart-container">
-                                    <img className="product-image" src={prod.image}/>
+                                    <img className="product-image" src={prod.image}  alt={prod.name}/>
                                     <div className="product-cart-description-container">
                                         <div className="row1">
                                             <div className="product-name">{prod.name}</div>

@@ -16,7 +16,7 @@ import {LoginSolid} from "./loginLogogut/LoginSolid";
 export const SelectProviderComponent = () => {
     // Getting the parameters from the URL
     const queryParams = new URLSearchParams(window.location.search)
-    const toLogIn = queryParams.get("toLogIn") == "1"
+    const toLogIn = queryParams.get("toLogIn") === "1"
 
     const [textValue, setTextValue] = useState<string>("")
     const [redirectUrl, setRedirectUrl] = useState("")
