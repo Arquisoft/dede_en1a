@@ -14,10 +14,10 @@ import {Buffer} from "buffer"
 import IContactData from "../interfaces/ContactDataInterface";
 
 // Parametros para el logeo
-const redirectUrl: string = process.env.WEBAPP_URI + "/solid/redirect-from-solid-idp"
+const redirectUrl: string = process.env.REACT_WEBAPP_URI + "/solid/redirect-from-solid-idp"
 const oidcIssuer: string = "https://solidcommunity.net/" // Name of the pod provider.
 const clientName: string = "DeDe" // Name of the app.
-const errorRedirect: string = process.env.WEBAPP_URI + ""
+const errorRedirect: string = process.env.REACT_WEBAPP_URI + ""
 
 export let solidLogin = async (req: Request, res: Response) => {
     let session = new Session()
@@ -39,9 +39,9 @@ export let solidLogin = async (req: Request, res: Response) => {
 export let redirectFromSolidIdp =  async (req: Request, res: Response) => {
     const session = await getSessionFromStorage(req.session.id);
     if(session){
-        await session.handleIncomingRedirect(process.env.WEBAPP_URI + "/solid" + req.url);
+        await session.handleIncomingRedirect(process.env.REACT_WEBAPP_URI + "/solid" + req.url);
         if(session.info.isLoggedIn)
-            return res.redirect(process.env.WEBAPP_URI + "/solid/login/"+ Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
+            return res.redirect(process.env.REACT_WEBAPP_URI + "/solid/login/"+ Buffer.from(`${session.info.webId}`).toString("base64") + "/" + session.info.sessionId)
 
     } else {
         res.redirect(errorRedirect)
@@ -60,10 +60,10 @@ export let solidLogout =  async (req: Request, res: Response) => {
     if(session) {
         session.logout()
             .then(() => {
-                res.redirect(process.env.WEBAPP_URI + "/solid/logout")
+                res.redirect(process.env.REACT_WEBAPP_URI + "/solid/logout")
             })
     } else {
-        res.redirect(process.env.WEBAPP_URI + "/solid/logout")
+        res.redirect(process.env.REACT_WEBAPP_URI + "/solid/logout")
     }
 }
 

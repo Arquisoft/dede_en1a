@@ -1,13 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Router from "react-router-dom";
 import { render, screen, cleanup } from '@testing-library/react';
-import LoginButton from '../components/login/LoginButtonComponent';
+import {LoginButtonProvider} from '../components/userAuthentication/loginLogogut/LoginButtonComponent';
 
 const toggleLoggedIn = () => null;
 
 test("Login button works correctly", () => {
-    const testButton = render(<LoginButton />);
+    const testButton = render(<LoginButtonProvider />);
     expect(testButton).toBeTruthy();
 })
 

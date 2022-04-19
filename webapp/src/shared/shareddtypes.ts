@@ -66,3 +66,8 @@ export type OrderAdd = {
     products: CartItem[]
 }
 
+export type NavBarProps = {
+    isLoggedIn: boolean,
+    handleOpen: (state: boolean) => void
+}
+

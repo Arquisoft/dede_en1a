@@ -7,6 +7,6 @@ import NavBar from '../components/NavBar';
 const handleOpen = jest.fn(() => true)
 
 test("NavBar matches snapshot", () => {
-    const fakeNavBar = render(<Router><NavBar handleOpen={handleOpen}/></Router>)
+    const fakeNavBar = render(<Router><NavBar isLoggedIn={false} handleOpen={handleOpen}/></Router>)
     expect(fakeNavBar).toMatchSnapshot();
 })
