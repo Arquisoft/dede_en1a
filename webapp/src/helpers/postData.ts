@@ -23,6 +23,8 @@ const postData = async (order: OrderAdd) => {
             }
         )
     });
+    console.log(response);
+
     return response;
 }
 
