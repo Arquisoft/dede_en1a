@@ -40,7 +40,6 @@ export const SelectProviderComponent = () => {
             container
             spacing={0}
             direction="column"
-
             justifyContent="center"
             style={{ minHeight: '50vh'}}
         >

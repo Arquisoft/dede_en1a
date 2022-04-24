@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import logo from "../images/logoName.png";
 import "./styles.css"
-import {CartItem, NavBarProps} from "../shared/shareddtypes";
+import {CartItem, NavBarProps, NavigationProps} from "../shared/shareddtypes";
 import {LogInSignUpComponent} from "./userAuthentication/LogInSignUpComponent"
 
 
