@@ -22,7 +22,7 @@ const ListProducts = () => {
 
     const {products, isLoading} = useFetch();
 
-    const [query, setQuery] = useState("Screw");
+    const [query, setQuery] = useState('');
 
     const filteredItems = getFilteredItems(query, products);
 
@@ -48,16 +48,16 @@ const ListProducts = () => {
 
     return (
         <div>
-            <label>Search</label>
-            <input 
-                type="text" 
-                placeholder="Search..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)} />
-            
             <Grid container justifyContent="center" spacing={4}>
+                <Grid item xs={12}>
+                    <input 
+                        type="text" 
+                        placeholder="Search..."
+                        onChange={(e) => setQuery(e.target.value)} />
+                </Grid>
                 {renderCards}
             </Grid>
+
             {/*<PaginationContainer />*/}
         </div>
     )
