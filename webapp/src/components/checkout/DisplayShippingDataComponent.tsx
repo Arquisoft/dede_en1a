@@ -38,6 +38,14 @@ const addressToString = (address: Address) => {
 const DisplayFullNameComponent = (props: FullNameProps) => {
     const {fn, setIsValidName} = props
 
+    useEffect(() => {
+        if(fn !== "") {
+            localStorage.setItem("fn", fn)
+            setIsValidName(true)
+        }
+
+    })
+
     const handleChange = (fn: string) => {
         localStorage.setItem("fn", fn)
         setIsValidName(fn.length !== 0)
@@ -66,12 +74,6 @@ const DisplayAddressesComponent = (props: AddressesProps) => {
 
     const [address, setAddress] = useState<string[]>(["", "", "", ""]) // Country, region, locality, address
 
-
-
-    useEffect(() => {
-        localStorage.setItem("address", address[0] + "/" + address[1] + "/" + address[2] + "/" + address[3])
-    }, address)
-
     const validateAddress = () => {
         let valid = true
         address.forEach(e => {
@@ -91,7 +93,13 @@ const DisplayAddressesComponent = (props: AddressesProps) => {
     }
 
     const handleChange = (address: string) => {
-        localStorage.setItem("address", address)
+        if(address !== "") {
+            localStorage.setItem("address", address)
+            setIsValidAddress(true)
+        } else {
+            localStorage.removeItem("address")
+            setIsValidAddress(false)
+        }
     }
 
     return (
@@ -105,7 +113,7 @@ const DisplayAddressesComponent = (props: AddressesProps) => {
                         <select
                             onChange={(e) => handleChange(e.target.value)}
                         >
-                            <option value="no_address">Select an address</option>
+                            <option value="">Select an address</option>
                             {addresses.map((address, index) =>
                                 <option
                                     key={index}

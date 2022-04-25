@@ -13,10 +13,11 @@ type Props = {
     step: number
     isValidAddress?: boolean
     isValidName?: boolean
+    handleSubmit?: () => void
 }
 
 export default function HorizontalLinearStepper(props: Props) {
-    const {step, isValidAddress, isValidName} = props
+    const {step, isValidAddress, isValidName, handleSubmit} = props
     const [activeStep, setActiveStep] = React.useState(step);
     const history = useHistory()
 
@@ -26,6 +27,10 @@ export default function HorizontalLinearStepper(props: Props) {
         if(activeStep === 1 && isValidAddress && isValidName) {
             history.push("/checkout/summary")
         }
+        if(activeStep === 2 && handleSubmit !== undefined) {
+            handleSubmit()
+            history.push("/checkout/success")
+        }
     };
 
     const handleBack = () => {
@@ -33,6 +38,8 @@ export default function HorizontalLinearStepper(props: Props) {
             history.push("/")
         if(activeStep === 1)
             history.push("/checkout/displayProducts")
+        if(activeStep === 2)
+            history.push("/checkout/shippingData")
     };
 
     const handleReset = () => {
@@ -77,7 +84,7 @@ export default function HorizontalLinearStepper(props: Props) {
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button onClick={handleNext}>
-                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                            {activeStep === steps.length - 1 ? 'Confirm order' : 'Next'}
                         </Button>
                     </Box>
                 </React.Fragment>

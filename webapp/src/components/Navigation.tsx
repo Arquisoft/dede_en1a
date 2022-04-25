@@ -9,6 +9,7 @@ import {Box} from "@mui/material";
 import {DisplayProductsComponent} from "./checkout/DisplayProductsComponent";
 import {DisplayShippingDataComponent} from "./checkout/DisplayShippingDataComponent"
 import {DisplayOrderSummaryComponent} from "./checkout/DisplayOrderSummaryComponent";
+import {CheckoutSuccessComponent} from "./checkout/CheckoutSuccessComponent";
 
 const Navigation = (props: NavigationProps) => {
     const {isLoggedIn, handleOpen} = props
@@ -21,8 +22,9 @@ const Navigation = (props: NavigationProps) => {
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route exact path={'/checkout/displayProducts'} component={DisplayProductsComponent}/>
-                    <Route exact path={"/checkout/shippingData"} component={DisplayShippingDataComponent}></Route>
+                    <Route exact path={"/checkout/shippingData"} component={DisplayShippingDataComponent}/>
                     <Route exact path={"/checkout/summary"} component={DisplayOrderSummaryComponent}/>
+                    <Route exact path={"/checkout/success"} component={CheckoutSuccessComponent}/>
                     <Route exact path='/orders/list' component={OrdersPage}/>
                     <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
                     <Route exact path='/selectProvider' component={SelectProviderComponent}/>

@@ -1,4 +1,4 @@
-import {Box, Grid, Paper, Typography} from "@mui/material";
+import {Box, Button, Grid, List, Paper, Typography} from "@mui/material";
 import React, {FormEvent, useContext, useEffect, useState} from "react";
 import {CartContext} from "../../context/CartContext";
 import {Address, OrderAdd} from "../../shared/shareddtypes";
@@ -7,16 +7,72 @@ import axios from "axios";
 import postData from "../../helpers/postData";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
 import toast, {Toaster} from "react-hot-toast";
+import {useHistory} from "react-router-dom";
+import Item from "../cart/item/Item";
+import {calculateTotal, calculateTotalPlusShiping} from "../../helpers/calculate";
+import {useShipping} from "../../hooks/useShipping";
+import HorizontalLinearStepper from "./HorizontalLinearStepper";
 
 const notify = (msj: string) => toast(msj);
 
-const OrderSummary = () => {
+type DisplayProductsProps = {
+    setProductCost: (cost: number) => void
+}
+
+type OrderSummaryProps = {
+    setShippingPrice: (shippingPrice: number) => void
+}
+
+const DisplayProducts = (props: DisplayProductsProps) => {
+    const {cartItems} = useContext(CartContext);
+    const {setProductCost} = props
+
+    useEffect(() => {
+        setProductCost(calculateTotal(cartItems))
+    })
+
+    return (
+        <Box>
+            <Box>
+                <Typography variant={"h3"}>Your products:</Typography>
+            </Box>
+            <List style={{maxHeight: 300, overflow: 'auto'}}>
+                {
+                    cartItems.map(item => (
+                        <Item
+                            inCheckout={true}
+                            key={item._id}
+                            item={item}/>
+                    ))
+                }
+            </List>
+            <Typography variant="h5">
+                {"Total cost of products is: " + calculateTotal(cartItems).toFixed(2) + "€"}
+            </Typography>
+        </Box>
+    )
+}
+
+const OrderSummary = ({setShippingPrice}: OrderSummaryProps) => {
+    const [productCost, setProductCost] = useState(0.0)
+    const shipping = useShipping(localStorage.getItem("address") + "")
+
+    useEffect(() => {
+        setShippingPrice(shipping.price)
+    })
+
     return (
         <Box>
             <Paper>
                 <Box>
-                    <Typography variant="h1">Name: {localStorage.getItem("fn")}</Typography>
+                    <DisplayProducts setProductCost={setProductCost}/>
                 </Box>
+                <Typography variant={"h5"}>
+                    {"Shipping cost: " + shipping.price.toFixed(2) + "€"}
+                </Typography>
+                <Typography variant={"h5"}>
+                    {"Total order cost: " + (productCost + shipping.price).toFixed(2) + "€"}
+                </Typography>
             </Paper>
         </Box>
     )
@@ -27,7 +83,8 @@ const ContactData = () => {
         <Box>
             <Paper>
                 <Box>
-                    <Typography variant="h1">Name: {localStorage.getItem("fn")}</Typography>
+                    <Typography variant="h3">Name: {localStorage.getItem("fn")}</Typography>
+                    <Typography variant="h3">Address: {localStorage.getItem("address")}</Typography>
                 </Box>
             </Paper>
         </Box>
@@ -42,8 +99,7 @@ export const DisplayOrderSummaryComponent = () => {
 
     const {session} = useSession()
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
 
         setShowToast(true);
 
@@ -57,7 +113,7 @@ export const DisplayOrderSummaryComponent = () => {
                 webId: session.info.webId + "",
                 products: cartItems,
                 shippingPrice: parseFloat(shippingPrice.toFixed(2)),
-                totalPrice: parseFloat(localStorage.getItem("totalPrice") + "") + parseFloat(shippingPrice.toFixed(2)),
+                totalPrice: parseFloat(calculateTotalPlusShiping(cartItems, shippingPrice).toFixed(2))
             }
             console.log("order: " + order.shippingPrice)
             const fetchApi = await postData(order);
@@ -82,14 +138,21 @@ export const DisplayOrderSummaryComponent = () => {
 
 
     return (
+        <Box>
         <Grid container
               justifyContent="center"
               alignItems="center"
-              direction="row"
+              direction="column"
               columnSpacing={12}
         >
-            <ContactData/>
-            <OrderSummary/>
+            <Box>
+                <ContactData/>
+                <OrderSummary setShippingPrice={setShippingPrice}/>
+            </Box>
         </Grid>
+            <Box sx={{margin: '60px'}}>
+                <HorizontalLinearStepper handleSubmit={handleSubmit} step={2}/>
+            </Box>
+        </Box>
     )
 }

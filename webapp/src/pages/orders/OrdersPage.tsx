@@ -49,7 +49,6 @@ function getListItem(order: Order, products : Product[]) {
 					{productItems}
 				</div>
 			</ListItem>
-			<Divider></Divider>
 		</>
 	)
 }
