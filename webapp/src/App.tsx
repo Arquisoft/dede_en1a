@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import {CartProvider} from "./context/CartContext";
 import DetailsView from "./pages/DetailsView/DetailsView";
 import {useSession} from "@inrupt/solid-ui-react";
+import { createToken } from "../auth/generateToken";
 
 
 const App = () => {
@@ -21,6 +22,9 @@ const App = () => {
 
     session.onLogin(() => {
         setIsLoggedIn(true)
+        let token = createToken(session.info.webId)
+        session.info.token = token;
+        
     })
 
     session.onLogout(() => {
