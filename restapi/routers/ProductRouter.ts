@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { checkJWT } from '../middleware/checkJWT';
 import { checkRole } from '../middleware/checkRole';
+import { checkSeller } from '../middleware/checkSeller';
 import * as ProductController from "./../controllers/ProductController";
 
 const productRouter:Router = express.Router()
@@ -16,7 +17,7 @@ productRouter.get(
 );
 productRouter.post(
     "/update/:id", 
-    [checkJWT, checkRole(["ADMIN", "SELLER"])], 
+    [checkJWT, checkRole(["ADMIN", "SELLER"]), checkSeller], 
     ProductController.updateProduct
 );
 productRouter.post(
@@ -26,7 +27,7 @@ productRouter.post(
 )
 productRouter.get(
     '/delete/:id', 
-    [checkJWT, checkRole(["ADMIN", "SELLER"])], 
+    [checkJWT, checkRole(["ADMIN", "SELLER"]), checkSeller], 
     ProductController.deleteProduct
 )
 productRouter.get(

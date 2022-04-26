@@ -1,5 +1,4 @@
 import {Request, Response, NextFunction } from 'express';
-import { IUser } from '../interfaces/UserInterface';
 import User from '../schemas/UserSchema';
 
 
@@ -10,12 +9,15 @@ export const checkRole = (roles: string[]) => {
         let user = await User.findOne({webId : webId}).then(result => {
             return result
         }).catch(error => {
-            res.status(401).send('Se ha producido un error al recuperar el usuario')
+            res.status(401).send('An error was proeuced while recuperating the user')
         }) 
 
-        if (user != null && roles.indexOf(user.role) > -1)
+        if (user != null && roles.indexOf(user.role) > -1) { 
+            res.locals.role = user.role;
+            res.locals.seller_id = user._id;
             next();
+        }
         else
-            res.status(401).send('Se ha producido un error al autenticarse')
+            res.status(401).send('An error was proeuced while autenticating the user')
     }
 }

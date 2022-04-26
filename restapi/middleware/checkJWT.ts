@@ -14,11 +14,5 @@ export const checkJWT = (req : Request, res : Response, next: NextFunction) => {
         return;
     }
 
-    const {webId} = JWTPayload
-    const newToken = jwt.sign({webId}, <jwt.Secret>process.env.JWT_SECRET, {
-        expiresIn: "2h"
-    })
-    res.setHeader("token", newToken)
-
     next()
 }
