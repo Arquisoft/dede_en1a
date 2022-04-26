@@ -22,4 +22,6 @@ test("Product card matches snapshot", () => {
 
 //test handle add to cart
 
-//test render cards
+//test that correct names and descriptions show up
+
+//mock useFetch hook?

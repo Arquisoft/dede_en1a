@@ -28,18 +28,18 @@ defineFeature(feature, test => {
       .catch(() => {});
   });
 
-  test('No product details are displayed', ({given,when,then}) => {
+  test('Display product details', ({given,when,then}) => {
 
     given('No product details', () => {
     });
 
     when('I click on the product details button of a product', async () => {
-      await expect(page).toMatch('DEDE')
-      await expect(page).toClick(testProduct._id + '_details')
+      await expect(page).toMatch('DEDE') //make sure browser is on home page
+      await expect(page).toClick(testProduct._id + '_details') //click on test product 'details' button
     });
 
     then('I am taken to a new page where product details are displayed', async () => {
-      await expect(page).toMatch('Price:')
+      await expect(page).toMatch('Price:') //expect page to now display test product details
     });
   })
 

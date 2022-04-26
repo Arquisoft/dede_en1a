@@ -18,3 +18,5 @@ test("Item matches snapshot", () => {
     const fakeItem = render(<Item item={testProduct} />);
     expect(fakeItem).toMatchSnapshot();
  })
+
+ //more tests -> test that correct names and descriptions show up

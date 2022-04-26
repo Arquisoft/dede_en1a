@@ -8,3 +8,5 @@ test('Returns checkout form', () => {
   const checkout = screen.getByTestId('checkout');
   expect(checkout).toBeInTheDocument();
 });
+
+//more tests?

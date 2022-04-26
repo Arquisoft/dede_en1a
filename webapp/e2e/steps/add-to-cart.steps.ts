@@ -36,15 +36,15 @@ defineFeature(feature, test => {
     });
 
     when('I add an item to the cart', async () => {
-      await expect(page).toMatch('DEDE')
+      await expect(page).toMatch('DEDE') //CHANGE: make sure browser is on the home page
 
-      await expect(page).toClick(testProduct._id + '_cart')
+      await expect(page).toClick(testProduct._id + '_cart') //click on 'add to cart' button of test product
     });
 
     then('The item appears in the cart', async () => {
-      await expect(page).toClick('shoppingCart')
+      await expect(page).toClick('shoppingCart') //CHANGE: click on shopping cart icon
 
-      await expect(page).toMatch('Total')
+      await expect(page).toMatch('Total') //CHANGE: make sure test product appears in shopping cart
     });
   })
 

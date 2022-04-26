@@ -6,6 +6,7 @@ const feature = loadFeature('./features/register-form.feature');
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
 
+/*
 defineFeature(feature, test => {
   
   beforeAll(async () => {
@@ -50,4 +51,4 @@ defineFeature(feature, test => {
   })
 
 });
-
+*/

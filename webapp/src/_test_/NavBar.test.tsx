@@ -10,3 +10,5 @@ test("NavBar matches snapshot", () => {
     const fakeNavBar = render(<Router><NavBar isLoggedIn={false} handleOpen={handleOpen}/></Router>)
     expect(fakeNavBar).toMatchSnapshot();
 })
+
+// test that buttons work correctly?

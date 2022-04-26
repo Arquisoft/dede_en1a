@@ -6,7 +6,9 @@ import {LogoutButtonSolid} from '../components/userAuthentication/loginLogogut/L
 
 const toggleLoggedIn = () => null;
 
-test("Logout button works correctly", () => {
+test("Logout button renders", () => {
     const testButton = render(<LogoutButtonSolid />);
     expect(testButton).toBeTruthy();
 })
+
+// Logout button should function -> after clicking, user is logged out.

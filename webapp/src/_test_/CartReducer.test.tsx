@@ -30,7 +30,5 @@ const cartItems: CartItem[] = [
 ];
   
 test("Add function works", () => {
-    expect(CartReducer).toBeTruthy();
+    expect(CartReducer).toBeTruthy(); // change this
 })
-
-//need to come back to this to figure out how useReducer works.

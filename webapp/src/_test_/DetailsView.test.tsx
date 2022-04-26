@@ -20,7 +20,7 @@ describe("Component Page", () => {
     it("should render product details", () => {
       jest.spyOn(Router, 'useParams').mockReturnValue({ _id: '622fc17f8aedec1b7f53677a' })
       const wrapper = createWrapper();
-      expect(wrapper).toBeTruthy; //need to make more specific
+      expect(wrapper).toBeTruthy; //this does nothing,  need to make more specific
     });
   });
 });

@@ -8,3 +8,5 @@ test('Returns a container of products', () => {
     const productContainer = screen.getByTestId('productContainer');
     expect(productContainer).toBeInTheDocument();
 });
+
+//add more tests?
