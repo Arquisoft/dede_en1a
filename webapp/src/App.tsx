@@ -23,12 +23,12 @@ const App = () => {
     session.onLogin(() => {
         setIsLoggedIn(true)
         let token = createToken(session.info.webId)
-        session.info.token = token;
-        
+        localStorage.setItem("token", token)
     })
 
     session.onLogout(() => {
         setIsLoggedIn(false)
+		localStorage.removeItem("token")
     })
 
     return (
