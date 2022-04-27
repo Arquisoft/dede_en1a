@@ -14,6 +14,7 @@ import geocoderRouter from "./routers/geocoderRouter";
 import 'dotenv/config'
 
 
+
 const app: Application = express(); 
 const options: cors.CorsOptions = {
 	origin: ['http://localhost:3000']
