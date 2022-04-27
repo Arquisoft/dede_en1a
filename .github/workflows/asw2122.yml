@@ -76,12 +76,15 @@ jobs:
       - uses: actions/checkout@v2
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
+        env:
+          PRICE_PER_KM: ${{ secrets.PRICE_PER_KM }}
         with:
           name: arquisoft/dede_en_01a/restapi
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
+          buildargs: PRICE_PER_KM
   deploy:
     name: Deploy over SSH
     runs-on: ubuntu-latest
