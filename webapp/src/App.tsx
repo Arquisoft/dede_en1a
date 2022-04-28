@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 import {CartProvider} from "./context/CartContext";
 import DetailsView from "./pages/DetailsView/DetailsView";
 import {useSession} from "@inrupt/solid-ui-react";
-import { createToken } from "../auth/generateToken";
+import axios from "axios";
 
 
 const App = () => {
@@ -22,8 +22,10 @@ const App = () => {
 
     session.onLogin(() => {
         setIsLoggedIn(true)
-        let token = createToken(session.info.webId)
-        localStorage.setItem("token", token)
+        axios.get(process.env.REACT_APP_API_URI + "/token/" + session.info.webId).then(response => {
+			const token = response.data
+			localStorage.setItem("token", token)
+		})
     })
 
     session.onLogout(() => {

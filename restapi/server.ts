@@ -12,6 +12,7 @@ import geocoderRouter from "./routers/geocoderRouter";
 
 
 import 'dotenv/config'
+import authRouter from "./routers/authrouter";
 
 
 
@@ -33,6 +34,7 @@ app.use("/product", productRouter)
 app.use("/order", orderRouter)
 app.use("/solid", solidRouter)
 app.use("/geocode", geocoderRouter)
+app.use("/token:webId", authRouter)
 
 
 // Connect to the server
