@@ -1,4 +1,7 @@
 version: '3.5'
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
 services:
   restapi:
     image: ghcr.io/arquisoft/dede_en_01a/restapi:latest
