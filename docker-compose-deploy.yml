@@ -13,6 +13,12 @@ services:
       - "3000:3000"
     depends_on: 
       - restapi
+  prom-node-exporter:
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+    depends_on:
+      - restapi
   prometheus:
     image: prom/prometheus
     volumes:
@@ -22,6 +28,7 @@ services:
       - "9090:9090"
     depends_on:
       - restapi
+      - prom-node-exporter
   grafana:
     image: grafana/grafana
     volumes:
