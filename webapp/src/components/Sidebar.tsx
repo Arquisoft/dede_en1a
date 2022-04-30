@@ -4,9 +4,11 @@ import Cart from './cart/Cart';
 
 type Props = {
     handleClose: (state: boolean) => void
+    setIsInCheckout: (isInCheckout: boolean) => void
 }
 
-const Sidebar = ({handleClose}: Props) => {
+const Sidebar = (props: Props) => {
+    const {handleClose, setIsInCheckout} = props
     return (
         <Offcanvas
             show={true}
@@ -16,7 +18,7 @@ const Sidebar = ({handleClose}: Props) => {
                 <Offcanvas.Title>Your cart</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-                <Cart/>
+                <Cart setIsInCheckout={setIsInCheckout}/>
             </Offcanvas.Body>
         </Offcanvas>
     )

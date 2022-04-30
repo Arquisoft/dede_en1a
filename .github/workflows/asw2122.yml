@@ -70,6 +70,7 @@ jobs:
       DB_USERNAME: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       PORT: ${{ secrets.PORT }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     #needs: [e2e-tests]
     needs: [ unit-test-webapp, unit-test-restapi ]
     steps:
@@ -84,7 +85,8 @@ jobs:
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
-          buildargs: PRICE_PER_KM
+          buildargs: PRICE_PER_KM, JWT_SECRET, DB_USER, DB_NAME, DB_PASSWORD
+
   deploy:
     name: Deploy over SSH
     runs-on: ubuntu-latest

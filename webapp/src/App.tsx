@@ -5,19 +5,14 @@ import Sidebar from "./components/Sidebar";
 import {CartProvider} from "./context/CartContext";
 import DetailsView from "./pages/DetailsView/DetailsView";
 import {useSession} from "@inrupt/solid-ui-react";
+import axios from "axios";
 
 
 const App = () => {
     const [show, setShow] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isInCheckout, setIsInCheckout] = useState(false)
     const {session} = useSession()
-
-    useEffect(() => {
-        if(isLoggedIn && session.info.webId)
-            localStorage.setItem("webId", session.info.webId)
-        else
-            localStorage.removeItem("webId")
-    }, [isLoggedIn, session.info.webId])
 
     session.onLogin(() => {
         setIsLoggedIn(true)
@@ -30,8 +25,8 @@ const App = () => {
     return (
         <Router>
             <CartProvider>
-                <Navigation isLoggedIn={isLoggedIn} handleOpen={setShow}/>
-                {show && <Sidebar handleClose={setShow}/>}
+                <Navigation isInCheckout={isInCheckout} isLoggedIn={isLoggedIn} handleOpen={setShow}/>
+                {show && <Sidebar setIsInCheckout={setIsInCheckout} handleClose={setShow}/>}
                 <Switch>
                     <Route path="/product/:_id">
                         <DetailsView/>
