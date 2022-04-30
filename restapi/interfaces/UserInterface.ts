@@ -6,5 +6,6 @@ export type UserRole = "ADMIN" | "SELLER"
 export interface IUser extends Document {
     webId: string
 	name?: string,
-	role: UserRole
+	role: UserRole,
+	password: string
 }
