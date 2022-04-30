@@ -8,14 +8,18 @@ import {useSession} from "@inrupt/solid-ui-react";
 
 type Props = {
     setIsInCheckout: (isInCheckout: boolean) => void
+    handleClose?: (close: boolean) => void
 }
 
 const CartFooter = (props: Props) => {
-    const {setIsInCheckout} = props
+    const {setIsInCheckout, handleClose} = props
     const { cartItems } = useContext(CartContext);
     const {session} = useSession()
 
     const handleClick = () => {
+        if (handleClose)
+            handleClose(false)
+
         setIsInCheckout(true)
     }
 
@@ -29,7 +33,9 @@ const CartFooter = (props: Props) => {
             </div>
             <div className="d-grid gap-2">
                 {!session.info.isLoggedIn ?
-                <label>Please log in your pod</label> :
+                <label>Please log in your pod</label>
+                    :
+
                     <Button variant="contained" style={{color: 'white'}} onClick={handleClick} component={Link} to="/checkout/displayProducts">
                         Proceed with checkout
                     </Button>

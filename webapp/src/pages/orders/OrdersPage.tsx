@@ -73,7 +73,7 @@ function OrdersPage(): JSX.Element {
 			let prods : Product[] = []
 
             order.products.forEach(async (product) => {
-                let prod = await getProductById(product.product);
+                let prod = await getProductById(product.prod + "");
                 prods.push(prod)
             });
 			

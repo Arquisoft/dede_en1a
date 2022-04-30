@@ -86,7 +86,7 @@ export const SelectProviderComponent = () => {
                                     Please type a valid pod provider.
                                 </Alert>
                             </Collapse>
-                            <LoginSolid provider={textValue} redirectUrl={redirectUrl} setOpen={setOpen} />
+                            <LoginSolid provider={textValue} redirectUrl={redirectUrl} isValid={isValid} setOpen={setOpen} />
                         </Box>
                         :
                         <Box>

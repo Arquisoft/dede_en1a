@@ -7,10 +7,11 @@ import './cart-styles.css';
 
 type Props = {
     setIsInCheckout: (isInCheckout: boolean) => void
+    handleClose?: (close: boolean) => void
 }
 
 const Cart = (props: Props) => {
-    const {setIsInCheckout} = props
+    const {setIsInCheckout, handleClose} = props
     const {cartItems} = useContext(CartContext);
 
     if (!cartItems.length) return <p><b>Cart is empty</b></p>;
@@ -24,7 +25,7 @@ const Cart = (props: Props) => {
                         item={item}/>
                 ))
             }
-            <CartFooter setIsInCheckout={setIsInCheckout}/>
+            <CartFooter setIsInCheckout={setIsInCheckout} handleClose={handleClose}/>
         </div>
     )
 }

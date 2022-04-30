@@ -24,28 +24,7 @@ export let solidCommunityFetch = async (req: Request, res: Response) =>{
  * the given pod.
  * @param encryptedWebId
  */
-async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
-    // Desencription of the webID
-    let webID = decodeURIComponent(encryptedWebId)
-    let profileDocumentURI = webID.split("#")[0] // Retrieve the user card
-    let myDataSet = await getSolidDataset(profileDocumentURI) // Get the dataset
-    let profile = getThing(myDataSet, webID) as Thing // Get the #me thing
 
-    console.log(getUrlAll(await profile, VCARD.hasAddress))
-    let urlAddress = getUrlAll(profile as Thing, FOAF.name)
-    console.log(urlAddress)
-    let result = processAddresses(urlAddress, myDataSet, profile)
-
-    return result
-}
-
-
-/**
- * This function retrieves information from
- * the given pod.
- * @param encryptedWebId
- */
-/*
 async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
     // Desencription of the webID
     let webID = decodeURIComponent(encryptedWebId)
@@ -60,7 +39,7 @@ async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
 
     return result
 }
-*/
+
 
 function processAddresses(urlAddresses: string[], dataset: SolidDataset, profile: (Thing & { url: UrlString }) | null): IContactData {
     // Here we store the addresses of the client

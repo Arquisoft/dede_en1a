@@ -6,10 +6,11 @@ type Props = {
     provider: string
     redirectUrl: string
     setOpen: (open: boolean) => void
+    isValid: boolean
 }
 
 export const LoginSolid = (props: Props) => {
-    const {provider, redirectUrl, setOpen} = props
+    const {provider, redirectUrl, setOpen, isValid} = props
 
     const handleClick = () => {
         if(!validateUrl(provider))
@@ -20,7 +21,7 @@ export const LoginSolid = (props: Props) => {
         <LoginButton
             oidcIssuer={provider}
             redirectUrl={redirectUrl}>
-            <Button sx={{color: "white"}} onClick={handleClick}>Login</Button>
+            <Button sx={{color: "white"}} disabled={!isValid} onClick={handleClick}>Login</Button>
         </LoginButton>
     )
 }

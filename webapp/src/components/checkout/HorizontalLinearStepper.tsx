@@ -6,6 +6,10 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useHistory} from "react-router-dom";
+import {useContext} from "react";
+import {CartContext} from "../../context/CartContext";
+import cartReducer from "../../reducer/cartReducer";
+import {CartActionReducer} from "../../shared/shareddtypes";
 
 const steps = ["List products", "Select shipping address", "Order summary"];
 
@@ -19,6 +23,7 @@ type Props = {
 export default function HorizontalLinearStepper(props: Props) {
     const {step, isValidAddress, isValidName, handleSubmit} = props
     const [activeStep, setActiveStep] = React.useState(step);
+    const {cartItems} = useContext(CartContext)
     const history = useHistory()
 
     const handleNext = () => {
@@ -27,7 +32,7 @@ export default function HorizontalLinearStepper(props: Props) {
         if(activeStep === 1 && isValidAddress && isValidName) {
             history.push("/checkout/summary")
         }
-        if(activeStep === 2 && handleSubmit !== undefined) {
+        if(activeStep === 2 && handleSubmit) {
             handleSubmit()
             history.push("/checkout/success")
         }

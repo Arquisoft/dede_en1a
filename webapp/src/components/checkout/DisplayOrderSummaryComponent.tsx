@@ -116,7 +116,7 @@ export const DisplayOrderSummaryComponent = () => {
                 totalPrice: parseFloat(calculateTotalPlusShiping(cartItems, shippingPrice).toFixed(2))
             }
             console.log("order: " + order.shippingPrice)
-            const fetchApi = await postData(order);
+            const fetchApi = await postData(order); // El error se produce aqui ya que carece de autenticacion. Suelta un 401.
 
             if(!fetchApi.ok){
                 notify('An error has occurred, try again');
