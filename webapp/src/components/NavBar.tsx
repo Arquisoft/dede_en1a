@@ -1,4 +1,3 @@
-import React from 'react'
 import {useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import {CartContext} from '../context/CartContext';
@@ -18,6 +17,7 @@ import logo from "../images/logoName.png";
 import "./styles.css"
 import {CartItem, NavBarProps, NavigationProps} from "../shared/shareddtypes";
 import {LogInSignUpComponent} from "./userAuthentication/LogInSignUpComponent"
+import { useUser } from '../context/UserContext';
 
 
 type NavBarItemProps = {
@@ -55,7 +55,8 @@ function ShoppingCart(props: ShoppingCartProps) {
  */
 function NavBarButtons(props: NavBarItemProps) {
     // This list contains the names of the options in the navBar
-    const pages = ["Home", "My orders"]
+	const {isLoggedInDeDe, role} = useUser();
+    const pages = ["Home", "My orders", "Add product"]
     const history = useHistory()
 
     // Props
@@ -68,6 +69,10 @@ function NavBarButtons(props: NavBarItemProps) {
     const navigateToOrders = () => {
         history.push("/orders/list")
     }
+
+	const navigateToAddProducts = () => {
+		history.push('/product/add')
+	}
 
     return (
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -86,6 +91,17 @@ function NavBarButtons(props: NavBarItemProps) {
             >
                 {pages[1]}
             </Button>
+			{isLoggedInDeDe ?
+			<Button
+				key={pages[2]}
+				onClick={navigateToAddProducts}
+				sx={{ my: 2, color: 'white', display: 'block' }}
+			>
+				{pages[2]}
+			</Button>
+			:
+			<></>
+			}
         </Box>
     )
 }

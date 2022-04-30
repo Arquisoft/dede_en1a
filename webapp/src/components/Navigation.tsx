@@ -12,6 +12,8 @@ import {DisplayOrderSummaryComponent} from "./checkout/DisplayOrderSummaryCompon
 import {CheckoutSuccessComponent} from "./checkout/CheckoutSuccessComponent";
 import AdminLogin from "./userAuthentication/AdminLogIn";
 import AdminPanel from "../pages/admin/AdminPanel";
+import { LoginDeDe } from './userAuthentication/loginLogogut/LoginDeDe';
+import { SignupDeDe } from './userAuthentication/loginLogogut/SignupDeDe';
 
 const Navigation = (props: NavigationProps) => {
     const {isLoggedIn, handleOpen} = props
@@ -32,6 +34,8 @@ const Navigation = (props: NavigationProps) => {
                     <Route exact path='/selectProvider' component={SelectProviderComponent}/>
                     <Route exact path='/admin' component={AdminLogin}/>
                     <Route exact path='/admin/panel' component={AdminPanel}/>
+					<Route exact path='/dede/login' component={LoginDeDe}/>
+					<Route exact path='/dede/signup' component={SignupDeDe}/>
                 </Switch>
             </Box>
         </Box>

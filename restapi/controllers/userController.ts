@@ -47,7 +47,7 @@ export let deleteUser = async(req: Request, res: Response) => {
 export let signup = async (req:Request, res:Response) => {
 
 	if (req.body.webId == undefined || req.body.webId == null) {
-		res.status(422).send('you must be logged in with your pod')
+		res.status(422).send('you need an username')
 		return;
 	} else if (req.body.password == undefined || req.body.password == null) {
 		res.status(422).send('password can not be empty')
@@ -95,10 +95,12 @@ export let promoteToAdmin = async (req:Request, res: Response) => {
 
 
 export let login = async (req:Request, res: Response) => {
-	let query = {webId : req.params.webId.toString()}
+	let query = {webId : req.body.webId}
 	const user = await User.findOne(query)
 	if (user == null) {
-		res.status(401).send('error login user')
+		res.status(401)
+			.header('WWW-Authenticate', 'Basic realm="incorrect user or password"')
+			.send('user does not exist')
 		return;
 	} else {
 		const passwordEqual = await bcrypt.compare(req.body.password, user.password)
@@ -108,7 +110,9 @@ export let login = async (req:Request, res: Response) => {
 			})
 		// check if passwords match
 		if (!passwordEqual) {
-			res.status(401).send('passswords doesn\'t match')
+			res.status(401)
+				.header('WWW-Authenticate', 'Basic realm="incorrect user or password"')
+				.send('passswords doesn\'t match')
 			return;
 		}
 	}

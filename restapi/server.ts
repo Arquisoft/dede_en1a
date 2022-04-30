@@ -17,7 +17,7 @@ import 'dotenv/config'
 
 const app: Application = express(); 
 const options: cors.CorsOptions = {
-	origin: ['http://localhost:3000']
+	exposedHeaders: ['Authorization', 'WWW-Authenticate']
 };
 
 
@@ -25,7 +25,7 @@ const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 
 app.use(metricsMiddleware);
 //app.use(cors(options));
-app.use(cors());
+app.use(cors(options));
 app.use(bp.json());
 
 app.use("/user", userRouter)

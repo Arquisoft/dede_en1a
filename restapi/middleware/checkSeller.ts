@@ -17,7 +17,9 @@ export const checkSeller = (req : Request, res : Response, next: NextFunction) =
 			return;
 		} 
 		else if (result.seller_id != payload.id) {
-			res.status(401).send('you don\'t own this product')
+			res.status(401)
+				.header('WWW-Authenticate', 'Basic realm="only the owner can manage this product"')
+				.send('you don\'t own this product')
 			return;
 		} else {
 			next();
