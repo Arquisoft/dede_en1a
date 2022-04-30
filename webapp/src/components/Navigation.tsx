@@ -10,6 +10,8 @@ import {DisplayProductsComponent} from "./checkout/DisplayProductsComponent";
 import {DisplayShippingDataComponent} from "./checkout/DisplayShippingDataComponent"
 import {DisplayOrderSummaryComponent} from "./checkout/DisplayOrderSummaryComponent";
 import {CheckoutSuccessComponent} from "./checkout/CheckoutSuccessComponent";
+import AdminLogin from "./userAuthentication/AdminLogIn";
+import AdminPanel from "../pages/admin/AdminPanel";
 
 const Navigation = (props: NavigationProps) => {
     const {isLoggedIn, handleOpen} = props
@@ -28,6 +30,8 @@ const Navigation = (props: NavigationProps) => {
                     <Route exact path='/orders/list' component={OrdersPage}/>
                     <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
                     <Route exact path='/selectProvider' component={SelectProviderComponent}/>
+                    <Route exact path='/admin' component={AdminLogin}/>
+                    <Route exact path='/admin/panel' component={AdminPanel}/>
                 </Switch>
             </Box>
         </Box>
