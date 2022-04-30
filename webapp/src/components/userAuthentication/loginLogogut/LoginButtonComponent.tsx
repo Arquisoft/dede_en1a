@@ -6,6 +6,8 @@ export const LoginButtonProvider = () => {
     const history = useHistory()
 
     const selectProvider = () => {
+        localStorage.removeItem("fn")
+        localStorage.removeItem("address")
         history.push(`/selectProvider?toLogIn=${1}`)
     }
 
