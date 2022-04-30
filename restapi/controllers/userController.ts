@@ -89,7 +89,7 @@ export let promoteToAdmin = async (req:Request, res: Response) => {
 	const user = await User.updateOne({webid: req.params.webId}, {$set : {role: "ADMIN"}})
 		.catch(error => sendError(error, res))
 	const webId = req.params.webId;
-	res.status(200).send(`Promoted user ${webId} to admin`)
+	res.status(200).send('promoted user ' + webId + ' to admin')
 
 }
 
