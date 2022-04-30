@@ -7,6 +7,6 @@ import Sidebar from '../components/Sidebar';
 const handleClose = jest.fn(() => true)
 
 test("Sidebar matches snapshot", () => {
-    const fakeSidebar = render(<Sidebar handleClose={handleClose}/>)
+    const fakeSidebar = render(<Sidebar setIsInCheckout={() => false} handleClose={handleClose}/>)
     expect(fakeSidebar).toMatchSnapshot();
 })

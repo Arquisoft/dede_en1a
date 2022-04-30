@@ -7,10 +7,11 @@ import {CartItem} from "../../../shared/shareddtypes";
 
 type Props = {
     item: CartItem
+    inCheckout?: boolean
 }
 
-const Item = ({ item }: Props) => {
-
+const Item = (props: Props) => {
+    const {item, inCheckout} = props
     const { dispatch } = useContext(CartContext);
     let imgId = item.image === undefined ? 'undefined':item.image.toString();
 
@@ -19,6 +20,7 @@ const Item = ({ item }: Props) => {
             <div className='shopping-cart-item'>
                     <div className="item-action">
                     <Button
+                        hidden={inCheckout}
                         variant='secondary'
                         onClick={() => dispatch({
                             payload: item,
@@ -28,6 +30,7 @@ const Item = ({ item }: Props) => {
                     </Button>
                     <span>{item.amount}</span>
                     <Button
+                        hidden={inCheckout}
                         variant='secondary'
                         onClick={() => dispatch({
                             payload: item._id,
@@ -50,6 +53,7 @@ const Item = ({ item }: Props) => {
                     </div>
                     <div className="item-action-remove">
                         <Button
+                            hidden={inCheckout}
                             variant='danger'
                             title='Remove product'
                             onClick={() => dispatch({

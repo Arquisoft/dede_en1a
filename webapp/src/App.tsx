@@ -11,6 +11,7 @@ import axios from "axios";
 const App = () => {
     const [show, setShow] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isInCheckout, setIsInCheckout] = useState(false)
     const {session} = useSession()
 
     useEffect(() => {
@@ -36,8 +37,8 @@ const App = () => {
     return (
         <Router>
             <CartProvider>
-                <Navigation isLoggedIn={isLoggedIn} handleOpen={setShow}/>
-                {show && <Sidebar handleClose={setShow}/>}
+                <Navigation isInCheckout={isInCheckout} isLoggedIn={isLoggedIn} handleOpen={setShow}/>
+                {show && <Sidebar setIsInCheckout={setIsInCheckout} handleClose={setShow}/>}
                 <Switch>
                     <Route path="/product/:_id">
                         <DetailsView/>

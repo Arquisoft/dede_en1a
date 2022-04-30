@@ -27,8 +27,7 @@ export type CartItem = {
     amount: number;
 }
 
-export type ContactData = {
-    fn: string
+export type Address = {
     country: string
     locality: string
     region : string
@@ -66,8 +65,15 @@ export type OrderAdd = {
     products: CartItem[]
 }
 
-export type NavBarProps = {
+export type NavigationProps = {
     isLoggedIn: boolean,
+    handleOpen: (state: boolean) => void,
+    isInCheckout: boolean
+}
+
+export type NavBarProps = {
+    isLoggedIn: boolean
     handleOpen: (state: boolean) => void
 }
+
 
