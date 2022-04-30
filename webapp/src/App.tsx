@@ -13,24 +13,12 @@ const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const {session} = useSession()
 
-    useEffect(() => {
-        if(isLoggedIn && session.info.webId)
-            localStorage.setItem("webId", session.info.webId)
-        else
-            localStorage.removeItem("webId")
-    }, [isLoggedIn, session.info.webId])
-
     session.onLogin(() => {
         setIsLoggedIn(true)
-        axios.get(process.env.REACT_APP_API_URI + "/token/" + session.info.webId).then(response => {
-			const token = response.data
-			localStorage.setItem("token", token)
-		})
     })
 
     session.onLogout(() => {
         setIsLoggedIn(false)
-		localStorage.removeItem("token")
     })
 
     return (
