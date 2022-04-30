@@ -1,5 +1,10 @@
-import {Document} from "mongoose";
+import mongoose from "mongoose";
+import {Document, Schema} from "mongoose";
 
-export default interface IUser extends Document {
-    name: String,
+export type UserRole = "ADMIN" | "SELLER"
+
+export interface IUser extends Document {
+    webId: string
+	name?: string,
+	role: UserRole
 }

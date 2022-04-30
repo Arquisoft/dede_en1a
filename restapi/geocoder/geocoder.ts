@@ -19,7 +19,7 @@ async function tryGeocode(query: string, errorMsg: string = "") {
 			let distance : number = distanceInKmBetweenEarthCoordinates(lat, lon, 43.354838799999996, -5.851292403149609)
 			return {
 				"distance" : distance,
-				"price" : distance * parseFloat(process.env.PRICE_PER_KM || ""),
+				"price" : distance * parseFloat(process.env.PRICE_PER_KM || "1"),
 				"error" : errorMsg,
 				"success" : true			
 			}
