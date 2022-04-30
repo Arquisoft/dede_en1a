@@ -7,12 +7,12 @@ import { checkRole } from "../middleware/checkRole"
 const userRouter: Router = express.Router()
 userRouter.post('/login', userController.login)
 userRouter.post('/signup', userController.signup)
-userRouter.patch('/promote/:webID', [checkJWT, checkRole(["ADMIN"])], userController.promoteToAdmin)
 
+
+userRouter.patch('/promote/:webId', [checkJWT, checkRole(["ADMIN"])], userController.promoteToAdmin)
 userRouter.get("/list", [checkJWT, checkRole(["ADMIN"])], userController.findAllUsers)
-
-userRouter.get("/details/:id", [checkJWT, checkRole(["ADMIN"])], userController.findUserById)
-userRouter.post("/update/:id", [checkJWT, checkRole(["ADMIN"])], userController.updateUser)
-userRouter.get("/delete/:id", [checkJWT, checkRole(["ADMIN"])], userController.deleteUser)
+userRouter.get("/details/:webId", [checkJWT, checkRole(["ADMIN"])], userController.findUserByWebId)
+userRouter.post("/update/:webId", [checkJWT, checkRole(["ADMIN"])], userController.updateUser)
+userRouter.get("/delete/:webId", [checkJWT, checkRole(["ADMIN"])], userController.deleteUser)
 
 export default userRouter;

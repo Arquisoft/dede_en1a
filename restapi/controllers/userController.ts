@@ -12,21 +12,21 @@ export let findAllUsers = async (req: Request, res: Response) => {
 		.catch(error =>  sendError(error, res))
 }
 
-export let findUserById = async(req: Request, res: Response) => {
-    await User.findById(req.params.id)
+export let findUserByWebId = async(req: Request, res: Response) => {
+    await User.findOne({webId: req.params.webId})
 		.then(result => res.status(200).send(result))
 		.catch(error => sendError(error, res))
 }
 
 export let updateUser = async(req: Request, res: Response) => {
-    await User.findByIdAndUpdate(req.params.id, req.body)
+    await User.findOneAndUpdate({webId: req.params.webId}, req.body)
 		.then(result => res.status(200).send(result))
 		.catch(error => sendError(error, res))
 }
 
 export let deleteUser = async(req: Request, res: Response) => {
     // delete all productd from user
-	await User.findById(req.params.id)
+	await User.findOne({webId: req.params.webId})
 		.then(result => {
 			if (result != null) {
 				Product.deleteMany({seller_id: result._id})
