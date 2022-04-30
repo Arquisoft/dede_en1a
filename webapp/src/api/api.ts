@@ -6,8 +6,8 @@ export async function getOrdersForUser(webId: string):Promise<Order[]> {
     return response.json();
 }
 
-export async function getProductById(id: string):Promise<Product> {
+export async function getOrders():Promise<Order[]> {
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
-    let response = await fetch(apiEndPoint + "/product/details/" + id);
+    let response = await fetch(apiEndPoint + "/order/list");
     return response.json();
 }

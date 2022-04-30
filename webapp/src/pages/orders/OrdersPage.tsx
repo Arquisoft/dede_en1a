@@ -32,7 +32,7 @@ function OrdersPage(): JSX.Element {
 
                     response => {
                         let prod = response.data;
-                        console.log(prod);
+
                         group.push(
                             <>
                                 <div key={prod._id} className="product-cart-container">
