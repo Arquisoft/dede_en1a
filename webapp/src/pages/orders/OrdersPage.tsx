@@ -7,7 +7,7 @@ import {Divider, Grid, List, ListItem, Typography} from '@mui/material';
 import Axios from "axios";
 
 
-function OrdersPage(): JSX.Element {
+const OrdersPage = () => {
     const [orders, setOrders] = useState<Order[]>([]);
     const {session} = useSession();
 
@@ -29,14 +29,13 @@ function OrdersPage(): JSX.Element {
             order.products.forEach(async (product) => {
                 const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
                 Axios.get(apiEndPoint + '/product/details/' + product.prod).then(
-
                     response => {
                         let prod = response.data;
 
                         group.push(
                             <>
                                 <div key={prod._id} className="product-cart-container">
-                                    <img className="product-image" src={prod.image}  alt={prod.name}/>
+                                    <img className="product-image" src={prod.image} alt={prod.name}/>
                                     <div className="product-cart-description-container">
                                         <div className="row1">
                                             <div className="product-name">{prod.name}</div>
@@ -83,16 +82,14 @@ function OrdersPage(): JSX.Element {
     }
 
     return (
-        <>
-            <Grid container spacing={0} direction="column" alignItems="center">
-                <Typography variant="h2">
-                    Your order(s):
-                </Typography>
-                <List>
-                    {orderList}
-                </List>
-            </Grid>
-        </>
+        <Grid container spacing={0} direction="column" alignItems="center">
+            <Typography variant="h2">
+                Your order(s):
+            </Typography>
+            <List>
+                {orderList}
+            </List>
+        </Grid>
     );
 
 }

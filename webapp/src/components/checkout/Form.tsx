@@ -71,7 +71,6 @@ const Form = (props: Props) => {
                 shippingPrice: parseFloat(shipping.price.toFixed(2)),
                 totalPrice: parseFloat(localStorage.getItem("totalPrice") + "") + parseFloat(shipping.price.toFixed(2)),
             }
-			console.log("order: " + order.shippingPrice)
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){
