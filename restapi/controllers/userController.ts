@@ -73,6 +73,7 @@ export let signup = async (req:Request, res:Response) => {
 			const token = jwt.sign(payload, <jwt.Secret>process.env.RESTAPI_JWT_SECRET, { expiresIn: '3h' });
 			res.status(200).json({
 				token: token,
+				role: result.role,
 				message: 'signed up successfully'
 			})
 
@@ -101,7 +102,7 @@ export let login = async (req:Request, res: Response) => {
 	} else {
 		const passwordEqual = await bcrypt.compare(req.body.password, user.password)
 			.catch(error => {
-				res.status(500).send('error happened while checkign the password')
+				res.status(500).send('error happened while checking the password')
 				return;
 			})
 		// check if passwords match
@@ -120,6 +121,7 @@ export let login = async (req:Request, res: Response) => {
 	const token = jwt.sign(payload, <jwt.Secret>process.env.RESTAPI_JWT_SECRET, { expiresIn: '3h' });
 	res.status(200).json({
 		token: token,
+		role: user.role,
 		message: 'logged in successfully'
 	})
 }
