@@ -23,16 +23,24 @@ const StyledCard = styled(Card)({
 
 
 const CartProduct = ({product, handleAddToCart}: Props) => {
+
+	const apiEndPoint = process.env.REACT_APP_API_URI
     let history = useHistory();
-    let imgPath = "./images/".concat(product.image).concat(".jpg");
+	
     return (
 		<Grid container spacing={1} data-testid={product._id} style={{justifyContent:"center"}}>
 			<Grid item xs={12}>
 				<StyledCard>
-					<CardActionArea onClick={() => history.push("product/" + product._id)}>
-						<CardMedia component="img" alt="image of product" style={{height:"200px", width:"250px", margin:"auto"}} image={imgPath}/>
+					<CardActionArea onClick={() => history.push("product/" + product._id)} sx={{height: "25em"}}>
+						
+						<CardMedia 
+							component="img" 
+							alt="image of product" 
+							style={{height:"200px", width:"250px", margin:"auto"}} 
+							image={apiEndPoint + "/public/images/" + product._id + ".jpg"}
+							/>
 						<CardContent>
-							<Typography gutterBottom variant="h5" component="div">
+							<Typography gutterBottom variant="body1" component="div">
 								{product.name}
 							</Typography>
 							<Typography variant="subtitle1" color="text.secondary">

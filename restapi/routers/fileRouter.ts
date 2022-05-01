@@ -6,15 +6,25 @@ import { checkRole } from "../middleware/checkRole"
 
 const FileRouter = Router()
 const dir = 'public/images/'
-const upload = multer({dest: dir})
+
+const upload = multer({
+	dest: dir, 
+	fileFilter: (req, file, cb) => {
+		console.log(file)
+	if (['image/jpg', 'image/jpeg'].includes(file.mimetype)) {
+		cb (null, true)
+	} else {
+		cb (null, false)
+	}}
+})
 
 
 FileRouter.post('/upload', [checkJWT, checkRole(["SELLER", "ADMIN"]), upload.single('image')], (req: Request, res: Response) => {
-	if (req.file != null)
-		renameSync(req.file.path, 
-			dir + req.body.name + '.' + req.file.mimetype.split('/').pop())
-
-	console.log(req.file)
+	if (req.file != null) {
+		const fileName = dir + req.body.name + '.jpg'
+		renameSync(req.file.path, fileName)
+	}
 })
+
 
 export default FileRouter

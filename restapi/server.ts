@@ -13,6 +13,7 @@ import FileRouter from "./routers/fileRouter";
 
 
 import 'dotenv/config'
+import path, { dirname } from "path";
 
 
 
@@ -35,6 +36,7 @@ app.use("/order", orderRouter)
 app.use("/solid", solidRouter)
 app.use("/geocode", geocoderRouter)
 app.use("/", FileRouter)
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 // Connect to the server
