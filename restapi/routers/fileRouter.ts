@@ -15,7 +15,10 @@ const upload = multer({
 		cb (null, true)
 	} else {
 		cb (null, false)
-	}}
+	}},
+	limits: {
+		fileSize: 10000000 // Sensitive: 10MB is more than the recommended limit of 8MB
+	}
 })
 
 
