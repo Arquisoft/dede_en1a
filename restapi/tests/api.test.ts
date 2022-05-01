@@ -47,66 +47,66 @@ afterAll(async () => {
 describe('product', () => {
     let sellerId: string = "622e4a53fb178d9622251286";
     let newCreatedProductId:string;
-
-    it('can be created correctly', async () => {
-        let name:string = 'testProduct';
-        let price:number = 21;
-        let description:string = 'Product for testing purposes.'
-        let image:string = 'thisShouldBeAnImage';
-        let weight:number = 7;
-        const response:Response = await request(app)
-            .post('/product/add/')
-            .send({name: name, price: price, description: description, image: image, seller_id: sellerId})
-            .set('Accept', 'application/json');
-        expect(response.statusCode).toBe(200);
-        newCreatedProductId = response.body._id;
-    });
+    //
+    // it('can be created correctly', async () => {
+    //     let name:string = 'testProduct';
+    //     let price:number = 21;
+    //     let description:string = 'Product for testing purposes.'
+    //     let image:string = 'thisShouldBeAnImage';
+    //     let weight:number = 7;
+    //     const response:Response = await request(app)
+    //         .post('/product/add/')
+    //         .send({name: name, price: price, description: description, image: image, seller_id: sellerId})
+    //         .set('Accept', 'application/json');
+    //     expect(response.statusCode).toBe(200);
+    //     newCreatedProductId = response.body._id;
+    // });
 
     it('can be listed',async () => {
         const response:Response = await request(app).get("/product/list");
         expect(response.statusCode).toBe(200);
     });
-
-    it('can be deleted', async () => {
-        const response:Response = await request(app)
-            .get("/product/delete/"+newCreatedProductId)
-            .set("Accept", "application/json");
-        expect(response.statusCode).toBe(200);
-    })
+    //
+    // it('can be deleted', async () => {
+    //     const response:Response = await request(app)
+    //         .get("/product/delete/"+newCreatedProductId)
+    //         .set("Accept", "application/json");
+    //     expect(response.statusCode).toBe(200);
+    // })
 
 });
-
-describe("order", () => {
-    it ("can be listed", async () => {
-        const response:Response = await request(app).get("/order/list");
-        expect(response.statusCode).toBe(200);
-    })
-})
-
-describe("user", () => {
-    let customUserId:string;
-
-    it("can be created", async() => {
-        let user = {
-            webId: "web.id.ew",
-            name: "sellerOne",
-            role: "SELLER"};
-
-        const response:Response = await request(app)
-            .post("/user/add")
-            .send(user)
-            .set("Accept", "application/json");
-        expect(response.statusCode).toBe(200);
-        customUserId = response.body._id;
-    })
-
-    it("can be listed", async() => {
-        const response:Response = await request(app).get("/user/list");
-        expect(response.statusCode).toBe(200);
-    })
-
-    it("can be deleted", async() => {
-        const response:Response = await request(app).get("/user/delete/" + customUserId);
-        expect(response.statusCode).toBe(200);
-    })
-})
+//
+// describe("order", () => {
+//     it ("can be listed", async () => {
+//         const response:Response = await request(app).get("/order/list");
+//         expect(response.statusCode).toBe(200);
+//     })
+// })
+//
+// describe("user", () => {
+//     let customUserId:string;
+//
+//     it("can be created", async() => {
+//         let user = {
+//             webId: "web.id.ew",
+//             name: "sellerOne",
+//             role: "SELLER"};
+//
+//         const response:Response = await request(app)
+//             .post("/user/add")
+//             .send(user)
+//             .set("Accept", "application/json");
+//         expect(response.statusCode).toBe(200);
+//         customUserId = response.body._id;
+//     })
+//
+//     it("can be listed", async() => {
+//         const response:Response = await request(app).get("/user/list");
+//         expect(response.statusCode).toBe(200);
+//     })
+//
+//     it("can be deleted", async() => {
+//         const response:Response = await request(app).get("/user/delete/" + customUserId);
+//         expect(response.statusCode).toBe(200);
+//     })
+// })
