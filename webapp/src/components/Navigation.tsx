@@ -1,6 +1,6 @@
 import {Route, Switch} from 'react-router-dom';
 import NavBar from "./NavBar";
-import Home from "./Home";
+import {Home} from "./Home";
 import LoadingSession from "./LoadingSessionComponent"
 import OrdersPage from "../pages/orders/OrdersPage";
 import {NavigationProps} from "../shared/shareddtypes";
@@ -10,11 +10,10 @@ import {DisplayProductsComponent} from "./checkout/DisplayProductsComponent";
 import {DisplayShippingDataComponent} from "./checkout/DisplayShippingDataComponent"
 import {DisplayOrderSummaryComponent} from "./checkout/DisplayOrderSummaryComponent";
 import {CheckoutSuccessComponent} from "./checkout/CheckoutSuccessComponent";
-import AdminLogin from "./userAuthentication/AdminLogIn";
 import AdminPanel from "../pages/admin/AdminPanel";
 import {LoginDeDe} from './userAuthentication/loginLogogut/LoginDeDe';
 import {AddProduct} from './AddProduct';
-import Footer from "./footer/Footer";
+import {Footer} from "./footer/Footer";
 import {useUser} from "../context/UserContext";
 
 const Navigation = (props: NavigationProps) => {
@@ -29,7 +28,6 @@ const Navigation = (props: NavigationProps) => {
                 </Box>
                 <Box>
                     <Switch>
-                        <Route exact path='/admin' component={AdminLogin}/>
                         <Route exact path='/admin/panel' component={AdminPanel}/>
                         <Route path="/Home" exact component={Home}/>
                         <Route exact path='/' component={Home}/>
@@ -69,7 +67,6 @@ else {
                         <Route exact path='/dede/product/add' component={AddProduct}/>
                     </Switch>
                 </Box>
-                <Footer/>
             </Box>
         )
     }

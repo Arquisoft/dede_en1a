@@ -12,6 +12,7 @@ import {
 import {getOrders} from "../../api/api";
 import axios from "axios";
 import {useUser} from "../../context/UserContext";
+import { AddProduct } from "../../components/AddProduct";
 
 
 const AdminPanel = () => {
@@ -101,55 +102,7 @@ const AdminPanel = () => {
             <Box style={{display: 'flex'}}>
                 <Stack m={6} spacing={5} style={{flex: 3, alignItems: "center"}}>
                     <Typography variant="h5">Add Product:</Typography>
-                    <form id="addProductForm" style={{display: "grid", marginTop: "15px", minWidth: "40%"}}>
-                        <TextField
-                            label="Name"
-                            variant="outlined"
-                            type="text"
-                            id="product-name"
-                            placeholder="Name of the product"
-                            style={{width: "100%"}}
-                            sx={{input: {color: 'black'}}}
-                            value={name}
-                            onChange={(e: any) => setName(e.target.value)}
-                        />
-                        <br/>
-                        <label htmlFor="product-description">Description:</label>
-                        <TextareaAutosize
-                            id="product-description"
-                            placeholder="Description of the product"
-                            style={{width: "100%"}}
-                            value={description}
-                            onChange={(e: any) => setDescription(e.target.value)}
-                        />
-                        <br/>
-                        <TextField
-                            label="Price (€)"
-                            variant="outlined"
-                            type="text"
-                            id="product-price"
-                            placeholder="Price of the product"
-                            style={{width: "100%"}}
-                            sx={{input: {color: 'black'}}}
-                            value={price}
-                            onChange={(e: any) => setPrice(parseFloat(e.target.value))}
-                        />
-                        <br/>
-                        <Button variant="contained" component="label">
-                            Upload image
-                            <Input
-                                type="file"
-                                id="input"
-                                hidden
-                                onChange={handleUpload}
-                            />
-                        </Button>
-                        <br/>
-                        <Button variant="contained" color="primary" onClick={handleSubmit}>
-                            Add product
-                        </Button>
-                    </form>
-
+                    <AddProduct/>
                     <Typography variant="h5">Delete a product:</Typography>
                     <Autocomplete
                         disablePortal

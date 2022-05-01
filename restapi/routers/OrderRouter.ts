@@ -29,7 +29,7 @@ orderRouter.post(
 )
 orderRouter.get(
     "/delete/:id", 
-    // [checkJWT, checkRole(["ADMIN"])],
+    [checkJWT, checkRole(["ADMIN"])],
     orderController.deleteOrder
 )
 

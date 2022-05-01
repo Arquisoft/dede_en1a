@@ -1,6 +1,6 @@
 import {Box, Typography} from "@mui/material";
 
-function Footer(): JSX.Element {
+export const Footer = (): JSX.Element => {
 
     return (
         <>
@@ -16,5 +16,3 @@ function Footer(): JSX.Element {
         </>
     );
 }
-
-export default Footer;

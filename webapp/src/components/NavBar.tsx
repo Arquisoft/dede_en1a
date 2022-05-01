@@ -56,7 +56,7 @@ function ShoppingCart(props: ShoppingCartProps) {
 function NavBarButtons(props: NavBarItemProps) {
     // This list contains the names of the options in the navBar
 	const {isLoggedInDeDe, role} = useUser();
-    const pages = ["Home", "My orders", "Add product"]
+    const pages = ["Home", "My orders", "Add product", "admin"]
     const history = useHistory()
 
     // Props
@@ -92,15 +92,26 @@ function NavBarButtons(props: NavBarItemProps) {
                 {pages[1]}
             </Button>
 			{isLoggedInDeDe ?
-			<Button
-				key={pages[2]}
-				onClick={navigateToAddProducts}
-				sx={{ my: 2, color: 'white', display: 'block' }}
-			>
-				{pages[2]}
-			</Button>
+				<Button
+					key={pages[2]}
+					onClick={navigateToAddProducts}
+					sx={{ my: 2, color: 'white', display: 'block' }}
+				>
+					{pages[2]}
+				</Button>
 			:
 			<></>
+			}
+			{isLoggedInDeDe && role === "ADMIN" ?
+				<Button
+					key={pages[3]}
+					onClick={navigateToAddProducts}
+					sx={{ my: 2, color: 'white', display: 'block' }}
+				>
+					{pages[3]}
+				</Button>
+			: 
+				<></>
 			}
         </Box>
     )
