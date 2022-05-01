@@ -43,7 +43,7 @@ export const SelectProviderComponent = () => {
             justifyContent="center"
             style={{ minHeight: '50vh'}}
         >
-            <Box alignSelf={"center"} component="div" sx={{marginTop: '5%', maxWidth: '25%', whiteSpace: 'normal' }}>
+            <Box alignSelf={"center"} component="div" sx={{marginTop: '5%', maxWidth: '50%', whiteSpace: 'normal' }}>
                 <Typography variant="h6">
                     In order to make purchases in this application a Solid Pod is needed. This Pod
                     will store your data and will belong entirely to you. DeDe, will only make use

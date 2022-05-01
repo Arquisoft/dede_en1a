@@ -6,32 +6,31 @@ import {Product} from "../../shared/shareddtypes";
 import CartProduct from './product/CartProduct';
 import LinearProgress from "@mui/material/LinearProgress";
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, {SelectChangeEvent} from '@mui/material/Select';
 
 const getFilteredItems = (query: any, priceRange: any, sortBy: any, products: any) => {
     //console.log("Items are filtered");
     let filteredProducts: any = products;
-    console.log(filteredProducts);
+    // console.log(filteredProducts);
 
-    if (query){
+    if (query) {
         filteredProducts = filteredProducts.filter((product: any) => product.name.toLowerCase().includes(query.toLowerCase()));
     }
 
-    if (sortBy){
-        console.log("Order: ");
-        console.log(sortBy);
-        if (sortBy === 1){
-            console.log("A-Z");
+    if (sortBy) {
+        // console.log("Order: ");
+        // console.log(sortBy);
+        if (sortBy === 1) {
+            // console.log("A-Z");
             filteredProducts = filteredProducts.sort((a: any, b: any) => a.name.localeCompare(b.name));
-        } else if (sortBy === 2){
-            console.log("Ascending");
+        } else if (sortBy === 2) {
+            // console.log("Ascending");
             filteredProducts = filteredProducts.sort((a: any, b: any) => a.price - b.price);
         } else {
-            console.log("Descending");
+            // console.log("Descending");
             filteredProducts = filteredProducts.sort((a: any, b: any) => b.price - a.price);
         }
 
@@ -43,18 +42,18 @@ const getFilteredItems = (query: any, priceRange: any, sortBy: any, products: an
         */
     }
 
-    if (priceRange){
-        console.log("There is a price range");
-        if (priceRange === 10){
+    if (priceRange) {
+        // console.log("There is a price range");
+        if (priceRange === 10) {
             filteredProducts = filteredProducts.filter((product: any) => product.price <= 10);
-        } else if (priceRange === 100){
+        } else if (priceRange === 100) {
             filteredProducts = filteredProducts.filter((product: any) => product.price <= 100);
-        } else if (priceRange === 1000){
+        } else if (priceRange === 1000) {
             filteredProducts = filteredProducts.filter((product: any) => product.price <= 1000);
         }
     }
 
-    console.log(filteredProducts);
+    // console.log(filteredProducts);
     //return products.filter((product: any) => product.name.toLowerCase().includes(query.toLowerCase()));
     return filteredProducts;
 }
@@ -95,10 +94,10 @@ const ListProducts = () => {
         <div>
             <Grid container justifyContent="center" spacing={4}>
                 <Grid item xs={6}>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder="Search items..."
-                        onChange={(e) => setQuery(e.target.value)} />
+                        onChange={(e) => setQuery(e.target.value)}/>
                 </Grid>
                 <Grid item xs={3}>
                     <FormControl fullWidth>
@@ -108,7 +107,9 @@ const ListProducts = () => {
                             id="price-range-select"
                             value={priceRange}
                             label="Price Range"
-                            onChange={(event: SelectChangeEvent) => {setRange(event.target.value as string)}}
+                            onChange={(event: SelectChangeEvent) => {
+                                setRange(event.target.value as string)
+                            }}
                         >
                             <MenuItem value={10}> Less than 10€ </MenuItem>
                             <MenuItem value={100}> Less than 100€ </MenuItem>
@@ -124,7 +125,9 @@ const ListProducts = () => {
                             id="sort-select"
                             value={sortBy}
                             label="Price Range"
-                            onChange={(event: SelectChangeEvent) => {setSort(event.target.value as string)}}
+                            onChange={(event: SelectChangeEvent) => {
+                                setSort(event.target.value as string)
+                            }}
                         >
                             <MenuItem value={1}>A-Z</MenuItem>
                             <MenuItem value={2}>Ascending price</MenuItem>

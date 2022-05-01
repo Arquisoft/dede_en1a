@@ -10,6 +10,8 @@ export const checkRole = (roles: string[]) => {
             next();
         }
         else
-            res.status(401).send('invalid permission level')
+            res.status(401)
+				.header('WWW-Authenticate', 'Basic realm="you don\'t have the permission level required"')
+				.send('invalid permission level')
     }
 }

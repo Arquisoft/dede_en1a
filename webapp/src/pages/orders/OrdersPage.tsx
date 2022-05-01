@@ -7,55 +7,6 @@ import {Divider, Grid, List, ListItem, Typography} from '@mui/material';
 import Axios from "axios";
 
 
-// function getProductItem(products: Product[]): JSX.Element {
-//     return (
-//         <>
-//             {products.forEach(x => {
-//                 <div key={x._id}>
-//                     {x.name}
-//                     {x.image}
-//                     {x.price}
-//                 </div>
-//             })}
-//         </>
-//     )
-// }
-//
-// function getListItem(order: Order, products: Product[]): JSX.Element {
-//     let dateOrder = new Date(order.createdAt);
-//     let productItems = getProductItem(products);
-//     return (
-//         <>
-//             <ListItem>
-//                 <List>
-//                     <ListItem>
-//                         <Typography component='div' fontFamily="Georgia" variant='h5'>
-//                             Order: {order._id}
-//                         </Typography>
-//                     </ListItem>
-//                     <Divider/>
-//                     <Typography component='div' variant='body1'>
-//                         Date: {moment(dateOrder).format("YYYY-MM-DD HH:MM:SS")}
-//                     </Typography>
-//                     <Typography component='div' variant='body1'>
-//                         Address: {order.address}
-//                     </Typography>
-//                     <Typography component='div' variant='body1'>
-//                         Shipping: {order.shippingPrice}€
-//                     </Typography>
-//                     <Typography component='div' align="right" variant='h6'>
-//                         Total: {order.totalPrice}€
-//                     </Typography>
-//                 </List>
-//                 <div>
-//                     {productItems}
-//                 </div>
-//             </ListItem>
-//             <Divider/>
-//         </>
-//     )
-// }
-
 function OrdersPage(): JSX.Element {
     const [orders, setOrders] = useState<Order[]>([]);
     const {session} = useSession();
@@ -76,12 +27,11 @@ function OrdersPage(): JSX.Element {
             let group: JSX.Element[] = [];
 
             order.products.forEach(async (product) => {
-                const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+                const apiEndPoint = process.env.REACT_APP_API_URI;
                 Axios.get(apiEndPoint + '/product/details/' + product.prod).then(
-
-                    response => {
+					response => {
                         let prod = response.data;
-                        console.log(prod);
+                        // console.log(prod);
                         group.push(
                             <>
                                 <div key={prod._id} className="product-cart-container">

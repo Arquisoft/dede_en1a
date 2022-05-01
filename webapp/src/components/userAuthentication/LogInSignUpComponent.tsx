@@ -3,6 +3,8 @@ import React from "react";
 import {LoginButtonProvider} from "./loginLogogut/LoginButtonComponent";
 import {SignUpButtonComponent} from "./loginLogogut/SignUpButtonComponent";
 import {LogoutButtonSolid} from "./loginLogogut/LogoutButtonComponent";
+import { LoginDeDe } from "./loginLogogut/LoginDeDe";
+import { DeDeLoginButtonProvider } from "./loginLogogut/DeDeLoginButtonProvider";
 
 type Props = {
     isLoggedIn: boolean
@@ -13,12 +15,18 @@ export const LogInSignUpComponent = (props: Props) => {
 
     return (
         <Box>
-            <Box hidden={isLoggedIn} sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-                <LoginButtonProvider/>
-                <SignUpButtonComponent/>
-            </Box>
-            <Box hidden={!isLoggedIn}>
-                <LogoutButtonSolid/>
+            <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+				{!isLoggedIn ?
+				<>
+					<LoginButtonProvider/>
+					<SignUpButtonComponent/>
+				</>
+				:
+				<>
+					<DeDeLoginButtonProvider/>
+                	<LogoutButtonSolid/>
+				</>
+				}
             </Box>
         </Box>
     )
