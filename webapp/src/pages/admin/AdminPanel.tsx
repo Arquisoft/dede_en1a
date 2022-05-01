@@ -44,7 +44,7 @@ const AdminPanel = () => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             await axios.get(apiEndPoint + '/product/delete/' + product._id,
                 {headers: {auth: token}})
-            window.location.reload();
+            useFetch();
         }
     }
 
@@ -52,21 +52,20 @@ const AdminPanel = () => {
         if (window.confirm("Are you sure you want to delete this order?")) {
             await axios.get(apiEndPoint + '/order/delete/' + order._id,
                 {headers: {auth: token}});
-            window.location.reload();
+            fetchOrders();
         }
     }
 
 	const promote = async () => {
         if (window.confirm("If you continue the selected user will become an admin")) {
             await axios.get(apiEndPoint + '/user/promote/' + selectedUser, {headers: {auth: token}})
-            window.location.reload();
         }
 	}
 
 	const deleteUser = async () => {
         if (window.confirm("Are you sure you want to delete this user?")) {
             await axios.get(apiEndPoint + '/user/delete/' + selectedUserDelete, {headers: {auth: token}})
-            window.location.reload();
+            fetchUsers();
         }
 	}
 
