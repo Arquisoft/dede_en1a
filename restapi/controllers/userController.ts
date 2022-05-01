@@ -4,7 +4,7 @@ import User from '../schemas/UserSchema'
 import { sendError } from './helper/hellpers'
 import * as jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { sanitizeParam, sanitizeBody } from 'express-validator'
+import sanitize from 'mongo-sanitize'
 
 export let findAllUsers = async (req: Request, res: Response) => {
 	await User.find()
@@ -86,16 +86,21 @@ export let signup = async (req:Request, res:Response) => {
 }
 
 export let promoteToAdmin = async (req:Request, res: Response) => {
-	const user = await User.updateOne({webid: req.params.webId}, {$set : {role: "ADMIN"}})
-		.catch(error => sendError(error, res))
-	const webId = req.params.webId;
-	res.status(200).send('promoted user ' +sanitizeParam(webId) + ' to admin')
+	const user = await User.findOne({webId: req.params.webId})
+	if (user == null) {
+		res.status(404).send('user not found')
+		return;
+
+	}
+	user.role = "ADMIN"
+	user.save();
+	res.status(200).send('promoted user to admin')
 
 }
 
 
 export let login = async (req:Request, res: Response) => {
-	let query = {webId : req.body.webId + ""}
+	let query = {webId : sanitize(req.body.webId)}
 	const user = await User.findOne(query)
 	if (user == null) {
 		res.status(401)

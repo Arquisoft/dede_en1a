@@ -1,5 +1,5 @@
 import express, {Router} from "express"
-import { body } from "express-validator"
+import { body, param } from "express-validator"
 import * as userController from "../controllers/userController"
 import { checkJWT } from "../middleware/checkJWT"
 import { checkRole } from "../middleware/checkRole"
