@@ -1,4 +1,5 @@
 import express, {Router} from "express"
+import { body } from "express-validator"
 import * as userController from "../controllers/userController"
 import { checkJWT } from "../middleware/checkJWT"
 import { checkRole } from "../middleware/checkRole"
@@ -6,11 +7,11 @@ import { checkRole } from "../middleware/checkRole"
 
 const userRouter: Router = express.Router()
 
-userRouter.post('/login', userController.login)
+userRouter.post('/login',userController.login)
 userRouter.post('/signup', userController.signup)
 
 
-userRouter.patch(
+userRouter.get(
 	'/promote/:webId', 
 	[checkJWT, checkRole(["ADMIN"])], 
 	userController.promoteToAdmin
