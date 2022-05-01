@@ -17,7 +17,7 @@ const upload = multer({
 		cb (null, false)
 	}},
 	limits: {
-		fileSize: 10000000 // Sensitive: 10MB is more than the recommended limit of 8MB
+		fileSize: 8000000 // Sensitive: 10MB is more than the recommended limit of 8MB
 	}
 })
 
