@@ -9,7 +9,6 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import Axios from "axios";
 import {getOrders} from "../../api/api";
 import axios from "axios";
 import {useUser} from "../../context/UserContext";
