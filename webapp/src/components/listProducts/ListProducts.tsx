@@ -53,7 +53,6 @@ const getFilteredItems = (query: any, priceRange: any, sortBy: any, products: an
         }
     }
 
-    // console.log(filteredProducts);
     //return products.filter((product: any) => product.name.toLowerCase().includes(query.toLowerCase()));
     return filteredProducts;
 }
@@ -137,8 +136,6 @@ const ListProducts = () => {
                 </Grid>
                 {renderCards}
             </Grid>
-
-            {/*<PaginationContainer />*/}
         </div>
     )
 }

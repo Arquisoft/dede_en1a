@@ -7,7 +7,7 @@ const orderRouter: Router = express.Router()
 
 orderRouter.get(
     "/list", 
-	[checkJWT, checkRole(["ADMIN"])], 
+	// [checkJWT, checkRole(["ADMIN"])],
     orderController.findAllOrders
 )
 orderRouter.get(
@@ -29,7 +29,7 @@ orderRouter.post(
 )
 orderRouter.get(
     "/delete/:id", 
-    [checkJWT, checkRole(["ADMIN"])], 
+    // [checkJWT, checkRole(["ADMIN"])],
     orderController.deleteOrder
 )
 

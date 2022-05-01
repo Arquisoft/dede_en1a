@@ -2,28 +2,29 @@ import React, {useState, useEffect} from "react";
 import useFetch from "../../hooks/useFetch";
 import {Order, Product} from "../../shared/shareddtypes";
 import {
+    Alert,
     Autocomplete,
     Box,
-    Button,
+    Button, Input,
     Stack, TextareaAutosize,
     TextField,
     Typography
 } from "@mui/material";
-import Axios from "axios";
-import postProduct from "../../helpers/postProduct";
-import {getOrders} from "../../api/api";
-import {Label} from "@mui/icons-material";
-
+import axios from 'axios';
+import {deleteOrder, deleteProduct, getOrders} from "../../api/api";
+import {useUser} from "../../context/UserContext";
 
 const AdminPanel = () => {
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+    const {token} = useUser();
     const {products} = useFetch();
     const [orders, setOrders] = useState<Order[]>([]);
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
-    const [image, setImages] = useState<FileList>();
+    const [image, setImage] = useState<File>();
+    const [error, setError] = useState<string>('')
 
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [selectedOrder, setSelectedOrder] = useState<Order>();
@@ -36,25 +37,74 @@ const AdminPanel = () => {
         fetchOrders();
     }, []);
 
-    const deleteProduct = (product: Product) => {
+    const delProduct = (product: Product) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
-            Axios.post(apiEndPoint + '/product/delete/' + product._id);
+            deleteProduct(product._id).then((res) => {
+                console.log(res)
+                if(res){
+                    window.location.reload();
+                }
+                else
+                    alert("Failed to delete product");
+            });
         }
     }
 
-    const deleteOrder = (order: Order) => {
+    const delOrder = (order: Order) => {
         if (window.confirm("Are you sure you want to delete this order?")) {
-            Axios.post(apiEndPoint + '/order/delete/' + order._id);
+            deleteOrder(order._id).then((res) => {
+                console.log(res)
+                if(res){
+                    window.location.reload();
+                }
+                else
+                    alert("Failed to delete order");
+            });
         }
     }
 
-    function addProduct() {
-        postProduct({name: name, description, price} as Product, image as FileList).then((res) => {
-            if (res.ok) {
-                window.location.reload();
-            } else
-                alert("Error adding product");
-        });
+    const handleUpload = (e:any) => {
+        setImage(e.target.files[0])
+        if (image != undefined && image && null) {
+            if (image.name.split('.').pop() != 'jpg') {
+                setError('Only jpg files are supported')
+            } else {
+                setError('')
+            }
+        }
+    }
+
+    const addProduct = async() => {
+        if (image == undefined) {
+            setError('image is required')
+            return
+        }
+        try {
+            let {data} = await axios.post(apiEndPoint + '/product/add', {
+                name: name,
+                price: price,
+                description: description
+            },{
+                headers: {
+                    auth: token
+                }
+            })
+            const imageData = new FormData()
+            imageData.append("image", image)
+            imageData.append("name", data._id)
+
+            await axios.post(apiEndPoint + '/upload', imageData, {
+                headers: {
+                    auth: token
+                }
+            })
+            window.location.reload();
+        } catch (error : any) {
+            if (error.response.status == 401) {
+                setError('you need to be logged in with a dede account')
+            }
+            console.log(error)
+        }
     }
 
     return (
@@ -68,6 +118,7 @@ const AdminPanel = () => {
                             label="Name"
                             variant="outlined"
                             type="text"
+                            required
                             id="product-name"
                             placeholder="Name of the product"
                             style={{width: "100%"}}
@@ -79,6 +130,7 @@ const AdminPanel = () => {
                         <label htmlFor="product-description">Description:</label>
                         <TextareaAutosize
                             id="product-description"
+                            required
                             placeholder="Description of the product"
                             style={{width: "100%"}}
                             value={description}
@@ -88,7 +140,8 @@ const AdminPanel = () => {
                         <TextField
                             label="Price (€)"
                             variant="outlined"
-                            type="text"
+                            type="number"
+                            required
                             id="product-price"
                             placeholder="Price of the product"
                             style={{width: "100%"}}
@@ -99,10 +152,16 @@ const AdminPanel = () => {
                         <br/>
                         <Button variant="contained" component="label">
                             Upload image
-                            <input type="file" hidden multiple
-                                   onChange={(event) => setImages(event.target.files as FileList)}/>
+                            <Input
+                                type="file"
+                                id="input"
+                                hidden
+                                onChange={handleUpload}
+                            />
                         </Button>
                         <br/>
+                        <Alert severity="error" hidden={error == ''}>{error}</Alert>
+
                         <Button variant="contained" color="primary" onClick={addProduct}>
                             Add product
                         </Button>
@@ -123,7 +182,7 @@ const AdminPanel = () => {
                         }}
                     />
                     <Button variant="contained" color="primary"
-                            onClick={() => deleteProduct(selectedProduct as Product)}>
+                            onClick={() => delProduct(selectedProduct as Product)}>
                         Delete Product
                     </Button>
 
@@ -142,7 +201,7 @@ const AdminPanel = () => {
                         }}
                     />
                     <Button variant="contained" color="primary"
-                            onClick={() => deleteOrder(selectedOrder as Order)}>
+                            onClick={() => delOrder(selectedOrder as Order)}>
                         Delete Order
                     </Button>
                 </Stack>

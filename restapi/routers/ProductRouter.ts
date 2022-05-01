@@ -27,7 +27,7 @@ productRouter.post(
 )
 productRouter.get(
     '/delete/:id', 
-    [checkJWT, checkRole(["ADMIN", "SELLER"]), checkSeller], 
+    // [checkJWT, checkRole(["ADMIN", "SELLER"]), checkSeller],
     ProductController.deleteProduct
 )
 productRouter.get(

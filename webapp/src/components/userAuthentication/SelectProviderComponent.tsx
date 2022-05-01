@@ -44,7 +44,7 @@ export const SelectProviderComponent = () => {
             style={{ minHeight: '50vh'}}
         >
             <Box alignSelf={"center"} component="div" sx={{marginTop: '5%', maxWidth: '50%', whiteSpace: 'normal' }}>
-                <Typography variant="h6">
+                <Typography variant="h6" alignContent="center" width="100%">
                     In order to make purchases in this application a Solid Pod is needed. This Pod
                     will store your data and will belong entirely to you. DeDe, will only make use
                     of your Pod's to process your order. Your private data will not be saved.
