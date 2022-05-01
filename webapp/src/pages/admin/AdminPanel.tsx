@@ -26,7 +26,6 @@ const AdminPanel = () => {
     const [price, setPrice] = useState(0);
     const [error, setError] = useState<string>('')
 
-	const [promoted, setPromoted] = useState<string>('')
 
     const [file, setFile] = useState<File>()
 
@@ -188,7 +187,7 @@ const AdminPanel = () => {
 								contentEditable={false}
 								sx={{width: "30em", paddingRight: ".5em"}}
 								onChange={(event, value) => {
-									setSelectedUser(users.filter(x => value)[0])
+									setSelectedUser(users.filter(x => x == value)[0])
 								}}
 								/>
 						<Button variant="contained" color="primary"
@@ -209,17 +208,20 @@ const AdminPanel = () => {
 							id="orderComboBox"
 							options={users}
 							renderInput={(params) =>
-								<TextField {...params} label="Select user to delete"
-								variant="outlined"/>}
-								contentEditable={false}
-								sx={{width: "30em", paddingRight: ".5em"}}
-								onChange={(event, value) => {
-									setSelectedUserDelete(users.filter(x => value)[0])
-								}}
-								/>
-						<Button variant="contained" color="primary"
-								onClick={deleteUser}
-								>
+								<TextField {...params} 
+									label="Select user to delete"
+									variant="outlined"/>}
+									contentEditable={false}
+									sx={{width: "30em", paddingRight: ".5em"}}
+									onChange={(event, value) => {
+										setSelectedUserDelete(users.filter(x => x == value)[0])
+									}}
+						/>
+						<Button 
+							variant="contained" 
+							color="primary"
+							onClick={deleteUser}
+						>
 							delete user
 						</Button>
 					</div>
