@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express"
 import { renameSync } from "fs"
 import multer from 'multer'
+import path from "path"
 import { checkJWT } from "../middleware/checkJWT"
 import { checkRole } from "../middleware/checkRole"
 
@@ -24,8 +25,12 @@ const upload = multer({
 
 FileRouter.post('/upload', [checkJWT, checkRole(["SELLER", "ADMIN"]), upload.single('image')], (req: Request, res: Response) => {
 	if (req.file != null) {
-		const fileName = dir + req.body.name + '.jpg'
-		renameSync(req.file.path, fileName)
+		const reqPath = dir + req.body.name; // user-controlled path
+  		const resolvedPath = path.resolve(reqPath); // resolve will resolve "../"
+		if (resolvedPath.startsWith('public/')) {
+			const fileName = dir + req.body.name + '.jpg'
+			renameSync(req.file.path, fileName)
+		}
 	}
 })
 
