@@ -14,6 +14,7 @@ import AdminLogin from "./userAuthentication/AdminLogIn";
 import AdminPanel from "../pages/admin/AdminPanel";
 import { LoginDeDe } from './userAuthentication/loginLogogut/LoginDeDe';
 import { AddProduct } from './AddProduct';
+import Footer from "./footer/Footer";
 
 const Navigation = (props: NavigationProps) => {
     const {isLoggedIn, handleOpen} = props
@@ -38,6 +39,7 @@ const Navigation = (props: NavigationProps) => {
 					<Route exact path='/dede/product/add' component={AddProduct}/>
                 </Switch>
             </Box>
+            <Footer/>
         </Box>
     )
 }

@@ -4,26 +4,29 @@ import {Order, Product} from "../../shared/shareddtypes";
 import {
     Autocomplete,
     Box,
-    Button,
+    Button, Input,
     Stack, TextareaAutosize,
     TextField,
     Typography
 } from "@mui/material";
 import Axios from "axios";
-import postProduct from "../../helpers/postProduct";
 import {getOrders} from "../../api/api";
-import {Label} from "@mui/icons-material";
+import axios from "axios";
+import {useUser} from "../../context/UserContext";
 
 
 const AdminPanel = () => {
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+    const {token} = useUser()
     const {products} = useFetch();
     const [orders, setOrders] = useState<Order[]>([]);
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
-    const [image, setImages] = useState<FileList>();
+    const [error, setError] = useState<string>('')
+
+    const [file, setFile] = useState<File>()
 
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [selectedOrder, setSelectedOrder] = useState<Order>();
@@ -36,25 +39,61 @@ const AdminPanel = () => {
         fetchOrders();
     }, []);
 
-    const deleteProduct = (product: Product) => {
+    const deleteProduct = async (product: Product) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
-            Axios.post(apiEndPoint + '/product/delete/' + product._id);
+            let {data} = await axios.get(apiEndPoint + '/product/delete/' + product._id,
+                {headers: {auth: token}})
         }
     }
 
-    const deleteOrder = (order: Order) => {
+    const deleteOrder = async (order: Order) => {
         if (window.confirm("Are you sure you want to delete this order?")) {
-            Axios.post(apiEndPoint + '/order/delete/' + order._id);
+            let {data} = await axios.get(apiEndPoint + '/order/delete/' + order._id,
+                {headers: {auth: token}})
         }
     }
 
-    function addProduct() {
-        postProduct({name: name, description, price} as Product, image as FileList).then((res) => {
-            if (res.ok) {
-                window.location.reload();
-            } else
-                alert("Error adding product");
-        });
+    const handleUpload = (e: any) => {
+        setFile(e.target.files[0])
+        if (file != undefined && file && null) {
+            if (file.name.split('.').pop() != 'jpg') {
+                setError('Only jpg files are supported')
+            } else {
+                setError('')
+            }
+        }
+    }
+
+    const handleSubmit = async () => {
+        if (file == undefined) {
+            setError('file is required')
+            return
+        }
+        try {
+            let {data} = await axios.post(apiEndPoint + '/product/add', {
+                name: name,
+                price: price,
+                description: description
+            }, {
+                headers: {
+                    auth: token
+                }
+            })
+            const fileData = new FormData()
+            fileData.append("image", file)
+            fileData.append("name", data._id)
+
+            await axios.post(apiEndPoint + '/upload', fileData, {
+                headers: {
+                    auth: token
+                }
+            })
+        } catch (error: any) {
+            if (error.response.status == 401) {
+                setError('you need to be logged in with a dede account')
+            }
+            console.log(error)
+        }
     }
 
     return (
@@ -99,11 +138,15 @@ const AdminPanel = () => {
                         <br/>
                         <Button variant="contained" component="label">
                             Upload image
-                            <input type="file" hidden multiple
-                                   onChange={(event) => setImages(event.target.files as FileList)}/>
+                            <Input
+                                type="file"
+                                id="input"
+                                hidden
+                                onChange={handleUpload}
+                            />
                         </Button>
                         <br/>
-                        <Button variant="contained" color="primary" onClick={addProduct}>
+                        <Button variant="contained" color="primary" onClick={handleSubmit}>
                             Add product
                         </Button>
                     </form>
