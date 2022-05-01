@@ -21,14 +21,6 @@ const AdminPanel = () => {
     const [orders, setOrders] = useState<Order[]>([]);
 	const [users, setUsers] = useState<string[]>([])
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(0);
-    const [error, setError] = useState<string>('')
-
-
-    const [file, setFile] = useState<File>()
-
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [selectedOrder, setSelectedOrder] = useState<Order>();
 	const [selectedUser, setSelectedUser] = useState<string>();
@@ -50,68 +42,32 @@ const AdminPanel = () => {
 
     const deleteProduct = async (product: Product) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
-            let {data} = await axios.get(apiEndPoint + '/product/delete/' + product._id,
+            await axios.get(apiEndPoint + '/product/delete/' + product._id,
                 {headers: {auth: token}})
+            window.location.reload();
         }
     }
 
     const deleteOrder = async (order: Order) => {
         if (window.confirm("Are you sure you want to delete this order?")) {
-            let {data} = await axios.get(apiEndPoint + '/order/delete/' + order._id,
-                {headers: {auth: token}})
-        }
-    }
-
-    const handleUpload = (e: any) => {
-        setFile(e.target.files[0])
-        if (file != undefined && file && null) {
-            if (file.name.split('.').pop() != 'jpg') {
-                setError('Only jpg files are supported')
-            } else {
-                setError('')
-            }
-        }
-    }
-
-    const handleSubmit = async () => {
-        if (file == undefined) {
-            setError('file is required')
-            return
-        }
-        try {
-            let {data} = await axios.post(apiEndPoint + '/product/add', {
-                name: name,
-                price: price,
-                description: description
-            }, {
-                headers: {
-                    auth: token
-                }
-            })
-            const fileData = new FormData()
-            fileData.append("image", file)
-            fileData.append("name", data._id)
-
-            await axios.post(apiEndPoint + '/upload', fileData, {
-                headers: {
-                    auth: token
-                }
-            })
-        } catch (error: any) {
-            if (error.response.status == 401) {
-                setError('you need to be logged in with a dede account')
-            }
-            console.log(error)
+            await axios.get(apiEndPoint + '/order/delete/' + order._id,
+                {headers: {auth: token}});
+            window.location.reload();
         }
     }
 
 	const promote = async () => {
-		await axios.get(apiEndPoint + '/user/promote/' + selectedUser, {headers: {auth: token}})
+        if (window.confirm("If you continue the selected user will become an admin")) {
+            await axios.get(apiEndPoint + '/user/promote/' + selectedUser, {headers: {auth: token}})
+            window.location.reload();
+        }
 	}
 
 	const deleteUser = async () => {
-		await axios.get(apiEndPoint + '/user/delete/' + selectedUserDelete, {headers: {auth: token}})
-		fetchUsers()
+        if (window.confirm("Are you sure you want to delete this user?")) {
+            await axios.get(apiEndPoint + '/user/delete/' + selectedUserDelete, {headers: {auth: token}})
+            window.location.reload();
+        }
 	}
 
     return (
