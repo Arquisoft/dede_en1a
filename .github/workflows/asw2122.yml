@@ -85,7 +85,7 @@ jobs:
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
-          buildargs: PRICE_PER_KM, JWT_SECRET, DB_USER, DB_NAME, DB_PASSWORD
+          buildargs: PRICE_PER_KM, JWT_SECRET, DB_USERNAME, DB_NAME, DB_PASSWORD
 
   deploy:
     name: Deploy over SSH

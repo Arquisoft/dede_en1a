@@ -43,7 +43,6 @@ const Navigation = (props: NavigationProps) => {
                         <Route exact path='/dede/product/add' component={AddProduct}/>
                     </Switch>
                 </Box>
-                <Footer/>
             </Box>
         )
     }
