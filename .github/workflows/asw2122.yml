@@ -6,6 +6,8 @@ on:
 
 jobs:
   unit-test-webapp:
+    env:
+      SKIP_PREFLIGHT_CHECK: true
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,6 +22,8 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
+        env:
+          SKIP_PREFLIGHT_CHECK: true
       - uses: codecov/codecov-action@v2
 
   unit-test-restapi:
