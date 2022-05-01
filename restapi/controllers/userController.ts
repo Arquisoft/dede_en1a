@@ -4,7 +4,7 @@ import User from '../schemas/UserSchema'
 import { sendError } from './helper/hellpers'
 import * as jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { sanitizeParam } from 'express-validator'
+import { sanitizeParam, sanitizeBody } from 'express-validator'
 
 export let findAllUsers = async (req: Request, res: Response) => {
 	await User.find()
@@ -95,7 +95,7 @@ export let promoteToAdmin = async (req:Request, res: Response) => {
 
 
 export let login = async (req:Request, res: Response) => {
-	let query = {webId : req.body.webId}
+	let query = {webId : sanitizeBody(req.body.webId)}
 	const user = await User.findOne(query)
 	if (user == null) {
 		res.status(401)
