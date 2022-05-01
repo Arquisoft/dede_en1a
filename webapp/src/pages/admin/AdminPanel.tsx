@@ -17,10 +17,10 @@ import {useUser} from "../../context/UserContext";
 const AdminPanel = () => {
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
     const {token} = useUser()
-    const {products} = useFetch();
     const [orders, setOrders] = useState<Order[]>([]);
 	const [users, setUsers] = useState<string[]>([])
 
+	const [products, setProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [selectedOrder, setSelectedOrder] = useState<Order>();
 	const [selectedUser, setSelectedUser] = useState<string>();
@@ -35,16 +35,22 @@ const AdminPanel = () => {
 		setUsers(data.map((x:any) => x.webId))
 	}
 
+	const fetchProducts = async () => {
+		let {data} = await axios.get(apiEndPoint + '/product/list')
+		setProducts(data)
+	}
+
     useEffect(() => {
         fetchOrders();
 		fetchUsers();
+		fetchProducts();
     }, []);
 
     const deleteProduct = async (product: Product) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             await axios.get(apiEndPoint + '/product/delete/' + product._id,
                 {headers: {auth: token}})
-            window.location.reload();
+			fetchProducts();
         }
     }
 
@@ -52,21 +58,20 @@ const AdminPanel = () => {
         if (window.confirm("Are you sure you want to delete this order?")) {
             await axios.get(apiEndPoint + '/order/delete/' + order._id,
                 {headers: {auth: token}});
-            window.location.reload();
+            fetchOrders();
         }
     }
 
 	const promote = async () => {
         if (window.confirm("If you continue the selected user will become an admin")) {
             await axios.get(apiEndPoint + '/user/promote/' + selectedUser, {headers: {auth: token}})
-            window.location.reload();
         }
 	}
 
 	const deleteUser = async () => {
         if (window.confirm("Are you sure you want to delete this user?")) {
             await axios.get(apiEndPoint + '/user/delete/' + selectedUserDelete, {headers: {auth: token}})
-            window.location.reload();
+            fetchUsers();
         }
 	}
 
@@ -143,7 +148,7 @@ const AdminPanel = () => {
 								contentEditable={false}
 								sx={{width: "30em", paddingRight: ".5em"}}
 								onChange={(event, value) => {
-									setSelectedUser(users.filter(x => value)[0])
+									setSelectedUser(users.filter(x => x == value)[0])
 								}}
 								/>
 						<Button variant="contained" color="primary"
@@ -164,17 +169,20 @@ const AdminPanel = () => {
 							id="orderComboBox"
 							options={users}
 							renderInput={(params) =>
-								<TextField {...params} label="Select user to delete"
-								variant="outlined"/>}
-								contentEditable={false}
-								sx={{width: "30em", paddingRight: ".5em"}}
-								onChange={(event, value) => {
-									setSelectedUserDelete(users.filter(x => value)[0])
-								}}
-								/>
-						<Button variant="contained" color="primary"
-								onClick={deleteUser}
-								>
+								<TextField {...params} 
+									label="Select user to delete"
+									variant="outlined"/>}
+									contentEditable={false}
+									sx={{width: "30em", paddingRight: ".5em"}}
+									onChange={(event, value) => {
+										setSelectedUserDelete(users.filter(x => x == value)[0])
+									}}
+						/>
+						<Button 
+							variant="contained" 
+							color="primary"
+							onClick={deleteUser}
+						>
 							delete user
 						</Button>
 					</div>

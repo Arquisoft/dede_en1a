@@ -14,7 +14,6 @@ import {CheckoutSuccessComponent} from "./checkout/CheckoutSuccessComponent";
 import AdminPanel from "../pages/admin/AdminPanel";
 import {LoginDeDe} from './userAuthentication/loginLogogut/LoginDeDe';
 import {AddProduct} from './AddProduct';
-import {Footer} from "./footer/Footer";
 import {useUser} from "../context/UserContext";
 
 const Navigation = (props: NavigationProps) => {
