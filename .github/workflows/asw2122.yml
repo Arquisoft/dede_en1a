@@ -56,7 +56,7 @@ jobs:
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: webapp
-          buildargs: API_URI
+          buildargs: API_URI, SKIP_PREFLIGHT_CHECK
   docker-push-restapi:
     name: Push restapi Docker Image to GitHub Packages
     runs-on: ubuntu-latest
@@ -80,7 +80,7 @@ jobs:
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
-          buildargs: PRICE_PER_KM, JWT_SECRET, DB_USERNAME, DB_NAME, DB_PASSWORD
+          buildargs: PRICE_PER_KM, JWT_SECRET
 
   deploy:
     name: Deploy over SSH
