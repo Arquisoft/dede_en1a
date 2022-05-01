@@ -12,36 +12,67 @@ import {DisplayOrderSummaryComponent} from "./checkout/DisplayOrderSummaryCompon
 import {CheckoutSuccessComponent} from "./checkout/CheckoutSuccessComponent";
 import AdminLogin from "./userAuthentication/AdminLogIn";
 import AdminPanel from "../pages/admin/AdminPanel";
-import { LoginDeDe } from './userAuthentication/loginLogogut/LoginDeDe';
-import { AddProduct } from './AddProduct';
+import {LoginDeDe} from './userAuthentication/loginLogogut/LoginDeDe';
+import {AddProduct} from './AddProduct';
 import Footer from "./footer/Footer";
+import {useUser} from "../context/UserContext";
 
 const Navigation = (props: NavigationProps) => {
     const {isLoggedIn, handleOpen} = props
-    return (
-        <Box>
+    const {role} = useUser();
+
+    if (role === "ADMIN") {
+        return (
             <Box>
-                <NavBar isLoggedIn={isLoggedIn} handleOpen={handleOpen}/>
+                <Box>
+                    <NavBar isLoggedIn={isLoggedIn} handleOpen={handleOpen}/>
+                </Box>
+                <Box>
+                    <Switch>
+                        <Route exact path='/admin' component={AdminLogin}/>
+                        <Route exact path='/admin/panel' component={AdminPanel}/>
+                        <Route path="/Home" exact component={Home}/>
+                        <Route exact path='/' component={Home}/>
+                        <Route exact path={'/checkout/displayProducts'} component={DisplayProductsComponent}/>
+                        <Route exact path={"/checkout/shippingData"} component={DisplayShippingDataComponent}/>
+                        <Route exact path={"/checkout/summary"} component={DisplayOrderSummaryComponent}/>
+                        <Route exact path={"/checkout/success"} component={CheckoutSuccessComponent}/>
+                        <Route exact path='/orders/list' component={OrdersPage}/>
+                        <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
+                        <Route exact path='/selectProvider' component={SelectProviderComponent}/>
+                        <Route exact path='/dede/login' component={LoginDeDe}/>
+                        <Route exact path='/dede/product/add' component={AddProduct}/>
+                    </Switch>
+                </Box>
+                <Footer/>
             </Box>
+        )
+    }
+else {
+        return (
             <Box>
-                <Switch>
-                    <Route exact path='/' component={Home}/>
-                    <Route exact path={'/checkout/displayProducts'} component={DisplayProductsComponent}/>
-                    <Route exact path={"/checkout/shippingData"} component={DisplayShippingDataComponent}/>
-                    <Route exact path={"/checkout/summary"} component={DisplayOrderSummaryComponent}/>
-                    <Route exact path={"/checkout/success"} component={CheckoutSuccessComponent}/>
-                    <Route exact path='/orders/list' component={OrdersPage}/>
-                    <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
-                    <Route exact path='/selectProvider' component={SelectProviderComponent}/>
-                    <Route exact path='/admin' component={AdminLogin}/>
-                    <Route exact path='/admin/panel' component={AdminPanel}/>
-					<Route exact path='/dede/login' component={LoginDeDe}/>
-					<Route exact path='/dede/product/add' component={AddProduct}/>
-                </Switch>
+                <Box>
+                    <NavBar isLoggedIn={isLoggedIn} handleOpen={handleOpen}/>
+                </Box>
+                <Box>
+                    <Switch>
+                        <Route path="/Home" exact component={Home}/>
+                        <Route exact path='/' component={Home}/>
+                        <Route exact path={'/checkout/displayProducts'} component={DisplayProductsComponent}/>
+                        <Route exact path={"/checkout/shippingData"} component={DisplayShippingDataComponent}/>
+                        <Route exact path={"/checkout/summary"} component={DisplayOrderSummaryComponent}/>
+                        <Route exact path={"/checkout/success"} component={CheckoutSuccessComponent}/>
+                        <Route exact path='/orders/list' component={OrdersPage}/>
+                        <Route exact path='/solid/login/:webID/:sessionId' component={LoadingSession}/>
+                        <Route exact path='/selectProvider' component={SelectProviderComponent}/>
+                        <Route exact path='/dede/login' component={LoginDeDe}/>
+                        <Route exact path='/dede/product/add' component={AddProduct}/>
+                    </Switch>
+                </Box>
+                <Footer/>
             </Box>
-            <Footer/>
-        </Box>
-    )
+        )
+    }
 }
 
 export default Navigation;
