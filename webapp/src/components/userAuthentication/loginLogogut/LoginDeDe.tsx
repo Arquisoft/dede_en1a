@@ -1,6 +1,6 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { Alert, Button, Grid, Link, Paper, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 
@@ -19,6 +19,7 @@ export const LoginDeDe = () => {
 	const handleError = () => {
 		setPassword('')
 	}
+
 
 	const handleSubmitLogIn = async () => {
 		try {

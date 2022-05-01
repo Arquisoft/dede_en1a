@@ -12,7 +12,6 @@ import {
 import {getOrders} from "../../api/api";
 import axios from "axios";
 import {useUser} from "../../context/UserContext";
-import { AddProduct } from "../../components/AddProduct";
 
 
 const AdminPanel = () => {
@@ -20,23 +19,33 @@ const AdminPanel = () => {
     const {token} = useUser()
     const {products} = useFetch();
     const [orders, setOrders] = useState<Order[]>([]);
+	const [users, setUsers] = useState<string[]>([])
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
     const [error, setError] = useState<string>('')
 
+	const [promoted, setPromoted] = useState<string>('')
+
     const [file, setFile] = useState<File>()
 
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [selectedOrder, setSelectedOrder] = useState<Order>();
+	const [selectedUser, setSelectedUser] = useState<string>();
 
     const fetchOrders = async () => {
         setOrders(await getOrders());
     }
 
+	const fetchUsers = async () => {
+		let {data} = await axios.get(apiEndPoint + '/user/list', {headers: {auth: token}})
+		setUsers(data.map((x:any) => x.webId))
+	}
+
     useEffect(() => {
         fetchOrders();
+		fetchUsers();
     }, []);
 
     const deleteProduct = async (product: Product) => {
@@ -96,13 +105,16 @@ const AdminPanel = () => {
         }
     }
 
+	const promote = () => {
+		axios.get(apiEndPoint + '/user/promote/' + selectedUser, {headers: {auth: token}})
+	}
+
     return (
         <div>
             <Typography variant="h2" align="center">Admin panel</Typography>
             <Box style={{display: 'flex'}}>
                 <Stack m={6} spacing={5} style={{flex: 3, alignItems: "center"}}>
-                    <Typography variant="h5">Add Product:</Typography>
-                    <AddProduct/>
+        
                     <Typography variant="h5">Delete a product:</Typography>
                     <Autocomplete
                         disablePortal
@@ -139,6 +151,26 @@ const AdminPanel = () => {
                     <Button variant="contained" color="primary"
                             onClick={() => deleteOrder(selectedOrder as Order)}>
                         Delete Order
+                    </Button>
+
+					<Typography variant="h5">Promote to admin:</Typography>
+                    <Autocomplete
+                        disablePortal
+                        id="orderComboBox"
+                        options={users}
+                        renderInput={(params) =>
+                            <TextField {...params} label="Select user to promote"
+                                       variant="outlined"/>}
+                        contentEditable={false}
+                        sx={{width: "600px"}}
+                        onChange={(event, value) => {
+                            setSelectedUser(users.filter(x => value)[0])
+                        }}
+                    />
+                    <Button variant="contained" color="primary"
+                            onClick={promote}
+					>
+                        Promote user
                     </Button>
                 </Stack>
             </Box>

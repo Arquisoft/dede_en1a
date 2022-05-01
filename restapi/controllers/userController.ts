@@ -95,7 +95,7 @@ export let promoteToAdmin = async (req:Request, res: Response) => {
 
 
 export let login = async (req:Request, res: Response) => {
-	let query = {webId : sanitizeBody(req.body.webId)}
+	let query = {webId : req.body.webId + ""}
 	const user = await User.findOne(query)
 	if (user == null) {
 		res.status(401)

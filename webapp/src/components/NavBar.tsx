@@ -74,6 +74,10 @@ function NavBarButtons(props: NavBarItemProps) {
 		history.push('/dede/product/add')
 	}
 
+	const navigateToAdmin = () => {
+		history.push('/admin/panel')
+	}
+
     return (
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
@@ -105,7 +109,7 @@ function NavBarButtons(props: NavBarItemProps) {
 			{isLoggedInDeDe && role === "ADMIN" ?
 				<Button
 					key={pages[3]}
-					onClick={navigateToAddProducts}
+					onClick={navigateToAdmin}
 					sx={{ my: 2, color: 'white', display: 'block' }}
 				>
 					{pages[3]}
