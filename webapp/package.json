@@ -1,6 +1,7 @@
 {
   "name": "dede_en1a",
   "version": "0.1.0",
+  "type": "module",
   "dependencies": {
     "@inrupt/solid-ui-react": "^2.7.0",
     "@mui/icons-material": "^5.5.1",
@@ -19,52 +20,53 @@
     "react-hot-toast": "^2.1.1",
     "react-router-dom": "^5.2.1",
     "react-scripts": "^5.0.0",
+    "start-server-and-test": "^1.14.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.0",
     "validator": "^13.7.0",
     "web-vitals": "^1.1.2"
-},
-"scripts": {
-	"start": "react-scripts start",
+  },
+  "scripts": {
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
-    "test:e2e": "start-server-and-test 'npm --prefix ../restapi start' http://localhost:5000/api/users/list prod 3000 'cd e2e && jest'",
+    "test:e2e": "start-server-and-test 'npm --prefix ../restapi start' http://localhost:5000/product/list prod 3000 'cd e2e && jest'",
     "eject": "react-scripts eject",
     "prod": "ts-node-dev ./server.ts"
-},
-"eslintConfig": {
-	"extends": [
-		"react-app",
-		"react-app/jest",
-		"plugin:react-hooks/recommended"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:react-hooks/recommended"
     ]
-},
-"browserslist": {
-	"production": [
-		">0.2%",
-		"not dead",
-		"not op_mini all"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
     "development": [
-		"last 1 chrome version",
-		"last 1 firefox version",
-		"last 1 safari version"
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
-},
-"devDependencies": {
-	"@testing-library/jest-dom": "^5.16.2",
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/enzyme": "^3.10.11",
     "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.24",
     "@types/jsonwebtoken": "^8.5.8",
-	"@types/jest": "^26.0.24",
-	"@types/node": "^12.20.47",
-	"@types/react": "^17.0.19",
-	"@types/react-dom": "^17.0.9",
+    "@types/node": "^12.20.47",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.8",
     "@types/validator": "^13.7.2",
     "jest-cucumber": "^3.0.1",
     "puppeteer": "^13.5.2"
-}
+  }
 }

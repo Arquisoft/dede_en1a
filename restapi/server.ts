@@ -9,16 +9,17 @@ import productRouter from "./routers/ProductRouter";
 import orderRouter from "./routers/OrderRouter";
 import solidRouter from "./solid/solidRouter";
 import geocoderRouter from "./routers/geocoderRouter";
+import FileRouter from "./routers/fileRouter";
 
 
 import 'dotenv/config'
-import authRouter from "./routers/authrouter";
+import path, { dirname } from "path";
 
 
 
 const app: Application = express(); 
 const options: cors.CorsOptions = {
-	origin: ['http://localhost:3000']
+	exposedHeaders: ['Authorization', 'WWW-Authenticate']
 };
 
 
@@ -26,7 +27,7 @@ const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 
 app.use(metricsMiddleware);
 //app.use(cors(options));
-app.use(cors());
+app.use(cors(options));
 app.use(bp.json());
 
 app.use("/user", userRouter)
@@ -34,7 +35,8 @@ app.use("/product", productRouter)
 app.use("/order", orderRouter)
 app.use("/solid", solidRouter)
 app.use("/geocode", geocoderRouter)
-app.use("/token:webId", authRouter)
+app.use("/", FileRouter)
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 // Connect to the server

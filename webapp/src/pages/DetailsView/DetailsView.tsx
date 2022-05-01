@@ -17,7 +17,7 @@ const DetailsView: React.FC = () => {
     const { dispatch } = useContext(CartContext);
 
     const handleAddToCart = (product: Product) => {
-        console.log("item added to cart")
+        // console.log("item added to cart")
         dispatch({
             payload: product,
             type: 'ADD'
@@ -32,7 +32,7 @@ const DetailsView: React.FC = () => {
             response => {
                 const product = response.data
                 setItem(product) 
-                console.log(response.data)
+                // console.log(response.data)
             }
         );
     },

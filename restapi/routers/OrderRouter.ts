@@ -7,21 +7,19 @@ const orderRouter: Router = express.Router()
 
 orderRouter.get(
     "/list", 
+	[checkJWT, checkRole(["ADMIN"])], 
     orderController.findAllOrders
 )
 orderRouter.get(
     "/details/:id", 
-    [checkJWT, checkRole(["ADMIN"])], 
     orderController.findOrderById
 )
 orderRouter.get(
     "/list/user/:webId", 
-    [checkJWT, checkRole(["ADMIN", "SELLER"])], 
     orderController.findOrderByWebId
 )
 orderRouter.post(
     "/add", 
-    [checkJWT, checkRole(["ADMIN", "SELLER"])],
     orderController.addOrder
 )
 orderRouter.post(

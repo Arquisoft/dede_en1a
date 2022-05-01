@@ -1,4 +1,4 @@
-import {Order} from "../shared/shareddtypes";
+import {Order, Product} from "../shared/shareddtypes";
 
 export async function getOrdersForUser(webId: string):Promise<Order[]> {
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";

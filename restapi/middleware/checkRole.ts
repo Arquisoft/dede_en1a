@@ -5,19 +5,13 @@ import User from '../schemas/UserSchema';
 export const checkRole = (roles: string[]) => {
     return async (req : Request, res : Response, next : NextFunction) => {
         // get the webId from the previous middleware  
-        const webId = res.locals.jwtPayload.userId
-        let user = await User.findOne({webId : webId}).then(result => {
-            return result
-        }).catch(error => {
-            res.status(401).send('An error was proeuced while recuperating the user')
-        }) 
-
-        if (user != null && roles.indexOf(user.role) > -1) { 
-            res.locals.role = user.role;
-            res.locals.seller_id = user._id;
+		const payload = res.locals.jwtPayload
+        if ( roles.indexOf(payload.role) > -1) { 
             next();
         }
         else
-            res.status(401).send('An error was proeuced while autenticating the user')
+            res.status(401)
+				.header('WWW-Authenticate', 'Basic realm="you don\'t have the permission level required"')
+				.send('invalid permission level')
     }
 }

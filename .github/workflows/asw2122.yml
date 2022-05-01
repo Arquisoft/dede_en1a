@@ -70,18 +70,23 @@ jobs:
       DB_USERNAME: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       PORT: ${{ secrets.PORT }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     #needs: [e2e-tests]
     needs: [ unit-test-webapp, unit-test-restapi ]
     steps:
       - uses: actions/checkout@v2
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
+        env:
+          PRICE_PER_KM: ${{ secrets.PRICE_PER_KM }}
         with:
           name: arquisoft/dede_en_01a/restapi
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
+          buildargs: PRICE_PER_KM, JWT_SECRET, DB_USER, DB_NAME, DB_PASSWORD
+
   deploy:
     name: Deploy over SSH
     runs-on: ubuntu-latest
@@ -94,7 +99,7 @@ jobs:
           user: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           command: |
-            wget https://raw.githubusercontent.com/Arquisoft/dede_en1a/master/docker-compose-deploy.yml -O docker-compose.yml
+            wget https://raw.githubusercontent.com/Arquisoft/dede_en1a/deployment_workbench/docker-compose-deploy.yml -O docker-compose.yml
             docker-compose stop
             docker-compose rm -f
             docker-compose pull   

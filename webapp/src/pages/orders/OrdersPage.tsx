@@ -27,7 +27,7 @@ const OrdersPage = () => {
             let group: JSX.Element[] = [];
 
             order.products.forEach(async (product) => {
-                const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+                const apiEndPoint = process.env.REACT_APP_API_URI;
                 Axios.get(apiEndPoint + '/product/details/' + product.prod).then(
                     response => {
                         let prod = response.data;
