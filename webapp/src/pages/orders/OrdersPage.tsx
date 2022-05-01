@@ -17,7 +17,7 @@ const OrdersPage = () => {
 
     useEffect(() => {
         refreshOrderList();
-    }, []);
+    }, [orders]);
 
 
     let orderList: JSX.Element[] = [];

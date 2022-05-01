@@ -4,8 +4,8 @@ import {Order, Product} from "../../shared/shareddtypes";
 import {
     Autocomplete,
     Box,
-    Button, Input,
-    Stack, TextareaAutosize,
+    Button, 
+    Stack,
     TextField,
     Typography
 } from "@mui/material";
