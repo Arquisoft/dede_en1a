@@ -1,3 +1,4 @@
+import React from "react";
 import {LoginButton} from "@inrupt/solid-ui-react";
 import {Button} from "@mui/material";
 import {validateUrl} from "../../../helpers/validateProviderUrl";

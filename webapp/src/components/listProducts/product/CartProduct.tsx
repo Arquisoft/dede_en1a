@@ -1,3 +1,4 @@
+import React from "react";
 import {Product} from "../../../shared/shareddtypes";
 import './styles.css';
 import {useHistory} from "react-router-dom";

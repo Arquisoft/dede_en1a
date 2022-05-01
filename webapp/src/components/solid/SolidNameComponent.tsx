@@ -1,3 +1,4 @@
+import React from "react";
 import { useSession, CombinedDataProvider, Text } from "@inrupt/solid-ui-react";
 
 export const SolidNameComponent = () => {

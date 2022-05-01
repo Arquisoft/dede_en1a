@@ -1,3 +1,4 @@
+import React from "react";
 import "./OrderItem.scss"
 import {Product} from "../../shared/shareddtypes";
 
