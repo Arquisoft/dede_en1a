@@ -1,3 +1,4 @@
+import React from 'react';
 import {useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import {CartContext} from '../context/CartContext';

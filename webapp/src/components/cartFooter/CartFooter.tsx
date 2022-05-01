@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { calculateTotal } from '../../helpers/calculate';
