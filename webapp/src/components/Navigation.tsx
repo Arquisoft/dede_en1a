@@ -1,4 +1,5 @@
 import {Route, Switch} from 'react-router-dom';
+import React from 'react';
 import NavBar from "./NavBar";
 import {Home} from "./Home";
 import LoadingSession from "./LoadingSessionComponent"

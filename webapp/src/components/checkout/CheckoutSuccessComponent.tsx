@@ -1,6 +1,5 @@
-import {Box, Grid, Link, Paper, Typography} from "@mui/material";
-import HorizontalLinearStepper from "./HorizontalLinearStepper";
-import React from "react";
+import React from 'react';
+import {Grid, Link, Paper, Typography} from "@mui/material";
 import {useHistory} from "react-router-dom"
 export const CheckoutSuccessComponent = () => {
     const history = useHistory()
