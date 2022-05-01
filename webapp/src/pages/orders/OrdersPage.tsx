@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {Order} from "../../shared/shareddtypes";
 import {useSession} from "@inrupt/solid-ui-react";
 import moment from "moment";
-import {Divider, Grid, List, ListItem, Typography} from '@mui/material';
+import {Box, Divider, Grid, List, ListItem, Typography} from '@mui/material';
 import Axios from "axios";
 
 
@@ -27,7 +27,7 @@ const OrdersPage = () => {
             let group: JSX.Element[] = [];
 
             order.products.forEach(async (product) => {
-                const apiEndPoint = process.env.REACT_APP_API_URI;
+                const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
                 Axios.get(apiEndPoint + '/product/details/' + product.prod).then(
                     response => {
                         let prod = response.data;
@@ -52,7 +52,7 @@ const OrdersPage = () => {
             });
             let dateOrder = new Date(order.createdAt);
             orderList.push(
-                <><ListItem>
+                <><Box display="grid">
                     <List key={order._id}>
                         <ListItem>
                             <Typography component='div' fontFamily="Georgia" variant='h5'>
@@ -76,7 +76,7 @@ const OrdersPage = () => {
                     <div>
                         {group}
                     </div>
-                </ListItem><Divider/></>
+                </Box><Divider/></>
             );
         });
     }

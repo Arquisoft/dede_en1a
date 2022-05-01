@@ -1,5 +1,4 @@
 import {Request, Response} from "express";
-import IOrder from "../interfaces/OrderInterface";
 import Order from "../schemas/OrderSchema"
 import { sendError } from "./helper/hellpers";
 
