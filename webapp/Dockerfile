@@ -5,13 +5,10 @@ WORKDIR /app
 #Install the dependencies
 RUN npm install
 
-#ARG API_URI="http://localhost:5000"
 ARG API_URI
 ENV REACT_APP_API_URI=$API_URI
 
-#Create an optimized version of the webapp
-#commented as we are not using it yet
-#RUN npm run build
+ARG PREFLIGHT_CHECK_SKIP=true
+ENV SKIP_PREFLIGHT_CHECK=$PREFLIGHT_CHECK_SKIP
 
-#npm run prod is not compiling
 CMD [ "npm", "start"]

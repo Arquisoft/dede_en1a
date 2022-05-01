@@ -25,7 +25,6 @@ jobs:
         env:
           SKIP_PREFLIGHT_CHECK: true
       - uses: codecov/codecov-action@v2
-
   unit-test-restapi:
     runs-on: ubuntu-latest
     defaults:
@@ -50,13 +49,14 @@ jobs:
         env:
           API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
           SKIP_PREFLIGHT_CHECK: true
+          PREFLIGHT_CHECK_SKIP: true
         with:
           name: arquisoft/dede_en_01a/webapp
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: webapp
-          buildargs: API_URI, SKIP_PREFLIGHT_CHECK
+          buildargs: API_URI, SKIP_PREFLIGHT_CHECK, PREFLIGHT_CHECK_SKIP
   docker-push-restapi:
     name: Push restapi Docker Image to GitHub Packages
     runs-on: ubuntu-latest
@@ -81,7 +81,6 @@ jobs:
           registry: ghcr.io
           workdir: restapi
           buildargs: PRICE_PER_KM, JWT_SECRET
-
   deploy:
     name: Deploy over SSH
     runs-on: ubuntu-latest
