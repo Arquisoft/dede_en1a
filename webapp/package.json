@@ -10,7 +10,6 @@
 	  "bootstrap": "^5.1.0",
 	  "enzyme": "^3.11.0",
 	  "expect-puppeteer": "^6.1.0",
-	  "formik": "^2.2.9",
 	  "jest-puppeteer": "^6.1.0",
 	  "moment": "^2.29.2",
 	  "node-sass": "^7.0.1",
