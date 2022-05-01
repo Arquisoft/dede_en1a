@@ -6,7 +6,12 @@ import CartFooter from "../cartFooter/CartFooter";
 import './cart-styles.css';
 
 
+<<<<<<< Updated upstream
 const Cart = () => {
+=======
+const Cart = (props: Props) => {
+    const {setIsInCheckout} = props;
+>>>>>>> Stashed changes
     const {cartItems} = useContext(CartContext);
 
     if (!cartItems.length) return <p><b>Cart is empty</b></p>;

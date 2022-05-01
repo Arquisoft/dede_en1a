@@ -15,6 +15,12 @@ const testProduct = {
   weight: 1,
 }
 
+test("Fake card contains product details", () => {
+  const fakeProduct = render(<CartProduct product={testProduct} handleAddToCart={handleAddToCart}/>);
+  expect(fakeProduct).toContain("Screwdriver");
+  expect(fakeProduct).toContain(testProduct.image); 
+})
+
 test("Fake card matches snapshot", () => {
   const fakeProduct = render(<CartProduct product={testProduct} handleAddToCart={handleAddToCart}/>);
   expect(fakeProduct).toMatchSnapshot();

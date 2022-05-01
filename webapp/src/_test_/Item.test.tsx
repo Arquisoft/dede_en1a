@@ -14,6 +14,21 @@ const testProduct = {
     amount: 10,
   }
 
+test("Items contains product name"), () => {
+  const fakeItem = render(<Item item={testProduct} />);
+  expect(fakeItem).toContain(testProduct.name)
+}
+
+test("Items contains product price"), () => {
+  const fakeItem = render(<Item item={testProduct} />);
+  expect(fakeItem).toContain(testProduct.price)
+}
+
+test("Items contains product price"), () => {
+  const fakeItem = render(<Item item={testProduct} />);
+  expect(fakeItem).toContain(testProduct.price)
+}
+
 test("Item matches snapshot", () => {
     const fakeItem = render(<Item item={testProduct} />);
     expect(fakeItem).toMatchSnapshot();

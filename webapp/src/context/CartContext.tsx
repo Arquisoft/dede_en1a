@@ -5,7 +5,12 @@ import {CartContextType} from "../shared/shareddtypes";
 
 function parseStorage() {
 	let cartJSON = localStorage.getItem("cart")
+<<<<<<< Updated upstream
 	console.log(cartJSON)
+=======
+	//console.log("CART")
+	//console.log(cartJSON)
+>>>>>>> Stashed changes
 	if (cartJSON == null) return [];
 	return JSON.parse(cartJSON);
 }
