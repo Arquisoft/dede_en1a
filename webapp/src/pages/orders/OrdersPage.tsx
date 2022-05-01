@@ -1,10 +1,11 @@
 import {getOrdersForUser} from "../../api/api";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Order} from "../../shared/shareddtypes";
 import {useSession} from "@inrupt/solid-ui-react";
 import moment from "moment";
 import {Box, Divider, Grid, List, ListItem, Typography} from '@mui/material';
 import Axios from "axios";
+import {Footer} from "../../components/footer/Footer";
 
 
 const OrdersPage = () => {
@@ -82,14 +83,14 @@ const OrdersPage = () => {
     }
 
     return (
-        <Grid container spacing={0} direction="column" alignItems="center">
+        <><Grid container spacing={0} direction="column" alignItems="center">
             <Typography variant="h2">
                 Your order(s):
             </Typography>
             <List>
                 {orderList}
             </List>
-        </Grid>
+        </Grid><Footer/></>
     );
 
 }

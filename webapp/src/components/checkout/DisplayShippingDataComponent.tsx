@@ -10,6 +10,7 @@ import React, {useEffect, useState} from "react";
 import {useSession} from "@inrupt/solid-ui-react";
 import {usePodData} from "../../hooks/usePodData";
 import {Address} from "../../shared/shareddtypes";
+import {Footer} from "../footer/Footer";
 
 type CustomerDataProps = {
     fn: string
@@ -166,12 +167,13 @@ export const DisplayShippingDataComponent = () => {
             justifyContent="center"
             style={{ minHeight: '50vh'}}
         >
-            <Paper  sx={{marginTop: '30px', marginLeft: '100px', marginRight: '100px', marginDown: '100px'}}>
+            <Paper  sx={{marginTop: '30px', marginLeft: '100px', marginRight: '100px'}}>
                 <DisplayCustomerDataComponent fn={fn} addresses={addresses} setIsValidAddress={setIsValidAddress} setIsValidName={setIsValidName}/>
             </Paper>
             <Box sx={{margin: '60px'}}>
                 <HorizontalLinearStepper step={1} isValidAddress={isValidAddress} isValidName={isValidName}/>
             </Box>
+            <Footer/>
         </Grid>
     )
 }

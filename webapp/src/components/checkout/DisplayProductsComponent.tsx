@@ -5,6 +5,7 @@ import Item from "../cart/item/Item";
 import {useHistory} from "react-router-dom";
 import HorizontalLinearStepper from "./HorizontalLinearStepper";
 import {calculateTotal} from "../../helpers/calculate";
+import {Footer} from "../footer/Footer";
 
 type DisplayProductsProps = {
     setIsEmpty: (isEmpty: boolean) => void
@@ -77,6 +78,7 @@ export const DisplayProductsComponent = () => {
             <Box hidden={isEmpty} sx={{margin: '60px'}}>
                 <HorizontalLinearStepper step={0}/>
             </Box>
+            <Footer/>
         </Grid>
     )
 }
