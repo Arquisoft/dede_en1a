@@ -17,10 +17,10 @@ import {useUser} from "../../context/UserContext";
 const AdminPanel = () => {
     const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
     const {token} = useUser()
-    const {products} = useFetch();
     const [orders, setOrders] = useState<Order[]>([]);
 	const [users, setUsers] = useState<string[]>([])
 
+	const [products, setProducts] = useState<Product[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [selectedOrder, setSelectedOrder] = useState<Order>();
 	const [selectedUser, setSelectedUser] = useState<string>();
@@ -35,16 +35,22 @@ const AdminPanel = () => {
 		setUsers(data.map((x:any) => x.webId))
 	}
 
+	const fetchProducts = async () => {
+		let {data} = await axios.get(apiEndPoint + '/product/list')
+		setProducts(data)
+	}
+
     useEffect(() => {
         fetchOrders();
 		fetchUsers();
-    }, []);
+		fetchProducts();
+    }, [products, orders, users]);
 
     const deleteProduct = async (product: Product) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
             await axios.get(apiEndPoint + '/product/delete/' + product._id,
                 {headers: {auth: token}})
-            useFetch();
+			fetchProducts();
         }
     }
 

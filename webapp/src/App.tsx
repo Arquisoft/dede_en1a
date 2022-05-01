@@ -7,7 +7,6 @@ import {CartProvider} from "./context/CartContext";
 import DetailsView from "./pages/DetailsView/DetailsView";
 import {useSession} from "@inrupt/solid-ui-react";
 import { useUser } from "./context/UserContext";
-import { Footer } from "./components/footer/Footer";
 
 
 const App = () => {
@@ -36,7 +35,6 @@ const App = () => {
 						<DetailsView/>
 					</Route>
 				</Switch>
-				<Footer/>
 			</CartProvider>
 		</Router>
     );
