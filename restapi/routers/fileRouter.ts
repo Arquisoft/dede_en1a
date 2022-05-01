@@ -27,7 +27,7 @@ const upload = multer({
 		const reqPath = __dirname + '/' + dir + req.body.name; // user-controlled path
 		const resolvedPath = path.resolve(reqPath); // resolve will resolve "../"
 		if (resolvedPath.startsWith(__dirname + '\\public')) {
-			const fileName = dir + req.body.name + '.jpg'
+			const fileName = path.resolve(req.body.name) + '.jpg'
 			renameSync(req.file.path, fileName)
 		}
 	}
