@@ -4,6 +4,7 @@ import axios from "axios"
 import {useEffect, useRef, useState} from "react"
 import {useHistory} from "react-router-dom"
 import {useUser} from "../context/UserContext"
+import {Footer} from "./footer/Footer";
 
 
 export const AddProduct = () => {
@@ -131,6 +132,7 @@ export const AddProduct = () => {
                     </Button>
                 </Grid>
             </Grid>
+            <Footer/>
         </Container>
     )
 }

@@ -7,8 +7,7 @@ type Props = {
     setIsInCheckout: (isInCheckout: boolean) => void
 }
 
-const Sidebar = (props: Props) => {
-    const {handleClose, setIsInCheckout} = props
+const Sidebar = ({handleClose, setIsInCheckout}: Props) => {
     return (
         <Offcanvas
             show={true}

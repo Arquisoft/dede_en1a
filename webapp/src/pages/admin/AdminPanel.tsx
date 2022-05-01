@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import useFetch from "../../hooks/useFetch";
 import {Order, Product} from "../../shared/shareddtypes";
 import {
     Autocomplete,
@@ -12,6 +11,7 @@ import {
 import {getOrders} from "../../api/api";
 import axios from "axios";
 import {useUser} from "../../context/UserContext";
+import {Footer} from "../../components/footer/Footer";
 
 
 const AdminPanel = () => {
@@ -188,6 +188,7 @@ const AdminPanel = () => {
 					</div>
                 </Stack>
             </Box>
+			<Footer/>
         </div>
     );
 }

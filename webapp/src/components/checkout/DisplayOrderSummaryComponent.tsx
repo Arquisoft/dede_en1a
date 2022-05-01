@@ -9,6 +9,7 @@ import Item from "../cart/item/Item";
 import {calculateTotal, calculateTotalPlusShiping} from "../../helpers/calculate";
 import {useShipping} from "../../hooks/useShipping";
 import HorizontalLinearStepper from "./HorizontalLinearStepper";
+import {Footer} from "../footer/Footer";
 
 const notify = (msj: string) => toast(msj);
 
@@ -150,6 +151,7 @@ export const DisplayOrderSummaryComponent = () => {
             <Box sx={{margin: '60px'}}>
                 <HorizontalLinearStepper handleSubmit={handleSubmit} step={2}/>
             </Box>
+            <Footer/>
         </Box>
     )
 }
