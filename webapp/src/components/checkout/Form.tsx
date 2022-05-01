@@ -2,7 +2,7 @@ import React, { FormEvent, useContext, useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { CartContext } from "../../context/CartContext";
 import postData from "../../helpers/postData";
-import {ContactData, OrderAdd} from "../../shared/shareddtypes";
+import {Address, OrderAdd} from "../../shared/shareddtypes";
 import axios from "axios";
 import {useSession} from "@inrupt/solid-ui-react";
 import {SolidNameComponent} from "../solid/SolidNameComponent";
@@ -27,7 +27,7 @@ const Form = (props: Props) => {
     const {setNewAddress, shipping} = props
     const {cartItems, dispatch } = useContext(CartContext);
     const [showToast, setShowToast ] = useState(false);
-    const [contactData, setContactData] = useState<ContactData[]>([]);
+    const [contactData, setContactData] = useState<Address[]>([]);
 
     const {session} = useSession()
 
@@ -71,7 +71,6 @@ const Form = (props: Props) => {
                 shippingPrice: parseFloat(shipping.price.toFixed(2)),
                 totalPrice: parseFloat(localStorage.getItem("totalPrice") + "") + parseFloat(shipping.price.toFixed(2)),
             }
-			console.log("order: " + order.shippingPrice)
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){

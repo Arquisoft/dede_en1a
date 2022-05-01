@@ -8,6 +8,8 @@ export const LogoutButtonSolid = () => {
 
     useEffect(() => {
         localStorage.removeItem("cart")
+        localStorage.removeItem("fn")
+        localStorage.removeItem("address")
     })
 
     return(

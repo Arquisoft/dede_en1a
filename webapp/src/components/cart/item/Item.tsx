@@ -1,5 +1,6 @@
+import React from 'react';
 import { IndeterminateCheckBox, AddBox, Delete } from '@mui/icons-material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { CartContext } from '../../../context/CartContext';
 import './item-styles.css';
@@ -7,18 +8,23 @@ import {CartItem} from "../../../shared/shareddtypes";
 
 type Props = {
     item: CartItem
+    inCheckout?: boolean
 }
 
-const Item = ({ item }: Props) => {
-
+const Item = (props: Props) => {
+    const {item, inCheckout} = props
     const { dispatch } = useContext(CartContext);
-    let imgId = item.image === undefined ? 'undefined':item.image.toString();
-
+    const apiEndPoint = process.env.REACT_APP_API_URI
+	let name = item.name
+	if (name.length > 8) {
+		name = name.substring(0,8 ) + "..."
+	}
     return (
         <>
             <div className='shopping-cart-item'>
                     <div className="item-action">
                     <Button
+                        hidden={inCheckout}
                         variant='secondary'
                         onClick={() => dispatch({
                             payload: item,
@@ -28,6 +34,7 @@ const Item = ({ item }: Props) => {
                     </Button>
                     <span>{item.amount}</span>
                     <Button
+                        hidden={inCheckout}
                         variant='secondary'
                         onClick={() => dispatch({
                             payload: item._id,
@@ -38,11 +45,11 @@ const Item = ({ item }: Props) => {
                 </div>
                 <div className="item-detail">
                     <div className="item-detail-image">
-                        <img src={"./images/".concat(imgId).concat(".jpg")} alt={item.name} />
+                        <img src={apiEndPoint + "/public/images/" + item._id + ".jpg"} alt={item.name} />
                     </div>
                     <div className="item-detail-info">
                         <div className="item-detail-info-name">
-                            {item.name}
+                            {name}
                         </div>
                         <div className="item-detail-info-prices">
                             <span>{item.price}€</span>
@@ -50,6 +57,7 @@ const Item = ({ item }: Props) => {
                     </div>
                     <div className="item-action-remove">
                         <Button
+                            hidden={inCheckout}
                             variant='danger'
                             title='Remove product'
                             onClick={() => dispatch({

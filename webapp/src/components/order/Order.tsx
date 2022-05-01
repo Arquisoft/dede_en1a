@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react'
+import React from "react";
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import {calculateTotal, calculateTotalPlusShiping, getTotalItems} from '../../helpers/calculate';

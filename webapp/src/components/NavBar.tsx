@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import {CartContext} from '../context/CartContext';
@@ -16,8 +16,9 @@ import {
 } from "@mui/material";
 import logo from "../images/logoName.png";
 import "./styles.css"
-import {CartItem, NavBarProps} from "../shared/shareddtypes";
+import {CartItem, NavBarProps, NavigationProps} from "../shared/shareddtypes";
 import {LogInSignUpComponent} from "./userAuthentication/LogInSignUpComponent"
+import { useUser } from '../context/UserContext';
 
 
 type NavBarItemProps = {
@@ -55,7 +56,8 @@ function ShoppingCart(props: ShoppingCartProps) {
  */
 function NavBarButtons(props: NavBarItemProps) {
     // This list contains the names of the options in the navBar
-    const pages = ["Home", "My orders"]
+	const {isLoggedInDeDe, role} = useUser();
+    const pages = ["Home", "My orders", "Add product", "admin"]
     const history = useHistory()
 
     // Props
@@ -68,6 +70,14 @@ function NavBarButtons(props: NavBarItemProps) {
     const navigateToOrders = () => {
         history.push("/orders/list")
     }
+
+	const navigateToAddProducts = () => {
+		history.push('/dede/product/add')
+	}
+
+	const navigateToAdmin = () => {
+		history.push('/admin/panel')
+	}
 
     return (
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -86,6 +96,28 @@ function NavBarButtons(props: NavBarItemProps) {
             >
                 {pages[1]}
             </Button>
+			{isLoggedInDeDe ?
+				<Button
+					key={pages[2]}
+					onClick={navigateToAddProducts}
+					sx={{ my: 2, color: 'white', display: 'block' }}
+				>
+					{pages[2]}
+				</Button>
+			:
+			<></>
+			}
+			{isLoggedInDeDe && role === "ADMIN" ?
+				<Button
+					key={pages[3]}
+					onClick={navigateToAdmin}
+					sx={{ my: 2, color: 'white', display: 'block' }}
+				>
+					{pages[3]}
+				</Button>
+			: 
+				<></>
+			}
         </Box>
     )
 }

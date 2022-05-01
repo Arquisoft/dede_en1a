@@ -1,38 +1,39 @@
+import React from "react";
 import {
     Grid,
     FormControl,
-    InputLabel,
     Button,
     Paper,
     Box,
-    Select,
-    MenuItem,
-    SelectChangeEvent,
-    Typography
+    Typography, TextField, Alert, Collapse, IconButton
 } from "@mui/material";
 import {useEffect, useState} from "react";
 import {LoginSolid} from "./loginLogogut/LoginSolid";
+import {validateUrl} from "../../helpers/validateProviderUrl";
+import CloseIcon from '@mui/icons-material/Close';
 
 export const SelectProviderComponent = () => {
     // Getting the parameters from the URL
     const queryParams = new URLSearchParams(window.location.search)
-    const toLogIn = queryParams.get("toLogIn") === "1"
-
+    const toLogIn = queryParams.get("toLogIn") == "1"
+    const [isValid, setIsValid] = useState(false)
     const [textValue, setTextValue] = useState<string>("")
     const [redirectUrl, setRedirectUrl] = useState("")
-    const providers = ["https://solidcommunity.net/", "https://broker.pod.inrupt.com"]
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         setRedirectUrl("http://" + window.location.host)
     }, [])
 
-    const handleSubmit = () => {
-        if(textValue !== "")
-            window.location.href = textValue
-    }
+    useEffect(() => {
+        setIsValid(validateUrl(textValue))
+    }, [textValue])
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setTextValue(event.target.value)
+    const handleSubmit = () => {
+        if(validateUrl(textValue))
+            window.location.href = textValue
+        else
+            setOpen(true)
     }
 
     return (
@@ -40,12 +41,11 @@ export const SelectProviderComponent = () => {
             container
             spacing={0}
             direction="column"
-
             justifyContent="center"
             style={{ minHeight: '50vh'}}
         >
-            <Box alignSelf={"center"} component="div" sx={{marginTop: '5%', maxWidth: '25%', whiteSpace: 'normal' }}>
-                <Typography variant="h6">
+            <Box alignSelf={"center"} component="div" sx={{marginTop: '5%', maxWidth: '50%', whiteSpace: 'normal' }}>
+                <Typography variant="h6" alignContent="center" width="100%">
                     In order to make purchases in this application a Solid Pod is needed. This Pod
                     will store your data and will belong entirely to you. DeDe, will only make use
                     of your Pod's to process your order. Your private data will not be saved.
@@ -56,26 +56,64 @@ export const SelectProviderComponent = () => {
                 <Typography variant="h2" style={{margin: '10px', color: 'white'}}>{toLogIn ? "Log into a pod provider" : "Pod registration"}</Typography>
                     <Box style={{margin: '10px',background: '#FFFFFF'}}>
                         <FormControl fullWidth>
-                            <InputLabel id="select-provider-label">Select a Pod provider</InputLabel>
-                            <Select
-                                labelId="select-provider"
-                                id="select-provider"
-                                value={textValue}
-                                label="Select a Pod provider"
-                                onChange={handleChange}
-                                style={{margin: '10px', borderColor: '#FFFFFF'}}
-                            >
-                                {providers.map((provider, index) =>
-                                    <MenuItem key={index} value={provider}>{provider}</MenuItem>
-                                )}
-                            </Select>
+                            <TextField
+                                id="provider-textfield"
+                                label="Select a provider"
+                                variant="outlined"
+                                onChange={e => setTextValue(e.target.value)}
+                            />
                         </FormControl>
                     </Box>
                 <Box alignItems="center" >
-                    {toLogIn ? <LoginSolid provider={textValue} redirectUrl={redirectUrl}/>
-                        : <Button onClick={handleSubmit} style={{color: 'white'}}>Submit</Button>
+                    {toLogIn ?
+                        <Box>
+                            <Collapse in={open}>
+                                <Alert
+                                    severity={"info"}
+                                    action={
+                                        <IconButton
+                                            aria-label="close"
+                                            color="inherit"
+                                            size="small"
+                                            onClick={() => {
+                                                setOpen(false);
+                                            }}
+                                        >
+                                            <CloseIcon fontSize="inherit" />
+                                        </IconButton>
+                                    }
+                                    sx={{ mb: 2 }}
+                                >
+                                    Please type a valid pod provider.
+                                </Alert>
+                            </Collapse>
+                            <LoginSolid provider={textValue} redirectUrl={redirectUrl} setOpen={setOpen} />
+                        </Box>
+                        :
+                        <Box>
+                            <Collapse in={open}>
+                                <Alert
+                                    severity={"info"}
+                                    action={
+                                        <IconButton
+                                            aria-label="close"
+                                            color="inherit"
+                                            size="small"
+                                            onClick={() => {
+                                                setOpen(false);
+                                            }}
+                                        >
+                                            <CloseIcon fontSize="inherit" />
+                                        </IconButton>
+                                    }
+                                    sx={{ mb: 2 }}
+                                >
+                                    Please type a valid pod provider.
+                                </Alert>
+                            </Collapse>
+                            <Button onClick={handleSubmit} style={{color: 'white'}} >Submit</Button>
+                        </Box>
                     }
-
                 </Box>
             </Paper>
         </Grid>

@@ -9,10 +9,10 @@ type Props = {
 
 const ProductImage: React.FC<Props> = ({item}) => {
 
-  let imgPath = "../../../../images/".concat(item.image).concat(".jpg");
+  const apiEndPoint = process.env.REACT_APP_API_URI
 
   return(
-    <img src={imgPath} height={250} width={300} alt={item.name} style={{justifyContent:"center", margin:"auto", alignItems:"center", display:"block"}}/>
+    <img src={apiEndPoint + "/public/images/" + item._id + ".jpg"} height={250} width={300} alt={item.name} style={{justifyContent:"center", margin:"auto", alignItems:"center", display:"block"}}/>
   )
 }
 
