@@ -1,13 +1,10 @@
-import {Box, Button, Grid, List, Paper, Typography} from "@mui/material";
-import React, {FormEvent, useContext, useEffect, useState} from "react";
+import {Box, Grid, List, Paper, Typography} from "@mui/material";
+import React, { useContext, useEffect, useState} from "react";
 import {CartContext} from "../../context/CartContext";
-import {Address, OrderAdd} from "../../shared/shareddtypes";
+import {OrderAdd} from "../../shared/shareddtypes";
 import {useSession} from "@inrupt/solid-ui-react";
-import axios from "axios";
 import postData from "../../helpers/postData";
-import {SolidNameComponent} from "../solid/SolidNameComponent";
-import toast, {Toaster} from "react-hot-toast";
-import {useHistory} from "react-router-dom";
+import toast from "react-hot-toast";
 import Item from "../cart/item/Item";
 import {calculateTotal, calculateTotalPlusShiping} from "../../helpers/calculate";
 import {useShipping} from "../../hooks/useShipping";
@@ -115,7 +112,7 @@ export const DisplayOrderSummaryComponent = () => {
                 shippingPrice: parseFloat(shippingPrice.toFixed(2)),
                 totalPrice: parseFloat(calculateTotalPlusShiping(cartItems, shippingPrice).toFixed(2))
             }
-            // console.log("order: " + order.shippingPrice)
+
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){

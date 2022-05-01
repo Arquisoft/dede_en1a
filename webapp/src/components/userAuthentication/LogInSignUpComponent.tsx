@@ -3,7 +3,6 @@ import React from "react";
 import {LoginButtonProvider} from "./loginLogogut/LoginButtonComponent";
 import {SignUpButtonComponent} from "./loginLogogut/SignUpButtonComponent";
 import {LogoutButtonSolid} from "./loginLogogut/LogoutButtonComponent";
-import { LoginDeDe } from "./loginLogogut/LoginDeDe";
 import { DeDeLoginButtonProvider } from "./loginLogogut/DeDeLoginButtonProvider";
 
 type Props = {

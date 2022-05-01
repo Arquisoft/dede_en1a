@@ -1,6 +1,6 @@
 import {Component} from "react";
 import {RouteComponentProps} from "react-router-dom";
-import { Formik, Field, Form } from "formik";
+import {Formik, Field, Form} from "formik";
 import AuthService from "../../helpers/authService";
 
 
@@ -56,7 +56,7 @@ export default class AdminLogin extends Component<Props, State> {
     }
 
     render() {
-        const { loading } = this.state;
+        const {loading} = this.state;
 
         const initialValues = {
             username: "",
@@ -64,12 +64,13 @@ export default class AdminLogin extends Component<Props, State> {
         };
 
         return (
-            <div className="col-md-12">
-                <div className="card card-container">
+            <div className="col-md-12" style={{ alignSelf: "center" }}>
+                <div className="card card-container" style={{maxWidth: "100%", alignItems: "center", height: "auto"}}>
                     <img
                         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                         alt="profile-img"
                         className="profile-img-card"
+                        style={{maxWidth: "20%", alignSelf: "center"}}
                     />
 
                     <Formik
@@ -79,12 +80,12 @@ export default class AdminLogin extends Component<Props, State> {
                         <Form>
                             <div className="form-group">
                                 <label htmlFor="username">Username</label>
-                                <Field name="username" type="text" className="form-control" />
+                                <Field name="username" type="text" className="form-control"/>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <Field name="password" type="password" className="form-control" />
+                                <Field name="password" type="password" className="form-control"/>
                             </div>
 
                             <div className="form-group">

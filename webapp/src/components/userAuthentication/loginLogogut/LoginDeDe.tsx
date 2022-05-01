@@ -1,6 +1,5 @@
 import { useSession } from "@inrupt/solid-ui-react";
 import { Alert, Button, Grid, Link, Paper, TextField, Typography } from "@mui/material";
-import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
