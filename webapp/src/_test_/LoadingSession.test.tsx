@@ -24,10 +24,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 test("Loading session component renders", () => {
-    // jest.spyOn(Router, 'useParams').mockReturnValue({ webID: 'mock webID', sessionId: 'mock sessionID' })
-    // const fakeComponent = render(<LoadingSession />)
-    // expect(fakeComponent).toBeTruthy();
-
-
+    const fakeComponent = render(<LoadingSession />);
+    expect(fakeComponent).toBeInTheDocument();
     //this is throwing an error i dont understand, so commented out
 })

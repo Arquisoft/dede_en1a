@@ -11,6 +11,11 @@ test("Sidebar renders correctly", () => {
     expect(fakeSidebar).toBeTruthy();
 })
 
+test("Sidebar contains cart", () => {
+    const fakeSidebar = render(<Sidebar handleClose={handleClose}/>)
+    expect(fakeSidebar).toContain('Your cart');
+})
+
 test("Sidebar matches snapshot", () => {
     const fakeSidebar = render(<Sidebar handleClose={handleClose}/>)
     expect(fakeSidebar).toMatchSnapshot();

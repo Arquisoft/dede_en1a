@@ -24,15 +24,6 @@ const createWrapper = () => {
   return render(<DetailsView/>);
 };
 
-<<<<<<< Updated upstream
-describe("Component Page", () => {
-  describe("Rendering", () => {
-    it("should render product details", () => {
-      jest.spyOn(Router, 'useParams').mockReturnValue({ _id: '622fc17f8aedec1b7f53677a' })
-      const wrapper = createWrapper();
-      expect(wrapper).toBeTruthy; //this does nothing,  need to make more specific
-    });
-=======
 describe("Product Details Page", () => {
   it("should render product name", () => {
     const productDetails = render(<DetailsView/>);
@@ -47,7 +38,6 @@ describe("Product Details Page", () => {
   it("should render product image", () => {
     const productDetails = render(<DetailsView/>);
     expect(productDetails).toContain(testProduct.image); //need to make more specific
->>>>>>> Stashed changes
   });
 });
  

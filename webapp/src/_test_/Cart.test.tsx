@@ -6,11 +6,6 @@ import Cart from '../components/cart/Cart';
 import { CartItem } from "../shared/shareddtypes";
 import { CartContext } from '../context/CartContext';
 
-<<<<<<< Updated upstream
-test("Cart matches snapshot", () => {
-  const fakeCart = render(<Cart />);
-  expect(fakeCart).toMatchSnapshot();
-=======
 const cartItems: CartItem[] = [
   {
       _id: "123",
@@ -42,7 +37,7 @@ const dispatch = jest.fn(() => true)
 test("Cart contains items", () => {
   const fakeCart = render(
     <CartContext.Provider value={{cartItems, dispatch}}>
-      <Cart setIsInCheckout={() => false} />
+      <Cart />
     </CartContext.Provider>);
   expect(fakeCart).toBeTruthy(); //check that fake items are in the cart
 })
@@ -50,9 +45,8 @@ test("Cart contains items", () => {
 test("Cart returns empty when there are no items", () => {
   const fakeCart2 = render(
     <CartContext.Provider value={{cartItems2, dispatch}}>
-      <Cart setIsInCheckout={() => false} />
+      <Cart />
     </CartContext.Provider>);
   expect(fakeCart2).toBeTruthy();
-  //expect(fakeCart2).toContain("Cart is empty");
->>>>>>> Stashed changes
+  expect(fakeCart2).toContain("Cart is empty");
 })

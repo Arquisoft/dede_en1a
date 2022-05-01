@@ -10,3 +10,5 @@ test("Navigation renders correctly", () => {
     const fakeNavigation = render(<Router><Navigation isLoggedIn={false} handleOpen={handleOpen}/></Router>)
     expect(fakeNavigation).toBeTruthy();
 })
+
+//test that react router works
