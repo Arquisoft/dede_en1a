@@ -44,7 +44,7 @@ const AdminPanel = () => {
         fetchOrders();
 		fetchUsers();
 		fetchProducts();
-    }, [products, orders, users]);
+    }, []);
 
     const deleteProduct = async (product: Product) => {
         if (window.confirm("Are you sure you want to delete this product?")) {
