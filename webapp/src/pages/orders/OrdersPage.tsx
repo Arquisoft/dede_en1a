@@ -27,12 +27,11 @@ function OrdersPage(): JSX.Element {
             let group: JSX.Element[] = [];
 
             order.products.forEach(async (product) => {
-                const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+                const apiEndPoint = process.env.REACT_APP_API_URI;
                 Axios.get(apiEndPoint + '/product/details/' + product.prod).then(
-
-                    response => {
+					response => {
                         let prod = response.data;
-                        console.log(prod);
+                        // console.log(prod);
                         group.push(
                             <>
                                 <div key={prod._id} className="product-cart-container">

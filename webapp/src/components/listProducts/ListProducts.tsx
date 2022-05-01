@@ -14,23 +14,23 @@ import Select, {SelectChangeEvent} from '@mui/material/Select';
 const getFilteredItems = (query: any, priceRange: any, sortBy: any, products: any) => {
     //console.log("Items are filtered");
     let filteredProducts: any = products;
-    console.log(filteredProducts);
+    // console.log(filteredProducts);
 
     if (query) {
         filteredProducts = filteredProducts.filter((product: any) => product.name.toLowerCase().includes(query.toLowerCase()));
     }
 
     if (sortBy) {
-        console.log("Order: ");
-        console.log(sortBy);
+        // console.log("Order: ");
+        // console.log(sortBy);
         if (sortBy === 1) {
-            console.log("A-Z");
+            // console.log("A-Z");
             filteredProducts = filteredProducts.sort((a: any, b: any) => a.name.localeCompare(b.name));
         } else if (sortBy === 2) {
-            console.log("Ascending");
+            // console.log("Ascending");
             filteredProducts = filteredProducts.sort((a: any, b: any) => a.price - b.price);
         } else {
-            console.log("Descending");
+            // console.log("Descending");
             filteredProducts = filteredProducts.sort((a: any, b: any) => b.price - a.price);
         }
 
@@ -43,7 +43,7 @@ const getFilteredItems = (query: any, priceRange: any, sortBy: any, products: an
     }
 
     if (priceRange) {
-        console.log("There is a price range");
+        // console.log("There is a price range");
         if (priceRange === 10) {
             filteredProducts = filteredProducts.filter((product: any) => product.price <= 10);
         } else if (priceRange === 100) {
@@ -53,7 +53,7 @@ const getFilteredItems = (query: any, priceRange: any, sortBy: any, products: an
         }
     }
 
-    console.log(filteredProducts);
+    // console.log(filteredProducts);
     //return products.filter((product: any) => product.name.toLowerCase().includes(query.toLowerCase()));
     return filteredProducts;
 }

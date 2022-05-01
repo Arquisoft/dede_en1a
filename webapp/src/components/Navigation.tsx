@@ -14,6 +14,7 @@ import AdminLogin from "./userAuthentication/AdminLogIn";
 import AdminPanel from "../pages/admin/AdminPanel";
 import { LoginDeDe } from './userAuthentication/loginLogogut/LoginDeDe';
 import { SignupDeDe } from './userAuthentication/loginLogogut/SignupDeDe';
+import { AddProduct } from './AddProduct';
 
 const Navigation = (props: NavigationProps) => {
     const {isLoggedIn, handleOpen} = props
@@ -36,6 +37,7 @@ const Navigation = (props: NavigationProps) => {
                     <Route exact path='/admin/panel' component={AdminPanel}/>
 					<Route exact path='/dede/login' component={LoginDeDe}/>
 					<Route exact path='/dede/signup' component={SignupDeDe}/>
+					<Route exact path='/dede/product/add' component={AddProduct}/>
                 </Switch>
             </Box>
         </Box>

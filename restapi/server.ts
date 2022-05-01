@@ -9,6 +9,7 @@ import productRouter from "./routers/ProductRouter";
 import orderRouter from "./routers/OrderRouter";
 import solidRouter from "./solid/solidRouter";
 import geocoderRouter from "./routers/geocoderRouter";
+import FileRouter from "./routers/fileRouter";
 
 
 import 'dotenv/config'
@@ -33,6 +34,7 @@ app.use("/product", productRouter)
 app.use("/order", orderRouter)
 app.use("/solid", solidRouter)
 app.use("/geocode", geocoderRouter)
+app.use("/", FileRouter)
 
 
 // Connect to the server

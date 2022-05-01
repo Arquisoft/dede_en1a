@@ -24,6 +24,7 @@ export const LoginDeDe = () => {
 			await loginDeDe(webId, password)
 			history.push('/')
 		} catch (error : any) {
+			console.log(error)
 			if (error.response.status == 401) {
 				setError('incorrect user or password')
 				handleError()

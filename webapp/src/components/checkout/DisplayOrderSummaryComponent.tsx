@@ -115,7 +115,7 @@ export const DisplayOrderSummaryComponent = () => {
                 shippingPrice: parseFloat(shippingPrice.toFixed(2)),
                 totalPrice: parseFloat(calculateTotalPlusShiping(cartItems, shippingPrice).toFixed(2))
             }
-            console.log("order: " + order.shippingPrice)
+            // console.log("order: " + order.shippingPrice)
             const fetchApi = await postData(order);
 
             if(!fetchApi.ok){

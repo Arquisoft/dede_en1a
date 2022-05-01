@@ -18,9 +18,9 @@ export const UserProvider = (props:any) => {
 	const [token, setToken] = useState<string | null>()
 	const [role, setRole] = useState<string | null>()
 	const [isLoggedInDeDe, setIsLoggedInDeDe] = useState<boolean>(false)
-	const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000'
+	const apiEndPoint = process.env.REACT_APP_API_URI
 
-	const signup = async (webId:string, password:string) => {
+	const signupDeDe = async (webId:string, password:string) => {
 		let response = await axios.post(apiEndPoint + "/user/signup", {
 			webId: encodeURI(webId),
 			password: password
@@ -31,7 +31,7 @@ export const UserProvider = (props:any) => {
 		return response.data
 	}
 
-	const login = async (webId:string, password: string) => {
+	const loginDeDe = async (webId:string, password: string) => {
 		let response = await axios.post(apiEndPoint + "/user/login", {
 			webId: encodeURI(webId),
 			password: password
@@ -42,7 +42,7 @@ export const UserProvider = (props:any) => {
 		return response.data
 	}
 
-	const logout = () => {
+	const logoutDeDe = () => {
 		setIsLoggedInDeDe(false)
 		setToken(null)
 		setRole(null)
@@ -53,9 +53,9 @@ export const UserProvider = (props:any) => {
 			token,
 			role,
 			isLoggedInDeDe,
-			login,
-			signup,
-			logout
+			loginDeDe,
+			signupDeDe,
+			logoutDeDe
 		})
 	}, [token, role, isLoggedInDeDe])
 

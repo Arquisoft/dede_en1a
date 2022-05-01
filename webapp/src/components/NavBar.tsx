@@ -71,7 +71,7 @@ function NavBarButtons(props: NavBarItemProps) {
     }
 
 	const navigateToAddProducts = () => {
-		history.push('/product/add')
+		history.push('/dede/product/add')
 	}
 
     return (
