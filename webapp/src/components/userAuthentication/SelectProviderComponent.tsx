@@ -5,18 +5,19 @@ import {
     Button,
     Paper,
     Box,
-    Typography, TextField, Alert, Collapse, IconButton
+    Typography, TextField, Alert, Collapse, IconButton, Select
 } from "@mui/material";
 import {useEffect, useState} from "react";
 import {LoginSolid} from "./loginLogogut/LoginSolid";
 import {validateUrl} from "../../helpers/validateProviderUrl";
 import CloseIcon from '@mui/icons-material/Close';
+import {SelectChangeEvent} from "@mui/material/Select";
 
 export const SelectProviderComponent = () => {
     // Getting the parameters from the URL
     const queryParams = new URLSearchParams(window.location.search)
     const toLogIn = queryParams.get("toLogIn") == "1"
-    const [isValid, setIsValid] = useState(false)
+    const [providers, setProviders] = useState<string[]>(["https://solidcommunity.net", "https://broker.pod.inrupt.com"])
     const [textValue, setTextValue] = useState<string>("")
     const [redirectUrl, setRedirectUrl] = useState("")
     const [open, setOpen] = useState(false)
@@ -24,10 +25,6 @@ export const SelectProviderComponent = () => {
     useEffect(() => {
         setRedirectUrl("http://" + window.location.host)
     }, [])
-
-    useEffect(() => {
-        setIsValid(validateUrl(textValue))
-    }, [textValue])
 
     const handleSubmit = () => {
         if(validateUrl(textValue))
@@ -56,12 +53,22 @@ export const SelectProviderComponent = () => {
                 <Typography variant="h2" style={{margin: '10px', color: 'white'}}>{toLogIn ? "Log into a pod provider" : "Pod registration"}</Typography>
                     <Box style={{margin: '10px',background: '#FFFFFF'}}>
                         <FormControl fullWidth>
-                            <TextField
-                                id="provider-textfield"
-                                label="Select a provider"
-                                variant="outlined"
-                                onChange={e => setTextValue(e.target.value)}
-                            />
+                            {toLogIn ?
+                                <TextField
+                                    id="provider-textfield"
+                                    label="Select a provider"
+                                    variant="outlined"
+                                    onChange={e => setTextValue(e.target.value)}
+                                />
+                            :
+                                <select
+                                    onChange={(e) => setTextValue(e.target.value) }
+                                >
+                                    {providers.map((p, index) =>
+                                        <option key={index} value={p}>{p}</option>
+                                    )}
+                                </select>
+                            }
                         </FormControl>
                     </Box>
                 <Box alignItems="center" >
