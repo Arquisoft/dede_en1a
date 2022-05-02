@@ -39,7 +39,7 @@ We have identified the risk or technical debts we might encounter during the pro
 
 | Chaotic dependency tree
 | Although we have mostly cleaned up our dependency tree vastly improving build times, we still need to give it another look.
-| Substandard deployment vendor
-| We have been made to know that apart from Amazon Web Services, other server providers offer free, more convenient student plans. We need to look into these.
+| Code quality
+| We are aware that there exist several hotspots on our application and code smell. This could create problems on the future.
 |=========================================================
 

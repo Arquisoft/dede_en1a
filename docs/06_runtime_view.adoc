@@ -1,6 +1,6 @@
 [[section-runtime-view]]
 == Runtime View
-=== Alice wants to order a new product.
+=== Alice wants to order a new product
 * Alice discovers this application by recommendation of a friend and wants to buy a new perfume she has been wanting since past christmas.
 
 * In the following diagram you can see that Alice first browses through the list
@@ -17,7 +17,7 @@ DeDe -> MongoDB : Asks for information of the chosen product
 DeDe <- MongoDB : Return the information of the product
 Alice <- DeDe : Adds the product to the cart
 ----
-=== Bob wants to process an order to buy products.
+=== Bob wants to process an order to buy products
 * Bob has been browsing DeDe and has added some cool products to his
 order, but now he wants to process that order and buy the products.
 
@@ -49,7 +49,7 @@ Bob -> DeDe : Places the order
 DeDe -> MongoDb : Stores the order with the WebId of the user
 
 ----
-=== Bob wants to check his placed orders.
+=== Bob wants to check his placed orders
 * Bob has is a loyal client and has placed some orders,
 now he wants to check those to verify everything is correct.
 
