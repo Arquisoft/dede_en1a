@@ -31,9 +31,8 @@ async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
     let myDataSet = await getSolidDataset(profileDocumentURI) // Get the dataset
     let profile = getThing(myDataSet, webID) as Thing // Get the #me thing
 
-    console.log(getUrlAll(await profile, VCARD.hasAddress))
-    let urlAddress = getUrlAll(profile as Thing, FOAF.name)
-    console.log(urlAddress)
+    let urlAddress = getUrlAll(profile as Thing, VCARD.hasAddress)
+
     let result = processAddresses(urlAddress, myDataSet, profile)
 
     return result
