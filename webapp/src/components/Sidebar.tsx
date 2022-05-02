@@ -17,7 +17,7 @@ const Sidebar = ({handleClose, setIsInCheckout}: Props) => {
                 <Offcanvas.Title>Your cart</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-                <Cart setIsInCheckout={setIsInCheckout}/>
+                <Cart setIsInCheckout={setIsInCheckout} handleClose={handleClose}/>
             </Offcanvas.Body>
         </Offcanvas>
     )
