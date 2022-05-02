@@ -1,5 +1,5 @@
 import React from "react";
-import { useSession, CombinedDataProvider, Text } from "@inrupt/solid-ui-react";
+import { useSession } from "@inrupt/solid-ui-react";
 import {usePodData} from "../../hooks/usePodData";
 import {Typography} from "@mui/material";
 

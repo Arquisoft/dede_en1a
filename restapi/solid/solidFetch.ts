@@ -35,9 +35,9 @@ async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
     // We get an array of the addresses of the user.
     let urlAddress = getUrlAll(profile as Thing, VCARD.hasAddress)
 
-    let result = processAddresses(urlAddress, myDataSet, profile)
+    return processAddresses(urlAddress, myDataSet, profile)
 
-    return result
+
 }
 
 
