@@ -14,7 +14,7 @@ export const LogInSignUpComponent = (props: Props) => {
 
     return (
         <Box>
-            <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'flex' } }}>
 				{!isLoggedIn ?
 				<>
 					<LoginButtonProvider/>
