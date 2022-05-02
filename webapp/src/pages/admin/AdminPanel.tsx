@@ -63,9 +63,11 @@ const AdminPanel = () => {
     }
 
 	const promote = async () => {
-        if (window.confirm("If you continue the selected user will become an admin")) {
-            await axios.get(apiEndPoint + '/user/promote/' + selectedUser, {headers: {auth: token}})
-        }
+		if (selectedUser) {
+			if (window.confirm("If you continue the selected user will become an admin")) {
+				await axios.get(apiEndPoint + '/user/promote/' + encodeURI(selectedUser), {headers: {auth: token}})
+			}
+		}
 	}
 
 	const deleteUser = async () => {
