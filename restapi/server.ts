@@ -17,17 +17,13 @@ import path, { dirname } from "path";
 
 
 
-const app: Application = express(); 
-const options: cors.CorsOptions = {
-	exposedHeaders: ['Authorization', 'WWW-Authenticate']
-};
+const app: Application = express();
 
 
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 
 app.use(metricsMiddleware);
-//app.use(cors(options));
-app.use(cors(options));
+app.use(cors());
 app.use(bp.json());
 
 app.use("/user", userRouter)
