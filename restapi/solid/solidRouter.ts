@@ -1,9 +1,7 @@
 import {Router} from "express";
-import {solidCommunityFetch} from "./solidCommunityFetch"
-import {solidInruptFetch} from "./solidInruptFetch"
+import {solidFetch} from "./solidFetch"
 const solidRouter: Router = Router()
 
-solidRouter.get("/fetch/solidCommunity/:id", solidCommunityFetch)
-solidRouter.get("/fetch/inrupt/:id", solidInruptFetch)
+solidRouter.get("/fetch/:id", solidFetch)
 
 export default solidRouter

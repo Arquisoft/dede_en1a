@@ -5,46 +5,26 @@ import {
     getThing,
     getUrlAll,
     SolidDataset,
-    Thing,  UrlString
+    Thing, UrlString
 } from "@inrupt/solid-client";
-import {FOAF, VCARD} from "@inrupt/vocab-common-rdf";
+import {VCARD} from "@inrupt/vocab-common-rdf";
 import IAddress from "../interfaces/AddressInterface";
 import IContactData from "../interfaces/ContactDataInterface";
 
 
-export let solidCommunityFetch = async (req: Request, res: Response) =>{
+export let solidFetch = async (req: Request, res: Response) =>{
     await retrieveInfo(req.params.id)
         .then((data) => {
             res.json(data)
         })
 }
 
-/**
- * This function retrieves information from
- * the given pod.
- * @param encryptedWebId
- */
-async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
-    // Desencription of the webID
-    let webID = decodeURIComponent(encryptedWebId)
-    let profileDocumentURI = webID.split("#")[0] // Retrieve the user card
-    let myDataSet = await getSolidDataset(profileDocumentURI) // Get the dataset
-    let profile = getThing(myDataSet, webID) as Thing // Get the #me thing
-
-    let urlAddress = getUrlAll(profile as Thing, VCARD.hasAddress)
-
-    let result = processAddresses(urlAddress, myDataSet, profile)
-
-    return result
-}
-
 
 /**
  * This function retrieves information from
  * the given pod.
  * @param encryptedWebId
  */
-/*
 async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
     // Desencription of the webID
     let webID = decodeURIComponent(encryptedWebId)
@@ -59,7 +39,7 @@ async function retrieveInfo(encryptedWebId: string): Promise<IContactData> {
 
     return result
 }
-*/
+
 
 function processAddresses(urlAddresses: string[], dataset: SolidDataset, profile: (Thing & { url: UrlString }) | null): IContactData {
     // Here we store the addresses of the client

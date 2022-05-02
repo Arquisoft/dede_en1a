@@ -9,14 +9,16 @@ import {useSession} from "@inrupt/solid-ui-react";
 
 type Props = {
     setIsInCheckout: (isInCheckout: boolean) => void
+    handleClose: (state: boolean) => void
 }
 
 const CartFooter = (props: Props) => {
-    const {setIsInCheckout} = props
+    const {setIsInCheckout, handleClose} = props
     const { cartItems } = useContext(CartContext);
     const {session} = useSession()
 
     const handleClick = () => {
+        handleClose(false)
         setIsInCheckout(true)
     }
 

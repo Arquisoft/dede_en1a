@@ -1,14 +1,14 @@
 import React from "react";
 import { useSession, CombinedDataProvider, Text } from "@inrupt/solid-ui-react";
+import {usePodData} from "../../hooks/usePodData";
+import {Typography} from "@mui/material";
 
 export const SolidNameComponent = () => {
     const { session } = useSession();
 
-    const webId = session.info.webId ? session.info.webId : "";
+    const {fn} = usePodData(session)
 
     return (
-        <CombinedDataProvider datasetUrl={webId} thingUrl={webId}>
-            <Text property="http://www.w3.org/2006/vcard/ns#fn"/>
-        </CombinedDataProvider>
+        <Typography>{fn}</Typography>
     )
 }
