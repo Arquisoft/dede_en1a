@@ -14,7 +14,6 @@ type Props = {
 const Item = (props: Props) => {
     const {item, inCheckout} = props
     const { dispatch } = useContext(CartContext);
-    const apiEndPoint = process.env.REACT_APP_API_URI
 	let name = item.name
 	if (name.length > 8) {
 		name = name.substring(0,8 ) + "..."
@@ -45,7 +44,7 @@ const Item = (props: Props) => {
                 </div>
                 <div className="item-detail">
                     <div className="item-detail-image">
-                        <img src={apiEndPoint + "/public/images/" + item._id + ".jpg"} alt={item.name} />
+                        <img src={item.image} alt={item.name} />
                     </div>
                     <div className="item-detail-info">
                         <div className="item-detail-info-name">
