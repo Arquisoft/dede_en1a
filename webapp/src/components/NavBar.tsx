@@ -12,7 +12,8 @@ import {
     Toolbar,
     Typography,
     Box,
-    Button
+    Button,
+    Grid
 } from "@mui/material";
 import logo from "../images/logoName.png";
 import "./styles.css"
@@ -125,27 +126,35 @@ function NavBarButtons(props: NavBarItemProps) {
 const NavBar = (props: NavBarProps) => {
     const {isLoggedIn, handleOpen} = props
     const {cartItems} = useContext(CartContext);
+    const history = useHistory()
 
 
     return (
-    <AppBar position="static" style={{background: '#2E3B55'}}>
-        <Container maxWidth='xl'>
-            <Toolbar disableGutters>
-                <Typography
-                    variant="h6"
-                    noWrap
-                    component="div"
-                    sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                >
-                    <img src={logo} style={{height:"50px", width:"200px"}} alt="dededeals"/>
-                </Typography>
+    <div>
+    <Grid container>
+        <AppBar position="static" style={{background: '#2E3B55'}}>
+            <Container maxWidth='xl'>
+                <Toolbar disableGutters>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                    >
+                    </Typography>
 
-                <NavBarButtons  isLoggedIn={isLoggedIn}/>
-                <ShoppingCart handleOpen={handleOpen} cartItems={cartItems}/>
-                <LogInSignUpComponent isLoggedIn={isLoggedIn}/>
-            </Toolbar>
-        </Container>
-    </AppBar>
+                    <img src={logo} style={{height:"50px", width:"200px"}} onClick={() => history.push("/")} alt="dededeals"/>
+
+                    <NavBarButtons  isLoggedIn={isLoggedIn}/>
+                    <Grid container justifyContent="flex-end">
+                        <ShoppingCart handleOpen={handleOpen} cartItems={cartItems}/>
+                        <LogInSignUpComponent isLoggedIn={isLoggedIn}/>
+                    </Grid>
+                </Toolbar>
+            </Container>
+        </AppBar>
+    </Grid>
+    </div>
     )
 }
 
