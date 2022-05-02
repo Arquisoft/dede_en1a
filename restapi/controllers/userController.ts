@@ -46,14 +46,14 @@ export let deleteUser = async(req: Request, res: Response) => {
 
 export let signup = async (req:Request, res:Response) => {
 
-	if (req.body.webId == undefined || req.body.webId == null) {
+	if (req.body.webId == undefined || req.body.webId == null || req.body.webId === '') {
 		res.status(422).send('you need an username')
 		return;
-	} else if (req.body.password == undefined || req.body.password == null) {
+	} else if (req.body.password == undefined || req.body.password == null || req.body.password === '') {
 		res.status(422).send('password can not be empty')
 		return;
 	}
-	const password = await bcrypt.hash(req.body.password, parseInt(<string>process.env.RESTAPI_SALT_ROUNDS) || 10)
+	const password = await bcrypt.hash(req.body.password, parseInt(process.env.RESTAPI_SALT_ROUNDS || "10"))
 		.catch(error => sendError(error, res))
 
 	const user = new User({

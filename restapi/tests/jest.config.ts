@@ -4,5 +4,6 @@ export default {
         "^.+\\.tsx?$": "ts-jest"
     },
     collectCoverage: true,
-    collectCoverageFrom:["solidRouter.ts"]
+    collectCoverageFrom:["solidRouter.ts"],
+	setupFiles: ["<rootDir>/tests/setEnvVars.ts"]
 }
