@@ -18,39 +18,14 @@ const OrdersPage = () => {
 
     useEffect(() => {
         refreshOrderList();
-    }, [orders]);
+    }, []);
 
 
     let orderList: JSX.Element[] = [];
 
     if (orders != null || orders !== undefined) {
         orders.forEach((order) => {
-            let group: JSX.Element[] = [];
 
-            order.products.forEach(async (product) => {
-                const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
-                Axios.get(apiEndPoint + '/product/details/' + product.prod).then(
-                    response => {
-                        let prod = response.data;
-
-                        group.push(
-                            <>
-                                <div key={prod._id} className="product-cart-container">
-                                    <img className="product-image" src={prod.image} alt={prod.name}/>
-                                    <div className="product-cart-description-container">
-                                        <div className="row1">
-                                            <div className="product-name">{prod.name}</div>
-                                            <div className="product-amount">x{product.amount}</div>
-                                            <div className="price">{prod.price + "€"}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/*<OrderItem key={prod._id} product={prod} amount={product.amount}/>*/}
-                            </>
-                        );
-                    }
-                );
-            });
             let dateOrder = new Date(order.createdAt);
             orderList.push(
                 <><Box display="grid">
@@ -74,9 +49,6 @@ const OrdersPage = () => {
                             Total: {order.totalPrice}€
                         </Typography>
                     </List>
-                    <div>
-                        {group}
-                    </div>
                 </Box><Divider/></>
             );
         });

@@ -15,49 +15,30 @@ export const AddProduct = () => {
     const [description, setDescription] = useState<string>('')
     const [price, setPrice] = useState<number | string>('')
     const [error, setError] = useState<string>('')
+	const [imageUrl, setImageUrl] = useState<string>('')
 
-    const [file, setFile] = useState<File>()
+	const [valid, setValid] = useState<boolean>(false)
 
-    useEffect(() => {
-        console.log(file)
-    }, [file])
+	useEffect(() => {
+		if (!name || name === '') 
+			return;
+		if (!price) 
+			return;
+		if (!imageUrl || imageUrl == '')
+			return
+		setValid(true)
+	}, [name, price, imageUrl])
 
-
-    const handleUpload = (e: any) => {
-        setFile(e.target.files[0])
-        if (file != undefined && file && null) {
-            if (file.name.split('.').pop() != 'jpg') {
-                setError('Only jpg files are supported')
-            } else {
-                setError('')
-            }
-        }
-    }
 
     const handleSubmit = async () => {
-        if (file == undefined) {
-            setError('file is required')
-            return
-        }
         try {
             let {data} = await axios.post(apiEndPoint + '/product/add', {
                 name: name,
                 price: price,
-                description: description
-            }, {
-                headers: {
-                    auth: token
-                }
-            })
-            const fileData = new FormData()
-            fileData.append("name", data._id)
-            fileData.append("image", file)
+                description: description,
+				image: imageUrl
+            }, {headers: {auth: token}})
 
-            await axios.post(apiEndPoint + '/upload', fileData, {
-                headers: {
-                    auth: token
-                }
-            })
             history.push('/')
         } catch (error: any) {
             if (error.response && error.response.status == 401) {
@@ -97,16 +78,16 @@ export const AddProduct = () => {
                         onChange={e => setPrice(e.currentTarget.value)}
                     />
                 </Grid>
-                <Grid item md={13} paddingTop={"1em"}>
-                    <Button variant="contained" component="label">
-                        Upload image
-                        <Input
-                            type="file"
-                            id="input"
-                            hidden
-                            onChange={handleUpload}
-                        />
-                    </Button>
+				<Grid item md={13} paddingTop={"1em"}>
+                    <TextField
+                        label='image url'
+                        placeholder='Enter url of image'
+                        type='url'
+                        fullWidth
+                        required
+                        value={imageUrl}
+                        onChange={e => setImageUrl(e.currentTarget.value)}
+                    />
                 </Grid>
                 <Grid item md={13} paddingTop={"1em"}>
                     <TextareaAutosize
@@ -127,6 +108,7 @@ export const AddProduct = () => {
                         variant="contained"
                         fullWidth
                         onClick={handleSubmit}
+						disabled={!valid}
                     >
                         Add product
                     </Button>

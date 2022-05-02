@@ -45,7 +45,7 @@ const Item = (props: Props) => {
                 </div>
                 <div className="item-detail">
                     <div className="item-detail-image">
-                        <img src={apiEndPoint + "/public/images/" + item._id + ".jpg"} alt={item.name} />
+                        <img src={item.image} alt={item.name} />
                     </div>
                     <div className="item-detail-info">
                         <div className="item-detail-info-name">

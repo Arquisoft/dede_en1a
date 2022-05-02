@@ -21,6 +21,7 @@ export let addProduct = async (req: Request, res: Response) => {
 		name: req.body.name,
 		price: req.body.price,
 		description: req.body.description,
+		image: req.body.image,
 		seller_id: res.locals.jwtPayload.id
 	})
 	await product.save()

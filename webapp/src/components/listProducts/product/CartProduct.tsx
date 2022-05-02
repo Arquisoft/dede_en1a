@@ -38,7 +38,7 @@ const CartProduct = ({product, handleAddToCart}: Props) => {
 							component="img" 
 							alt="image of product" 
 							style={{height:"200px", width:"250px", margin:"auto"}} 
-							image={apiEndPoint + "/public/images/" + product._id + ".jpg"}
+							image={product.image}
 							/>
 						<CardContent>
 							<Typography gutterBottom variant="body1" component="div">
