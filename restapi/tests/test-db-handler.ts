@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import {MongoMemoryServer} from 'mongodb-memory-server';
-
+import User from '../schemas/UserSchema'
+import * as bcrypt from 'bcrypt'
 let mongod: MongoMemoryServer;
 
 /**
@@ -27,6 +28,18 @@ module.exports.closeDatabase = async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
     await mongod.stop();
+}
+
+module.exports.createAdmin = async () => {
+	const password = await bcrypt.hash('admin', parseInt(process.env.RESTAPI_SALT_ROUNDS || "10"))
+	const user = new User({
+		webId: 'admin',
+		password: password,
+		name: 'admin',
+		role: 'ADMIN'
+	})
+
+	user.save()
 }
 
 /**
