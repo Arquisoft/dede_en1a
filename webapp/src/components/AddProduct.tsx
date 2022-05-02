@@ -1,7 +1,7 @@
 import React from 'react';
-import {Alert, Button, Container, Grid, Input, TextareaAutosize, TextField, Typography} from "@mui/material"
+import {Alert, Button, Container, Grid, TextareaAutosize, TextField, Typography} from "@mui/material"
 import axios from "axios"
-import {useEffect, useRef, useState} from "react"
+import {useEffect, useState} from "react"
 import {useHistory} from "react-router-dom"
 import {useUser} from "../context/UserContext"
 import {Footer} from "./footer/Footer";
@@ -32,7 +32,7 @@ export const AddProduct = () => {
 
     const handleSubmit = async () => {
         try {
-            let {data} = await axios.post(apiEndPoint + '/product/add', {
+            await axios.post(apiEndPoint + '/product/add', {
                 name: name,
                 price: price,
                 description: description,

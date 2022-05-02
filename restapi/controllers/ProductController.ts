@@ -1,5 +1,4 @@
 import {Request, Response} from "express";
-import { Jwt } from "jsonwebtoken";
 import Product from "../schemas/ProductSchema"
 import { sendError } from "./helper/hellpers";
 

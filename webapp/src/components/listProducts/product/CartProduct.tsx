@@ -25,7 +25,6 @@ const StyledCard = styled(Card)({
 
 const CartProduct = ({product, handleAddToCart}: Props) => {
 
-	const apiEndPoint = process.env.REACT_APP_API_URI
     let history = useHistory();
 	
     return (

@@ -4,7 +4,6 @@ import {Order} from "../../shared/shareddtypes";
 import {useSession} from "@inrupt/solid-ui-react";
 import moment from "moment";
 import {Box, Divider, Grid, List, ListItem, Typography} from '@mui/material';
-import Axios from "axios";
 import {Footer} from "../../components/footer/Footer";
 
 

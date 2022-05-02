@@ -14,7 +14,6 @@ type Props = {
 const Item = (props: Props) => {
     const {item, inCheckout} = props
     const { dispatch } = useContext(CartContext);
-    const apiEndPoint = process.env.REACT_APP_API_URI
 	let name = item.name
 	if (name.length > 8) {
 		name = name.substring(0,8 ) + "..."

@@ -9,7 +9,6 @@ type Props = {
 
 const ProductImage: React.FC<Props> = ({item}) => {
 
-  const apiEndPoint = process.env.REACT_APP_API_URI
 
   return(
     <img src={item.image} height={250} width={300} alt={item.name} style={{justifyContent:"center", margin:"auto", alignItems:"center", display:"block"}}/>
