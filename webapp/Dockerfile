@@ -11,4 +11,6 @@ ENV REACT_APP_API_URI=$API_URI
 ARG PREFLIGHT_CHECK_SKIP=true
 ENV SKIP_PREFLIGHT_CHECK=$PREFLIGHT_CHECK_SKIP
 
-CMD [ "npm", "start"]
+RUN npm run build
+
+CMD [ "npm", "run", "prod"]
