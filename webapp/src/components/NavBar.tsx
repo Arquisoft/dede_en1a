@@ -217,6 +217,7 @@ const NavBar = (props: NavBarProps) => {
     const {cartItems} = useContext(CartContext);
     const history = useHistory()
 
+
     return (
         <AppBar position="static" style={{background: '#2E3B55', width: "auto", minWidth: "5%"}}>
             <Container maxWidth='xl'>
@@ -239,10 +240,8 @@ const NavBar = (props: NavBarProps) => {
                         <img src={logo} style={{height:"50px", width:"200px"}} onClick={() => history.push("/")} alt="dededeals"/>
                     </Typography>
                     <NavBarButtons isLoggedIn={isLoggedIn}/>
-                    <Grid container justifyContent="flex-end">
-                        <ShoppingCart handleOpen={handleOpen} cartItems={cartItems}/>
-                        <LogInSignUpComponent isLoggedIn={isLoggedIn}/>
-                    </Grid>
+                    <ShoppingCart handleOpen={handleOpen} cartItems={cartItems}/>
+                    <LogInSignUpComponent isLoggedIn={isLoggedIn}/>
                 </Toolbar>
             </Container>
         </AppBar>
