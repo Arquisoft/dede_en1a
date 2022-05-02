@@ -44,6 +44,7 @@ The restAPI defines DeDe's API in accordance with REST architecture, which allow
 | _Mongoose_ | _JS library for MongoDB connections and integration._
 |===
 
+////
 === Level 3
 //image:BB_Level1.png["Hierarchy of building blocks"]
 
@@ -59,7 +60,6 @@ This figure shows the internal decomposition of DeDe's view (frontend), model (b
 | _Cart_ | _Context which enables 'store' functionality across app._
 | _Product Listing_ | _Context which enables 'store' functionality across app._
 | _Checkout_ | _Endpoint for app requests to the backend._
-| _Form_ | _Context which enables 'store' functionality across app._
 |===
 
 [cols="1,4" options="header"]
@@ -88,7 +88,7 @@ This figure shows the internal decomposition of DeDe's view (frontend), model (b
 | _Inrupt-Solid-Client_ | _JS library for SOLID (POD) support._
 | _Mongoose_ | _JS library for MongoDB connections and integration._
 |===
-
+////
 
 //commenting this out bc idk what was the purpose
 //3) Controllers (Backend)::
@@ -100,5 +100,3 @@ This figure shows the internal decomposition of DeDe's view (frontend), model (b
 //| _Helpers_ | _JS library for SOLID (POD) support._
 //| _Hooks_ | _JS library for MongoDB connections and integration._
 //|===
-
-

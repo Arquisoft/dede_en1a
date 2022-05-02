@@ -26,7 +26,7 @@ Through the application, vendors will be able to publish their products, and cli
 |Priority|Quality|Motivation
 | 1 | Privacy | The use of SOLID pods opens up many privacy and security options in benefit of the users.
 | 2 | Usability | As any application, the response time, learning curve and navigability of the application should follow the standards and expected minimums.
-| 3 | Code quality | Good architecture and design to show the team capabilities and make the application easily maintainable.
+| 3 | Maintainability | Good architecture and design to show the team capabilities and make the application easily maintainable.
 | 4 | Availability | The application must be accessible the 24 hours of the day.
 |===
 

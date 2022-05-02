@@ -6,7 +6,6 @@
 | Term      | Definition
 | POD       | Secure personal web data servers from SOLID. The owner controls who and what can access their pods.
 | React     | Open-source, front end, JavaScript library for building user interfaces or UI components. It is used as a base in the development of single-page or mobile applications.
-| POD       | Secure personal web data servers from SOLID. The owner controls who and what can access their pods.
 | Node.js   | Platform built on Chrome’s JavaScript runtime for easily building fast and scalable network applications.
 | Mongoose  | JavaScript library that helps with building the definition of schemas for the MongoDB database, providing a lot of functionality for that purpose.
 | Docker    | It is an open source project which automatizes the application deployment inside software containers.

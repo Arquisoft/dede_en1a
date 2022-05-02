@@ -14,7 +14,7 @@ export const Footer = (): JSX.Element => {
                 style={{marginTop:"50px", minHeight:"10%", width:"100%", backgroundColor:"#2E3B55",
                     color:"white", position:"relative", marginBottom:"0px"}}
             >
-                <Typography variant="h6" align="center">If you have any suggestion or question contact us: dededeals@hotmail.com</Typography>
+                <Typography variant="h6" align="center">If you have any suggestions or questions please contact us: dededeals@hotmail.com</Typography>
             </Box>
         </>
     );

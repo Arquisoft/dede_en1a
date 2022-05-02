@@ -213,8 +213,9 @@ function NavBarButtons(props: NavBarItemProps) {
 
 const NavBar = (props: NavBarProps) => {
     const {isLoggedIn, handleOpen} = props;
-
     const {cartItems} = useContext(CartContext);
+    const history = useHistory()
+
 
     return (
         <AppBar position="static" style={{background: '#2E3B55', width: "auto", minWidth: "5%"}}>
@@ -226,7 +227,7 @@ const NavBar = (props: NavBarProps) => {
                         component="div"
                         sx={{mr: 2, display: {xs: 'none', md: 'flex'}}}
                     >
-                        <img src={logo} style={{height: "50px", width: "200px"}} alt="dededeals"/>
+                        <img src={logo} style={{height:"50px", width:"200px"}} onClick={() => history.push("/")} alt="dededeals"/>
                     </Typography>
                     <NavBarMenuItems isLoggedIn={isLoggedIn}/>
                     <Typography
@@ -235,7 +236,7 @@ const NavBar = (props: NavBarProps) => {
                         component="div"
                         sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}
                     >
-                        <img src={logo} style={{height: "50px", width: "200px"}} alt="dededeals"/>
+                        <img src={logo} style={{height:"50px", width:"200px"}} onClick={() => history.push("/")} alt="dededeals"/>
                     </Typography>
                     <NavBarButtons isLoggedIn={isLoggedIn}/>
                     <ShoppingCart handleOpen={handleOpen} cartItems={cartItems}/>

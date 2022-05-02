@@ -18,7 +18,7 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 [cols="1,4" options="header"]
 |===
 | **Virtual Environment** | **Responsibility**
-| _AWS_ | _Amazon Web Service, cloud platform which hosts DeDe app on a server._
+| _Azure_ | _Cloud platform which hosts DeDe app on a server._
 | _Ubuntu Machine_ | _Linux virtual machine where docker containers run._
 | _Docker_ | _Process isolation platform which allows the different parts of the application to be packaged in deployable images which run containerized independently of the underlying operating system._
 |===
