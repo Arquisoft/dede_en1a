@@ -50,8 +50,8 @@ export const AddProduct = () => {
                 }
             })
             const fileData = new FormData()
-            fileData.append("image", file)
             fileData.append("name", data._id)
+            fileData.append("image", file)
 
             await axios.post(apiEndPoint + '/upload', fileData, {
                 headers: {
@@ -60,7 +60,7 @@ export const AddProduct = () => {
             })
             history.push('/')
         } catch (error: any) {
-            if (error.response.status == 401) {
+            if (error.response && error.response.status == 401) {
                 setError('you need to be logged in with a dede account')
             }
             console.log(error)

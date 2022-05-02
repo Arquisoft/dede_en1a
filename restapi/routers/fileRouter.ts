@@ -9,7 +9,6 @@ const FileRouter = Router()
 const dir = 'public/images/'
 
 const upload = multer({
-	dest: dir, 
 	fileFilter: (req, file, cb) => {
 		if (['image/jpg', 'image/jpeg'].includes(file.mimetype)) {
 			cb (null, true)
@@ -18,18 +17,23 @@ const upload = multer({
 		}},
 		limits: {
 			fileSize: 8000000 // Sensitive: 10MB is more than the recommended limit of 8MB
-		}
+		},
+		storage: multer.diskStorage({
+			destination: (req, file, cb) => {
+				cb(null, dir)
+			},
+			filename: (req, file, cb) => {
+				console.log(req.body)
+				cb(null, req.body.name + '.jpg')
+			}
+		})
 	})
 	
 	
-	FileRouter.post('/upload', [checkJWT, checkRole(["SELLER", "ADMIN"]), upload.single('image')], (req: Request, res: Response) => {
-		if (req.file != null) {
-		const reqPath = __dirname + '/' + dir + req.body.name; // user-controlled path
-		const resolvedPath = path.resolve(reqPath); // resolve will resolve "../"
-		console.log(resolvedPath)
-		if (resolvedPath.startsWith(__dirname + '\\public')) {
-			renameSync(req.file.path, resolvedPath + '.jpg')
-		}
+FileRouter.post('/upload', [checkJWT, checkRole(["SELLER", "ADMIN"]), upload.single('image')], (req: Request, res: Response) => {
+	if (req.file != null) {
+		
+		
 	}
 })
 
