@@ -14,20 +14,21 @@ const upload = multer({
 			cb (null, true)
 		} else {
 			cb (null, false)
-		}},
-		limits: {
-			fileSize: 8000000 // Sensitive: 10MB is more than the recommended limit of 8MB
+		}
+	},
+	storage: multer.diskStorage({
+		destination: (req, file, cb) => {
+			cb(null, dir)
 		},
-		storage: multer.diskStorage({
-			destination: (req, file, cb) => {
-				cb(null, dir)
-			},
-			filename: (req, file, cb) => {
-				console.log(req.body)
-				cb(null, req.body.name + '.jpg')
-			}
-		})
-	})
+		filename: (req, file, cb) => {
+			console.log(req.body)
+			cb(null, req.body.name + '.jpg')
+		}
+	}),
+	limits: {
+		fileSize: 8000000 // Sensitive: 10MB is more than the recommended limit of 8MB
+	},
+})
 	
 	
 FileRouter.post('/upload', [checkJWT, checkRole(["SELLER", "ADMIN"]), upload.single('image')], (req: Request, res: Response) => {
