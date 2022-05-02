@@ -71,10 +71,12 @@ const AdminPanel = () => {
 	}
 
 	const deleteUser = async () => {
-        if (window.confirm("Are you sure you want to delete this user?")) {
-            await axios.get(apiEndPoint + '/user/delete/' + selectedUserDelete, {headers: {auth: token}})
-            fetchUsers();
-        }
+		if (selectedUserDelete) {
+			if (window.confirm("Are you sure you want to delete this user?")) {
+				await axios.get(apiEndPoint + '/user/delete/' + encodeURI(selectedUserDelete), {headers: {auth: token}})
+				fetchUsers();
+			}
+		}
 	}
 
     return (
