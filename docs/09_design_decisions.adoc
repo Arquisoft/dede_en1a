@@ -14,3 +14,8 @@ database, after thinking about it, we decided we would use MongoDB since it has 
 ===== Context
 To calculate the distance between the central and the user direction we will make use of the Nominatim library. It offers us a
 simple and easy way of calculating the distances.
+
+=== JWT Token
+[discrete]
+===== Contxt
+To create user authorization we made use of jwt tokens through user accounts that use as the username the webId from solid

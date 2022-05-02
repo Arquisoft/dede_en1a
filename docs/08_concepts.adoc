@@ -12,7 +12,7 @@ image:uml_domain.png["UML Diagram"]
 |Domain concept|Description
 | User | A user represents the end user that will buy products in the application.
 | Administrator | A user role that can perform upgraded actions.
-| Seller | A user role that sells products in the application.
+| Seller | An user role that sells products in the application.
 | Product | Represents every product that will be sold through the application.
 | Order | Contains necessary data for the delivery, and a collection of products and quantities.
 |===

@@ -41,5 +41,7 @@ We have identified the risk or technical debts we might encounter during the pro
 | Although we have mostly cleaned up our dependency tree vastly improving build times, we still need to give it another look.
 | Code quality
 | We are aware that there exist several hotspots on our application and code smell. This could create problems on the future.
+| Input sanitation
+| As we were short on time we ended up not sanitating the user input
 |=========================================================
 
