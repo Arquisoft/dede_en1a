@@ -13,8 +13,7 @@ import {
     Toolbar,
     Typography,
     Box,
-    Button, MenuItem, Menu,
-    Grid
+    Button, MenuItem, Menu
 } from "@mui/material";
 import logo from "../images/logoName.png";
 import "./styles.css"
