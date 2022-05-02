@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 test('webpage renders', () => {
-  render(<App />);
+  const screen = render(<App />);
 
   const linkElement = screen.getByRole('img', { name: /dededeals/i })
-  expect(linkElement).toBeInTheDocument();
+  expect(linkElement).toBeTruthy();
 });

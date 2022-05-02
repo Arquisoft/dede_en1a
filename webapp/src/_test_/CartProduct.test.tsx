@@ -17,8 +17,8 @@ const testProduct = {
 
 test("Fake card contains product details", () => {
   const fakeProduct = render(<CartProduct product={testProduct} handleAddToCart={handleAddToCart}/>);
-  expect(fakeProduct).toContain("Screwdriver");
-  expect(fakeProduct).toContain(testProduct.image); 
+  expect(fakeProduct).toHaveTextContent("Screwdriver");
+  expect(fakeProduct).toHaveTextContent(testProduct.image); 
 })
 
 test("Fake card matches snapshot", () => {

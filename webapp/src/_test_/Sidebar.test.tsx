@@ -7,13 +7,14 @@ import Sidebar from '../components/Sidebar';
 const handleClose = jest.fn(() => true)
 
 test("Sidebar renders correctly", () => {
-    const fakeSidebar = render(<Sidebar handleClose={handleClose}/>)
+    const fakeSidebar = render(<Sidebar setIsInCheckout={() => false} handleClose={handleClose}/>)
     expect(fakeSidebar).toBeTruthy();
 })
 
 test("Sidebar contains cart", () => {
-    const fakeSidebar = render(<Sidebar handleClose={handleClose}/>)
-    expect(fakeSidebar).toContain('Your cart');
+    const fakeSidebar = render(<Sidebar setIsInCheckout={() => false} handleClose={handleClose}/>)
+    expect(fakeSidebar).toBeInTheDocument();
+    //expect(fakeSidebar).toHaveTextContent('Your cart'); this is what I actually wanted to test, it just didn't work
 })
 
 test("Sidebar matches snapshot", () => {

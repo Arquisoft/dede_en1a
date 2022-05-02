@@ -33,9 +33,6 @@ const cartItems: CartItem[] = [
 const [cartItems2, dispatch] = useReducer(cartReducer, cartItems);
   
 test("Add function works", () => {
-<<<<<<< Updated upstream
-    expect(CartReducer).toBeTruthy(); // change this
-=======
     const fakeItem: CartItem = cartItems2[0];
     const beforeAmount = fakeItem.amount;
 
@@ -60,5 +57,4 @@ test("Clear function works", () => {
     const returnedItem = dispatch(fakeItem, 'CLEAR');
 
     expect(returnedItem).toBeNull();
->>>>>>> Stashed changes
 })

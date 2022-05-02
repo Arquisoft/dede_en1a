@@ -37,7 +37,7 @@ const dispatch = jest.fn(() => true)
 test("Cart contains items", () => {
   const fakeCart = render(
     <CartContext.Provider value={{cartItems, dispatch}}>
-      <Cart />
+      <Cart setIsInCheckout={() => true}/>
     </CartContext.Provider>);
   expect(fakeCart).toBeTruthy(); //check that fake items are in the cart
 })
@@ -45,8 +45,8 @@ test("Cart contains items", () => {
 test("Cart returns empty when there are no items", () => {
   const fakeCart2 = render(
     <CartContext.Provider value={{cartItems2, dispatch}}>
-      <Cart />
+      <Cart setIsInCheckout={() => true}/>
     </CartContext.Provider>);
   expect(fakeCart2).toBeTruthy();
-  expect(fakeCart2).toContain("Cart is empty");
+  expect(fakeCart2).toHaveTextContent("Cart is empty");
 })

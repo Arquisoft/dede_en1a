@@ -49,13 +49,13 @@ test("Order form contains proper items", () => {
     const testOrder = render(<CartContext.Provider value={{cartItems, dispatch}}><OrderSummary address={["calle", "falsa"]} shipping={{price: 10, distance: 400}}/></CartContext.Provider>);
     
     //checking names
-    expect(testOrder).toContain(cartItems[0].name);
-    expect(testOrder).toContain(cartItems[1].name);
-    expect(testOrder).toContain(cartItems[2].name);
+    expect(testOrder).toHaveTextContent(cartItems[0].name);
+    expect(testOrder).toHaveTextContent(cartItems[1].name);
+    expect(testOrder).toHaveTextContent(cartItems[2].name);
 
     //checking prices
-    expect(testOrder).toContain(cartItems[0].price);
-    expect(testOrder).toContain(cartItems[1].price);
-    expect(testOrder).toContain(cartItems[2].price);
+    expect(testOrder).toHaveValue(cartItems[0].price);
+    expect(testOrder).toHaveValue(cartItems[1].price);
+    expect(testOrder).toHaveValue(cartItems[2].price);
 
 })
