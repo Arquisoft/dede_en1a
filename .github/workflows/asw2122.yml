@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         env:
-          API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
+          API_URI: https://${{ secrets.DEPLOY_HOST }}:5000
           SKIP_PREFLIGHT_CHECK: true
         with:
           node-version: 16
@@ -47,7 +47,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@3.04
         env:
-          API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
+          API_URI: https://${{ secrets.DEPLOY_HOST }}:5000
           SKIP_PREFLIGHT_CHECK: true
           PREFLIGHT_CHECK_SKIP: true
         with:

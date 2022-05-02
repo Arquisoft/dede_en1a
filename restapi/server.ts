@@ -11,14 +11,10 @@ import solidRouter from "./solid/solidRouter";
 import geocoderRouter from "./routers/geocoderRouter";
 import FileRouter from "./routers/fileRouter";
 
-
 import 'dotenv/config'
 import path, { dirname } from "path";
 
-
-
 const app: Application = express();
-
 
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
 
@@ -41,6 +37,7 @@ const server = app.listen(process.env.RESTAPI_PORT, () => {
 }).on("error", (error:Error) => {
 	console.error('Error occurred: ' + error.message);
 });
+
 
 // start the database
 mongoose.connect('mongodb+srv://cluster0.2sj0r.mongodb.net/', {
