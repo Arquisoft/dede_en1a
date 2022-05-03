@@ -15,7 +15,7 @@ import {Footer} from "../../components/footer/Footer";
 
 
 const AdminPanel = () => {
-    const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+    const apiEndPoint = process.env.REACT_APP_API_URI;
     const {token} = useUser()
     const [orders, setOrders] = useState<Order[]>([]);
 	const [users, setUsers] = useState<string[]>([])

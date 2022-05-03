@@ -18,10 +18,10 @@ export const useShipping = (address: string) => {
         distance: 0.0,
         price: 0.0,
     })
-
+	const apiEndPoint = process.env.REACT_APP_API_URI;
     useEffect(() => {
         if(address.length !== 0) {
-            axios.post((process.env.REACT_APP_API_URI || "http://localhost:5000") + "/geocode", parseAddress(address))
+            axios.post(apiEndPoint + "/geocode", parseAddress(address))
                 .then(res => {
                     setShipping({
                         distance: res.data.distance,

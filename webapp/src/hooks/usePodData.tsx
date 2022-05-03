@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {SessionInfo} from "@inrupt/solid-ui-react/dist/src/hooks/useSession";
+import { appendFile } from "fs";
 
 function encrypt(webId: string): string {
     return encodeURIComponent(webId)
@@ -11,10 +12,10 @@ export const usePodData = (session: SessionInfo["session"]) => {
         fn: "",
         addresses: []
     })
-
+	const apiEndPoint = process.env.REACT_APP_API_URI;
     useEffect(() => {
         if(session.info.webId) {
-            axios.get((process.env.REACT_APP_API_URI || "http://localhost:5000") + "/solid/fetch/" + encrypt(session.info.webId)).then(
+            axios.get(apiEndPoint + "/solid/fetch/" + encrypt(session.info.webId)).then(
                 response => {
                     setContactData({
                         fn: response.data.fn,

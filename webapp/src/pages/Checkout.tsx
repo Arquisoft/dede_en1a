@@ -13,9 +13,10 @@ const Checkout = () => {
         distance: 0.0,
         price: 0.0,
     })
+	const apiEndPoint = process.env.REACT_APP_API_URI;
 
 	useEffect(() => {
-        axios.post((process.env.REACT_APP_API_URI || "http://localhost:5000") + "/geocode",
+        axios.post(apiEndPoint + "/geocode",
             {
                 "street":  address[3],
                 "city":    address[2],

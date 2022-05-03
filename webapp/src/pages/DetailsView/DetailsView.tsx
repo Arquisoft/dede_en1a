@@ -27,7 +27,7 @@ const DetailsView: React.FC = () => {
     const [item, setItem] = useState<Product>()
 
     useEffect(() => {
-        const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+        const apiEndPoint = process.env.REACT_APP_API_URI;
         Axios.get(apiEndPoint + '/product/details/' + _id).then(
             response => {
                 const product = response.data

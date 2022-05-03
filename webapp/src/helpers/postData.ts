@@ -1,7 +1,7 @@
 import {OrderAdd} from "../shared/shareddtypes";
 
 const postData = async (order: OrderAdd) => {
-    const apiEndPoint = process.env.REACT_APP_API_URI || "http://localhost:5000";
+    const apiEndPoint = process.env.REACT_APP_API_URI;
 
     let response = await fetch(apiEndPoint + '/order/add', {
         method: 'POST',

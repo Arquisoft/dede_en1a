@@ -30,10 +30,10 @@ const Form = (props: Props) => {
     const [contactData, setContactData] = useState<Address[]>([]);
 
     const {session} = useSession()
-
+	const apiEndPoint = process.env.REACT_APP_API_URI;
     useEffect(() => {
         if(session.info.webId) {
-            axios.get((process.env.REACT_APP_API_URI || "http://localhost:5000") + "/solid/fetch/" + encrypt(session.info.webId)).then(
+            axios.get(apiEndPoint + "/solid/fetch/" + encrypt(session.info.webId)).then(
                 response => {
                         localStorage.setItem("fn", response.data.fn)
                         setContactData(response.data.addresses)
