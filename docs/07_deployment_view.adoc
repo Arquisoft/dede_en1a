@@ -7,7 +7,7 @@ image:deploymentView_Level1_v2.png["Top-level Deployment View"]
 
 Motivation::
 
-The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles.
+The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles. In addition, hosting the application on a remote server allows it to be accessible from the Internet, from any place in the world.
 
 Quality and/or Performance Features::
 
@@ -18,8 +18,8 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 [cols="1,4" options="header"]
 |===
 | **Virtual Environment** | **Responsibility**
-| _Azure_ | _Cloud platform which hosts DeDe app on a server._
-| _Ubuntu Machine_ | _Linux virtual machine where docker containers run._
+| _Azure_ | _Cloud platform which hosts the DeDe stack on a VPS._
+| _Ubuntu Machine_ | _Linux virtual machine where docker containers and other related software runs._
 | _Docker_ | _Process isolation platform which allows the different parts of the application to be packaged in deployable images which run containerized independently of the underlying operating system._
 |===
 
@@ -28,6 +28,10 @@ Utilizing the user's POD following SOLID design principles allows the applicatio
 | **Software** | **Responsibility**
 | _WebApp_ | _Communicates database information to User and manages User Input. Displays the different functionalities to the user._
 | _RestAPI_ | _Endpoint for app requests to the backend. Includes backend where business logic is managed._
+| _Grafana_ | _Metrics aggregator. Queries Prometheus for statistics on the application and presents them to the administrator._
+| _Prometheus_ | _Metrics collector. Attached to the RestAPI instance, it collects information about the application._
+| _Node Exporter_ | _Prometheus extension. Collects information about the machine which is fed to the main Prometheus instance._
+| _NGINX_ | _Server software. Acts as a router and as a reverse proxy. Forces HTTPS on connections to and from Webapp and RestAPI and redirects traffic on ports 80/443 to 3000, presenting the webapp._
 |===
 
 [cols="1,4" options="header"]

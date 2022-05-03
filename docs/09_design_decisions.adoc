@@ -3,19 +3,17 @@
 
 Here we will document the technologies that affect the application, and we will be explaining why below.
 
-=== Usage of MongoDB
+=== MongoDB
 [discrete]
 ===== Context
-Since we need a Database to store the products for the application, not the users, they will be in their POD, we have to use a 
-database, after thinking about it, we decided we would use MongoDB since it has an easy connection with typescript.
+While user data will always be accessed from their PODs and never stored, there is still some data the application handles which needs to be stored, such as product information and order placements. For this purpose, we will use MongoDB, since the format it uses is readily translatable to JavaScript objects.
 
 === Nominatim
 [discrete]
 ===== Context
-To calculate the distance between the central and the user direction we will make use of the Nominatim library. It offers us a
-simple and easy way of calculating the distances.
+To calculate the distance between the warehouse and the user address we make use of the Nominatim library. It offers us a simple and easy way of calculating the distances.
 
 === JWT Token
 [discrete]
-===== Contxt
-To create user authorization we made use of jwt tokens through user accounts that use as the username the webId from solid
+===== Context
+To create user authorization we make use of JWT tokens, which securely store a privileged session.
