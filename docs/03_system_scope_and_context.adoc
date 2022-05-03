@@ -15,7 +15,7 @@ Finally, when the user reaches the end of the checkout process an order summary 
 
 Once the order is placed, it is saved in the database and the user is given the option to see their orders or continue shopping.
 
-image::images/business_context_diagram.png[]
+image:business_context_diagram.png[]
 
 === Technical Context
 
@@ -24,5 +24,5 @@ The user will execute the application and will interact with the GUI in order to
 Following this, the backend will manage the necessary interactions with the user's POD and the product database in order to provide an estimated cost of delivery and compute the total cost of the order.
 
 
-image::images/technical_context_diagram.png[]
+image:technical_context_diagram.png[]
 
