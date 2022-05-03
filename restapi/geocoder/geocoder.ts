@@ -10,7 +10,7 @@ type Location = {
 	country?: string,
 }
 
-async function tryGeocode(query: string, errorMsg: string = "") {
+async function tryGeocode(query: string) {
 	return geocoder.search({q: query})
 	.then((response : any) => {
 		if (response[0] != {}) {
@@ -18,19 +18,16 @@ async function tryGeocode(query: string, errorMsg: string = "") {
 			let lon : number = response[0]["lon"]
 			let distance : number = distanceInKmBetweenEarthCoordinates(lat, lon, 43.354838799999996, -5.851292403149609)
 			let price = 12.35
-			const PRICE_PER_KM = 1
 			if (distance > 100) {
 				price += distance / 100 * 1
 			}
 			return {
 				"distance" : distance,
 				"price" : price,//distance / 100 * parseFloat(process.env.PRICE_PER_KM || "1"),
-				"error" : errorMsg,
 				"success" : true			
 			}
 		}
 		return {
-			"error" : errorMsg,
 			"success" : false
 		}
 
@@ -41,33 +38,45 @@ async function tryGeocode(query: string, errorMsg: string = "") {
 
 export async function getPriceFromAddress(address: Location) {
 
-	if (address.street == null || address.street == '') {
-		return {"error" : "needed street information"}
+	if (address.street == undefined || address.street == null || address.street == '') {
+		throw new Error('needed street')
 	}
-	if (address.city == null || address.city == '') {
-		return {"error" : "needed city information"}
+	if (address.city == undefined || address.city == null || address.city == '') {
+		throw new Error('needed city')
 	}
-	if (address.region == null || address.region == '') {
-		return {"error" : "not enough info provided, region is needed"}
+	if (address.region == undefined || address.region == null || address.region == '') {
+		throw new Error('needed region')
 	}
-	if (address.country == null || address.country == '') {
-		return {"error" : "not enough info provided, city is needed"}
+	if (address.country == undefined || address.country == null || address.country == '') {
+		throw new Error('needed country')
 	}
 
 
 	let geocodeTry = await tryGeocode(address.city + ", " + address.street)
 	if (geocodeTry.success) return geocodeTry
+
+	geocodeTry = await tryGeocode(address.region + ", " + address.city + ', '+ address.street)
+	if (geocodeTry.success) return geocodeTry
+
+	geocodeTry = await tryGeocode(address.country + ', ' + address.region + ", " + address.city + ', '+ address.street)
+	if (geocodeTry.success) return geocodeTry
 	
 	geocodeTry = await tryGeocode(address.region + ", " + address.street)
 	if (geocodeTry.success) return geocodeTry
 
-	geocodeTry = await tryGeocode(address.region + ", " + address.city, "failed specific info, falling back to city")
+	geocodeTry = await tryGeocode(address.region + ", " + address.city)
 	if (geocodeTry.success) return geocodeTry
 
-	geocodeTry = await tryGeocode("Province: " + address.region, "failed specific info, falling back to region")
+	geocodeTry = await tryGeocode(address.country + ', ' + address.region + ", " + address.city)
+	if (geocodeTry.success) return geocodeTry
+
+	geocodeTry = await tryGeocode(address.city + ', ' + address.region)
+	if (geocodeTry.success) return geocodeTry
+
+	geocodeTry = await tryGeocode(address.region)
 	if (geocodeTry.success) return geocodeTry
 	
-	geocodeTry = await tryGeocode("Country: " + address.country, "failed specific info, falling back to country")
+	geocodeTry = await tryGeocode(address.country)
 	if (geocodeTry.success) return geocodeTry
 
 	return {"error" : "Address not found"}
