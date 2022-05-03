@@ -28,29 +28,35 @@ order, but now he wants to process that order and buy the products.
 actor Bob
 participant DeDe
 participant Geocoder
+participant PodProvider
 database Pod
 database MongoDb
 
-Bob -> DeDe : Browses the products and adds them to the cart
-Bob -> DeDe : Wants to checkout
 DeDe -> Bob : Asks Bob to Log in its Pod
 Bob -> DeDe : Clicks the log in button
+DeDe -> Bob : Displays the input for the pod provider
+Bob -> DeDe : Inputs a valid pod provider
+DeDe -> PodProvider : Redirects Bob to the PodProvider
+PodProvider -> DeDe : When the loggin process is finishes Bob is redirected to DeDe.
+Bob -> DeDe : Browses the products and adds them to the cart
+Bob -> DeDe : Wants to checkout
 DeDe -> Pod : The request is redirected to the Solid Login site
 Pod -> DeDe : The sesion is created and a WebID is returned
 Bob -> DeDe : Clicks the Proceed to Checkout button
-DeDe -> Pod : Sends a request to the Pod for the addresses
-Pod -> DeDe : Returns Bob's addresses
-DeDe -> Bob : Displays an order summary without the shipping price (no addres is selected)
-Bob -> DeDe : Chooses an address
-DeDe -> Geocoder : With the chosen address sends a request to calculate the shipping cost
+DeDe -> Bob : Displays a list of chosen products
+Bob -> DeDe : Proceeds to the contact data step
+DeDe -> Pod : Requests Bob's data.
+DeDe -> Bob : Displays Bob's information
+Bob -> DeDe : Proceeds to the order summary
+DeDe -> Geocoder : With the current address sends a request to calculate the shipping cost
 Geocoder -> DeDe : Responds with the shipping cost
-DeDe -> Bob : The order summary is updated with the shipping cost
+DeDe -> Bob : Displays the order summary
 Bob -> DeDe : Places the order
 DeDe -> MongoDb : Stores the order with the WebId of the user
 
 ----
 === Bob wants to check his placed orders
-* Bob has is a loyal client and has placed some orders,
+* Bob is a loyal client and has placed some orders,
 now he wants to check those to verify everything is correct.
 
 * In the following diagram you can see how Bob proceeds to check his orders. In order to retrieve Bob's orders the application will request him to log in.
@@ -70,4 +76,105 @@ DeDe -> MongoDB : Asks for Bob's orders based on his WebId
 MongoDB -> DeDe : Returns the orders belonging to Bob
 DeDe -> Bob : The orders are displayed
 
+----
+=== Alice wants to become a seller
+* Alice has been using our wonderful app for some time and trusts our privacy policies. She has decided to start a small business and will use our site to sell her products.
+
+* In the following diagram the process to become a seller can be seen. In order to do this, Alice must be logged in.
+
+[plantuml,"alice_seller",png]
+----
+actor Alice
+participant DeDe
+database MongoDB
+participant Solid
+
+DeDe -> Alice : Asks Alice to Log in its Pod
+Alice -> DeDe : Clicks the log in button
+DeDe -> Alice : Displays the input for the pod provider
+Alice -> DeDe : Inputs a valid pod provider
+DeDe -> PodProvider : Redirects Alice to the PodProvider
+PodProvider -> DeDe : When the loggin process is finishes Alice is redirected to DeDe.
+Alice -> DeDe : Clicks the Login as seller button in the navigation bar.
+Alice -> DeDe : Clicks the sign in option of the displayed form
+Alice -> DeDe : Fills the form
+DeDe -> MongoDB : Saves the seller with its webID and a password
+DeDe -> Alice : Redirects her to the home page and now is able to add her desired products.
+----
+=== Alice wants to log in as a seller
+* Alice has made an account in DeDe and logged out but now
+wants to log in again.
+
+* In the following diagram the process to log in as a seller can be seen.
+
+[plantuml,"alice_seller_login",png]
+----
+actor Alice
+participant DeDe
+database MongoDB
+participant Solid
+
+DeDe -> Alice : Asks Alice to Log in its Pod
+Alice -> DeDe : Clicks the log in button
+DeDe -> Alice : Displays the input for the pod provider
+Alice -> DeDe : Inputs a valid pod provider
+DeDe -> PodProvider : Redirects Alice to the PodProvider
+PodProvider -> DeDe : When the loggin process is finishes Alice is redirected to DeDe
+Alice -> DeDe : Clicks the Login as seller button in the navigation bar
+DeDe -> Alice : Displays the login form with her username (webID) automatically set.
+Alice -> DeDe : Fills the password field and clicks the log in button.
+DeDe -> MongoDB : Checks that the fields are correct and an account exists.
+DeDe -> Alice : Redirects her to the home page and logs her as a seller.
+----
+=== Alice wants to add a product
+* Alice has made an account in DeDe and logged in, now
+she wants to add some products to sell.
+
+* In the following diagram the process to add products belonging to a seller. We will suppose Alice has already
+logged in as a seller.
+
+[plantuml,"alice_seller_add_product",png]
+----
+actor Alice
+participant DeDe
+database MongoDB
+participant Solid
+
+Alice -> DeDe : Clicks on the add product button
+DeDe -> Alice : Redirects her to the add product window
+Alice -> DeDe : Fills the form with the product information
+Alic -> DeDe : Clicks on the add product button
+DeDe -> MongoDB : Saves the product in the database
+DeDe -> Alice : Redirects her to the home page with her new product available
+----
+=== Bob wants to search a new product
+* Bob has logged in his pod and wants to buy a new product but there are so many products that he cannot see the one he likes. Fortunately our experienced developers have implemented a search and filtering tool.
+
+[plantuml,"bob_search_product",png]
+----
+actor Bob
+participant DeDe
+database MongoDB
+participant Solid
+
+Bob -> DeDe : Wants to search for a product
+Bob -> DeDe : Fills the search bar with specific information about the product and selects the desired filters.
+DeDe -> MongoDB : Search the products according to the description provided
+MongoDB -> DeDe : Returns the products corresponding to the petition.
+DeDe -> Bob : Displays the requested products to Bob
+----
+=== Bob wants to log out from the application
+* Bob has made some orders and now wants to log out from the application.
+
+[plantuml,"bob_logout",png]
+----
+actor Bob
+participant DeDe
+database MongoDB
+participant Pod
+
+Bob -> DeDe : Clicks on the logout button
+DeDe -> POD : Ask to log out from the Pod
+Pod -> DeDe : Logs out successfully
+DeDe -> Bob : Bob gets redirected to the home page logged out.
 ----
