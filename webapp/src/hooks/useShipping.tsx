@@ -21,7 +21,7 @@ export const useShipping = (address: string) => {
 
     useEffect(() => {
         if(address.length !== 0) {
-            axios.post((process.env.RESTAPI_URI || "http://localhost:5000") + "/geocode", parseAddress(address))
+            axios.post((process.env.REACT_APP_API_URI || "http://localhost:5000") + "/geocode", parseAddress(address))
                 .then(res => {
                     setShipping({
                         distance: res.data.distance,
