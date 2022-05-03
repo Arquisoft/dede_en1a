@@ -468,14 +468,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_level_1">5.1. Level 1</a></li>
 <li><a href="#_level_2">5.2. Level 2</a></li>
-<li><a href="#_level_3">5.3. Level 3</a></li>
 </ul>
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product.</a></li>
-<li><a href="#_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products.</a></li>
-<li><a href="#_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders.</a></li>
+<li><a href="#_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product</a></li>
+<li><a href="#_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products</a></li>
+<li><a href="#_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -493,6 +492,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_usage_of_mongodb">9.1. Usage of MongoDB</a></li>
 <li><a href="#_nominatim">9.2. Nominatim</a></li>
+<li><a href="#_jwt_token">9.3. JWT Token</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -610,7 +610,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Code quality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintainability</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Good architecture and design to show the team capabilities and make the application easily maintainable.</p></td>
 </tr>
 <tr>
@@ -766,7 +766,10 @@ the system will require a login from SOLID in order to use their address, which 
 <div class="sect2">
 <h3 id="_how_to_achieve_quality_goals">4.3. How to achieve quality goals</h3>
 <div class="paragraph">
-<p>In order to accomplish our privacy goals, we will try to reduce to the minimum the amount of information stored in our database. To accomplish Usability, we will try to follow the GUI standards and achieve minimum performance requirements in relation with response-time. In relation with code quality, we will keep an updated documentation and try to use design and architectural patterns when possible.</p>
+<p>In order to accomplish our privacy goals, we will try to reduce to the minimum the amount of information stored in our database.
+To accomplish usability, we will try to follow the GUI standards and achieve minimum performance requirements in relation with response-time.
+In relation with maintainability, we will keep an updated documentation and try to use design and architectural patterns when possible.
+The availability quality will be accomplished if we can maintain our application deployed forever.</p>
 </div>
 </div>
 <div class="sect2">
@@ -866,143 +869,6 @@ the system will require a login from SOLID in order to use their address, which 
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect2">
-<h3 id="_level_3">5.3. Level 3</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p>This figure shows the internal decomposition of DeDe&#8217;s view (frontend), model (backend), and controllers. Each section details the components which are most essential to their functionality.</p>
-</dd>
-<dt class="hdlist1">1) View (Frontend/WebApp)</dt>
-</dl>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Component</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>App</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Root HTML component, encases all other visible components.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Cart</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Context which enables 'store' functionality across app.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Product Listing</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Context which enables 'store' functionality across app.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Checkout</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Endpoint for app requests to the backend.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Form</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Context which enables 'store' functionality across app.</em></p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Library</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Router</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React library which allows for paging and switching between views.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Axios</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>React library which allows for API calls.</em></p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>View</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Home</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where products are listed in card format.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Product Details</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>More detailed view of products. Includes product description.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Login</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where user can login and access their POD.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Checkout</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Where user can place the order of the products.</em></p></td>
-</tr>
-</tbody>
-</table>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">2) Model (Backend/RestAPI)</dt>
-</dl>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Software</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>NodeJS</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Backend runtime environment where the TypeScript code runs.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>MUI</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JavaScript library used to build user interface.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Express</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node library for API building.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Inrupt-Solid-Client</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for SOLID (POD) support.</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Mongoose</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>JS library for MongoDB connections and integration.</em></p></td>
-</tr>
-</tbody>
-</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1011,7 +877,7 @@ the system will require a login from SOLID in order to use their address, which 
 <h2 id="section-runtime-view">6. Runtime View</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product.</h3>
+<h3 id="_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1030,7 +896,7 @@ of products available in the application, when she chooses one it is added to he
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products.</h3>
+<h3 id="_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1049,7 +915,7 @@ order, but now he wants to process that order and buy the products.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders.</h3>
+<h3 id="_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1106,8 +972,8 @@ now he wants to check those to verify everything is correct.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>AWS</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Amazon Web Service, cloud platform which hosts DeDe app on a server.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Azure</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Cloud platform which hosts DeDe app on a server.</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Ubuntu Machine</em></p></td>
@@ -1178,102 +1044,6 @@ now he wants to check those to verify everything is correct.</p>
 <div class="sect1">
 <h2 id="section-concepts">8. Cross-cutting Concepts</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Content</div>
-<p>This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many topics, such as</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>domain models</p>
-</li>
-<li>
-<p>architecture patterns or design patterns</p>
-</li>
-<li>
-<p>rules for using specific technology</p>
-</li>
-<li>
-<p>principal, often technical decisions of overall decisions</p>
-</li>
-<li>
-<p>implementation rules</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Concepts form the basis for <em>conceptual integrity</em> (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.</p>
-</div>
-<div class="paragraph">
-<p>Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The form can be varied:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>concept papers with any kind of structure</p>
-</li>
-<li>
-<p>cross-cutting model excerpts or scenarios using notations of the architecture views</p>
-</li>
-<li>
-<p>sample implementations, especially for technical concepts</p>
-</li>
-<li>
-<p>reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Structure</div>
-<p>A potential (but not mandatory) structure for this section could be:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Domain concepts</p>
-</li>
-<li>
-<p>User Experience concepts (UX)</p>
-</li>
-<li>
-<p>Safety and security concepts</p>
-</li>
-<li>
-<p>Architecture and design patterns</p>
-</li>
-<li>
-<p>"Under-the-hood"</p>
-</li>
-<li>
-<p>development concepts</p>
-</li>
-<li>
-<p>operational concepts</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Note: it might be difficult to assign individual concepts to one specific topic
-on this list.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/08-Crosscutting-Concepts-Structure-EN.png" alt="Possible topics for crosscutting concepts"></span></p>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_domain_model">8.1. Domain model</h3>
 <div class="paragraph">
@@ -1299,8 +1069,12 @@ on this list.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A user represents the end user that will buy products in the application.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A user role that can perform upgraded actions.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Seller</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A user role that sells products in the application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An user role that sells products in the application.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Product</p></td>
@@ -1336,6 +1110,13 @@ database, after thinking about it, we decided we would use MongoDB since it has 
 <div class="paragraph">
 <p>To calculate the distance between the central and the user direction we will make use of the Nominatim library. It offers us a
 simple and easy way of calculating the distances.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jwt_token">9.3. JWT Token</h3>
+<h5 id="_contxt" class="discrete">Contxt</h5>
+<div class="paragraph">
+<p>To create user authorization we made use of jwt tokens through user accounts that use as the username the webId from solid</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1501,8 +1282,12 @@ a quality tree (provides an overview of the attributes) and some quality scenari
 <td class="tableblock halign-left valign-top"><p class="tableblock">Although we have mostly cleaned up our dependency tree vastly improving build times, we still need to give it another look.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Substandard deployment vendor</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We have been made to know that apart from Amazon Web Services, other server providers offer free, more convenient student plans. We need to look into these.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code quality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We are aware that there exist several hotspots on our application and code smell. This could create problems on the future.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input sanitation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As we were short on time we ended up not sanitating the user input</p></td>
 </tr>
 </tbody>
 </table>
@@ -1531,10 +1316,6 @@ a quality tree (provides an overview of the attributes) and some quality scenari
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Open-source, front end, JavaScript library for building user interfaces or UI components. It is used as a base in the development of single-page or mobile applications.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">POD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Secure personal web data servers from SOLID. The owner controls who and what can access their pods.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
@@ -1575,7 +1356,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-28 21:11:37 +0200
+Last updated 2022-05-01 20:10:22 +0200
 </div>
 </div>
 </body>
