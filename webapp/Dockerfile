@@ -5,7 +5,7 @@ WORKDIR /app
 #Install the dependencies
 RUN npm install
 
-ARG API_URI
+ARG API_URI="https://restapi.dededeals.es:5000"
 ENV REACT_APP_API_URI=$API_URI
 
 ARG PREFLIGHT_CHECK_SKIP=true
