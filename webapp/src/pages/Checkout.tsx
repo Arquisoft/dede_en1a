@@ -15,7 +15,7 @@ const Checkout = () => {
     })
 
 	useEffect(() => {
-        axios.post((process.env.RESTAPI_URI || "http://localhost:5000") + "/geocode",
+        axios.post((process.env.REACT_APP_API_URI || "http://localhost:5000") + "/geocode",
             {
                 "street":  address[3],
                 "city":    address[2],
