@@ -9,7 +9,7 @@ The frontend web application will be developed using React, one of the most used
 
 *MongoDB*
 
-We will use Mongo as database engine, as we have already experience working with it and it is easy to maintain.
+We will use Mongo as database engine, as we have already experience working with it and it is easy to integrate into TS/JS.
 
 *NodeJS express + Typescript*
 
@@ -17,7 +17,7 @@ These will be the technologies we will use for the application backend. Typescri
 
 *Docker on Ubuntu*
 
-We use Docker, inside an Ubuntu machine, to deploy the different parts of our application inside containers.
+We use Docker running on an Ubuntu host to deploy the different parts of our application. This is one of the most common deployment configurations nowadays.
 
 === Top-level decomposition
 We decided to follow an MVC architectural pattern. This seems to us as the most straightforward way to develop the project, as this approach directly supports the use of different technologies on different layers.
