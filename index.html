@@ -475,6 +475,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_alice_wants_to_order_a_new_product">6.1. Alice wants to order a new product</a></li>
 <li><a href="#_bob_wants_to_process_an_order_to_buy_products">6.2. Bob wants to process an order to buy products</a></li>
 <li><a href="#_bob_wants_to_check_his_placed_orders">6.3. Bob wants to check his placed orders</a></li>
+<li><a href="#_alice_wants_to_become_a_seller">6.4. Alice wants to become a seller</a></li>
+<li><a href="#_alice_wants_to_log_in_as_a_seller">6.5. Alice wants to log in as a seller</a></li>
+<li><a href="#_alice_wants_to_add_a_product">6.6. Alice wants to add a product</a></li>
+<li><a href="#_bob_wants_to_search_a_new_product">6.7. Bob wants to search a new product</a></li>
+<li><a href="#_bob_wants_to_log_out_from_the_application">6.8. Bob wants to log out from the application</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -490,7 +495,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
 <ul class="sectlevel2">
-<li><a href="#_usage_of_mongodb">9.1. Usage of MongoDB</a></li>
+<li><a href="#_mongodb">9.1. MongoDB</a></li>
 <li><a href="#_nominatim">9.2. Nominatim</a></li>
 <li><a href="#_jwt_token">9.3. JWT Token</a></li>
 </ul>
@@ -568,7 +573,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </ul>
 </div>
 <div class="paragraph">
-<p>Dede is a privacy-oriented, online-based marketplace where vendors publish their products and clients can register with the assurance of their private information not being stored in the application.</p>
+<p>Dede Deals is a privacy-oriented, online-based marketplace where vendors publish their products and clients can register with the assurance of their private information not being stored in the application.</p>
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
@@ -704,8 +709,19 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="paragraph">
-<p>When the user finishes selecting what products to buy and proceeds to create an order,
-the system will require a login from SOLID in order to use their address, which is located in the POD, and be able to calculate the cost of the delivery.</p>
+<p>When the user first arrives to the application, they will be able to browse and view the details of every product. In order to make a purchase, they must be logged in.</p>
+</div>
+<div class="paragraph">
+<p>The login process takes place in the pod provider provided by the user and when finished it creates a session in the application which will be used to manage all internal logic.</p>
+</div>
+<div class="paragraph">
+<p>Whenever the user wants to make an order, a series of steps will be followed; first, the list of products the client has chosen will be displayed and open to change, second the shipping information will be displayed and in case no valid information is found in the pod, the client will be able to fill it up.</p>
+</div>
+<div class="paragraph">
+<p>Finally, when the user reaches the end of the checkout process an order summary will be displayed with the order information, total cost and shipping.</p>
+</div>
+<div class="paragraph">
+<p>Once the order is placed, it is saved in the database and the user is given the option to see their orders or continue shopping.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -716,7 +732,10 @@ the system will require a login from SOLID in order to use their address, which 
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
 <div class="paragraph">
-<p>The user will execute the application and will interact with the GUI in order to choose what products to buy. When the selection is done and the client wants to make an order the application will require them to Log in its Pod. Following this, the backend will manage the necessary interactions with the user&#8217;s POD and the product database in order to provide an estimated cost of delivery and compute the total cost of the order.</p>
+<p>The user will execute the application and will interact with the GUI in order to choose what products to buy. When the selection is done and the client wants to make an order the application will require them to Log in its Pod.</p>
+</div>
+<div class="paragraph">
+<p>Following this, the backend will manage the necessary interactions with the user&#8217;s POD and the product database in order to provide an estimated cost of delivery and compute the total cost of the order.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -742,7 +761,7 @@ the system will require a login from SOLID in order to use their address, which 
 <p><strong>MongoDB</strong></p>
 </div>
 <div class="paragraph">
-<p>We will use Mongo as database engine, as we have already experience working with it and it is easy to maintain.</p>
+<p>We will use Mongo as database engine, as we have already experience working with it and it is easy to integrate into TS/JS.</p>
 </div>
 <div class="paragraph">
 <p><strong>NodeJS express + Typescript</strong></p>
@@ -754,7 +773,7 @@ the system will require a login from SOLID in order to use their address, which 
 <p><strong>Docker on Ubuntu</strong></p>
 </div>
 <div class="paragraph">
-<p>We use Docker, inside an Ubuntu machine, to deploy the different parts of our application inside containers.</p>
+<p>We use Docker running on an Ubuntu host to deploy the different parts of our application. This is one of the most common deployment configurations nowadays.</p>
 </div>
 </div>
 <div class="sect2">
@@ -910,7 +929,7 @@ order, but now he wants to process that order and buy the products.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/bob_checkout.png" alt="bob checkout" width="1117" height="702">
+<img src="./images/bob_checkout.png" alt="bob checkout" width="1057" height="860">
 </div>
 </div>
 </div>
@@ -919,7 +938,7 @@ order, but now he wants to process that order and buy the products.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Bob has is a loyal client and has placed some orders,
+<p>Bob is a loyal client and has placed some orders,
 now he wants to check those to verify everything is correct.</p>
 </li>
 <li>
@@ -930,6 +949,93 @@ now he wants to check those to verify everything is correct.</p>
 <div class="imageblock">
 <div class="content">
 <img src="./images/bob_buy.png" alt="bob buy" width="583" height="417">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alice_wants_to_become_a_seller">6.4. Alice wants to become a seller</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Alice has been using our wonderful app for some time and trusts our privacy policies. She has decided to start a small business and will use our site to sell her products.</p>
+</li>
+<li>
+<p>In the following diagram the process to become a seller can be seen. In order to do this, Alice must be logged in.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/alice_seller.png" alt="alice seller" width="1017" height="543">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alice_wants_to_log_in_as_a_seller">6.5. Alice wants to log in as a seller</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Alice has made an account in DeDe and logged out but now
+wants to log in again.</p>
+</li>
+<li>
+<p>In the following diagram the process to log in as a seller can be seen.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/alice_seller_login.png" alt="alice seller login" width="1025" height="543">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alice_wants_to_add_a_product">6.6. Alice wants to add a product</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Alice has made an account in DeDe and logged in, now
+she wants to add some products to sell.</p>
+</li>
+<li>
+<p>In the following diagram the process to add products belonging to a seller. We will suppose Alice has already
+logged in as a seller.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/alice_seller_add_product.png" alt="alice seller add product" width="807" height="385">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bob_wants_to_search_a_new_product">6.7. Bob wants to search a new product</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Bob has logged in his pod and wants to buy a new product but there are so many products that he cannot see the one he likes. Fortunately our experienced developers have implemented a search and filtering tool.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/bob_search_product.png" alt="bob search product" width="1073" height="353">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bob_wants_to_log_out_from_the_application">6.8. Bob wants to log out from the application</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Bob has made some orders and now wants to log out from the application.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/bob_logout.png" alt="bob logout" width="581" height="321">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -948,7 +1054,7 @@ now he wants to check those to verify everything is correct.</p>
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles.</p>
+<p>The DeDe Deals application is deployed in accordance with goals of continuous integration and adherance to SOLID design principles. In addition, hosting the application on a remote server allows it to be accessible from the Internet, from any place in the world.</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
 <dd>
@@ -973,11 +1079,11 @@ now he wants to check those to verify everything is correct.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Azure</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Cloud platform which hosts DeDe app on a server.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Cloud platform which hosts the DeDe stack on a VPS.</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Ubuntu Machine</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Linux virtual machine where docker containers run.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Linux virtual machine where docker containers and other related software runs.</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Docker</em></p></td>
@@ -1004,6 +1110,22 @@ now he wants to check those to verify everything is correct.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>RestAPI</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Endpoint for app requests to the backend. Includes backend where business logic is managed.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Grafana</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Metrics aggregator. Queries Prometheus for statistics on the application and presents them to the administrator.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Prometheus</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Metrics collector. Attached to the RestAPI instance, it collects information about the application.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Node Exporter</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Prometheus extension. Collects information about the machine which is fed to the main Prometheus instance.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>NGINX</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Server software. Acts as a router and as a reverse proxy. Forces HTTPS on connections to and from Webapp and RestAPI and redirects traffic on ports 80/443 to 3000, presenting the webapp.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1097,26 +1219,24 @@ now he wants to check those to verify everything is correct.</p>
 <p>Here we will document the technologies that affect the application, and we will be explaining why below.</p>
 </div>
 <div class="sect2">
-<h3 id="_usage_of_mongodb">9.1. Usage of MongoDB</h3>
+<h3 id="_mongodb">9.1. MongoDB</h3>
 <h5 id="_context" class="discrete">Context</h5>
 <div class="paragraph">
-<p>Since we need a Database to store the products for the application, not the users, they will be in their POD, we have to use a
-database, after thinking about it, we decided we would use MongoDB since it has an easy connection with typescript.</p>
+<p>While user data will always be accessed from their PODs and never stored, there is still some data the application handles which needs to be stored, such as product information and order placements. For this purpose, we will use MongoDB, since the format it uses is readily translatable to JavaScript objects.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_nominatim">9.2. Nominatim</h3>
 <h5 id="_context_2" class="discrete">Context</h5>
 <div class="paragraph">
-<p>To calculate the distance between the central and the user direction we will make use of the Nominatim library. It offers us a
-simple and easy way of calculating the distances.</p>
+<p>To calculate the distance between the warehouse and the user address we make use of the Nominatim library. It offers us a simple and easy way of calculating the distances.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_jwt_token">9.3. JWT Token</h3>
-<h5 id="_contxt" class="discrete">Contxt</h5>
+<h5 id="_context_3" class="discrete">Context</h5>
 <div class="paragraph">
-<p>To create user authorization we made use of jwt tokens through user accounts that use as the username the webId from solid</p>
+<p>To create user authorization we make use of JWT tokens, which securely store a privileged session.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
